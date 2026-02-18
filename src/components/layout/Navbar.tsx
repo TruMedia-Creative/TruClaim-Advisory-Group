@@ -24,10 +24,10 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-3">
               <div className="w-12 h-12 bg-gradient-to-br from-royal-800 to-royal-600 rounded-full flex items-center justify-center">
-                <span className="text-gold-500 font-bold text-xl">ISG</span>
+                <span className="text-gold-500 font-bold text-xl">TAG</span>
               </div>
               <div className="hidden sm:block">
-                <span className="text-royal-800 font-display font-bold text-xl">Insurance Specialty Group</span>
+                <span className="text-royal-800 font-display font-bold text-xl">TruClaims Advisory Group</span>
               </div>
             </Link>
           </div>
