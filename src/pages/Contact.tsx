@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { Mail, MapPin, Clock, CheckCircle } from 'lucide-react';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -10,15 +10,43 @@ const Contact = () => {
     claimType: '',
     message: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission logic placeholder
-    alert('Thank you for your inquiry. We will be in touch shortly.');
+
+    if (isSubmitting) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitError(null);
+    setSubmitSuccess(false);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit contact form');
+      }
+
+      setSubmitSuccess(true);
+      setFormData({ name: '', email: '', phone: '', claimType: '', message: '' });
+    } catch {
+      setSubmitError('Something went wrong while submitting the form. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -44,18 +72,6 @@ const Contact = () => {
             >
               <h2 className="text-2xl font-bold text-royal-800 mb-8">Get in Touch</h2>
               <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-royal-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Phone className="text-royal-800" size={22} />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-royal-800 mb-1">Phone</h3>
-                    <a href="tel:+1-555-000-0000" className="text-gray-600 hover:text-royal-700 transition">
-                      (555) 000-0000
-                    </a>
-                  </div>
-                </div>
-
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-royal-100 rounded-xl flex items-center justify-center flex-shrink-0">
                     <Mail className="text-royal-800" size={22} />
@@ -170,11 +186,25 @@ const Contact = () => {
                     />
                   </div>
 
+                  {submitSuccess && (
+                    <div className="flex items-center gap-3 bg-green-50 border border-green-200 text-green-800 rounded-lg px-4 py-3">
+                      <CheckCircle size={18} className="flex-shrink-0" />
+                      <span className="text-sm font-medium">Thank you for your inquiry. We will be in touch shortly.</span>
+                    </div>
+                  )}
+
+                  {submitError && (
+                    <div className="bg-red-50 border border-red-200 text-red-800 rounded-lg px-4 py-3 text-sm">
+                      {submitError}
+                    </div>
+                  )}
+
                   <button
                     type="submit"
-                    className="w-full bg-royal-800 text-white py-3 rounded-lg font-semibold hover:bg-royal-700 transition-colors"
+                    disabled={isSubmitting}
+                    className="w-full bg-royal-800 text-white py-3 rounded-lg font-semibold hover:bg-royal-700 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    Send Inquiry
+                    {isSubmitting ? 'Sending…' : 'Send Inquiry'}
                   </button>
                 </form>
               </div>

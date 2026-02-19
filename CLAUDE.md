@@ -38,7 +38,7 @@ pnpm preview
 ```text
 src/
 ├── components/
-│   ├── home/           # Hero, ServiceAreaSection, StatsSection
+│   ├── home/           # Hero, ServiceAreaSection.tsx, StatsSection
 │   ├── services/       # Service cards/sections (optional)
 │   └── layout/         # Navbar, Footer, Layout
 ├── pages/

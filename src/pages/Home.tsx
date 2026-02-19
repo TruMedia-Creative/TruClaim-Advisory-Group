@@ -3,7 +3,7 @@ import { motion, useInView } from 'framer-motion';
 import { Users, Shield, Building2, Handshake } from 'lucide-react';
 import Hero from '../components/home/Hero';
 import StatsSection from '../components/home/StatsSection';
-import ServiceAreaSection from '../components/home/InteractiveMap';
+import ServiceAreaSection from '../components/home/ServiceAreaSection';
 
 const Home = () => {
   const valuesRef = useRef(null);
