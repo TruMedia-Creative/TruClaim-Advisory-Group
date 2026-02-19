@@ -3,7 +3,7 @@ import { motion, useInView } from 'framer-motion';
 import { Users, Shield, Building2, Handshake } from 'lucide-react';
 import Hero from '../components/home/Hero';
 import StatsSection from '../components/home/StatsSection';
-import InteractiveMap from '../components/home/InteractiveMap';
+import ServiceAreaSection from '../components/home/InteractiveMap';
 
 const Home = () => {
   const valuesRef = useRef(null);
@@ -24,8 +24,8 @@ const Home = () => {
       {/* Stats Section with 75+ Partners, $600M */}
       <StatsSection />
 
-      {/* Interactive Map Section */}
-      <InteractiveMap />
+      {/* Service Area Section */}
+      <ServiceAreaSection />
 
       {/* Values Section */}
       <section ref={valuesRef} className="py-20 bg-white">

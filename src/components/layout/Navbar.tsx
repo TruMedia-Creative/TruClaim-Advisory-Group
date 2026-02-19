@@ -9,9 +9,8 @@ const Navbar = () => {
 
   const navLinks = [
     { path: '/', label: 'Home' },
-    { path: '/brokerages', label: 'Our Brokerages' },
-    { path: '/philosophy', label: 'Philosophy' },
-    { path: '/mjak', label: 'M-JAK' },
+    { path: '/services', label: 'Services' },
+    { path: '/about', label: 'About' },
     { path: '/contact', label: 'Contact' },
   ];
 
@@ -48,10 +47,10 @@ const Navbar = () => {
               </Link>
             ))}
             <Link
-              to="/partner-login"
+              to="/contact"
               className="ml-4 px-4 py-2 bg-gold-500 text-royal-900 rounded-lg font-semibold hover:bg-gold-400 transition-all duration-200"
             >
-              Partner Access
+              Request Appraisal
             </Link>
           </div>
 
@@ -92,11 +91,11 @@ const Navbar = () => {
                 </Link>
               ))}
               <Link
-                to="/partner-login"
+                to="/contact"
                 onClick={() => setIsOpen(false)}
                 className="block px-4 py-3 bg-gold-500 text-royal-900 rounded-lg font-semibold text-center"
               >
-                Partner Access
+                Request Appraisal
               </Link>
             </div>
           </motion.div>
