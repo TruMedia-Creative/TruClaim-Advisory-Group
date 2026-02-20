@@ -66,9 +66,8 @@ export default function About() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.4 }}
             >
               <h2 className="section-title mb-6">Who We Are</h2>
               <p className="text-gray-600 text-lg leading-relaxed mb-5">
@@ -85,9 +84,8 @@ export default function About() {
             {/* Credentials */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.4, delay: 0.1 }}
               className="bg-gray-50 rounded-2xl p-8 shadow-lg"
             >
               <h3 className="text-xl font-bold text-royal-800 mb-6">Credentials & Experience</h3>
@@ -110,7 +108,8 @@ export default function About() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0 }}
+            transition={{ duration: 0.4 }}
             className="text-center mb-16"
           >
             <h2 className="section-title">Our Approach</h2>
@@ -125,8 +124,8 @@ export default function About() {
                 key={value.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true, amount: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.08 }}
                 className="bg-white rounded-2xl p-8 shadow-lg flex gap-6"
               >
                 <div className="w-14 h-14 bg-gradient-to-br from-royal-800 to-royal-600 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -148,7 +147,8 @@ export default function About() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0 }}
+            transition={{ duration: 0.4 }}
           >
             <h2 className="section-title mb-4">Work With Us</h2>
             <p className="text-gray-600 text-lg mb-8 max-w-xl mx-auto">
