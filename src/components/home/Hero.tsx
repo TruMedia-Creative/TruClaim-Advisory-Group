@@ -175,7 +175,13 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-royal-800 via-royal-900 to-royal-950 overflow-hidden">
+    <section
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[url(/hero-house.jpg)] bg-cover bg-center"
+      aria-label="TruClaims Advisory Group hero section"
+    >
+      {/* Gradient overlay — semi-transparent so the background image shows through */}
+      <div className="absolute inset-0 bg-gradient-to-br from-royal-800/75 via-royal-900/80 to-royal-950/85" />
+
       {/* Animated background rays */}
       <BackgroundRays />
 
