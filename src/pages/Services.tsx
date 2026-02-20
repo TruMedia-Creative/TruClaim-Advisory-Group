@@ -105,19 +105,18 @@ export default function Services() {
           <motion.div
             className="grid md:grid-cols-2 gap-8"
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
+            animate="visible"
             variants={{
               hidden: {},
-              visible: { transition: { staggerChildren: 0.1 } },
+              visible: { transition: { staggerChildren: 0.08 } },
             }}
           >
             {services.map((service) => (
               <motion.div
                 key={service.title}
                 variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
                 }}
                 className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow"
               >
@@ -150,7 +149,8 @@ export default function Services() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0 }}
+            transition={{ duration: 0.4 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">
               Ready to Get Started?
