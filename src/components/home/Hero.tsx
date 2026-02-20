@@ -230,10 +230,10 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 0.6 }}
           >
-            <Link to="/brokerages" className="btn-secondary inline-flex items-center justify-center">
+            <Link to="/services" className="btn-secondary inline-flex items-center justify-center">
               Request Appraisal Services
             </Link>
-            <Link to="/philosophy" className="btn-primary inline-flex items-center justify-center">
+            <Link to="/contact" className="btn-primary inline-flex items-center justify-center">
               Schedule a Consultation
             </Link>
           </motion.div>

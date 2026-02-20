@@ -29,34 +29,34 @@ function useCounter(end: number, duration: number = 2000, startOnView: boolean =
 const stats = [
   {
     icon: Shield,
-    value: 75,
+    value: 20,
     suffix: '+',
-    label: 'Insurer Partners',
-    description: 'Access to Canada\'s leading insurance carriers',
+    label: 'Years of Experience',
+    description: 'Decades of insurance appraisal expertise',
     color: 'from-royal-600 to-royal-800',
   },
   {
     icon: DollarSign,
-    value: 600,
+    value: 500,
     suffix: 'M+',
-    label: 'Gross Written Premium',
-    description: 'Combined annual premium volume',
+    label: 'Claims Appraised',
+    description: 'Total value of losses evaluated',
     color: 'from-gold-500 to-gold-600',
   },
   {
     icon: Building2,
-    value: 11,
-    suffix: '',
-    label: 'Independent Brokerages',
-    description: 'Locally owned and operated',
+    value: 1000,
+    suffix: '+',
+    label: 'Properties Appraised',
+    description: 'Residential, commercial, and large-loss',
     color: 'from-royal-600 to-royal-800',
   },
   {
     icon: Users,
-    value: 500,
+    value: 100,
     suffix: '+',
-    label: 'Insurance Professionals',
-    description: 'Dedicated to serving you',
+    label: 'Insurer & Legal Partners',
+    description: 'Trusted across the industry',
     color: 'from-gold-500 to-gold-600',
   },
 ];
@@ -89,7 +89,7 @@ function AnimatedStat({ stat, index }: { stat: typeof stats[0]; index: number })
         {/* Animated counter */}
         <div className="mb-2">
           <span className="text-4xl md:text-5xl font-bold text-royal-800">
-            {stat.value === 600 ? (
+            {stat.value === 500 ? (
               <>${count}</>
             ) : (
               count
@@ -234,7 +234,7 @@ export default function StatsSection() {
           <div className="inline-flex items-center gap-3 bg-white px-6 py-3 rounded-full shadow-md border border-gray-100">
             <Award className="w-5 h-5 text-gold-500" />
             <span className="text-gray-600">
-              Combined <span className="font-semibold text-royal-800">950+ years</span> of industry experience
+              Trusted by leading <span className="font-semibold text-royal-800">insurers, adjusters & attorneys</span>
             </span>
           </div>
         </motion.div>
