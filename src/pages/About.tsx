@@ -3,11 +3,12 @@ import { Shield, Award, Scale, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const credentials = [
-  'Certified Appraiser – Property & Casualty',
-  'Member, National Association of Public Insurance Adjusters (NAPIA)',
-  '20+ years of field appraisal experience',
-  'Qualified Expert Witness – State & Federal Courts',
-  'Xactimate Certified Estimator',
+  'Licensed Insurance Adjuster – Property & Casualty',
+  'NFIP Certified (National Flood Insurance Program)',
+  'State Farm Certified Appraiser',
+  'USAA Certified Appraiser',
+  'TWIA Certified Appraiser',
+  '6+ years of field appraisal experience',
   'Catastrophic Loss Deployment Specialist',
 ];
 
@@ -16,25 +17,25 @@ const values = [
     icon: Shield,
     title: 'Independence',
     description:
-      'We have no financial relationship with insurance companies. Our sole obligation is to provide an accurate, objective valuation — whoever retains us.',
+      'We serve both insureds and insurance carriers as neutral appraisal professionals. Our sole obligation is to provide an accurate, objective valuation — whoever retains us.',
   },
   {
     icon: Scale,
-    title: 'Objectivity',
+    title: 'Fairness',
     description:
-      'Every appraisal is grounded in verifiable evidence: inspection findings, industry pricing databases, and applicable policy language. Our conclusions are defensible at every stage.',
+      'We treat every claim with empathy and fairness. Our clients should feel heard and know they have someone in their corner working with integrity to reach a just settlement.',
   },
   {
     icon: Award,
     title: 'Professionalism',
     description:
-      'We maintain the highest ethical standards in every engagement. Our written reports are clear, well-documented, and designed to withstand scrutiny from all parties.',
+      'We are licensed insurance adjusters with Property & Casualty credentials and carrier certifications including NFIP, State Farm, USAA, and TWIA. Our work withstands scrutiny from all parties.',
   },
   {
     icon: CheckCircle,
-    title: 'Accuracy',
+    title: 'Preloss Restoration',
     description:
-      'We take the time to properly scope and value each loss. Accurate results protect policyholders, reduce litigation, and support fair claim resolution.',
+      'Our goal is to help every client — individual or business — obtain a fair and just settlement that returns them to their preloss condition. That is the standard we hold ourselves to.',
   },
 ];
 
@@ -51,10 +52,10 @@ export default function About() {
             className="text-center"
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-4">
-              About TruClaim Advisory Group
+              About TruClaims Appraisal Group
             </h1>
             <p className="text-royal-200 text-lg max-w-2xl mx-auto">
-              Independent. Objective. Evidence-based.
+              Empathy. Fairness. Integrity.
             </p>
           </motion.div>
         </div>
@@ -71,13 +72,13 @@ export default function About() {
             >
               <h2 className="section-title mb-6">Who We Are</h2>
               <p className="text-gray-600 text-lg leading-relaxed mb-5">
-                TruClaim Advisory Group is an independent insurance appraisal and catastrophic loss valuation firm serving property owners, insurance carriers, and legal professionals across the Gulf Coast region and beyond.
+                TruClaims Appraisal Group provides insurance adjusting appraisals and umpiring for individuals and insurance carriers across Texas and Louisiana — with travel available for large-loss events nationwide.
               </p>
               <p className="text-gray-600 leading-relaxed mb-5">
-                We were founded on a simple principle: every property loss deserves an accurate, unbiased valuation. Too often, the appraisal process is rushed, politically influenced, or conducted by parties with conflicting interests. We exist to change that.
+                We were founded on a straightforward commitment: every client should feel heard and have someone in their corner working with fairness and integrity. Whether you are a homeowner who hasn't received a just settlement, a carrier seeking an independent scope of loss, or an attorney navigating a disputed claim, we are here to help.
               </p>
               <p className="text-gray-600 leading-relaxed">
-                Whether you are a homeowner disputing a claim, an insurer seeking an independent scope of loss, or an attorney preparing for litigation, TruClaim Advisory Group delivers the reliable, defensible valuations your case depends on.
+                Our experience spans residential claims, umpire engagements, and catastrophic events including Hurricanes Beryl, Laura, Ian, and Ida. We specialize in hail, wind, and water losses — and we perform on-site inspections for every engagement.
               </p>
             </motion.div>
 
@@ -114,7 +115,7 @@ export default function About() {
           >
             <h2 className="section-title">Our Approach</h2>
             <p className="text-gray-600 max-w-2xl mx-auto mt-4">
-              Every engagement is guided by four principles that define how we work and what our clients can expect from us.
+              Every engagement is guided by four principles that define how we work and what our clients can expect.
             </p>
           </motion.div>
 
@@ -152,7 +153,7 @@ export default function About() {
           >
             <h2 className="section-title mb-4">Work With Us</h2>
             <p className="text-gray-600 text-lg mb-8 max-w-xl mx-auto">
-              Whether you need an independent appraiser, a neutral umpire, or expert witness support, TruClaim Advisory Group is ready to assist.
+              Whether you need an independent appraiser, a neutral umpire, or an estimate review, TruClaims Appraisal Group is ready to assist.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/services" className="btn-secondary">

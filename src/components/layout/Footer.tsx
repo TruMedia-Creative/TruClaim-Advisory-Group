@@ -12,10 +12,10 @@ const Footer = () => {
               <div className="w-12 h-12 bg-gradient-to-br from-gold-500 to-gold-400 rounded-full flex items-center justify-center">
                 <span className="text-royal-900 font-bold text-xl">TAG</span>
               </div>
-              <span className="font-display font-bold text-2xl">TruClaims Advisory Group</span>
+              <span className="font-display font-bold text-2xl">TruClaims Appraisal Group</span>
             </div>
             <p className="text-royal-200 max-w-md">
-              TruClaims Advisory Group delivers accurate, defensible loss valuations for residential, commercial, and catastrophic claims.
+              TruClaims Appraisal Group provides insurance adjusting appraisals and umpiring for individuals and insurance carriers across Texas and Louisiana.
             </p>
           </div>
 
@@ -36,7 +36,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start space-x-2 text-royal-200">
                 <MapPin size={18} className="mt-1" />
-                <span>Serving Texas & Beyond</span>
+                <span>Serving Texas &amp; Louisiana</span>
               </li>
             </ul>
           </div>
@@ -44,7 +44,7 @@ const Footer = () => {
 
         <div className="border-t border-royal-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-royal-300 text-sm">
-            &copy; {new Date().getFullYear()} TruClaims Advisory Group. All rights reserved.
+            &copy; {new Date().getFullYear()} TruClaims Appraisal Group. All rights reserved.
           </p>
           <p className="text-royal-400 text-sm mt-2 md:mt-0">
             truclaimsadvisorygroup.com

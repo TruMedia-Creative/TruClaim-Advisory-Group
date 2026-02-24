@@ -90,7 +90,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-royal-800 mb-1">Service Area</h3>
-                    <p className="text-gray-600">Texas, Louisiana, Oklahoma, Arkansas & Mississippi</p>
+                    <p className="text-gray-600">Texas & Louisiana</p>
                     <p className="text-gray-500 text-sm mt-1">Travel available for large-loss events nationwide</p>
                   </div>
                 </div>
@@ -169,6 +169,7 @@ const Contact = () => {
                       <option value="commercial">Commercial Property</option>
                       <option value="catastrophic">Catastrophic Loss</option>
                       <option value="disputed">Disputed Claim / Appraisal Umpire</option>
+                      <option value="estimate">Estimate Review</option>
                       <option value="other">Other</option>
                     </select>
                   </div>

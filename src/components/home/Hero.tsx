@@ -177,7 +177,7 @@ export default function Hero() {
   return (
     <section
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[url(/hero-house.jpg)] bg-cover bg-center"
-      aria-label="TruClaims Advisory Group hero section"
+      aria-label="TruClaims Appraisal Group hero section"
     >
       {/* Gradient overlay — semi-transparent so the background image shows through */}
       <div className="absolute inset-0 bg-gradient-to-br from-royal-800/75 via-royal-900/80 to-royal-950/85" />
@@ -207,7 +207,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
           >
-            TruClaims Advisory Group
+            TruClaims Appraisal Group
           </motion.h1>
 
           {/* Animated tagline */}
@@ -217,7 +217,7 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.8 }}
           >
-            Independent Insurance Appraisal & Catastrophic Loss Valuation
+            Insurance Appraisal & Umpire Services
           </motion.p>
 
           <motion.p
@@ -226,7 +226,7 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 0.8 }}
           >
-            We provide independent, evidence-based appraisal and dispute resolution services. TruClaims Advisory Group delivers accurate, defensible loss valuations for residential, commercial, and catastrophic claims.
+            We provide insurance adjusting appraisals and umpiring for individuals and insurance carriers — treating every claim with empathy and fairness to restore you to preloss condition.
           </motion.p>
 
           {/* CTA Buttons */}

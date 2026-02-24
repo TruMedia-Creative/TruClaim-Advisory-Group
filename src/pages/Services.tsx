@@ -7,11 +7,11 @@ const services = [
     icon: Scale,
     title: 'Insurance Appraisal',
     description:
-      'When you and your insurer disagree on the value of a loss, the appraisal process provides a structured, binding resolution. We serve as your independent appraiser, conducting a thorough, evidence-based evaluation to determine the accurate repair or replacement cost.',
+      'When you and your insurer disagree on the value of a loss, the appraisal process provides a structured, binding resolution. We represent both insureds and carriers as your independent appraiser, conducting a thorough on-site inspection to determine the accurate repair or replacement cost.',
     bullets: [
-      'Detailed property inspection and documentation',
+      'On-site property inspection and documentation',
       'Professional repair and replacement cost estimates',
-      'Coordination with the insurer\'s appraiser',
+      'Carrier and insured representation available',
       'Binding appraisal award through the umpire process',
     ],
   },
@@ -19,7 +19,7 @@ const services = [
     icon: Gavel,
     title: 'Appraisal Umpire Services',
     description:
-      'As a neutral umpire, TruClaim Advisory Group resolves disputes between two appraisers who cannot agree on the scope or value of a loss. We bring impartiality, technical expertise, and decisiveness to every umpire engagement.',
+      'As a neutral umpire, TruClaims Appraisal Group resolves disputes between two appraisers who cannot agree on the scope or value of a loss. We bring impartiality, technical expertise, and decisiveness to every umpire engagement.',
     bullets: [
       'Neutral, credentialed umpire services',
       'Review of both appraisers\' submissions',
@@ -31,35 +31,35 @@ const services = [
     icon: Search,
     title: 'Catastrophic Loss Valuation',
     description:
-      'Large-scale disasters demand rapid, accurate assessment. Our team is experienced in mobilizing quickly for hurricane, hail, tornado, and flood events — providing comprehensive loss documentation for both insureds and carriers.',
+      'We have hands-on experience responding to major catastrophic events including Hurricanes Beryl, Laura, Ian, and Ida. Our team mobilizes quickly for hail, wind, and water events — providing comprehensive loss documentation for both insureds and carriers.',
     bullets: [
       'Rapid deployment to catastrophe zones',
+      'Hail, wind, and flood/water damage expertise',
       'Systematic multi-property inspection programs',
-      'Drone and aerial inspection capabilities',
       'Detailed scope-of-loss reporting',
     ],
   },
   {
     icon: FileText,
-    title: 'Litigation Support & Expert Witness',
+    title: 'Estimate Review',
     description:
-      'For insurance disputes that proceed to litigation, we provide expert witness testimony, coverage analysis support, and written expert reports. Our opinions are grounded in industry standards and withstand rigorous cross-examination.',
+      'We review existing contractor estimates and insurance settlements to identify deficiencies, missed line items, or undervalued repairs. Our independent estimate review helps ensure the scope of loss is complete and fair before any appraisal is filed.',
     bullets: [
-      'Expert witness testimony (deposition & trial)',
-      'Written expert reports and declarations',
-      'Review and rebuttal of opposing expert opinions',
-      'Consultation with attorneys on property loss issues',
+      'Review of carrier\'s scope and settlement',
+      'Review of contractor estimates',
+      'Identification of deficiencies and missed items',
+      'Recommendations to proceed with appraisal if warranted',
     ],
   },
   {
     icon: Home,
     title: 'Residential Property Claims',
     description:
-      'From hail-damaged roofing to fire-gutted interiors, we provide independent valuations for all types of residential property losses — ensuring homeowners receive a fair and accurate settlement.',
+      'Residential claims are our primary focus. From hail-damaged roofing to water-damaged interiors, we provide independent valuations for all types of residential property losses — ensuring homeowners receive a fair and just settlement.',
     bullets: [
       'Single-family homes and condominiums',
-      'Wind, hail, fire, water, and mold damage',
-      'Accurate Xactimate and Marshall & Swift estimates',
+      'Wind, hail, fire, and water damage',
+      'On-site inspection for every engagement',
       'Scope of loss reconciliation with insurer',
     ],
   },
@@ -67,12 +67,12 @@ const services = [
     icon: Building2,
     title: 'Commercial Property Claims',
     description:
-      'Commercial losses involve complex construction, business interruption considerations, and high-stakes negotiations. We bring the technical depth required to value large-loss commercial claims accurately and defensibly.',
+      'Commercial losses involve complex construction considerations and high-stakes negotiations. We bring the technical depth required to value commercial claims accurately, working with business owners, carriers, attorneys, and public adjusters.',
     bullets: [
       'Office, retail, industrial, and multi-family properties',
-      'Business interruption and extra expense support',
+      'Wind, hail, water, and flood damage',
       'Large-loss and complex structural assessments',
-      'Coordination with engineers, contractors, and counsel',
+      'Coordination with contractors, carriers, and counsel',
     ],
   },
 ];
@@ -156,7 +156,7 @@ export default function Services() {
               Ready to Get Started?
             </h2>
             <p className="text-royal-200 text-lg mb-8 max-w-xl mx-auto">
-              Contact us today to discuss your claim and learn how TruClaim Advisory Group can help you reach a fair, defensible resolution.
+              Contact us today to discuss your claim and learn how TruClaims Appraisal Group can help you reach a fair, just settlement.
             </p>
             <Link
               to="/contact"
