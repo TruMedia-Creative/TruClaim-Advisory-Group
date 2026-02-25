@@ -58,9 +58,11 @@ interface FormFields {
 }
 
 interface FileFields {
+  // Section 3 — Document Uploads
   carrierEstimate: File | null;
   settlementLetter: File | null;
-  damagePhotos: File | null;
+  /** Multiple files allowed */
+  damagePhotos: FileList | null;
   contractorEstimate: File | null;
 }
 
@@ -97,6 +99,7 @@ const Contact = () => {
     contractorEstimate: null,
   });
 
+  const [fileError, setFileError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [submitSuccess, setSubmitSuccess] = useState(false);
@@ -108,8 +111,30 @@ const Contact = () => {
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0] ?? null;
-    setFileData({ ...fileData, [e.target.name]: file });
+    const { name, files } = e.target;
+    setFileError(null);
+
+    if (name === 'damagePhotos') {
+      // Validate each selected file against the 10 MB limit
+      if (files) {
+        for (const f of Array.from(files)) {
+          if (f.size > 10 * 1024 * 1024) {
+            setFileError(`"${f.name}" exceeds the 10 MB limit. Please select a smaller file.`);
+            e.target.value = '';
+            return;
+          }
+        }
+      }
+      setFileData({ ...fileData, damagePhotos: files && files.length > 0 ? files : null });
+    } else {
+      const file = files?.[0] ?? null;
+      if (file && file.size > 10 * 1024 * 1024) {
+        setFileError(`"${file.name}" exceeds the 10 MB limit. Please select a smaller file.`);
+        e.target.value = '';
+        return;
+      }
+      setFileData({ ...fileData, [name]: file });
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -129,10 +154,14 @@ const Contact = () => {
         payload.append(key, formData[key]);
       });
 
-      // Append files
+      // Append files (damagePhotos supports multiple)
       (Object.keys(fileData) as (keyof FileFields)[]).forEach((key) => {
-        const file = fileData[key];
-        if (file) payload.append(key, file);
+        if (key === 'damagePhotos' && fileData.damagePhotos) {
+          Array.from(fileData.damagePhotos).forEach((f) => payload.append('damagePhotos', f));
+        } else {
+          const file = fileData[key] as File | null;
+          if (file) payload.append(key, file);
+        }
       });
 
       const response = await fetch('/api/contact', {
@@ -163,6 +192,10 @@ const Contact = () => {
         referralSource: '',
       });
       setFileData({ carrierEstimate: null, settlementLetter: null, damagePhotos: null, contractorEstimate: null });
+      // File inputs cannot be reset via state; clear them via the DOM
+      document.querySelectorAll<HTMLInputElement>('input[type="file"]').forEach((input) => {
+        input.value = '';
+      });
     } catch {
       setSubmitError('Something went wrong while submitting the form. Please try again.');
     } finally {
@@ -305,15 +338,66 @@ const Contact = () => {
                       </div>
                       <div>
                         <label className={labelClass}>State *</label>
-                        <input
-                          type="text"
+                        <select
                           name="state"
                           required
                           value={formData.state}
                           onChange={handleChange}
                           className={inputClass}
-                          placeholder="e.g. Texas"
-                        />
+                        >
+                          <option value="" disabled>Select state…</option>
+                          <option value="AL">Alabama</option>
+                          <option value="AK">Alaska</option>
+                          <option value="AZ">Arizona</option>
+                          <option value="AR">Arkansas</option>
+                          <option value="CA">California</option>
+                          <option value="CO">Colorado</option>
+                          <option value="CT">Connecticut</option>
+                          <option value="DE">Delaware</option>
+                          <option value="DC">District of Columbia</option>
+                          <option value="FL">Florida</option>
+                          <option value="GA">Georgia</option>
+                          <option value="HI">Hawaii</option>
+                          <option value="ID">Idaho</option>
+                          <option value="IL">Illinois</option>
+                          <option value="IN">Indiana</option>
+                          <option value="IA">Iowa</option>
+                          <option value="KS">Kansas</option>
+                          <option value="KY">Kentucky</option>
+                          <option value="LA">Louisiana</option>
+                          <option value="ME">Maine</option>
+                          <option value="MD">Maryland</option>
+                          <option value="MA">Massachusetts</option>
+                          <option value="MI">Michigan</option>
+                          <option value="MN">Minnesota</option>
+                          <option value="MS">Mississippi</option>
+                          <option value="MO">Missouri</option>
+                          <option value="MT">Montana</option>
+                          <option value="NE">Nebraska</option>
+                          <option value="NV">Nevada</option>
+                          <option value="NH">New Hampshire</option>
+                          <option value="NJ">New Jersey</option>
+                          <option value="NM">New Mexico</option>
+                          <option value="NY">New York</option>
+                          <option value="NC">North Carolina</option>
+                          <option value="ND">North Dakota</option>
+                          <option value="OH">Ohio</option>
+                          <option value="OK">Oklahoma</option>
+                          <option value="OR">Oregon</option>
+                          <option value="PA">Pennsylvania</option>
+                          <option value="RI">Rhode Island</option>
+                          <option value="SC">South Carolina</option>
+                          <option value="SD">South Dakota</option>
+                          <option value="TN">Tennessee</option>
+                          <option value="TX">Texas</option>
+                          <option value="UT">Utah</option>
+                          <option value="VT">Vermont</option>
+                          <option value="VA">Virginia</option>
+                          <option value="WA">Washington</option>
+                          <option value="WV">West Virginia</option>
+                          <option value="WI">Wisconsin</option>
+                          <option value="WY">Wyoming</option>
+                        </select>
                       </div>
                     </div>
                   </div>
@@ -415,24 +499,31 @@ const Contact = () => {
                       PDF, JPG, or PNG accepted. Max 10 MB per file.
                     </p>
                     <div className="space-y-4">
-                      {[
-                        { name: 'carrierEstimate', label: 'Carrier Estimate (PDF) *', accept: '.pdf', required: true },
-                        { name: 'settlementLetter', label: 'Settlement Letter (if separate)', accept: '.pdf,.jpg,.jpeg,.png', required: false },
-                        { name: 'damagePhotos', label: 'Photos of the Damage *', accept: '.jpg,.jpeg,.png,.heic', required: true },
-                        { name: 'contractorEstimate', label: 'Contractor Estimate (if available)', accept: '.pdf,.jpg,.jpeg,.png', required: false },
-                      ].map(({ name, label, accept, required }) => (
+                      {([
+                        { name: 'carrierEstimate', label: 'Carrier Estimate (PDF) *', accept: '.pdf', required: true, multiple: false },
+                        { name: 'settlementLetter', label: 'Settlement Letter (if separate)', accept: '.pdf,.jpg,.jpeg,.png', required: false, multiple: false },
+                        { name: 'damagePhotos', label: 'Photos of the Damage *', accept: '.jpg,.jpeg,.png', required: true, multiple: true },
+                        { name: 'contractorEstimate', label: 'Contractor Estimate (if available)', accept: '.pdf,.jpg,.jpeg,.png', required: false, multiple: false },
+                      ] as const).map(({ name, label, accept, required, multiple }) => (
                         <div key={name}>
                           <label className={labelClass}>{label}</label>
                           <input
                             type="file"
                             name={name}
                             required={required}
+                            aria-required={required}
                             accept={accept}
+                            multiple={multiple}
                             onChange={handleFileChange}
                             className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-royal-50 file:text-royal-800 hover:file:bg-royal-100 cursor-pointer"
                           />
                         </div>
                       ))}
+                      {fileError && (
+                        <div className="bg-red-50 border border-red-200 text-red-800 rounded-lg px-4 py-3 text-sm">
+                          {fileError}
+                        </div>
+                      )}
                     </div>
                   </div>
 
