@@ -73,3 +73,18 @@ TruClaim Advisory Group is an independent insurance appraisal and catastrophe lo
 - **Respect the brand voice.** Content suggestions should be professional, neutral, and emphasize independence and evidence-based methodology. Avoid promotional hyperbole.
 - **Run `pnpm build`** to verify there are no TypeScript or Vite build errors after making changes.
 - **Run `pnpm lint`** to verify ESLint passes before finalizing any code suggestion.
+
+## Bootstrap & Check Workflow
+
+All commands must be run from the **repo root**.
+
+| Step | Command |
+|------|---------|
+| Bootstrap (first time / clean env) | `pnpm bootstrap` |
+| Full check (lint + typecheck + build) | `pnpm check` |
+
+- Use **Node** from `.nvmrc` (currently Node 24). Load it with `nvm use` or equivalent.
+- Use **pnpm via Corepack only** — never `npm install` or `yarn`.
+- If pnpm is not active, run `corepack enable && corepack prepare pnpm@9.15.0 --activate` first.
+- Skip `pnpm bootstrap` if `node_modules` is already up to date; prefer `pnpm install --frozen-lockfile` for incremental updates.
+- Prefer running `pnpm lint` or `pnpm typecheck` alone when only checking a specific concern.
