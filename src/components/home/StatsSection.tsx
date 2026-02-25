@@ -29,10 +29,10 @@ function useCounter(end: number, duration: number = 2000, startOnView: boolean =
 const stats = [
   {
     icon: Shield,
-    value: 20,
+    value: 6,
     suffix: '+',
     label: 'Years of Experience',
-    description: 'Decades of insurance appraisal expertise',
+    description: 'Years of insurance appraisal expertise',
     color: 'from-royal-600 to-royal-800',
   },
   {
@@ -55,8 +55,8 @@ const stats = [
     icon: Users,
     value: 100,
     suffix: '+',
-    label: 'Insurer & Legal Partners',
-    description: 'Trusted across the industry',
+    label: 'Clients Served',
+    description: 'Homeowners, carriers, attorneys & more',
     color: 'from-gold-500 to-gold-600',
   },
 ];

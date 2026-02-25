@@ -10,10 +10,10 @@ const Home = () => {
   const valuesInView = useInView(valuesRef, { once: true, margin: "-100px" });
 
   const values = [
-    { icon: Building2, title: "Independent & Neutral", desc: "We serve as independent appraisal professionals, providing objective loss valuations based solely on evidence, policy terms, and industry standards." },
-    { icon: Users, title: "Evidence-Based Valuation", desc: "Our appraisal process relies on detailed inspection, documentation, and professional estimating methods to determine accurate repair and replacement costs." },
-    { icon: Shield, title: "Dispute Resolution Expertise", desc: "We specialize in resolving complex claim disagreements between insurers and policyholders through the formal appraisal process." },
-    { icon: Handshake, title: "Catastrophic Loss Experience", desc: "From severe weather events to major commercial losses, we provide valuation expertise where stakes are high and accuracy matters." },
+    { icon: Building2, title: "Independent & Neutral", desc: "We serve both insureds and insurance carriers as independent appraisal professionals, providing objective loss valuations based on evidence, policy terms, and industry standards." },
+    { icon: Users, title: "Empathy & Fairness", desc: "We treat every claim with empathy and fairness. Our goal is to ensure every client feels heard and has someone in their corner working with integrity." },
+    { icon: Shield, title: "Preloss Restoration", desc: "We are committed to helping individuals and businesses obtain a fair and just settlement to restore them to their preloss condition." },
+    { icon: Handshake, title: "Catastrophe Experience", desc: "From Hurricane Beryl to Hurricane Ida, we have hands-on experience mobilizing quickly for major events — providing accurate scope and valuation when it matters most." },
   ];
 
   return (
@@ -31,7 +31,7 @@ const Home = () => {
       <section ref={valuesRef} className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="section-title mb-4">Why TruClaims Advisory Group?</h2>
+            <h2 className="section-title mb-4">Why TruClaims Appraisal Group?</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               Independent expertise. Objective valuation. Defensible results.
             </p>

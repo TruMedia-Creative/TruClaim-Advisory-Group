@@ -26,7 +26,7 @@ const Navbar = () => {
                 <span className="text-gold-500 font-bold text-xl">TAG</span>
               </div>
               <div className="hidden sm:block">
-                <span className="text-royal-800 font-display font-bold text-xl">TruClaims Advisory Group</span>
+                <span className="text-royal-800 font-display font-bold text-xl">TruClaims Appraisal Group</span>
               </div>
             </Link>
           </div>

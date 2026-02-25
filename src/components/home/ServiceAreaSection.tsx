@@ -4,10 +4,7 @@ import { Link } from 'react-router-dom';
 
 const serviceAreas = [
   { region: 'Texas', cities: ['Houston', 'Dallas', 'San Antonio', 'Austin', 'Fort Worth'] },
-  { region: 'Louisiana', cities: ['New Orleans', 'Baton Rouge', 'Shreveport'] },
-  { region: 'Oklahoma', cities: ['Oklahoma City', 'Tulsa'] },
-  { region: 'Arkansas', cities: ['Little Rock', 'Fayetteville'] },
-  { region: 'Mississippi', cities: ['Jackson', 'Biloxi', 'Gulfport'] },
+  { region: 'Louisiana', cities: ['New Orleans', 'Baton Rouge', 'Shreveport', 'Lafayette'] },
 ];
 
 const serviceTypes = [
@@ -17,7 +14,7 @@ const serviceTypes = [
   'Hail & Wind Damage',
   'Flood & Water Damage',
   'Fire & Smoke Damage',
-  'Large-Loss Industrial',
+  'Estimate Review',
   'Disputed Insurance Claims',
 ];
 
@@ -32,9 +29,9 @@ export default function ServiceAreaSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="section-title">Serving Property Owners, Insurers, and Legal Professionals</h2>
+          <h2 className="section-title">Serving Homeowners, Carriers, and Legal Professionals</h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto mt-4">
-            TruClaim Advisory Group provides independent appraisal and dispute resolution services across residential, commercial, and large-loss claims throughout the Gulf Coast region and beyond.
+            TruClaims Appraisal Group provides insurance adjusting appraisals and umpiring across Texas and Louisiana, with travel available nationwide for large-loss events.
           </p>
         </motion.div>
 
