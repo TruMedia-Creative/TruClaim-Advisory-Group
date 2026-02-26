@@ -21,11 +21,11 @@ const Home = () => {
       {/* Hero Section with Sun/Water Logo */}
       <Hero />
 
-      {/* Stats Section with 75+ Partners, $600M */}
-      <StatsSection />
-
       {/* Service Area Section */}
       <ServiceAreaSection />
+
+      {/* Stats Section with 75+ Partners, $600M */}
+      <StatsSection />
 
       {/* Values Section */}
       <section ref={valuesRef} className="py-20 bg-white">

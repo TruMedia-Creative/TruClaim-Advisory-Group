@@ -36,7 +36,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start space-x-2 text-royal-200">
                 <MapPin size={18} className="mt-1" />
-                <span>Serving Texas &amp; Louisiana</span>
+                <span>Serving TX, LA &amp; Beyond</span>
               </li>
             </ul>
           </div>

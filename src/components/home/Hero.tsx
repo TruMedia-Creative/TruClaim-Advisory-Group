@@ -171,7 +171,7 @@ function WaterWaves() {
 
 export default function Hero() {
   const scrollToStats = () => {
-    document.getElementById('stats-section')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('service-area')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
