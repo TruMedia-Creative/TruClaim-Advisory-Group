@@ -9,9 +9,6 @@ const steps = [
     title: 'Send Your Claim Details',
     description:
       'Share your insurance settlement or estimate and any photos or documents you already have so we can understand the situation quickly.',
-    image:
-      'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80&auto=format&fit=crop',
-    imageAlt: 'Insurance documents and paperwork on a desk',
   },
   {
     number: '02',
@@ -19,9 +16,6 @@ const steps = [
     title: 'Initial Scope Review',
     description:
       'We review the overall scope of loss and look for gaps, omissions, or inconsistencies in the carrier\'s or contractor\'s numbers.',
-    image:
-      'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80&auto=format&fit=crop',
-    imageAlt: 'Person reviewing documents and estimates at a desk',
   },
   {
     number: '03',
@@ -29,9 +23,6 @@ const steps = [
     title: 'On-Site Inspection',
     description:
       'We schedule and complete an on-site inspection to document the loss and confirm what\'s required to restore the property properly.',
-    image:
-      'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80&auto=format&fit=crop',
-    imageAlt: 'Inspector examining property damage on a roof',
   },
   {
     number: '04',
@@ -39,9 +30,6 @@ const steps = [
     title: 'Appraisal & Negotiation',
     description:
       'We prepare our appraisal position and work through the appraisal process to reach an agreed award — or proceed to an umpire if needed.',
-    image:
-      'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600&q=80&auto=format&fit=crop',
-    imageAlt: 'Two professionals reviewing and negotiating a document',
   },
   {
     number: '05',
@@ -49,9 +37,6 @@ const steps = [
     title: 'Award Finalized',
     description:
       'Once the award is set, you\'ll have a clear, defensible outcome you can use to move the claim toward resolution and settlement.',
-    image:
-      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80&auto=format&fit=crop',
-    imageAlt: 'Professional handshake after successful agreement',
   },
 ];
 
@@ -107,44 +92,34 @@ export default function Process() {
             </p>
           </motion.div>
 
-          <div className="space-y-16">
-            {steps.map((step, index) => {
-              const isOdd = index % 2 === 1;
-              return (
+          <div className="space-y-8">
+            {steps.map((step) => (
                 <motion.div
                   key={step.number}
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0 }}
                   transition={{ duration: 0.4 }}
-                  className={`flex flex-col ${isOdd ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-10 items-center`}
+                  className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 flex gap-6 items-start"
                 >
-                  {/* Image */}
-                  <div className="w-full lg:w-1/2 rounded-2xl overflow-hidden shadow-lg flex-shrink-0">
-                    <img
-                      src={step.image}
-                      alt={step.imageAlt}
-                      className="w-full h-64 lg:h-80 object-cover"
-                      loading={index === 0 ? 'eager' : 'lazy'}
-                    />
+                  {/* Step number + icon */}
+                  <div className="flex flex-col items-center gap-2 flex-shrink-0">
+                    <span className="text-4xl font-display font-bold text-ink-black-200 leading-none">
+                      {step.number}
+                    </span>
+                    <div className="w-12 h-12 bg-gradient-to-br from-ink-black-800 to-ink-black-600 rounded-xl flex items-center justify-center">
+                      <step.icon className="text-steel-blue-400" size={22} />
+                    </div>
                   </div>
 
                   {/* Content */}
-                  <div className="w-full lg:w-1/2">
-                    <div className="flex items-center gap-4 mb-4">
-                      <span className="text-5xl font-display font-bold text-ink-black-200 leading-none">
-                        {step.number}
-                      </span>
-                      <div className="w-12 h-12 bg-gradient-to-br from-ink-black-800 to-ink-black-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <step.icon className="text-steel-blue-400" size={22} />
-                      </div>
-                    </div>
-                    <h3 className="text-2xl font-bold text-ink-black-800 mb-3">{step.title}</h3>
-                    <p className="text-gray-600 text-lg leading-relaxed">{step.description}</p>
+                  <div className="pt-1">
+                    <h3 className="text-xl font-bold text-ink-black-800 mb-2">{step.title}</h3>
+                    <p className="text-gray-600 leading-relaxed">{step.description}</p>
                   </div>
                 </motion.div>
-              );
-            })}
+              )
+            )}
           </div>
         </div>
       </section>

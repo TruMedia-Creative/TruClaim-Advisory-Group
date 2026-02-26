@@ -64,21 +64,13 @@ export default function About() {
       {/* Who We Are */}
       <section className="py-20 bg-parchment-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-16 items-start">
+            {/* Text */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4 }}
             >
-              <div className="mb-8">
-                <img
-                  src="/larryon-truman.jpeg"
-                  alt="Larryon Truman, Principal Appraiser at TruClaims Appraisal Group"
-                  className="w-48 h-48 rounded-2xl object-cover object-top shadow-lg"
-                />
-                <p className="mt-3 text-sm font-semibold text-ink-black-800">Larryon Truman</p>
-                <p className="text-sm text-gray-500">Principal Appraiser</p>
-              </div>
               <h2 className="section-title mb-6">Who We Are</h2>
               <p className="text-gray-600 text-lg leading-relaxed mb-5">
                 TruClaims Appraisal Group provides insurance adjusting appraisals and umpiring for individuals and insurance carriers across Texas and Louisiana — with travel available for large-loss events nationwide.
@@ -91,22 +83,39 @@ export default function About() {
               </p>
             </motion.div>
 
-            {/* Credentials */}
+            {/* Profile + Credentials card */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4, delay: 0.1 }}
-              className="bg-gray-50 rounded-2xl p-8 shadow-lg"
+              className="bg-gray-50 rounded-2xl shadow-lg overflow-hidden"
             >
-              <h3 className="text-xl font-bold text-ink-black-800 mb-6">Credentials & Experience</h3>
-              <ul className="space-y-3">
-                {credentials.map((cred) => (
-                  <li key={cred} className="flex items-start gap-3">
-                    <CheckCircle className="text-steel-blue-500 flex-shrink-0 mt-0.5" size={18} />
-                    <span className="text-gray-700">{cred}</span>
-                  </li>
-                ))}
-              </ul>
+              {/* Profile header */}
+              <div className="flex items-center gap-5 p-8 border-b border-gray-200">
+                <img
+                  src="/larryon-truman.jpeg"
+                  alt="Larryon Truman, Principal Appraiser at TruClaims Appraisal Group"
+                  className="w-20 h-20 rounded-xl object-cover object-top shadow-md flex-shrink-0"
+                />
+                <div>
+                  <p className="text-lg font-bold text-ink-black-800">Larryon Truman</p>
+                  <p className="text-sm text-steel-blue-600 font-medium">Principal Appraiser</p>
+                </div>
+              </div>
+              {/* Credentials */}
+              <div className="p-8">
+                <h3 className="text-base font-bold text-ink-black-800 uppercase tracking-wide mb-5">
+                  Credentials & Experience
+                </h3>
+                <ul className="space-y-3">
+                  {credentials.map((cred) => (
+                    <li key={cred} className="flex items-start gap-3">
+                      <CheckCircle className="text-steel-blue-500 flex-shrink-0 mt-0.5" size={18} />
+                      <span className="text-gray-700">{cred}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </motion.div>
           </div>
         </div>
