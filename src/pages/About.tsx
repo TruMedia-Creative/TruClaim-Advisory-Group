@@ -70,6 +70,15 @@ export default function About() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4 }}
             >
+              <div className="mb-8">
+                <img
+                  src="/larryon-truman.jpeg"
+                  alt="Larryon Truman, Principal Appraiser at TruClaims Appraisal Group"
+                  className="w-48 h-48 rounded-2xl object-cover object-top shadow-lg"
+                />
+                <p className="mt-3 text-sm font-semibold text-ink-black-800">Larryon Truman</p>
+                <p className="text-sm text-gray-500">Principal Appraiser</p>
+              </div>
               <h2 className="section-title mb-6">Who We Are</h2>
               <p className="text-gray-600 text-lg leading-relaxed mb-5">
                 TruClaims Appraisal Group provides insurance adjusting appraisals and umpiring for individuals and insurance carriers across Texas and Louisiana — with travel available for large-loss events nationwide.
