@@ -41,9 +41,9 @@ const values = [
 
 export default function About() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-parchment-50">
       {/* Header */}
-      <section className="bg-gradient-to-br from-royal-800 via-royal-900 to-royal-950 text-white py-20">
+      <section className="bg-gradient-to-br from-ink-black-800 via-ink-black-900 to-ink-black-950 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -54,7 +54,7 @@ export default function About() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-4">
               About TruClaims Appraisal Group
             </h1>
-            <p className="text-royal-200 text-lg max-w-2xl mx-auto">
+            <p className="text-ink-black-200 text-lg max-w-2xl mx-auto">
               Empathy. Fairness. Integrity.
             </p>
           </motion.div>
@@ -62,7 +62,7 @@ export default function About() {
       </section>
 
       {/* Who We Are */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-parchment-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -89,11 +89,11 @@ export default function About() {
               transition={{ duration: 0.4, delay: 0.1 }}
               className="bg-gray-50 rounded-2xl p-8 shadow-lg"
             >
-              <h3 className="text-xl font-bold text-royal-800 mb-6">Credentials & Experience</h3>
+              <h3 className="text-xl font-bold text-ink-black-800 mb-6">Credentials & Experience</h3>
               <ul className="space-y-3">
                 {credentials.map((cred) => (
                   <li key={cred} className="flex items-start gap-3">
-                    <CheckCircle className="text-gold-500 flex-shrink-0 mt-0.5" size={18} />
+                    <CheckCircle className="text-rosy-copper-500 flex-shrink-0 mt-0.5" size={18} />
                     <span className="text-gray-700">{cred}</span>
                   </li>
                 ))}
@@ -104,7 +104,7 @@ export default function About() {
       </section>
 
       {/* Our Values */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-parchment-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -129,11 +129,11 @@ export default function About() {
                 transition={{ duration: 0.4, delay: index * 0.08 }}
                 className="bg-white rounded-2xl p-8 shadow-lg flex gap-6"
               >
-                <div className="w-14 h-14 bg-gradient-to-br from-royal-800 to-royal-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <value.icon className="text-gold-400" size={26} />
+                <div className="w-14 h-14 bg-gradient-to-br from-ink-black-800 to-ink-black-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <value.icon className="text-rosy-copper-400" size={26} />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-royal-800 mb-3">{value.title}</h3>
+                  <h3 className="text-xl font-bold text-ink-black-800 mb-3">{value.title}</h3>
                   <p className="text-gray-600 leading-relaxed">{value.description}</p>
                 </div>
               </motion.div>
@@ -143,7 +143,7 @@ export default function About() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-parchment-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

@@ -67,9 +67,9 @@ interface FileFields {
 }
 
 const inputClass =
-  'w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-royal-500 focus:border-transparent bg-white text-sm';
+  'w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-ink-black-500 focus:border-transparent bg-white text-sm';
 const labelClass = 'block text-sm font-medium text-gray-700 mb-1';
-const sectionHeadingClass = 'text-sm font-bold text-royal-800 uppercase tracking-wider mb-4 pb-2 border-b border-gray-200';
+const sectionHeadingClass = 'text-sm font-bold text-ink-black-800 uppercase tracking-wider mb-4 pb-2 border-b border-gray-200';
 
 const Contact = () => {
   const [formData, setFormData] = useState<FormFields>({
@@ -214,12 +214,12 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-parchment-100">
       {/* Header */}
-      <section className="bg-royal-800 text-white py-16">
+      <section className="bg-ink-black-800 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">Contact Us</h1>
-          <p className="text-royal-200 text-lg max-w-2xl">
+          <p className="text-ink-black-200 text-lg max-w-2xl">
             Request an appraisal, schedule a consultation, or ask any questions about our services.
           </p>
         </div>
@@ -237,7 +237,7 @@ const Contact = () => {
             >
               <motion.h2
                 variants={itemVariants}
-                className="text-2xl font-bold text-royal-800 mb-2"
+                className="text-2xl font-bold text-ink-black-800 mb-2"
               >
                 Our 4-Step Appraisal Process
               </motion.h2>
@@ -250,19 +250,19 @@ const Contact = () => {
                   <motion.div key={number} variants={itemVariants} className="flex gap-5">
                     {/* Step number + connector line */}
                     <div className="flex flex-col items-center">
-                      <div className="w-11 h-11 rounded-full bg-royal-800 text-white flex items-center justify-center flex-shrink-0 text-xs font-bold">
+                      <div className="w-11 h-11 rounded-full bg-ink-black-800 text-white flex items-center justify-center flex-shrink-0 text-xs font-bold">
                         {number}
                       </div>
                       {number !== '04' && (
-                        <div className="w-px flex-1 bg-royal-200 mt-2" />
+                        <div className="w-px flex-1 bg-ink-black-200 mt-2" />
                       )}
                     </div>
 
                     {/* Content */}
                     <div className="pb-8">
                       <div className="flex items-center gap-2 mb-1">
-                        <Icon size={16} className="text-gold-500" />
-                        <h3 className="font-semibold text-royal-800 text-sm">{title}</h3>
+                        <Icon size={16} className="text-rosy-copper-500" />
+                        <h3 className="font-semibold text-ink-black-800 text-sm">{title}</h3>
                       </div>
                       <p className="text-gray-500 text-sm leading-relaxed">{description}</p>
                     </div>
@@ -278,7 +278,7 @@ const Contact = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
             >
               <div className="bg-white rounded-2xl shadow-lg p-8">
-                <h2 className="text-2xl font-bold text-royal-800 mb-6">Request Appraisal Services</h2>
+                <h2 className="text-2xl font-bold text-ink-black-800 mb-6">Request Appraisal Services</h2>
 
                 <form onSubmit={handleSubmit} className="space-y-8">
 
@@ -515,7 +515,7 @@ const Contact = () => {
                             accept={accept}
                             multiple={multiple}
                             onChange={handleFileChange}
-                            className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-royal-50 file:text-royal-800 hover:file:bg-royal-100 cursor-pointer"
+                            className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-ink-black-50 file:text-ink-black-800 hover:file:bg-ink-black-100 cursor-pointer"
                           />
                         </div>
                       ))}
@@ -635,7 +635,7 @@ const Contact = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-royal-800 text-white py-3 rounded-lg font-semibold hover:bg-royal-700 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="w-full bg-ink-black-800 text-white py-3 rounded-lg font-semibold hover:bg-ink-black-700 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? 'Sending…' : 'Submit Claim Details'}
                   </button>

@@ -20,7 +20,7 @@ const serviceTypes = [
 
 export default function ServiceAreaSection() {
   return (
-    <section id="service-area" className="py-20 bg-gray-50">
+    <section id="service-area" className="py-20 bg-parchment-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -43,14 +43,14 @@ export default function ServiceAreaSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h3 className="text-2xl font-bold text-royal-800 mb-6 flex items-center gap-2">
-              <MapPin className="text-gold-500" size={24} />
+            <h3 className="text-2xl font-bold text-ink-black-800 mb-6 flex items-center gap-2">
+              <MapPin className="text-rosy-copper-500" size={24} />
               Primary Service Areas
             </h3>
             <div className="space-y-4">
               {serviceAreas.map((area) => (
                 <div key={area.region} className="bg-white rounded-xl p-5 shadow-md border border-gray-100">
-                  <h4 className="font-semibold text-royal-800 text-lg mb-2">{area.region}</h4>
+                  <h4 className="font-semibold text-ink-black-800 text-lg mb-2">{area.region}</h4>
                   <p className="text-gray-600 text-sm">{area.cities.join(' · ')}</p>
                 </div>
               ))}
@@ -67,11 +67,11 @@ export default function ServiceAreaSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <h3 className="text-2xl font-bold text-royal-800 mb-6">Types of Claims We Handle</h3>
+            <h3 className="text-2xl font-bold text-ink-black-800 mb-6">Types of Claims We Handle</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {serviceTypes.map((type) => (
                 <div key={type} className="flex items-start gap-3 bg-white rounded-lg p-4 shadow-sm border border-gray-100">
-                  <CheckCircle className="text-gold-500 flex-shrink-0 mt-0.5" size={18} />
+                  <CheckCircle className="text-rosy-copper-500 flex-shrink-0 mt-0.5" size={18} />
                   <span className="text-gray-700 text-sm">{type}</span>
                 </div>
               ))}
@@ -79,7 +79,7 @@ export default function ServiceAreaSection() {
             <div className="mt-8">
               <Link
                 to="/contact"
-                className="inline-flex items-center px-6 py-3 bg-royal-800 text-white rounded-lg font-semibold hover:bg-royal-700 transition-colors"
+                className="inline-flex items-center px-6 py-3 bg-ink-black-800 text-white rounded-lg font-semibold hover:bg-ink-black-700 transition-colors"
               >
                 Request Appraisal Services
               </Link>
