@@ -33,7 +33,7 @@ const stats = [
     suffix: '+',
     label: 'Years of Experience',
     description: 'Years of insurance appraisal expertise',
-    color: 'from-royal-600 to-royal-800',
+    color: 'from-ink-black-600 to-ink-black-800',
   },
   {
     icon: DollarSign,
@@ -41,7 +41,7 @@ const stats = [
     suffix: 'M+',
     label: 'Claims Appraised',
     description: 'Total value of losses evaluated',
-    color: 'from-gold-500 to-gold-600',
+    color: 'from-rosy-copper-500 to-rosy-copper-600',
   },
   {
     icon: Building2,
@@ -49,7 +49,7 @@ const stats = [
     suffix: '+',
     label: 'Properties Appraised',
     description: 'Residential, commercial, and large-loss',
-    color: 'from-royal-600 to-royal-800',
+    color: 'from-ink-black-600 to-ink-black-800',
   },
   {
     icon: Users,
@@ -57,7 +57,7 @@ const stats = [
     suffix: '+',
     label: 'Clients Served',
     description: 'Homeowners, carriers, attorneys & more',
-    color: 'from-gold-500 to-gold-600',
+    color: 'from-rosy-copper-500 to-rosy-copper-600',
   },
 ];
 
@@ -88,17 +88,17 @@ function AnimatedStat({ stat, index }: { stat: typeof stats[0]; index: number })
 
         {/* Animated counter */}
         <div className="mb-2">
-          <span className="text-4xl md:text-5xl font-bold text-royal-800">
+          <span className="text-4xl md:text-5xl font-bold text-ink-black-800">
             {stat.value === 500 ? (
               <>${count}</>
             ) : (
               count
             )}
           </span>
-          <span className="text-3xl md:text-4xl font-bold text-gold-500">{stat.suffix}</span>
+          <span className="text-3xl md:text-4xl font-bold text-rosy-copper-500">{stat.suffix}</span>
         </div>
 
-        <h3 className="text-lg font-semibold text-royal-800 mb-1">{stat.label}</h3>
+        <h3 className="text-lg font-semibold text-ink-black-800 mb-1">{stat.label}</h3>
         <p className="text-gray-500 text-sm">{stat.description}</p>
       </div>
     </motion.div>
@@ -113,12 +113,12 @@ function SunRays() {
         {/* Sun circle */}
         <defs>
           <linearGradient id="sunGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#d4af37" stopOpacity="0.3" />
-            <stop offset="100%" stopColor="#d4af37" stopOpacity="0" />
+            <stop offset="0%" stopColor="#d23d2d" stopOpacity="0.3" />
+            <stop offset="100%" stopColor="#d23d2d" stopOpacity="0" />
           </linearGradient>
           <linearGradient id="rayGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#d4af37" stopOpacity="0.2" />
-            <stop offset="100%" stopColor="#d4af37" stopOpacity="0" />
+            <stop offset="0%" stopColor="#d23d2d" stopOpacity="0.2" />
+            <stop offset="100%" stopColor="#d23d2d" stopOpacity="0" />
           </linearGradient>
         </defs>
 
@@ -162,8 +162,8 @@ function WaterWaves() {
       <svg viewBox="0 0 1200 100" preserveAspectRatio="none" className="w-full h-full">
         <defs>
           <linearGradient id="waveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#1e3a8a" stopOpacity="0.1" />
-            <stop offset="100%" stopColor="#1e3a8a" stopOpacity="0" />
+            <stop offset="0%" stopColor="#19324d" stopOpacity="0.1" />
+            <stop offset="100%" stopColor="#19324d" stopOpacity="0" />
           </linearGradient>
         </defs>
         <motion.path
@@ -186,7 +186,7 @@ function WaterWaves() {
 
 export default function StatsSection() {
   return (
-    <section id="stats-section" className="py-24 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+    <section id="stats-section" className="py-24 bg-gradient-to-b from-parchment-100 to-parchment-50 relative overflow-hidden">
       {/* Sun rays decoration */}
       <SunRays />
 
@@ -206,7 +206,7 @@ export default function StatsSection() {
             whileInView={{ scale: 1 }}
             viewport={{ once: true }}
             transition={{ type: 'spring', stiffness: 200, delay: 0.2 }}
-            className="inline-flex items-center gap-2 bg-gold-100 text-gold-700 px-4 py-2 rounded-full text-sm font-medium mb-4"
+            className="inline-flex items-center gap-2 bg-rosy-copper-100 text-rosy-copper-700 px-4 py-2 rounded-full text-sm font-medium mb-4"
           >
             <TrendingUp className="w-4 h-4" />
             By The Numbers
@@ -232,9 +232,9 @@ export default function StatsSection() {
           className="mt-16 text-center"
         >
           <div className="inline-flex items-center gap-3 bg-white px-6 py-3 rounded-full shadow-md border border-gray-100">
-            <Award className="w-5 h-5 text-gold-500" />
+            <Award className="w-5 h-5 text-rosy-copper-500" />
             <span className="text-gray-600">
-              Trusted by leading <span className="font-semibold text-royal-800">insurers, adjusters & attorneys</span>
+              Trusted by leading <span className="font-semibold text-ink-black-800">insurers, adjusters & attorneys</span>
             </span>
           </div>
         </motion.div>

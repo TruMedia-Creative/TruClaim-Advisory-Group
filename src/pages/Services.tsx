@@ -79,9 +79,9 @@ const services = [
 
 export default function Services() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-parchment-100">
       {/* Header */}
-      <section className="bg-gradient-to-br from-royal-800 via-royal-900 to-royal-950 text-white py-20">
+      <section className="bg-gradient-to-br from-ink-black-800 via-ink-black-900 to-ink-black-950 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -92,7 +92,7 @@ export default function Services() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-4">
               Our Services
             </h1>
-            <p className="text-royal-200 text-lg max-w-2xl mx-auto">
+            <p className="text-ink-black-200 text-lg max-w-2xl mx-auto">
               Independent, evidence-based appraisal and dispute resolution services for residential, commercial, and catastrophic property losses.
             </p>
           </motion.div>
@@ -121,18 +121,18 @@ export default function Services() {
                 className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow"
               >
                 <div className="flex items-start gap-5 mb-5">
-                  <div className="w-14 h-14 bg-gradient-to-br from-royal-800 to-royal-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <service.icon className="text-gold-400" size={26} />
+                  <div className="w-14 h-14 bg-gradient-to-br from-ink-black-800 to-ink-black-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <service.icon className="text-rosy-copper-400" size={26} />
                   </div>
                   <div>
-                    <h2 className="text-xl font-bold text-royal-800">{service.title}</h2>
+                    <h2 className="text-xl font-bold text-ink-black-800">{service.title}</h2>
                   </div>
                 </div>
                 <p className="text-gray-600 mb-5 leading-relaxed">{service.description}</p>
                 <ul className="space-y-2">
                   {service.bullets.map((bullet) => (
                     <li key={bullet} className="flex items-start gap-2 text-sm text-gray-700">
-                      <span className="text-gold-500 font-bold mt-0.5">✓</span>
+                      <span className="text-rosy-copper-500 font-bold mt-0.5">✓</span>
                       {bullet}
                     </li>
                   ))}
@@ -144,7 +144,7 @@ export default function Services() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-royal-800 text-white">
+      <section className="py-16 bg-ink-black-800 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -155,12 +155,12 @@ export default function Services() {
             <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">
               Ready to Get Started?
             </h2>
-            <p className="text-royal-200 text-lg mb-8 max-w-xl mx-auto">
+            <p className="text-ink-black-200 text-lg mb-8 max-w-xl mx-auto">
               Contact us today to discuss your claim and learn how TruClaims Appraisal Group can help you reach a fair, just settlement.
             </p>
             <Link
               to="/contact"
-              className="inline-flex items-center px-8 py-4 bg-gold-500 text-royal-900 rounded-lg font-semibold text-lg hover:bg-gold-400 transition-colors"
+              className="inline-flex items-center px-8 py-4 bg-rosy-copper-500 text-ink-black-900 rounded-lg font-semibold text-lg hover:bg-rosy-copper-400 transition-colors"
             >
               Request an Appraisal
             </Link>

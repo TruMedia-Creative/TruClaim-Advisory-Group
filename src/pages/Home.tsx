@@ -28,7 +28,7 @@ const Home = () => {
       <StatsSection />
 
       {/* Values Section */}
-      <section ref={valuesRef} className="py-20 bg-white">
+      <section ref={valuesRef} className="py-20 bg-parchment-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="section-title mb-4">Why TruClaims Appraisal Group?</h2>
@@ -44,12 +44,12 @@ const Home = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={valuesInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: index * 0.15, duration: 0.5 }}
-                className="bg-gray-50 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow"
+                className="bg-parchment-100 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow"
               >
-                <div className="w-14 h-14 bg-gradient-to-br from-royal-800 to-royal-600 rounded-xl flex items-center justify-center mb-4">
-                  <value.icon className="text-gold-400" size={28} />
+                <div className="w-14 h-14 bg-gradient-to-br from-ink-black-800 to-ink-black-600 rounded-xl flex items-center justify-center mb-4">
+                  <value.icon className="text-rosy-copper-400" size={28} />
                 </div>
-                <h3 className="text-xl font-semibold text-royal-800 mb-2">{value.title}</h3>
+                <h3 className="text-xl font-semibold text-ink-black-800 mb-2">{value.title}</h3>
                 <p className="text-gray-600">{value.desc}</p>
               </motion.div>
             ))}

@@ -7,35 +7,35 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-white text-gray-900 antialiased;
+    @apply bg-parchment-50 text-gray-900 antialiased;
     font-family: 'Inter', system-ui, sans-serif;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-royal-800 text-white px-6 py-3 rounded-lg font-semibold
-           hover:bg-royal-700 transition-all duration-300
+    @apply bg-ink-black-800 text-white px-6 py-3 rounded-lg font-semibold
+           hover:bg-ink-black-700 transition-all duration-300
            shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
   }
   .btn-secondary {
-    @apply bg-gold-500 text-royal-900 px-6 py-3 rounded-lg font-semibold
-           hover:bg-gold-400 transition-all duration-300
+    @apply bg-rosy-copper-500 text-ink-black-900 px-6 py-3 rounded-lg font-semibold
+           hover:bg-rosy-copper-400 transition-all duration-300
            shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
   }
   .btn-outline {
-    @apply border-2 border-royal-800 text-royal-800 px-6 py-3 rounded-lg font-semibold
-           hover:bg-royal-800 hover:text-white transition-all duration-300;
+    @apply border-2 border-ink-black-800 text-ink-black-800 px-6 py-3 rounded-lg font-semibold
+           hover:bg-ink-black-800 hover:text-white transition-all duration-300;
   }
   .card {
     @apply bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300;
   }
   .section-title {
-    @apply text-3xl md:text-4xl font-bold text-royal-800;
+    @apply text-3xl md:text-4xl font-bold text-ink-black-800;
     font-family: 'Merriweather', Georgia, serif;
   }
   .gradient-text {
-    @apply bg-gradient-to-r from-royal-800 to-gold-500 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-ink-black-800 to-rosy-copper-500 bg-clip-text text-transparent;
   }
 }
 

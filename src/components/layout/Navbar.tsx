@@ -22,11 +22,11 @@ const Navbar = () => {
         <div className="flex justify-between h-20">
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-royal-800 to-royal-600 rounded-full flex items-center justify-center">
-                <span className="text-gold-500 font-bold text-xl">TAG</span>
+              <div className="w-12 h-12 bg-gradient-to-br from-ink-black-800 to-ink-black-600 rounded-full flex items-center justify-center">
+                <span className="text-rosy-copper-500 font-bold text-xl">TAG</span>
               </div>
               <div className="hidden sm:block">
-                <span className="text-royal-800 font-display font-bold text-xl">TruClaims Appraisal Group</span>
+                <span className="text-ink-black-800 font-display font-bold text-xl">TruClaims Appraisal Group</span>
               </div>
             </Link>
           </div>
@@ -39,8 +39,8 @@ const Navbar = () => {
                 to={link.path}
                 className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
                   isActive(link.path)
-                    ? 'bg-royal-800 text-white'
-                    : 'text-gray-700 hover:bg-royal-50 hover:text-royal-800'
+                    ? 'bg-ink-black-800 text-white'
+                    : 'text-gray-700 hover:bg-ink-black-50 hover:text-ink-black-800'
                 }`}
               >
                 {link.label}
@@ -48,7 +48,7 @@ const Navbar = () => {
             ))}
             <Link
               to="/contact"
-              className="ml-4 px-4 py-2 bg-gold-500 text-royal-900 rounded-lg font-semibold hover:bg-gold-400 transition-all duration-200"
+              className="ml-4 px-4 py-2 bg-rosy-copper-500 text-ink-black-900 rounded-lg font-semibold hover:bg-rosy-copper-400 transition-all duration-200"
             >
               Request Appraisal
             </Link>
@@ -83,8 +83,8 @@ const Navbar = () => {
                   onClick={() => setIsOpen(false)}
                   className={`block px-4 py-3 rounded-lg font-medium transition-all ${
                     isActive(link.path)
-                      ? 'bg-royal-800 text-white'
-                      : 'text-gray-700 hover:bg-royal-50'
+                      ? 'bg-ink-black-800 text-white'
+                      : 'text-gray-700 hover:bg-ink-black-50'
                   }`}
                 >
                   {link.label}
@@ -93,7 +93,7 @@ const Navbar = () => {
               <Link
                 to="/contact"
                 onClick={() => setIsOpen(false)}
-                className="block px-4 py-3 bg-gold-500 text-royal-900 rounded-lg font-semibold text-center"
+                className="block px-4 py-3 bg-rosy-copper-500 text-ink-black-900 rounded-lg font-semibold text-center"
               >
                 Request Appraisal
               </Link>

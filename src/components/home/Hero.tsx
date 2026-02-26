@@ -104,7 +104,7 @@ function BackgroundRays() {
         {[...Array(16)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-[600px] bg-gradient-to-b from-gold-500/10 to-transparent origin-bottom"
+            className="absolute w-1 h-[600px] bg-gradient-to-b from-rosy-copper-500/10 to-transparent origin-bottom"
             style={{
               transform: `rotate(${i * 22.5}deg)`,
               left: '50%',
@@ -134,7 +134,7 @@ function WaterWaves() {
       >
         <path
           d="M0,60 Q150,20 300,60 T600,60 T900,60 T1200,60 L1200,120 L0,120 Z"
-          fill="rgba(212, 175, 55, 0.15)"
+          fill="rgba(210, 61, 45, 0.15)"
         />
       </motion.svg>
 
@@ -148,7 +148,7 @@ function WaterWaves() {
       >
         <path
           d="M0,70 Q150,40 300,70 T600,70 T900,70 T1200,70 L1200,120 L0,120 Z"
-          fill="rgba(30, 58, 138, 0.2)"
+          fill="rgba(25, 50, 77, 0.2)"
         />
       </motion.svg>
 
@@ -162,7 +162,7 @@ function WaterWaves() {
       >
         <path
           d="M0,80 Q150,50 300,80 T600,80 T900,80 T1200,80 L1200,120 L0,120 Z"
-          fill="rgba(212, 175, 55, 0.1)"
+          fill="rgba(210, 61, 45, 0.1)"
         />
       </motion.svg>
     </div>
@@ -180,7 +180,7 @@ export default function Hero() {
       aria-label="TruClaims Appraisal Group hero section"
     >
       {/* Gradient overlay — semi-transparent so the background image shows through */}
-      <div className="absolute inset-0 bg-gradient-to-br from-royal-800/75 via-royal-900/80 to-royal-950/85" />
+      <div className="absolute inset-0 bg-gradient-to-br from-ink-black-800/75 via-ink-black-900/80 to-ink-black-950/85" />
 
       {/* Animated background rays */}
       <BackgroundRays />
@@ -212,7 +212,7 @@ export default function Hero() {
 
           {/* Animated tagline */}
           <motion.p
-            className="text-xl md:text-2xl text-gold-400 mb-4 font-medium"
+            className="text-xl md:text-2xl text-rosy-copper-400 mb-4 font-medium"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.8 }}
@@ -254,13 +254,13 @@ export default function Hero() {
         animate={{ opacity: 1, y: [0, 10, 0] }}
         transition={{ delay: 1.5, y: { repeat: Infinity, duration: 2 } }}
       >
-        <button onClick={scrollToStats} className="text-gold-400 hover:text-gold-300 transition-colors">
+        <button onClick={scrollToStats} className="text-rosy-copper-400 hover:text-rosy-copper-300 transition-colors">
           <ChevronDown className="w-8 h-8" />
         </button>
       </motion.div>
 
       {/* Bottom gradient transition - above waves */}
-      <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-gray-50 to-transparent z-20" />
+      <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-parchment-100 to-transparent z-20" />
     </section>
   );
 }
