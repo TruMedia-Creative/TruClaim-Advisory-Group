@@ -93,7 +93,7 @@ export default function About() {
               <ul className="space-y-3">
                 {credentials.map((cred) => (
                   <li key={cred} className="flex items-start gap-3">
-                    <CheckCircle className="text-rosy-copper-500 flex-shrink-0 mt-0.5" size={18} />
+                    <CheckCircle className="text-steel-blue-500 flex-shrink-0 mt-0.5" size={18} />
                     <span className="text-gray-700">{cred}</span>
                   </li>
                 ))}
@@ -130,7 +130,7 @@ export default function About() {
                 className="bg-white rounded-2xl p-8 shadow-lg flex gap-6"
               >
                 <div className="w-14 h-14 bg-gradient-to-br from-ink-black-800 to-ink-black-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <value.icon className="text-rosy-copper-400" size={26} />
+                  <value.icon className="text-steel-blue-400" size={26} />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-ink-black-800 mb-3">{value.title}</h3>

@@ -41,7 +41,7 @@ const stats = [
     suffix: 'M+',
     label: 'Claims Appraised',
     description: 'Total value of losses evaluated',
-    color: 'from-rosy-copper-500 to-rosy-copper-600',
+    color: 'from-steel-blue-500 to-steel-blue-600',
   },
   {
     icon: Building2,
@@ -57,7 +57,7 @@ const stats = [
     suffix: '+',
     label: 'Clients Served',
     description: 'Homeowners, carriers, attorneys & more',
-    color: 'from-rosy-copper-500 to-rosy-copper-600',
+    color: 'from-steel-blue-500 to-steel-blue-600',
   },
 ];
 
@@ -95,7 +95,7 @@ function AnimatedStat({ stat, index }: { stat: typeof stats[0]; index: number })
               count
             )}
           </span>
-          <span className="text-3xl md:text-4xl font-bold text-rosy-copper-500">{stat.suffix}</span>
+          <span className="text-3xl md:text-4xl font-bold text-steel-blue-500">{stat.suffix}</span>
         </div>
 
         <h3 className="text-lg font-semibold text-ink-black-800 mb-1">{stat.label}</h3>
@@ -206,7 +206,7 @@ export default function StatsSection() {
             whileInView={{ scale: 1 }}
             viewport={{ once: true }}
             transition={{ type: 'spring', stiffness: 200, delay: 0.2 }}
-            className="inline-flex items-center gap-2 bg-rosy-copper-100 text-rosy-copper-700 px-4 py-2 rounded-full text-sm font-medium mb-4"
+            className="inline-flex items-center gap-2 bg-steel-blue-100 text-steel-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-4"
           >
             <TrendingUp className="w-4 h-4" />
             By The Numbers
@@ -232,7 +232,7 @@ export default function StatsSection() {
           className="mt-16 text-center"
         >
           <div className="inline-flex items-center gap-3 bg-white px-6 py-3 rounded-full shadow-md border border-gray-100">
-            <Award className="w-5 h-5 text-rosy-copper-500" />
+            <Award className="w-5 h-5 text-steel-blue-500" />
             <span className="text-gray-600">
               Trusted by leading <span className="font-semibold text-ink-black-800">insurers, adjusters & attorneys</span>
             </span>

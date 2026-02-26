@@ -261,7 +261,7 @@ const Contact = () => {
                     {/* Content */}
                     <div className="pb-8">
                       <div className="flex items-center gap-2 mb-1">
-                        <Icon size={16} className="text-rosy-copper-500" />
+                        <Icon size={16} className="text-steel-blue-500" />
                         <h3 className="font-semibold text-ink-black-800 text-sm">{title}</h3>
                       </div>
                       <p className="text-gray-500 text-sm leading-relaxed">{description}</p>

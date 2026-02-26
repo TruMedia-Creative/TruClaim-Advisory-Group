@@ -23,7 +23,7 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-3">
               <div className="w-12 h-12 bg-gradient-to-br from-ink-black-800 to-ink-black-600 rounded-full flex items-center justify-center">
-                <span className="text-rosy-copper-500 font-bold text-xl">TAG</span>
+                <span className="text-steel-blue-500 font-bold text-xl">TAG</span>
               </div>
               <div className="hidden sm:block">
                 <span className="text-ink-black-800 font-display font-bold text-xl">TruClaims Appraisal Group</span>
@@ -48,7 +48,7 @@ const Navbar = () => {
             ))}
             <Link
               to="/contact"
-              className="ml-4 px-4 py-2 bg-rosy-copper-500 text-ink-black-900 rounded-lg font-semibold hover:bg-rosy-copper-400 transition-all duration-200"
+              className="ml-4 px-4 py-2 bg-steel-blue-500 text-ink-black-900 rounded-lg font-semibold hover:bg-steel-blue-400 transition-all duration-200"
             >
               Request Appraisal
             </Link>
@@ -93,7 +93,7 @@ const Navbar = () => {
               <Link
                 to="/contact"
                 onClick={() => setIsOpen(false)}
-                className="block px-4 py-3 bg-rosy-copper-500 text-ink-black-900 rounded-lg font-semibold text-center"
+                className="block px-4 py-3 bg-steel-blue-500 text-ink-black-900 rounded-lg font-semibold text-center"
               >
                 Request Appraisal
               </Link>

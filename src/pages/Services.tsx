@@ -122,7 +122,7 @@ export default function Services() {
               >
                 <div className="flex items-start gap-5 mb-5">
                   <div className="w-14 h-14 bg-gradient-to-br from-ink-black-800 to-ink-black-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <service.icon className="text-rosy-copper-400" size={26} />
+                    <service.icon className="text-steel-blue-400" size={26} />
                   </div>
                   <div>
                     <h2 className="text-xl font-bold text-ink-black-800">{service.title}</h2>
@@ -132,7 +132,7 @@ export default function Services() {
                 <ul className="space-y-2">
                   {service.bullets.map((bullet) => (
                     <li key={bullet} className="flex items-start gap-2 text-sm text-gray-700">
-                      <span className="text-rosy-copper-500 font-bold mt-0.5">✓</span>
+                      <span className="text-steel-blue-500 font-bold mt-0.5">✓</span>
                       {bullet}
                     </li>
                   ))}
@@ -160,7 +160,7 @@ export default function Services() {
             </p>
             <Link
               to="/contact"
-              className="inline-flex items-center px-8 py-4 bg-rosy-copper-500 text-ink-black-900 rounded-lg font-semibold text-lg hover:bg-rosy-copper-400 transition-colors"
+              className="inline-flex items-center px-8 py-4 bg-steel-blue-500 text-ink-black-900 rounded-lg font-semibold text-lg hover:bg-steel-blue-400 transition-colors"
             >
               Request an Appraisal
             </Link>

@@ -19,8 +19,8 @@
            shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
   }
   .btn-secondary {
-    @apply bg-rosy-copper-500 text-ink-black-900 px-6 py-3 rounded-lg font-semibold
-           hover:bg-rosy-copper-400 transition-all duration-300
+    @apply bg-steel-blue-500 text-ink-black-900 px-6 py-3 rounded-lg font-semibold
+           hover:bg-steel-blue-400 transition-all duration-300
            shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
   }
   .btn-outline {
@@ -35,7 +35,7 @@
     font-family: 'Merriweather', Georgia, serif;
   }
   .gradient-text {
-    @apply bg-gradient-to-r from-ink-black-800 to-rosy-copper-500 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-ink-black-800 to-steel-blue-500 bg-clip-text text-transparent;
   }
 }
 

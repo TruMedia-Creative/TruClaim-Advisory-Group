@@ -104,7 +104,7 @@ function BackgroundRays() {
         {[...Array(16)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-[600px] bg-gradient-to-b from-rosy-copper-500/10 to-transparent origin-bottom"
+            className="absolute w-1 h-[600px] bg-gradient-to-b from-steel-blue-500/10 to-transparent origin-bottom"
             style={{
               transform: `rotate(${i * 22.5}deg)`,
               left: '50%',
@@ -212,7 +212,7 @@ export default function Hero() {
 
           {/* Animated tagline */}
           <motion.p
-            className="text-xl md:text-2xl text-rosy-copper-400 mb-4 font-medium"
+            className="text-xl md:text-2xl text-steel-blue-400 mb-4 font-medium"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.8 }}
@@ -254,7 +254,7 @@ export default function Hero() {
         animate={{ opacity: 1, y: [0, 10, 0] }}
         transition={{ delay: 1.5, y: { repeat: Infinity, duration: 2 } }}
       >
-        <button onClick={scrollToStats} className="text-rosy-copper-400 hover:text-rosy-copper-300 transition-colors">
+        <button onClick={scrollToStats} className="text-steel-blue-400 hover:text-steel-blue-300 transition-colors">
           <ChevronDown className="w-8 h-8" />
         </button>
       </motion.div>
