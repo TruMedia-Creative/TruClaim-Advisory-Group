@@ -245,18 +245,19 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* Scroll indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1, y: [0, 10, 0] }}
-          transition={{ delay: 1.5, y: { repeat: Infinity, duration: 2 } }}
-        >
-          <button onClick={scrollToStats} className="text-gold-400 hover:text-gold-300 transition-colors">
-            <ChevronDown className="w-8 h-8" />
-          </button>
-        </motion.div>
       </div>
+
+      {/* Scroll indicator — positioned relative to section so it sits at the bottom of the viewport */}
+      <motion.div
+        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, y: [0, 10, 0] }}
+        transition={{ delay: 1.5, y: { repeat: Infinity, duration: 2 } }}
+      >
+        <button onClick={scrollToStats} className="text-gold-400 hover:text-gold-300 transition-colors">
+          <ChevronDown className="w-8 h-8" />
+        </button>
+      </motion.div>
 
       {/* Bottom gradient transition - above waves */}
       <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-gray-50 to-transparent z-20" />
