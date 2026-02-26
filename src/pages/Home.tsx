@@ -44,7 +44,7 @@ const Home = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={valuesInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: index * 0.15, duration: 0.5 }}
-                className="bg-parchment-100 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow"
+                className="bg-steel-blue-500 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow"
               >
                 <div className="w-14 h-14 bg-gradient-to-br from-ink-black-800 to-ink-black-600 rounded-xl flex items-center justify-center mb-4">
                   <value.icon className="text-steel-blue-400" size={28} />

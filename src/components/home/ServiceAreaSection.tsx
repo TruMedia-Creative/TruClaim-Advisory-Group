@@ -20,7 +20,7 @@ const serviceTypes = [
 
 export default function ServiceAreaSection() {
   return (
-    <section id="service-area" className="py-20 bg-parchment-100">
+    <section id="service-area" className="py-20 bg-parchment-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -44,7 +44,7 @@ export default function ServiceAreaSection() {
             transition={{ duration: 0.6 }}
           >
             <h3 className="text-2xl font-bold text-ink-black-800 mb-6 flex items-center gap-2">
-              <MapPin className="text-steel-blue-500" size={24} />
+              <MapPin className="text-rosy-copper-500" size={24} />
               Primary Service Areas
             </h3>
             <div className="space-y-4">
@@ -71,7 +71,7 @@ export default function ServiceAreaSection() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {serviceTypes.map((type) => (
                 <div key={type} className="flex items-start gap-3 bg-white rounded-lg p-4 shadow-sm border border-gray-100">
-                  <CheckCircle className="text-steel-blue-500 flex-shrink-0 mt-0.5" size={18} />
+                  <CheckCircle className="text-rosy-copper-500 flex-shrink-0 mt-0.5" size={18} />
                   <span className="text-gray-700 text-sm">{type}</span>
                 </div>
               ))}
