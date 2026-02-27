@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="sunGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d4af37"/>
+      <stop offset="100%" style="stop-color:#f59e0b"/>
+    </linearGradient>
+    <linearGradient id="waterGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a8a"/>
+      <stop offset="100%" style="stop-color:#1d4ed8"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(50,35)">
+    <circle cx="0" cy="0" r="12" fill="url(#sunGrad)"/>
+    <g fill="url(#sunGrad)">
+      <rect x="-1.5" y="-22" width="3" height="8" rx="1.5"/>
+      <rect x="-1.5" y="-22" width="3" height="8" rx="1.5" transform="rotate(45)"/>
+      <rect x="-1.5" y="-22" width="3" height="8" rx="1.5" transform="rotate(90)"/>
+      <rect x="-1.5" y="-22" width="3" height="8" rx="1.5" transform="rotate(135)"/>
+      <rect x="-1.5" y="-22" width="3" height="8" rx="1.5" transform="rotate(180)"/>
+      <rect x="-1.5" y="-22" width="3" height="8" rx="1.5" transform="rotate(225)"/>
+      <rect x="-1.5" y="-22" width="3" height="8" rx="1.5" transform="rotate(270)"/>
+      <rect x="-1.5" y="-22" width="3" height="8" rx="1.5" transform="rotate(315)"/>
+    </g>
+  </g>
+  <path d="M10 65 Q25 55, 40 65 T70 65 T100 65 L100 100 L0 100 L0 65 Q10 75, 25 65" fill="url(#waterGrad)" opacity="0.9"/>
+  <path d="M0 72 Q15 62, 30 72 T60 72 T90 72 L90 100 L0 100 Z" fill="url(#waterGrad)" opacity="0.7"/>
+</svg>
