@@ -6,52 +6,52 @@ const steps = [
   {
     number: '01',
     icon: FileText,
-    title: 'Send Your Claim Details',
+    title: 'Submit Documentation',
     description:
-      'Share your insurance settlement or estimate and any photos or documents you already have so we can understand the situation quickly.',
+      'Provide your carrier estimate or settlement summary, claim photos, and any contractor estimates you have received. This allows us to assess the scope and determine whether the appraisal clause applies.',
   },
   {
     number: '02',
     icon: ClipboardList,
     title: 'Initial Scope Review',
     description:
-      'We review the overall scope of loss and look for gaps, omissions, or inconsistencies in the carrier\'s or contractor\'s numbers.',
+      'We review the submitted documentation, compare carrier and contractor figures, and identify gaps, omissions, or pricing inconsistencies. This forms the basis for the independent appraisal position.',
   },
   {
     number: '03',
     icon: Search,
     title: 'On-Site Inspection',
     description:
-      'We schedule and complete an on-site inspection to document the loss and confirm what\'s required to restore the property properly.',
+      'We conduct a field inspection of the property to document the full extent of the loss. Every engagement includes an on-site visit — ensuring the scope is grounded in physical evidence, not assumptions.',
   },
   {
     number: '04',
     icon: Scale,
-    title: 'Appraisal & Negotiation',
+    title: 'Scope Reconciliation & Valuation',
     description:
-      'We prepare our appraisal position and work through the appraisal process to reach an agreed award — or proceed to an umpire if needed.',
+      'We prepare a detailed Xactimate estimate reflecting the documented scope of loss and engage in the appraisal process. Where differences remain, we work with the opposing appraiser to reconcile line items.',
   },
   {
     number: '05',
     icon: CheckCircle,
-    title: 'Award Finalized',
+    title: 'Award Resolution',
     description:
-      'Once the award is set, you\'ll have a clear, defensible outcome you can use to move the claim toward resolution and settlement.',
+      'Once two appraisers agree — or an umpire resolves any remaining dispute — a binding appraisal award is issued. The award addresses the amount of loss only; coverage determinations remain with the carrier.',
   },
 ];
 
 const needItems = [
-  'Insurance estimate / settlement documents (carrier scope, payment summary, etc.)',
-  'Photos and/or videos of the damage (before/after if you have them)',
-  'Any contractor estimates you\'ve received (if applicable)',
+  'Carrier estimate or settlement summary (carrier scope, payment summary, etc.)',
+  'Photos and/or videos of the damage (before/after if available)',
+  'Contractor estimates received (if applicable)',
   'Elevation certificate and flood zone information (for NFIP flood claims)',
-  'Your signed contract/authorization to proceed with appraisal services',
+  'Signed authorization to proceed with appraisal services',
 ];
 
 const nextSteps = [
-  'We confirm we have the basics',
-  'We schedule a quick call or inspection (depending on the claim)',
-  'We tell you, plainly, whether appraisal makes sense for your situation and what the next step is',
+  'We confirm receipt of your documentation and verify the appraisal clause is applicable',
+  'We schedule a call or field inspection depending on the claim type and complexity',
+  'We provide a clear assessment of whether appraisal is the appropriate path and what the next step is',
 ];
 
 export default function Process() {
@@ -67,11 +67,10 @@ export default function Process() {
             className="text-center"
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-4">
-              The Appraisal Process
+              The Insurance Appraisal Process
             </h1>
             <p className="text-ink-black-200 text-lg max-w-2xl mx-auto">
-              A clear, step-by-step walkthrough of how we take your claim from initial review to a
-              finalized, defensible award.
+              A structured walkthrough of the appraisal clause process — from initial documentation to a binding award.
             </p>
           </motion.div>
         </div>
@@ -86,10 +85,9 @@ export default function Process() {
             transition={{ duration: 0.4 }}
             className="text-center mb-16"
           >
-            <h2 className="section-title">How the Appraisal Process Works</h2>
+            <h2 className="section-title">How the Appraisal Clause Process Works</h2>
             <p className="text-gray-600 max-w-2xl mx-auto mt-4">
-              From the moment you reach out to the day your award is finalized, here is exactly what
-              to expect.
+              The appraisal clause is a policy-prescribed mechanism for resolving amount of loss disputes. It does not determine coverage — that remains with the insurance carrier. The steps below outline the process from first contact to a binding appraisal award.
             </p>
           </motion.div>
 
@@ -187,10 +185,10 @@ export default function Process() {
             className="text-center mb-10"
           >
             <h2 className="text-3xl md:text-4xl font-bold font-display mb-3">
-              The Short Version
+              The Appraisal Process at a Glance
             </h2>
             <p className="text-ink-black-200">
-              Four steps from first contact to final settlement.
+              Five steps from documentation submission to binding appraisal award resolution.
             </p>
           </motion.div>
 
@@ -204,7 +202,7 @@ export default function Process() {
               visible: { transition: { staggerChildren: 0.08 } },
             }}
           >
-            {['Submit docs + photos', 'Review scope & gaps', 'On-site inspection', 'Appraisal to award to settlement'].map(
+            {['Submit docs & estimates', 'Initial scope review', 'On-site inspection', 'Scope reconciliation & valuation', 'Binding award resolution'].map(
               (label, index) => (
                 <motion.div
                   key={label}
@@ -222,7 +220,7 @@ export default function Process() {
                       {label}
                     </span>
                   </div>
-                  {index < 3 && (
+                  {index < 4 && (
                     <ArrowRight className="text-ink-black-400 flex-shrink-0 hidden sm:block mb-5" size={20} />
                   )}
                 </motion.div>
@@ -241,17 +239,16 @@ export default function Process() {
             viewport={{ once: true, amount: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <h2 className="section-title mb-4">Ready to Get Started?</h2>
+            <h2 className="section-title mb-4">Ready to Submit Your Claim Documentation?</h2>
             <p className="text-gray-600 text-lg mb-8 max-w-xl mx-auto">
-              Submit your claim details and we'll let you know quickly whether appraisal is the right
-              path — and exactly what the next step is.
+              If you are facing an amount of loss dispute in Texas or Louisiana, submit your documentation for an independent appraisal review.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/services" className="btn-outline">
                 View Our Services
               </Link>
               <Link to="/contact" className="btn-primary">
-                Request an Appraisal
+                Request an Appraisal Review
               </Link>
             </div>
           </motion.div>

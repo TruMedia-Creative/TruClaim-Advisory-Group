@@ -5,43 +5,42 @@ import { Link } from 'react-router-dom';
 const services = [
   {
     icon: Scale,
-    title: 'Insurance Appraisal',
+    title: 'Insurance Appraisal Services',
     description:
-      'When you and your insurer disagree on the value of a loss, the appraisal process provides a structured, binding resolution. We represent both insureds and carriers as your independent appraiser, conducting a thorough on-site inspection and preparing detailed, defensible Xactimate estimates to determine the accurate repair or replacement cost.',
+      'When a policyholder and an insurance carrier cannot agree on the amount of a covered loss, the appraisal clause provides a binding, policy-prescribed resolution process. TruClaims Appraisal Group serves as the independent insurance appraiser for both policyholders and carriers — conducting thorough on-site inspections and preparing detailed, defensible Xactimate estimates to resolve the amount-of-loss valuation dispute under the policy.',
     bullets: [
-      'On-site property inspection and photo documentation',
+      'On-site inspection and photo documentation for residential property appraisal disputes',
       'Detailed Xactimate estimates with narrative summaries',
       'Scope comparison and line-item reconciliation',
-      'Carrier and insured representation available',
+      'Independent insurance appraiser representation for policyholders and carriers',
       'Binding appraisal award through the umpire process',
     ],
   },
   {
     icon: Gavel,
-    title: 'Appraisal Umpire Services',
+    title: 'Umpire Services',
     description:
-      'As a neutral umpire, TruClaims Appraisal Group resolves disputes between two appraisers who cannot agree on the scope or value of a loss. We bring impartiality, technical expertise, and deep construction knowledge to every umpire engagement — producing clear, defensible written awards.',
+      'When two appointed appraisers cannot agree on the scope or value of a loss, a neutral umpire is selected to resolve the impasse. TruClaims Appraisal Group provides insurance umpire services in Texas and Louisiana, bringing procedural discipline, technical expertise, and construction knowledge to every engagement — producing clear, defensible written awards.',
     bullets: [
-      'Independent and neutral claim evaluation',
-      'Scope comparison and line-item reconciliation',
-      'Xactimate estimate analysis and validation',
+      'Neutral insurance umpire services in Texas and Louisiana',
+      'Independent evaluation of scope and pricing disputes',
+      'Xactimate estimate analysis and line-item reconciliation',
       'On-site inspection when required',
-      'Supplement and pricing dispute resolution',
-      'Timely, defensible umpire award documentation',
+      'Timely, binding appraisal award documentation',
     ],
   },
   {
     icon: Search,
-    title: 'Catastrophic Loss Valuation',
+    title: 'Catastrophic Loss Appraisal',
     description:
-      'We have hands-on deployment experience across major hurricane, hail, wind, and freeze events including Hurricanes Beryl, Laura, Ian, Ida, and Isaias. We mobilize quickly for CAT surges — providing systematic, high-volume loss documentation and defensible Xactimate estimates for both insureds and carriers.',
+      'TruClaims Appraisal Group has direct deployment experience across major catastrophic loss events including Hurricanes Beryl, Laura, Ian, Ida, and Isaias. We mobilize quickly for CAT surges — providing systematic, high-volume loss documentation and defensible Xactimate estimates for hurricane appraisals in Texas, hail and wind appraisals in Louisiana, and large-loss events across the Gulf Coast.',
     bullets: [
-      'Rapid deployment to catastrophe zones',
-      'Wind, hail, hurricane, freeze, and water damage expertise',
+      'Rapid deployment for catastrophic loss appraisal events',
+      'Hurricane appraisal — Texas Gulf Coast and Louisiana',
+      'Hail and wind appraisal — residential and commercial',
       'Systematic multi-property inspection programs',
-      'High-volume CAT file management',
+      'High-volume CAT file management and SLA compliance',
       'Detailed scope-of-loss reporting and supplements',
-      'Carrier compliance and SLA management',
     ],
   },
   {
@@ -75,7 +74,7 @@ const services = [
     icon: Home,
     title: 'Residential Property Claims',
     description:
-      'Residential claims are our primary focus. From hail-damaged roofing to water-damaged interiors, we provide independent valuations for all types of residential property losses. Our steep-roof rope &amp; harness certification means we can inspect what others cannot — ensuring a complete scope every time.',
+      'Residential appraisal disputes are our primary focus. From hail-damaged roofing to water-damaged interiors, we provide independent valuations for all types of residential property losses. Our steep-roof rope & harness certification means we can inspect what others cannot — ensuring a complete scope every time.',
     bullets: [
       'Single-family homes and condominiums',
       'Wind, hail, hurricane, freeze, fire, and water damage',
@@ -88,7 +87,7 @@ const services = [
     icon: Building2,
     title: 'Commercial Property Claims',
     description:
-      'Commercial losses involve complex construction considerations and high-stakes negotiations. We bring the technical depth — backed by 20+ years of construction and project management experience — required to value commercial claims accurately.',
+      'Commercial losses involve complex construction considerations and high-stakes valuations. We bring the technical depth — backed by extensive construction and project management experience — required to accurately document and value commercial property claims.',
     bullets: [
       'Office, retail, industrial, and multi-family properties',
       'Wind, hail, water, and flood damage',
@@ -111,10 +110,10 @@ export default function Services() {
             className="text-center"
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-4">
-              Our Services
+              Insurance Appraisal and Umpire Services in Texas and Louisiana
             </h1>
             <p className="text-ink-black-200 text-lg max-w-2xl mx-auto">
-              Independent, evidence-based appraisal and dispute resolution services for residential, commercial, and catastrophic property losses.
+              Independent, evidence-based appraisal and umpire services for residential, commercial, and catastrophic property loss disputes.
             </p>
           </motion.div>
         </div>
@@ -177,14 +176,22 @@ export default function Services() {
               Ready to Get Started?
             </h2>
             <p className="text-ink-black-200 text-lg mb-8 max-w-xl mx-auto">
-              Contact us today to discuss your claim and learn how TruClaims Appraisal Group can help you reach a fair, just settlement.
+              If you are facing an amount of loss dispute in Texas or Louisiana, review our appraisal process or contact us to submit your documentation for independent review.
             </p>
-            <Link
-              to="/contact"
-              className="inline-flex items-center px-8 py-4 bg-steel-blue-500 text-ink-black-900 rounded-lg font-semibold text-lg hover:bg-steel-blue-400 transition-colors"
-            >
-              Request an Appraisal
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                to="/process"
+                className="btn-outline px-8 py-4 text-lg text-white border-white/80"
+              >
+                View the Appraisal Process
+              </Link>
+              <Link
+                to="/contact"
+                className="btn-primary px-8 py-4 text-lg"
+              >
+                Request an Appraisal Review
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>

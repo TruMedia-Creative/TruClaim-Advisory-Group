@@ -21,25 +21,25 @@ const values = [
     icon: Shield,
     title: 'Independence',
     description:
-      'We serve both insureds and insurance carriers as neutral appraisal professionals. Our sole obligation is to provide an accurate, objective valuation — whoever retains us.',
+      'TruClaims Appraisal Group serves both policyholders and insurance carriers as a neutral, independent insurance appraiser. Our obligation in every engagement is to provide an accurate, objective valuation grounded in evidence and policy terms — not to advocate for either party.',
   },
   {
     icon: Scale,
-    title: 'Fairness',
+    title: 'Procedural Discipline',
     description:
-      'We treat every claim with empathy and fairness. Our clients should feel heard and know they have someone in their corner working with integrity to reach a just settlement.',
+      'Every appraisal engagement is conducted within the framework of the policy\'s appraisal clause. We apply consistent methodology — on-site inspection, detailed documentation, and defensible Xactimate estimates — to produce results that hold up to scrutiny from all parties.',
   },
   {
     icon: Award,
-    title: 'Professionalism',
+    title: 'Credentials & Licensure',
     description:
-      'We are licensed in Texas and 12 additional states with carrier certifications from State Farm, USAA, and TWIA. Our Xactimate estimates are detailed, defensible, and built to withstand scrutiny from all parties.',
+      'Licensed in Texas and 12 additional states with carrier certifications from State Farm, USAA, and TWIA. Our Xactimate estimates are detailed, defensible, and built to withstand review from carriers, counsel, and umpires.',
   },
   {
     icon: CheckCircle,
-    title: 'Preloss Restoration',
+    title: 'Preloss Restoration Standard',
     description:
-      'Our goal is to help every client — individual or business — obtain a fair and just settlement that returns them to their preloss condition. That is the standard we hold ourselves to.',
+      'The measure of an accurate appraisal is whether the award reflects the true cost to return the property to its preloss condition. That is the standard applied to every inspection and estimate — for policyholders and carriers alike.',
   },
 ];
 
@@ -130,7 +130,7 @@ export default function About() {
               About TruClaims Appraisal Group
             </h1>
             <p className="text-ink-black-200 text-lg max-w-2xl mx-auto">
-              Empathy. Fairness. Integrity.
+              Independent. Evidence-Based. Policy-Consistent.
             </p>
           </motion.div>
         </div>
@@ -148,16 +148,16 @@ export default function About() {
             >
               <h2 className="section-title mb-6">Who We Are</h2>
               <p className="text-gray-600 text-lg leading-relaxed mb-5">
-                TruClaims Appraisal Group provides insurance adjusting appraisals and umpiring for individuals and insurance carriers across Texas and Louisiana — with travel available for large-loss events nationwide.
+                TruClaims Appraisal Group is a field-experienced, independent insurance appraiser serving policyholders and insurance carriers across Texas and Louisiana — with travel available for large-loss and catastrophic events nationwide.
               </p>
               <p className="text-gray-600 leading-relaxed mb-5">
-                We were founded on a straightforward commitment: every client should feel heard and have someone in their corner working with fairness and integrity. Whether you are a homeowner who hasn't received a just settlement, a carrier seeking an independent scope of loss, or an attorney navigating a disputed claim, we are here to help.
+                The firm was founded on a commitment to procedural discipline and neutral evaluation. Whether retained by a policyholder, a carrier, or as a neutral umpire, TruClaims Appraisal Group applies the same evidence-based methodology: on-site inspection, detailed documentation, and policy-consistent valuation — with no advocacy on either side.
               </p>
               <p className="text-gray-600 leading-relaxed mb-5">
-                Our principal, Larryon Truman, is a licensed multi-state adjuster and certified Xactimate estimator with 6+ years of CAT and daily claims experience and 20+ years of leadership and operations background. He holds a rope &amp; harness steep-roof certification and is a Spanish-speaking adjuster — able to serve a broader range of policyholders across Texas and beyond.
+                Our principal, Larryon Truman, is a licensed multi-state adjuster and certified Xactimate estimator with 6+ years of CAT and daily claims experience and an extensive background in construction and operations. He holds a rope &amp; harness steep-roof certification and is a Spanish-speaking adjuster — able to serve a broader range of policyholders across Texas and Louisiana.
               </p>
               <p className="text-gray-600 leading-relaxed">
-                Our experience spans residential claims, umpire engagements, and catastrophic events including Hurricanes Beryl, Laura, Ian, and Ida. We specialize in hail, wind, water, and NFIP flood losses — and we perform on-site inspections for every engagement.
+                Deployment experience spans residential claims, umpire engagements, and catastrophic events including Hurricanes Beryl, Laura, Ian, and Ida. TruClaims specializes in hail, wind, water, and NFIP flood losses — and performs on-site inspections for every engagement.
               </p>
             </motion.div>
 
@@ -332,7 +332,7 @@ export default function About() {
           >
             <h2 className="section-title">Our Approach</h2>
             <p className="text-gray-600 max-w-2xl mx-auto mt-4">
-              Every engagement is guided by four principles that define how we work and what our clients can expect.
+              Every engagement is governed by four principles that define the quality and integrity of our work.
             </p>
           </motion.div>
 
@@ -370,7 +370,7 @@ export default function About() {
           >
             <h2 className="section-title mb-4">Work With Us</h2>
             <p className="text-gray-600 text-lg mb-8 max-w-xl mx-auto">
-              Whether you need an independent appraiser, a neutral umpire, or an estimate review, TruClaims Appraisal Group is ready to assist.
+              Whether you need an independent appraiser, a neutral umpire, or a documentation review, TruClaims Appraisal Group is available to assist with amount of loss disputes in Texas and Louisiana.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/services" className="btn-secondary">
