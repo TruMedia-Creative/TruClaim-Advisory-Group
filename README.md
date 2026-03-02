@@ -41,6 +41,7 @@ pnpm dev
 | `pnpm typecheck` | Run TypeScript compiler check without emitting files |
 | `pnpm format` | Format all files with Prettier |
 | `pnpm format:check` | Check formatting without writing files |
+| `pnpm depcheck` | Check for unused or missing dependencies |
 
 ## Deployment
 
@@ -59,8 +60,8 @@ The project ships with a `vercel.json` that configures the build command, output
 To deploy manually from the CLI:
 
 ```bash
-# Install Vercel CLI (once)
-pnpm dlx vercel
+# Install Vercel CLI globally (once)
+pnpm add -g vercel
 
 # Deploy to preview
 vercel
