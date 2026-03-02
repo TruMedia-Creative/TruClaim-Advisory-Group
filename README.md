@@ -1,73 +1,123 @@
-# React + TypeScript + Vite
+# TruClaims Appraisal Group
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Marketing website for **TruClaims Appraisal Group** — an independent insurance appraisal and catastrophe loss valuation firm serving Texas, Louisiana, and nationwide for large-loss events.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+| Concern | Technology |
+|---------|-----------|
+| Framework | React 19 + TypeScript |
+| Build tool | Vite 7 |
+| Styling | Tailwind CSS v3 |
+| Animation | Framer Motion 11 |
+| Icons | Lucide React |
+| Routing | React Router DOM v7 |
+| Package manager | pnpm |
 
-## React Compiler
+## Prerequisites
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Node.js** 20 or later
+- **pnpm** 9 or later (`npm install -g pnpm` or via [Corepack](https://nodejs.org/api/corepack.html))
 
-## Expanding the ESLint configuration
+## Local Development
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+```bash
+# Install dependencies
+pnpm install
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Start dev server (http://localhost:5173)
+pnpm dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Available Scripts
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+| Script | Description |
+|--------|-------------|
+| `pnpm dev` | Start Vite dev server with HMR |
+| `pnpm build` | Type-check then produce a production build in `dist/` |
+| `pnpm preview` | Locally preview the production build |
+| `pnpm lint` | Run ESLint |
+| `pnpm lint:fix` | Run ESLint and auto-fix violations |
+| `pnpm typecheck` | Run TypeScript compiler check without emitting files |
+| `pnpm format` | Format all files with Prettier |
+| `pnpm format:check` | Check formatting without writing files |
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Deployment
+
+### Vercel (recommended)
+
+The project ships with a `vercel.json` that configures the build command, output directory, and SPA rewrites automatically.
+
+1. Push your code to GitHub.
+2. Go to [vercel.com](https://vercel.com) → **Add New Project** → import this repository.
+3. Vercel will auto-detect the settings from `vercel.json`:
+   - **Install command:** `pnpm install`
+   - **Build command:** `pnpm run build`
+   - **Output directory:** `dist`
+4. Click **Deploy**. Every subsequent push to the default branch triggers a new deployment automatically.
+
+To deploy manually from the CLI:
+
+```bash
+# Install Vercel CLI (once)
+pnpm dlx vercel
+
+# Deploy to preview
+vercel
+
+# Deploy to production
+vercel --prod
 ```
+
+### GitHub Pages (CI/CD)
+
+A GitHub Actions workflow (`.github/workflows/deploy.yml`) builds and publishes the site to GitHub Pages on every push to `main`.
+
+**First-time setup:**
+
+1. In your repository on GitHub, go to **Settings → Pages**.
+2. Under **Source**, select **GitHub Actions**.
+3. Push a commit to `main` (or run the workflow manually via **Actions → Deploy to GitHub Pages → Run workflow**).
+
+The workflow will:
+- Install dependencies with `pnpm install --frozen-lockfile`
+- Build the project with `pnpm run build`
+- Upload the `dist/` directory as a Pages artifact
+- Deploy to the URL shown in the workflow run summary
+
+### Manual / Self-hosted
+
+To build a production bundle and serve it from any static host:
+
+```bash
+pnpm install --frozen-lockfile
+pnpm build
+# Upload the contents of dist/ to your host
+```
+
+Because the app uses client-side routing, configure your server to rewrite all requests to `index.html`. The equivalent Nginx directive is:
+
+```nginx
+location / {
+  try_files $uri $uri/ /index.html;
+}
+```
+
+## Project Structure
+
+```text
+src/
+├── components/
+│   ├── home/           # Hero, StatsSection, ServiceAreaSection
+│   └── layout/         # Navbar, Footer, Layout, ScrollToTop
+├── pages/
+│   ├── Home.tsx
+│   ├── Services.tsx
+│   ├── About.tsx
+│   └── Contact.tsx
+└── index.css           # Tailwind layers + reusable utility classes
+```
+
+## Environment Variables
+
+None required. This is a pure frontend marketing site with no backend, authentication, or external APIs.
