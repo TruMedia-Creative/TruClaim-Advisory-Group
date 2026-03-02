@@ -7,7 +7,7 @@ const services = [
     icon: Scale,
     title: 'Insurance Appraisal Services',
     description:
-      'When a policyholder and an insurance carrier cannot agree on the amount of a covered loss, the appraisal clause provides a binding, policy-prescribed resolution process. TruClaims Appraisal Group serves as the independent insurance appraiser for both policyholders and carriers — conducting thorough on-site inspections and preparing detailed, defensible Xactimate estimates to resolve the property insurance dispute.',
+      'When a policyholder and an insurance carrier cannot agree on the amount of a covered loss, the appraisal clause provides a binding, policy-prescribed resolution process. TruClaims Appraisal Group serves as the independent insurance appraiser for both policyholders and carriers — conducting thorough on-site inspections and preparing detailed, defensible Xactimate estimates to resolve the amount-of-loss valuation dispute under the policy.',
     bullets: [
       'On-site inspection and photo documentation for residential property appraisal disputes',
       'Detailed Xactimate estimates with narrative summaries',
@@ -181,13 +181,13 @@ export default function Services() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/process"
-                className="inline-flex items-center justify-center px-8 py-4 bg-white/10 border border-white/30 text-white rounded-lg font-semibold text-lg hover:bg-white/20 transition-colors"
+                className="btn-outline px-8 py-4 text-lg text-white border-white/80"
               >
                 View the Appraisal Process
               </Link>
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center px-8 py-4 bg-steel-blue-500 text-ink-black-900 rounded-lg font-semibold text-lg hover:bg-steel-blue-400 transition-colors"
+                className="btn-primary px-8 py-4 text-lg"
               >
                 Request an Appraisal Review
               </Link>

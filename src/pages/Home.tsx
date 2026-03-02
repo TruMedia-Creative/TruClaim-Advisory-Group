@@ -70,12 +70,21 @@ const Home = () => {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <motion.div
+            className="grid md:grid-cols-2 gap-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0 }}
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.08 } },
+            }}
+          >
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0 }}
-              transition={{ duration: 0.4 }}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+              }}
               className="bg-white rounded-2xl p-8 shadow-lg"
             >
               <h3 className="text-xl font-bold text-ink-black-800 mb-4">For Policyholders</h3>
@@ -88,10 +97,10 @@ const Home = () => {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0 }}
-              transition={{ duration: 0.4, delay: 0.1 }}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+              }}
               className="bg-white rounded-2xl p-8 shadow-lg"
             >
               <h3 className="text-xl font-bold text-ink-black-800 mb-4">For Insurance Carriers</h3>
@@ -102,7 +111,7 @@ const Home = () => {
                 Our umpire services are also available to facilitate resolution when two appointed appraisers reach an impasse on scope or value.
               </p>
             </motion.div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
