@@ -3,8 +3,20 @@ import { MapPin, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const serviceAreas = [
-  { region: 'Texas', cities: ['Houston', 'Dallas', 'San Antonio', 'Austin', 'Fort Worth'] },
-  { region: 'Louisiana', cities: ['New Orleans', 'Baton Rouge', 'Shreveport', 'Lafayette'] },
+    {
+    region: 'Texas',
+    cities: [
+      'Houston', 'Dallas–Fort Worth', 'San Antonio', 'Austin', 'Corpus Christi',
+      'Beaumont', 'Port Arthur', 'Lubbock', 'McAllen', 'El Paso',
+    ],
+  },
+  {
+    region: 'Louisiana',
+    cities: [
+      'New Orleans', 'Baton Rouge', 'Lake Charles', 'Lafayette', 'Shreveport',
+      'Metairie', 'Kenner', 'Bossier City', 'Houma', 'Monroe',
+    ],
+  },
 ];
 
 const serviceTypes = [
