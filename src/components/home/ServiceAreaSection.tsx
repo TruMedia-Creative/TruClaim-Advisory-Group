@@ -41,9 +41,9 @@ export default function ServiceAreaSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="section-title">Serving Homeowners, Carriers, and Legal Professionals</h2>
+          <h2 className="section-title">Independent Appraisal Services for Policyholders and Carriers</h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto mt-4">
-            TruClaims Appraisal Group provides insurance adjusting appraisals and umpiring across Texas and Louisiana, with travel available nationwide for large-loss events.
+            TruClaims Appraisal Group provides independent insurance appraisal and umpire services across Texas and Louisiana, with travel available nationwide for large-loss and catastrophic events.
           </p>
         </motion.div>
 

@@ -6,30 +6,30 @@ const steps = [
   {
     number: '01',
     icon: ClipboardList,
-    title: 'Submit Your Claim Details',
+    title: 'Submit Documentation',
     description:
-      'Complete the form and upload your insurance estimate, settlement documents, and photos of the damage.',
+      'Complete the form and upload your carrier estimate or settlement summary, contractor estimate (if applicable), and photos of the damage.',
   },
   {
     number: '02',
     icon: Search,
-    title: 'Claim Review & Scope Analysis',
+    title: 'Initial Scope Review',
     description:
-      "We analyze the carrier's estimate, evaluate the full scope of loss, and identify any deficiencies in pricing or missed items.",
+      "We review the submitted documentation, evaluate the full scope of loss, and identify any deficiencies in pricing, missed line items, or scope inconsistencies.",
   },
   {
     number: '03',
     icon: MapPin,
-    title: 'Onsite Inspection',
+    title: 'On-Site Inspection',
     description:
-      'If the claim qualifies, we schedule and complete a field inspection to properly document the loss and support the correct scope.',
+      'If the claim qualifies, we schedule and complete a field inspection to document the loss and support an accurate, defensible appraisal position.',
   },
   {
     number: '04',
     icon: Award,
-    title: 'Appraisal & Resolution',
+    title: 'Appraisal & Award Resolution',
     description:
-      'If you move forward, we represent your position in the appraisal process, negotiate the differences, and work toward a finalized award.',
+      'We represent your position in the appraisal clause process and work toward a binding appraisal award. The award addresses the amount of loss only.',
   },
 ];
 
@@ -218,9 +218,9 @@ const Contact = () => {
       {/* Header */}
       <section className="bg-ink-black-800 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">Contact Us</h1>
+          <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">Request an Insurance Appraisal Review</h1>
           <p className="text-ink-black-200 text-lg max-w-2xl">
-            Request an appraisal, schedule a consultation, or ask any questions about our services.
+            If you are facing an amount of loss dispute in Texas or Louisiana, submit your documentation below for an independent appraisal review. Please include your carrier estimate, settlement summary, contractor estimate (if applicable), and claim photos.
           </p>
         </div>
       </section>
@@ -239,10 +239,10 @@ const Contact = () => {
                 variants={itemVariants}
                 className="text-2xl font-bold text-ink-black-800 mb-2"
               >
-                Our 4-Step Appraisal Process
+                The Insurance Appraisal Process
               </motion.h2>
               <motion.p variants={itemVariants} className="text-gray-500 text-sm mb-8">
-                Here's what happens after you reach out.
+                Here is what to expect after you submit your documentation.
               </motion.p>
 
               <div className="space-y-8">
@@ -532,7 +532,7 @@ const Contact = () => {
                     <h3 className={sectionHeadingClass}>Qualification Questions</h3>
                     <div className="space-y-4">
                       <div>
-                        <label className={labelClass}>What do you believe was missed or underpaid? *</label>
+                        <label className={labelClass}>Describe the amount of loss dispute or scope discrepancy *</label>
                         <textarea
                           name="whatWasMissed"
                           required
@@ -540,7 +540,7 @@ const Contact = () => {
                           value={formData.whatWasMissed}
                           onChange={handleChange}
                           className={`${inputClass} resize-none`}
-                          placeholder="Briefly describe what you feel the carrier missed or undervalued…"
+                          placeholder="Briefly describe the disputed items or scope differences between the carrier estimate and contractor estimate…"
                         />
                       </div>
                       <div className="grid sm:grid-cols-2 gap-4">

@@ -200,25 +200,25 @@ export default function Hero() {
             <SunLogo />
           </div>
 
-          {/* Title */}
-          <motion.h1
-            className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 font-display"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-          >
-            TruClaims Appraisal Group
-          </motion.h1>
-
-          {/* Animated tagline */}
+          {/* Company name badge */}
           <motion.p
             className="text-xl md:text-2xl text-steel-blue-400 mb-4 font-medium"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
           >
-            Insurance Appraisal & Umpire Services
+            TruClaims Appraisal Group
           </motion.p>
+
+          {/* SEO-optimized H1 */}
+          <motion.h1
+            className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 font-display"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+          >
+            Independent Insurance Appraisal & Umpire Services in Texas and Louisiana
+          </motion.h1>
 
           <motion.p
             className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-12"
@@ -226,7 +226,7 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 0.8 }}
           >
-            We provide insurance adjusting appraisals and umpiring for individuals and insurance carriers — treating every claim with empathy and fairness to restore you to preloss condition.
+            When policyholders and insurance carriers disagree on the amount of loss, the appraisal clause provides a structured, binding resolution process. TruClaims Appraisal Group delivers independent, evidence-based valuations grounded in inspection, documentation, and policy-consistent methodology.
           </motion.p>
 
           {/* CTA Buttons */}
