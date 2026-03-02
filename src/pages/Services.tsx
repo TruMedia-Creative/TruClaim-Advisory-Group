@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Scale, Search, FileText, Gavel, Home, Building2 } from 'lucide-react';
+import { Scale, Search, FileText, Gavel, Home, Building2, Droplets } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const services = [
@@ -7,10 +7,11 @@ const services = [
     icon: Scale,
     title: 'Insurance Appraisal',
     description:
-      'When you and your insurer disagree on the value of a loss, the appraisal process provides a structured, binding resolution. We represent both insureds and carriers as your independent appraiser, conducting a thorough on-site inspection to determine the accurate repair or replacement cost.',
+      'When you and your insurer disagree on the value of a loss, the appraisal process provides a structured, binding resolution. We represent both insureds and carriers as your independent appraiser, conducting a thorough on-site inspection and preparing detailed, defensible Xactimate estimates to determine the accurate repair or replacement cost.',
     bullets: [
-      'On-site property inspection and documentation',
-      'Professional repair and replacement cost estimates',
+      'On-site property inspection and photo documentation',
+      'Detailed Xactimate estimates with narrative summaries',
+      'Scope comparison and line-item reconciliation',
       'Carrier and insured representation available',
       'Binding appraisal award through the umpire process',
     ],
@@ -19,35 +20,54 @@ const services = [
     icon: Gavel,
     title: 'Appraisal Umpire Services',
     description:
-      'As a neutral umpire, TruClaims Appraisal Group resolves disputes between two appraisers who cannot agree on the scope or value of a loss. We bring impartiality, technical expertise, and decisiveness to every umpire engagement.',
+      'As a neutral umpire, TruClaims Appraisal Group resolves disputes between two appraisers who cannot agree on the scope or value of a loss. We bring impartiality, technical expertise, and deep construction knowledge to every umpire engagement — producing clear, defensible written awards.',
     bullets: [
-      'Neutral, credentialed umpire services',
-      'Review of both appraisers\' submissions',
+      'Independent and neutral claim evaluation',
+      'Scope comparison and line-item reconciliation',
+      'Xactimate estimate analysis and validation',
       'On-site inspection when required',
-      'Timely, defensible umpire award issuance',
+      'Supplement and pricing dispute resolution',
+      'Timely, defensible umpire award documentation',
     ],
   },
   {
     icon: Search,
     title: 'Catastrophic Loss Valuation',
     description:
-      'We have hands-on experience responding to major catastrophic events including Hurricanes Beryl, Laura, Ian, and Ida. Our team mobilizes quickly for hail, wind, and water events — providing comprehensive loss documentation for both insureds and carriers.',
+      'We have hands-on deployment experience across major hurricane, hail, wind, and freeze events including Hurricanes Beryl, Laura, Ian, Ida, and Isaias. We mobilize quickly for CAT surges — providing systematic, high-volume loss documentation and defensible Xactimate estimates for both insureds and carriers.',
     bullets: [
       'Rapid deployment to catastrophe zones',
-      'Hail, wind, and flood/water damage expertise',
+      'Wind, hail, hurricane, freeze, and water damage expertise',
       'Systematic multi-property inspection programs',
-      'Detailed scope-of-loss reporting',
+      'High-volume CAT file management',
+      'Detailed scope-of-loss reporting and supplements',
+      'Carrier compliance and SLA management',
+    ],
+  },
+  {
+    icon: Droplets,
+    title: 'NFIP Flood Claims',
+    description:
+      'We are NFIP Flood Certified (#0070011243) with hands-on deployment experience handling residential flood losses under FEMA guidelines. From elevation certificate review to Proof of Loss documentation, we bring the technical depth required for accurate NFIP flood claim resolution.',
+    bullets: [
+      'NFIP residential flood claims — building and contents',
+      'FEMA guidelines compliance and Proof of Loss review',
+      'Elevation certificate review and flood zone analysis',
+      'Substantial damage evaluation and ICC awareness',
+      'Moisture mapping and scope documentation',
+      'Xactimate flood estimating and RAPS reporting',
     ],
   },
   {
     icon: FileText,
     title: 'Estimate Review',
     description:
-      'We review existing contractor estimates and insurance settlements to identify deficiencies, missed line items, or undervalued repairs. Our independent estimate review helps ensure the scope of loss is complete and fair before any appraisal is filed.',
+      'We review existing contractor estimates and insurance settlements to identify deficiencies, missed line items, or undervalued repairs. Our independent Xactimate review helps ensure the scope of loss is complete and accurate before any appraisal is filed.',
     bullets: [
-      'Review of carrier\'s scope and settlement',
-      'Review of contractor estimates',
-      'Identification of deficiencies and missed items',
+      'Review of carrier\'s scope, settlement, and pricing',
+      'Xactimate estimate validation and gap analysis',
+      'Review of contractor estimates for completeness',
+      'Identification of omissions and undervalued repairs',
       'Recommendations to proceed with appraisal if warranted',
     ],
   },
@@ -55,10 +75,11 @@ const services = [
     icon: Home,
     title: 'Residential Property Claims',
     description:
-      'Residential claims are our primary focus. From hail-damaged roofing to water-damaged interiors, we provide independent valuations for all types of residential property losses — ensuring homeowners receive a fair and just settlement.',
+      'Residential claims are our primary focus. From hail-damaged roofing to water-damaged interiors, we provide independent valuations for all types of residential property losses. Our steep-roof rope &amp; harness certification means we can inspect what others cannot — ensuring a complete scope every time.',
     bullets: [
       'Single-family homes and condominiums',
-      'Wind, hail, fire, and water damage',
+      'Wind, hail, hurricane, freeze, fire, and water damage',
+      'Steep and high-roof inspections (rope & harness certified)',
       'On-site inspection for every engagement',
       'Scope of loss reconciliation with insurer',
     ],
@@ -67,7 +88,7 @@ const services = [
     icon: Building2,
     title: 'Commercial Property Claims',
     description:
-      'Commercial losses involve complex construction considerations and high-stakes negotiations. We bring the technical depth required to value commercial claims accurately, working with business owners, carriers, attorneys, and public adjusters.',
+      'Commercial losses involve complex construction considerations and high-stakes negotiations. We bring the technical depth — backed by 20+ years of construction and project management experience — required to value commercial claims accurately.',
     bullets: [
       'Office, retail, industrial, and multi-family properties',
       'Wind, hail, water, and flood damage',
