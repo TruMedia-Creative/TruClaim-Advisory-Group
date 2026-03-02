@@ -51,8 +51,8 @@ const Home = () => {
                 <div className="w-14 h-14 bg-gradient-to-br from-ink-black-800 to-ink-black-600 rounded-xl flex items-center justify-center mb-4">
                   <value.icon className="text-steel-blue-400" size={28} />
                 </div>
-                <h3 className="text-xl font-semibold text-ink-black-800 mb-2">{value.title}</h3>
-                <p className="text-gray-600">{value.desc}</p>
+                <h3 className="text-xl font-semibold text-white mb-2">{value.title}</h3>
+                <p className="text-white/80">{value.desc}</p>
               </motion.div>
             ))}
           </div>
