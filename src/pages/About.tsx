@@ -91,13 +91,13 @@ export default function About() {
               className="bg-gray-50 rounded-2xl shadow-lg overflow-hidden"
             >
               {/* Profile header */}
-              <div className="flex items-center gap-5 p-8 border-b border-gray-200">
+              <div className="border-b border-gray-200">
                 <img
                   src="/larryon-truman.jpeg"
                   alt="Larryon Truman, Principal Appraiser at TruClaims Appraisal Group"
-                  className="w-20 h-20 rounded-xl object-cover object-top shadow-md flex-shrink-0"
+                  className="w-full h-72 object-cover object-top"
                 />
-                <div>
+                <div className="px-8 py-5">
                   <p className="text-lg font-bold text-ink-black-800">Larryon Truman</p>
                   <p className="text-sm text-steel-blue-600 font-medium">Principal Appraiser</p>
                 </div>
