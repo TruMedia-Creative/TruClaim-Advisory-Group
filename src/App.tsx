@@ -18,6 +18,8 @@ function App() {
             <Layout>
               <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/index" element={<Home />} />
+                <Route path="/index.html" element={<Home />} />
                 <Route path="/services" element={<Services />} />
                 <Route path="/process" element={<Process />} />
                 <Route path="/about" element={<About />} />
