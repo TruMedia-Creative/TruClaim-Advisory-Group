@@ -112,6 +112,8 @@ const experience = [
   },
 ];
 
+const headshotSrc = `${import.meta.env.BASE_URL}larryon-truman.jpg`;
+
 export default function About() {
   return (
     <div className="min-h-screen bg-parchment-50">
@@ -169,7 +171,7 @@ export default function About() {
               {/* Profile header */}
               <div className="border-b border-gray-200">
                 <img
-                  src="/larryon-truman.jpeg"
+                  src={headshotSrc}
                   alt="Larryon Truman, Principal Appraiser at TruClaims Appraisal Group"
                   className="w-22 h-22 rounded-xl object-cover object-top "
                 />
