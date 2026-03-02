@@ -44,6 +44,7 @@ const needItems = [
   'Insurance estimate / settlement documents (carrier scope, payment summary, etc.)',
   'Photos and/or videos of the damage (before/after if you have them)',
   'Any contractor estimates you\'ve received (if applicable)',
+  'Elevation certificate and flood zone information (for NFIP flood claims)',
   'Your signed contract/authorization to proceed with appraisal services',
 ];
 

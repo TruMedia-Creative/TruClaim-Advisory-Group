@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Users, Shield, Building2, Handshake } from 'lucide-react';
+import { Users, Shield, Building2, Handshake, Droplets, FileSearch } from 'lucide-react';
 import Hero from '../components/home/Hero';
 import StatsSection from '../components/home/StatsSection';
 import ServiceAreaSection from '../components/home/ServiceAreaSection';
@@ -10,10 +10,12 @@ const Home = () => {
   const valuesInView = useInView(valuesRef, { once: true, margin: "-100px" });
 
   const values = [
-    { icon: Building2, title: "Independent & Neutral", desc: "We serve both insureds and insurance carriers as independent appraisal professionals, providing objective loss valuations based on evidence, policy terms, and industry standards." },
-    { icon: Users, title: "Empathy & Fairness", desc: "We treat every claim with empathy and fairness. Our goal is to ensure every client feels heard and has someone in their corner working with integrity." },
-    { icon: Shield, title: "Preloss Restoration", desc: "We are committed to helping individuals and businesses obtain a fair and just settlement to restore them to their preloss condition." },
-    { icon: Handshake, title: "Catastrophe Experience", desc: "From Hurricane Beryl to Hurricane Ida, we have hands-on experience mobilizing quickly for major events — providing accurate scope and valuation when it matters most." },
+    { icon: Building2, title: "Independent & Neutral", desc: "We serve both insureds and insurance carriers as independent appraisal professionals. Our sole obligation is to provide an accurate, objective valuation based on evidence, policy terms, and industry standards — never advocacy." },
+    { icon: Users, title: "Empathy & Fairness", desc: "We treat every claim with empathy and fairness. Whether you're a homeowner, carrier, or attorney, our goal is to ensure every client feels heard and receives a just, defensible outcome." },
+    { icon: Shield, title: "Credentialed & Experienced", desc: "Licensed in Texas and 12 additional states, NFIP certified, State Farm, USAA, and TWIA certified — with 6+ years of CAT and daily claims experience and certified Xactimate expertise." },
+    { icon: Handshake, title: "Catastrophe Deployment Ready", desc: "From Hurricane Beryl to Hurricane Ian, we have hands-on experience mobilizing for major CAT events across TX, LA, FL, and beyond — providing accurate scope and valuation when it matters most." },
+    { icon: Droplets, title: "NFIP Flood Expertise", desc: "NFIP Flood Certified (#0070011243) with hands-on deployment experience handling residential flood losses under FEMA guidelines, including elevation certificate review, Proof of Loss, and Substantial Damage evaluations." },
+    { icon: FileSearch, title: "Preloss Restoration Standard", desc: "We are committed to helping individuals and businesses obtain a fair and just settlement that returns them to their preloss condition. That is the standard we hold every appraisal and award to." },
   ];
 
   return (
@@ -33,11 +35,11 @@ const Home = () => {
           <div className="text-center mb-16">
             <h2 className="section-title mb-4">Why TruClaims Appraisal Group?</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Independent expertise. Objective valuation. Defensible results.
+              Independent expertise. Multi-state licensed. NFIP certified. Xactimate proficient.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {values.map((value, index) => (
               <motion.div
                 key={value.title}
