@@ -1,6 +1,15 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Users, Shield, Building2, Handshake, Droplets, FileSearch, HelpCircle, UserCheck } from 'lucide-react';
+import {
+  Users,
+  Shield,
+  Building2,
+  Handshake,
+  Droplets,
+  FileSearch,
+  HelpCircle,
+  UserCheck,
+} from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Hero from '../components/home/Hero';
 import StatsSection from '../components/home/StatsSection';
@@ -9,80 +18,103 @@ import CarrierLogoGrid from '../components/home/CarrierLogoGrid';
 import PageMetadata from '../components/PageMetadata';
 
 const values = [
-    { icon: Building2, title: "Independent & Neutral", desc: "TruClaims Appraisal Group serves both policyholders and insurance carriers as an independent insurance appraiser. Our obligation is to provide an accurate, objective valuation based on evidence, policy terms, and industry standards — not advocacy." },
-    { icon: Shield, title: "Evidence-Based Methodology", desc: "Every appraisal is grounded in on-site inspection, photo documentation, and detailed Xactimate estimates. Our valuations are defensible, policy-consistent, and built to withstand scrutiny from all parties." },
-    { icon: Handshake, title: "Credentialed & Licensed", desc: "Licensed in Texas and 12 additional states, NFIP certified, State Farm, USAA, and TWIA certified — with 6+ years of CAT and daily claims experience and certified Xactimate expertise." },
-    { icon: Users, title: "Catastrophe Deployment Experience", desc: "From Hurricane Beryl to Hurricane Ian, TruClaims Appraisal Group has direct deployment experience across major CAT events in TX, LA, FL, and beyond — providing systematic scope and valuation under surge conditions." },
-    { icon: Droplets, title: "NFIP Flood Expertise", desc: "NFIP Flood Certified (#0070011243) with deployment experience handling residential flood losses under FEMA guidelines, including elevation certificate review, Proof of Loss, and Substantial Damage evaluations." },
-    { icon: FileSearch, title: "Preloss Restoration Standard", desc: "The appraisal process is designed to restore the insured property to its preloss condition. That is the valuation standard applied to every inspection, estimate, and award." },
-  ];
+  {
+    icon: Building2,
+    title: 'Independent & Neutral',
+    desc: 'TruClaims Appraisal Group serves both policyholders and insurance carriers as an independent insurance appraiser. Our obligation is to provide an accurate, objective valuation based on evidence, policy terms, and industry standards — not advocacy.',
+  },
+  {
+    icon: Shield,
+    title: 'Evidence-Based Methodology',
+    desc: 'Every appraisal is grounded in on-site inspection, photo documentation, and detailed Xactimate estimates. Our valuations are defensible, policy-consistent, and built to withstand scrutiny from all parties.',
+  },
+  {
+    icon: Handshake,
+    title: 'Credentialed & Licensed',
+    desc: 'Licensed in Texas and 12 additional states, NFIP certified, State Farm, USAA, and TWIA certified — with 6+ years of CAT and daily claims experience and certified Xactimate expertise.',
+  },
+  {
+    icon: Users,
+    title: 'Catastrophe Deployment Experience',
+    desc: 'From Hurricane Beryl to Hurricane Ian, TruClaims Appraisal Group has direct deployment experience across major CAT events in TX, LA, FL, and beyond — providing systematic scope and valuation under surge conditions.',
+  },
+  {
+    icon: Droplets,
+    title: 'NFIP Flood Expertise',
+    desc: 'NFIP Flood Certified (#0070011243) with deployment experience handling residential flood losses under FEMA guidelines, including elevation certificate review, Proof of Loss, and Substantial Damage evaluations.',
+  },
+  {
+    icon: FileSearch,
+    title: 'Preloss Restoration Standard',
+    desc: 'The appraisal process is designed to restore the insured property to its preloss condition. That is the valuation standard applied to every inspection, estimate, and award.',
+  },
+];
 
 const claimPainPoints = [
-    'Incomplete or undervalued scopes that miss code compliance and labor requirements',
-    'Disagreements about causation, matching, or the appropriate repair methodology',
-    'Delayed supplements or settlement timelines that keep properties in limbo',
-    'Limited transparency into how the appraisal clause should be executed',
-    'Strained collaboration between the insured, carrier, and contractors on-site',
-  ];
+  'Is my scope of loss incomplete or undervalued?',
+  'Are there disagreements about causation, matching, or the appropriate repair methodology?',
+  'Are there delayed supplements or settlement timelines that have left my property in limbo?',
+  'Why is collaboration between myself, the carrier, and contractors strained on-site?',
+];
 
 const faqItems = [
-    {
-      question: 'When should I invoke the appraisal clause?',
-      answer:
-        'Invoke appraisal after you have a written carrier estimate or settlement that you believe is inaccurate. The clause addresses the amount of loss only, so confirm coverage issues are resolved first and then submit your documentation for an independent review.',
-    },
-    {
-      question: 'Do you serve both policyholders and insurance carriers?',
-      answer:
-        'Yes. TruClaims Appraisal Group is retained by policyholders, carriers, attorneys, and as a neutral umpire. The same inspection methodology and valuation standard apply regardless of who engages us.',
-    },
-    {
-      question: 'What documentation should I send with my request?',
-      answer:
-        'Share your carrier scope or settlement summary, any contractor estimates, claim photos, and correspondence that outlines the disputed items. This allows us to confirm eligibility and prepare for the on-site inspection.',
-    },
-  ];
+  {
+    question: 'When should I invoke the appraisal clause?',
+    answer:
+      'Invoke appraisal after you have a written carrier estimate or settlement that you believe is inaccurate. The clause addresses the amount of loss only, so confirm coverage issues are resolved first and then submit your documentation for an independent review.',
+  },
+  {
+    question: 'Do you serve both policyholders and insurance carriers?',
+    answer:
+      'Yes. TruClaims Appraisal Group is retained by policyholders, carriers, attorneys, and as a neutral umpire. The same inspection methodology and valuation standard apply regardless of who engages us.',
+  },
+  {
+    question: 'What documentation should I send with my request?',
+    answer:
+      'Share your carrier scope or settlement summary, any contractor estimates, claim photos, and correspondence that outlines the disputed items. This allows us to confirm eligibility and prepare for the on-site inspection.',
+  },
+];
 
 const homeStructuredData = [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'ProfessionalService',
-      name: 'TruClaims Appraisal Group',
-      url: 'https://www.truclaimsadvisorygroup.com/',
-      description:
-        'Independent insurance appraisal, umpire, and catastrophic loss valuation services for policyholders and carriers across Texas and Louisiana.',
-      areaServed: ['Texas', 'Louisiana'],
-      telephone: '+1-903-315-0136',
-      email: 'info@truclaimsadvisorygroup.com',
-      sameAs: ['https://www.linkedin.com/company/truclaims-advisory-group'],
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'Lumberton',
-        addressRegion: 'TX',
-        addressCountry: 'US',
-      },
-      founder: {
-        '@type': 'Person',
-        name: 'Larryon Truman',
-      },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    name: 'TruClaims Appraisal Group',
+    url: 'https://www.truclaimsadvisorygroup.com/',
+    description:
+      'Independent insurance appraisal, umpire, and catastrophic loss valuation services for policyholders and carriers across Texas and Louisiana.',
+    areaServed: ['Texas', 'Louisiana'],
+    telephone: '+1-903-315-0136',
+    email: 'info@truclaimsadvisorygroup.com',
+    sameAs: ['https://www.linkedin.com/company/truclaims-advisory-group'],
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Lumberton',
+      addressRegion: 'TX',
+      addressCountry: 'US',
     },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      mainEntity: faqItems.map((item) => ({
-        '@type': 'Question',
-        name: item.question,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: item.answer,
-        },
-      })),
+    founder: {
+      '@type': 'Person',
+      name: 'Larryon Truman',
     },
-  ];
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  },
+];
 
 const Home = () => {
   const valuesRef = useRef(null);
-  const valuesInView = useInView(valuesRef, { once: true, margin: "-100px" });
+  const valuesInView = useInView(valuesRef, { once: true, margin: '-100px' });
 
   return (
     <div>
@@ -107,7 +139,11 @@ const Home = () => {
             <HelpCircle className="mx-auto text-steel-blue-500 mb-4" size={36} />
             <h2 className="section-title mb-4">When a Claim Doesn't Feel Right...</h2>
             <p className="text-gray-600 text-lg leading-relaxed mb-6">
-              After a catastrophic event or significant property loss, the process should provide clarity. When communication breaks down, the claim can feel off long before a settlement is reached.
+              After a catastrophic event or significant property loss, the last thing you expect is
+              to feel unheard. Yet many policyholders, contractors and even carriers find themselves
+              in disagreement over the scope and value of a claim with no clear path to resolution.
+              <br />
+              You may find yourself asking:
             </p>
             <ul className="grid gap-4 sm:grid-cols-2 text-left my-8">
               {claimPainPoints.map((point) => (
@@ -121,21 +157,40 @@ const Home = () => {
               ))}
             </ul>
             <p className="text-gray-600 leading-relaxed mb-4">
-              When estimates do not align, restoration stalls and properties remain short of their preloss condition.
+              When estimates do not align, restoration stalls and properties remain short of their
+              preloss condition.
             </p>
-            <p className="text-gray-600 leading-relaxed">
-              TruClaims Appraisal Group delivers structured inspections, detailed documentation, and a neutral appraisal path so every party knows how the dispute will be resolved.
+            <p className="text-gray-600 mb-10 leading-relaxed">
+              You deserve a process that is structured, professional, and fair.
+            </p>
+             <h2 className="section-title mb-4">A Structured Path to Fair Resolution</h2>
+            <p className="text-gray-600 text-lg leading-relaxed mb-6">
+              TruClaims Appraisal Group provides neutral, integrity-driven insurance appraisal and
+              umpire services across Texas and Louisiana.
+            </p>
+            <p className="text-gray-600 text-lg leading-relaxed mb-6">
+              We don’t advocate. We don’t escalate unnecessarily. We evaluate. Through detailed
+              estimate review, on-site inspection, and measured negotiation, we help both sides
+              arrive at a fair and equitable settlement. Our objective is simple: Restore the
+              property to pre-loss condition, fairly and professionally.
             </p>
             <div className="mt-8">
-              <Link to="/services" className="btn-secondary inline-flex items-center justify-center">
+              <Link
+                to="/services"
+                className="btn-secondary inline-flex items-center justify-center"
+              >
                 Learn About Our Services
               </Link>
             </div>
           </motion.div>
         </div>
       </section>
-
+      
+      {/* Service Area Section */}
+      <ServiceAreaSection />
       {/* Who We Serve */}
+      {/* Carrier Logo Grid */}
+      <CarrierLogoGrid />
       <section className="py-20 bg-parchment-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -148,7 +203,9 @@ const Home = () => {
             <UserCheck className="mx-auto text-steel-blue-500 mb-4" size={36} />
             <h2 className="section-title mb-4">Who We Serve</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              As an independent insurance appraiser and umpire, TruClaims Appraisal Group maintains strict neutrality. We serve both sides of the appraisal process with the same procedural discipline and evidentiary standards.
+              As an independent insurance appraiser and umpire, TruClaims Appraisal Group maintains
+              strict neutrality. We serve both sides of the appraisal process with the same
+              procedural discipline and evidentiary standards.
             </p>
           </motion.div>
 
@@ -171,10 +228,15 @@ const Home = () => {
             >
               <h3 className="text-xl font-bold text-ink-black-800 mb-4">For Policyholders</h3>
               <p className="text-gray-600 leading-relaxed mb-4">
-                If your insurance carrier has issued a settlement you believe is incomplete or inaccurate, invoking the appraisal clause provides a policy-prescribed path to a binding resolution. TruClaims Appraisal Group conducts an independent on-site inspection, prepares a detailed Xactimate estimate, and participates in the appraisal process as your appointed independent appraiser.
+                If your insurance carrier has issued a settlement you believe is incomplete or
+                inaccurate, invoking the appraisal clause provides a policy-prescribed path to a
+                binding resolution. TruClaims Appraisal Group conducts an independent on-site
+                inspection, prepares a detailed Xactimate estimate, and participates in the
+                appraisal process as your appointed independent appraiser.
               </p>
               <p className="text-gray-600 leading-relaxed">
-                We serve residential and commercial policyholders across Texas and Louisiana — including those with hail, wind, hurricane, flood, and fire losses.
+                We serve residential and commercial policyholders across Texas and Louisiana —
+                including those with hail, wind, hurricane, flood, and fire losses.
               </p>
             </motion.div>
 
@@ -187,24 +249,24 @@ const Home = () => {
             >
               <h3 className="text-xl font-bold text-ink-black-800 mb-4">For Insurance Carriers</h3>
               <p className="text-gray-600 leading-relaxed mb-4">
-                Insurance carriers require independent appraisers who understand policy language, construction methodology, and the procedural framework of the appraisal clause. TruClaims Appraisal Group provides carriers with accurate, defensible Xactimate estimates and unbiased field documentation — supporting a fair and efficient appraisal process.
+                Insurance carriers require independent appraisers who understand policy language,
+                construction methodology, and the procedural framework of the appraisal clause.
+                TruClaims Appraisal Group provides carriers with accurate, defensible Xactimate
+                estimates and unbiased field documentation — supporting a fair and efficient
+                appraisal process.
               </p>
               <p className="text-gray-600 leading-relaxed">
-                Our umpire services are also available to facilitate resolution when two appointed appraisers reach an impasse on scope or value.
+                Our umpire services are also available to facilitate resolution when two appointed
+                appraisers reach an impasse on scope or value.
               </p>
             </motion.div>
           </motion.div>
         </div>
       </section>
-
-      {/* Service Area Section */}
-      <ServiceAreaSection />
-
       {/* Stats Section */}
-      <StatsSection />
+      {/* <StatsSection /> */}
 
-      {/* Carrier Logo Grid */}
-      <CarrierLogoGrid />
+      
 
       {/* FAQ Section */}
       <section className="py-20 bg-white">
@@ -218,7 +280,8 @@ const Home = () => {
           >
             <h2 className="section-title mb-4">Insurance Appraisal FAQ</h2>
             <p className="text-gray-600 max-w-3xl mx-auto">
-              Quick answers to common questions about invoking appraisal, required documentation, and how neutrality is maintained throughout the process.
+              Quick answers to common questions about invoking appraisal, required documentation,
+              and how neutrality is maintained throughout the process.
             </p>
           </motion.div>
 
@@ -233,9 +296,7 @@ const Home = () => {
                 className="bg-parchment-50 border border-parchment-200 rounded-2xl p-6 shadow-sm"
               >
                 <h3 className="text-lg font-semibold text-ink-black-800 mb-3">{item.question}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  {item.answer}
-                </p>
+                <p className="text-gray-600 text-sm leading-relaxed">{item.answer}</p>
               </motion.div>
             ))}
           </div>
