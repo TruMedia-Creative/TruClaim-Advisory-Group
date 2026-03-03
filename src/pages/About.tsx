@@ -14,9 +14,9 @@ const credentials = [
   'USAA Certified Adjuster',
   'TWIA / TFPA Certified',
   'Xactimate Certified Estimator',
-  '6+ years CAT & daily claims experience',
+  'Catastrophe & daily claims experience',
   '20+ years of leadership & operations background',
-  'Spanish-speaking adjuster',
+  'FluentSpanish-speaking adjuster',
 ];
 
 const values = [
@@ -58,10 +58,20 @@ const catEvents = [
   { event: 'NFIP Flood Deployments', location: 'South Texas' },
 ];
 
-const carriers = [
-  'State Farm', 'USAA', 'TWIA', 'Travelers', 'Nationwide',
-  'Assurant', 'Homesite', 'American Integrity', 'Germania', 'Standard Casualty',
-  'Farmers', 'Foremost', 'Farm Bureau',
+const carrierPartners = [
+  'State Farm',
+  'USAA',
+  'TWIA',
+  'Travelers',
+  'Nationwide',
+  'Assurant',
+  'Homesite',
+  'American Integrity',
+  'Germania',
+  'Standard Casualty',
+  'Farmers',
+  'Foremost',
+  'Farm Bureau',
 ];
 
 const experience = [
@@ -180,11 +190,38 @@ export default function About() {
                 The firm was founded on a commitment to procedural discipline and neutral evaluation. Whether retained by a policyholder, a carrier, or as a neutral umpire, TruClaims Appraisal Group applies the same evidence-based methodology: on-site inspection, detailed documentation, and policy-consistent valuation — with no advocacy on either side.
               </p>
               <p className="text-gray-600 leading-relaxed mb-5">
-                Our principal, Larryon Truman, is a licensed multi-state adjuster and certified Xactimate estimator with 6+ years of CAT and daily claims experience and an extensive background in construction and operations. He holds a rope &amp; harness steep-roof certification and is a Spanish-speaking adjuster — able to serve a broader range of policyholders across Texas and Louisiana.
+                Our principal, Larryon Truman, is a licensed multi-state adjuster and certified Xactimate estimator with years of catastrophe and daily claims experience and an extensive background in construction and operations. He holds a rope &amp; harness steep-roof certification and is a Spanish-speaking adjuster — able to serve a broader range of policyholders across Texas and Louisiana.
               </p>
               <p className="text-gray-600 leading-relaxed">
                 Deployment experience spans residential claims, umpire engagements, and catastrophic events including Hurricanes Beryl, Laura, Ian, and Ida. TruClaims specializes in hail, wind, water, and NFIP flood losses — and performs on-site inspections for every engagement.
               </p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0 }}
+                transition={{ duration: 0.4, delay: 0.1 }}
+                className="mt-10 space-y-8"
+              >
+                <div className="bg-white rounded-2xl p-8 shadow-lg border border-parchment-200">
+                  <h3 className="text-xl font-bold text-ink-black-800 mb-4 font-display">Recent Deployments</h3>
+                  <p className="text-gray-600 text-sm mb-4">
+                    Selected catastrophic responses across the Gulf Coast, Texas hail corridor, and NFIP flood regions.
+                  </p>
+                  <ul className="space-y-3">
+                    {catEvents.map((item) => (
+                      <li key={item.event} className="flex items-start gap-3">
+                        <MapPin className="text-steel-blue-500 flex-shrink-0 mt-0.5" size={18} />
+                        <span className="text-gray-700">
+                          <span className="font-semibold">{item.event}</span>
+                          <span className="text-gray-500 ml-2">— {item.location}</span>
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+              </motion.div>
             </motion.div>
 
             {/* Profile + Credentials card */}
@@ -226,73 +263,53 @@ export default function About() {
         </div>
       </section>
 
-      {/* CAT Events & Carriers */}
-      <section className="py-20 bg-parchment-100">
+      
+
+      {/* Carrier Partners */}
+      <section className="py-20 bg-parchment-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0 }}
             transition={{ duration: 0.4 }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
-            <h2 className="section-title">Field Experience</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto mt-4">
-              Deployed across multiple states for major catastrophic events, working with the nation's largest carriers.
+            <h2 className="section-title">Carrier Partners</h2>
+            <p className="text-gray-600 max-w-3xl mx-auto mt-4">
+              Trusted by regional and national carriers for disciplined fact-finding, preloss restoration estimates,
+              and transparent documentation that withstands peer review.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-12">
-            {/* CAT Events */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0 }}
-              transition={{ duration: 0.4 }}
-              className="bg-white rounded-2xl p-8 shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-ink-black-800 mb-6 font-display">
-                Major CAT Deployments
-              </h3>
-              <ul className="space-y-3">
-                {catEvents.map((item) => (
-                  <li key={item.event} className="flex items-start gap-3">
-                    <MapPin className="text-steel-blue-500 flex-shrink-0 mt-0.5" size={18} />
-                    <span className="text-gray-700">
-                      <span className="font-semibold">{item.event}</span>
-                      <span className="text-gray-500 ml-2">— {item.location}</span>
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* Carriers */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0 }}
-              transition={{ duration: 0.4, delay: 0.1 }}
-              className="bg-white rounded-2xl p-8 shadow-lg"
-            >
-              <h3 className="text-xl font-bold text-ink-black-800 mb-6 font-display">
-                Carriers We've Worked With
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {carriers.map((carrier) => (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="bg-white rounded-2xl p-8 shadow-lg border border-parchment-200 overflow-hidden"
+          >
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-lg font-bold text-ink-black-800 font-display">Carrier Network</h3>
+              <span className="text-xs font-semibold uppercase tracking-[0.3em] text-gray-400">Trusted</span>
+            </div>
+            <div className="relative whitespace-nowrap overflow-hidden">
+              <motion.div
+                className="flex gap-4 items-center"
+                animate={{ x: ['0%', '-50%'] }}
+                transition={{ repeat: Infinity, duration: 18, ease: 'linear' }}
+              >
+                {[...carrierPartners, ...carrierPartners].map((carrier) => (
                   <span
                     key={carrier}
-                    className="px-3 py-1.5 bg-parchment-100 text-ink-black-700 rounded-lg text-sm font-medium border border-parchment-200"
+                    className="px-4 py-2 rounded-xl bg-parchment-100 border border-parchment-200 text-sm font-semibold text-ink-black-700 uppercase tracking-wide"
                   >
                     {carrier}
                   </span>
                 ))}
-              </div>
-              <p className="text-gray-500 text-sm mt-4">
-                And others across residential, commercial, and NFIP flood lines.
-              </p>
-            </motion.div>
-          </div>
+              </motion.div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
