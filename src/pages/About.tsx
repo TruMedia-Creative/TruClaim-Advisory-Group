@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Shield, Award, Scale, CheckCircle, MapPin, Briefcase, ClipboardList, Search, FileCheck, Handshake } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PageMetadata from '../components/PageMetadata';
@@ -180,6 +180,7 @@ const aboutStructuredData = [
 ];
 
 export default function About() {
+  const prefersReducedMotion = useReducedMotion();
   return (
     <div className="min-h-screen bg-parchment-50">
       <PageMetadata
@@ -205,7 +206,7 @@ export default function About() {
               Independent. Evidence-Based. Policy-Consistent.
             </p>
             <p className="text-steel-blue-300 text-sm font-medium tracking-wide">
-              Licensed in Texas & additional states · CAT & NFIP experience · Carrier-approved
+              Licensed in Texas & additional states · CAT & NFIP experience · State Farm, USAA & TWIA certified
             </p>
           </motion.div>
         </div>
@@ -356,14 +357,23 @@ export default function About() {
           >
             <h2 className="section-title">Our Appraisal Process</h2>
           </motion.div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {appraisalProcess.map((step, index) => (
+          <motion.div
+            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0 }}
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.08 } },
+            }}
+          >
+            {appraisalProcess.map((step) => (
               <motion.div
                 key={step.step}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.08 }}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+                }}
                 className="bg-parchment-50 rounded-xl p-6 border border-parchment-200"
               >
                 <div className="flex items-center gap-3 mb-4">
@@ -376,7 +386,7 @@ export default function About() {
                 <p className="text-gray-500 text-sm leading-relaxed">{step.description}</p>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -396,14 +406,23 @@ export default function About() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {values.map((value, index) => (
+          <motion.div
+            className="grid md:grid-cols-2 gap-6"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0 }}
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.08 } },
+            }}
+          >
+            {values.map((value) => (
               <motion.div
                 key={value.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.08 }}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+                }}
                 className="bg-white rounded-xl p-6 border border-parchment-200 flex gap-5"
               >
                 <div className="w-12 h-12 bg-gradient-to-br from-ink-black-800 to-ink-black-600 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -415,7 +434,7 @@ export default function About() {
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -435,14 +454,23 @@ export default function About() {
             </p>
           </motion.div>
 
-          <div className="space-y-4">
-            {experience.map((item, index) => (
+          <motion.div
+            className="space-y-4"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0 }}
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.08 } },
+            }}
+          >
+            {experience.map((item) => (
               <motion.div
                 key={item.role}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.08 }}
+                variants={{
+                  hidden: { opacity: 0, y: 16 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+                }}
                 className="bg-white rounded-xl px-6 py-5 border border-parchment-200"
               >
                 <div className="flex flex-col sm:flex-row sm:items-start gap-4 mb-3">
@@ -465,7 +493,7 @@ export default function About() {
                 </ul>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -492,8 +520,12 @@ export default function About() {
             <div className="relative whitespace-nowrap overflow-hidden">
               <motion.div
                 className="flex gap-4 items-center"
-                animate={{ x: ['0%', '-50%'] }}
-                transition={{ repeat: Infinity, duration: 18, ease: 'linear' }}
+                animate={prefersReducedMotion ? { x: '0%' } : { x: ['0%', '-50%'] }}
+                transition={
+                  prefersReducedMotion
+                    ? { duration: 0 }
+                    : { repeat: Infinity, duration: 18, ease: 'linear' }
+                }
               >
                 {[...carrierPartners, ...carrierPartners].map((carrier, i) => (
                   <span
