@@ -6,19 +6,19 @@ interface Carrier {
 }
 
 const carriers: Carrier[] = [
-  { name: 'State Farm', logo: '/logos/1-State-Farm-Logo.png' },
-  { name: 'USAA', logo: '/logos/2-USAA-logo.png' },
-  { name: 'Travelers', logo: '/logos/3-travelers.png' },
-  { name: 'Nationwide Insurance', logo: '/logos/4-Nationwide-Insurance-Logo.png' },
-  { name: 'Farmers Insurance', logo: '/logos/5-Farmers-Insurance-Logo.png' },
-  { name: 'Assurant', logo: '/logos/6-assurant.png' },
-  { name: 'Farm Bureau Insurance', logo: '/logos/7-farm-bureau-insurance-PNG.png' },
-  { name: 'TWIA', logo: '/logos/8-TWIA.png' },
-  { name: 'Germania', logo: '/logos/9-Germania.png' },
-  { name: 'Foremost Insurance Group', logo: '/logos/10-Foremost-Insurance-Group.png' },
-  { name: 'American Integrity', logo: '/logos/11-american-integrity.png' },
-  { name: 'Homesite Insurance', logo: '/logos/12-Homesite_Insurance_Logo.png' },
-  { name: 'Standard Casualty', logo: '/logos/13-Standard-casualty.png' },
+  { name: 'State Farm', logo: 'logos/1-State-Farm-Logo.png' },
+  { name: 'USAA', logo: 'logos/2-USAA-logo.png' },
+  { name: 'Travelers', logo: 'logos/3-travelers.png' },
+  { name: 'Nationwide Insurance', logo: 'logos/4-Nationwide-Insurance-Logo.png' },
+  { name: 'Farmers Insurance', logo: 'logos/5-Farmers-Insurance-Logo.png' },
+  { name: 'Assurant', logo: 'logos/6-assurant.png' },
+  { name: 'Farm Bureau Insurance', logo: 'logos/7-farm-bureau-insurance-PNG.png' },
+  { name: 'TWIA', logo: 'logos/8-TWIA.png' },
+  { name: 'Germania', logo: 'logos/9-Germania.png' },
+  { name: 'Foremost Insurance Group', logo: 'logos/10-Foremost-Insurance-Group.png' },
+  { name: 'American Integrity', logo: 'logos/11-american-integrity.png' },
+  { name: 'Homesite Insurance', logo: 'logos/12-Homesite_Insurance_Logo.png' },
+  { name: 'Standard Casualty', logo: 'logos/13-Standard-casualty.png' },
 ];
 
 const containerVariants = {
@@ -68,9 +68,11 @@ const CarrierLogoGrid = ({
               className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm flex items-center justify-center hover:shadow-md transition-shadow duration-300"
             >
               <img
-                src={carrier.logo}
+                src={`${import.meta.env.BASE_URL}${carrier.logo}`}
                 alt={`${carrier.name} logo`}
-                className="max-h-12 max-w-full object-contain"
+                loading="lazy"
+                decoding="async"
+                className="h-12 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
               />
             </motion.div>
           ))}
