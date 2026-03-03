@@ -1,6 +1,16 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle, ClipboardList, Search, MapPin, Award } from 'lucide-react';
+import PageMetadata from '../components/PageMetadata';
+
+const contactStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: 'Request an Insurance Appraisal Review',
+  url: 'https://www.truclaimsadvisorygroup.com/contact',
+  description:
+    'Submit documentation for an independent insurance appraisal or umpire review covering Texas and Louisiana property claims.',
+};
 
 const steps = [
   {
@@ -215,6 +225,12 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-parchment-100">
+      <PageMetadata
+        title="Request an Insurance Appraisal Review"
+        description="Submit your settlement summary, estimates, and claim documentation for an independent insurance appraisal serving Texas and Louisiana."
+        canonicalPath="/contact"
+        structuredData={contactStructuredData}
+      />
       {/* Header */}
       <section className="bg-ink-black-800 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

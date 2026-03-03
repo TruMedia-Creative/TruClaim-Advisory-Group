@@ -176,9 +176,18 @@ export default function Hero() {
 
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[url(/hero-house.jpg)] bg-cover bg-center"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-ink-black-900"
       aria-label="TruClaims Appraisal Group hero section"
     >
+      <div className="absolute inset-0">
+        <img
+          src={`${import.meta.env.BASE_URL}hero-house.jpg`}
+          alt="Independent insurance appraiser reviewing a residential property exterior damaged by wind and hail"
+          className="w-full h-full object-cover"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
       {/* Gradient overlay — semi-transparent so the background image shows through */}
       <div className="absolute inset-0 bg-gradient-to-br from-ink-black-800/75 via-ink-black-900/80 to-ink-black-950/85" />
 

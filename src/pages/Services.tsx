@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Scale, Search, FileText, Gavel, Home, Building2, Droplets } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import PageMetadata from '../components/PageMetadata';
 
 const services = [
   {
@@ -97,9 +98,28 @@ const services = [
   },
 ];
 
+const servicesSchema = services.map((service) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: service.title,
+  description: service.description,
+  provider: {
+    '@type': 'Organization',
+    name: 'TruClaims Appraisal Group',
+    url: 'https://www.truclaimsadvisorygroup.com',
+  },
+  areaServed: ['Texas', 'Louisiana'],
+}));
+
 export default function Services() {
   return (
     <div className="min-h-screen bg-parchment-100">
+      <PageMetadata
+        title="Insurance Appraisal, Umpire, and Flood Claim Services"
+        description="Detailed insurance appraisal, umpire, catastrophic loss, and NFIP flood claim services for residential and commercial disputes in Texas and Louisiana."
+        canonicalPath="/services"
+        structuredData={servicesSchema}
+      />
       {/* Header */}
       <section className="bg-gradient-to-br from-ink-black-800 via-ink-black-900 to-ink-black-950 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

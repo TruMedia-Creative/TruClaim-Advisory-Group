@@ -5,12 +5,9 @@ import { Link } from 'react-router-dom';
 import Hero from '../components/home/Hero';
 import StatsSection from '../components/home/StatsSection';
 import ServiceAreaSection from '../components/home/ServiceAreaSection';
+import PageMetadata from '../components/PageMetadata';
 
-const Home = () => {
-  const valuesRef = useRef(null);
-  const valuesInView = useInView(valuesRef, { once: true, margin: "-100px" });
-
-  const values = [
+const values = [
     { icon: Building2, title: "Independent & Neutral", desc: "TruClaims Appraisal Group serves both policyholders and insurance carriers as an independent insurance appraiser. Our obligation is to provide an accurate, objective valuation based on evidence, policy terms, and industry standards — not advocacy." },
     { icon: Shield, title: "Evidence-Based Methodology", desc: "Every appraisal is grounded in on-site inspection, photo documentation, and detailed Xactimate estimates. Our valuations are defensible, policy-consistent, and built to withstand scrutiny from all parties." },
     { icon: Handshake, title: "Credentialed & Licensed", desc: "Licensed in Texas and 12 additional states, NFIP certified, State Farm, USAA, and TWIA certified — with 6+ years of CAT and daily claims experience and certified Xactimate expertise." },
@@ -19,8 +16,73 @@ const Home = () => {
     { icon: FileSearch, title: "Preloss Restoration Standard", desc: "The appraisal process is designed to restore the insured property to its preloss condition. That is the valuation standard applied to every inspection, estimate, and award." },
   ];
 
+const faqItems = [
+    {
+      question: 'When should I invoke the appraisal clause?',
+      answer:
+        'Invoke appraisal after you have a written carrier estimate or settlement that you believe is inaccurate. The clause addresses the amount of loss only, so confirm coverage issues are resolved first and then submit your documentation for an independent review.',
+    },
+    {
+      question: 'Do you serve both policyholders and insurance carriers?',
+      answer:
+        'Yes. TruClaims Appraisal Group is retained by policyholders, carriers, attorneys, and as a neutral umpire. The same inspection methodology and valuation standard apply regardless of who engages us.',
+    },
+    {
+      question: 'What documentation should I send with my request?',
+      answer:
+        'Share your carrier scope or settlement summary, any contractor estimates, claim photos, and correspondence that outlines the disputed items. This allows us to confirm eligibility and prepare for the on-site inspection.',
+    },
+  ];
+
+const homeStructuredData = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ProfessionalService',
+      name: 'TruClaims Appraisal Group',
+      url: 'https://www.truclaimsadvisorygroup.com/',
+      description:
+        'Independent insurance appraisal, umpire, and catastrophic loss valuation services for policyholders and carriers across Texas and Louisiana.',
+      areaServed: ['Texas', 'Louisiana'],
+      telephone: '+1-903-315-0136',
+      email: 'info@truclaimsadvisorygroup.com',
+      sameAs: ['https://www.linkedin.com/company/truclaims-advisory-group'],
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Lumberton',
+        addressRegion: 'TX',
+        addressCountry: 'US',
+      },
+      founder: {
+        '@type': 'Person',
+        name: 'Larryon Truman',
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqItems.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: item.answer,
+        },
+      })),
+    },
+  ];
+
+const Home = () => {
+  const valuesRef = useRef(null);
+  const valuesInView = useInView(valuesRef, { once: true, margin: "-100px" });
+
   return (
     <div>
+      <PageMetadata
+        title="Independent Insurance Appraisal & Umpire Services"
+        description="Independent, evidence-based insurance appraisal, umpire, and catastrophic loss valuation services for policyholders, carriers, and attorneys across Texas and Louisiana."
+        canonicalPath="/"
+        structuredData={homeStructuredData}
+      />
       {/* Hero Section */}
       <Hero />
 
@@ -36,13 +98,13 @@ const Home = () => {
             <HelpCircle className="mx-auto text-steel-blue-500 mb-4" size={36} />
             <h2 className="section-title mb-4">What Is an Amount of Loss Dispute?</h2>
             <p className="text-gray-600 text-lg leading-relaxed mb-4">
-              When a policyholder and an insurance carrier cannot agree on the dollar value of a covered loss, an <strong>amount of loss dispute</strong> exists. The appraisal clause — found in most property insurance policies — provides a structured, binding process to resolve that disagreement without litigation.
+              When a policyholder and an insurance carrier cannot agree on the dollar value of a covered loss, an <strong>amount of loss dispute</strong> exists. The <Link to="/process" className="text-steel-blue-600 font-semibold">appraisal clause</Link> — found in most property insurance policies — provides a structured, binding process to resolve that disagreement without litigation.
             </p>
             <p className="text-gray-600 leading-relaxed mb-4">
               An appraisal addresses the <em>amount of loss only</em>. It does not resolve coverage disputes, determine liability, or override policy exclusions. Both parties appoint an independent appraiser; if the two appraisers cannot agree, they jointly select a neutral umpire whose decision, combined with either appraiser's agreement, becomes the binding appraisal award.
             </p>
             <p className="text-gray-600 leading-relaxed">
-              TruClaims Appraisal Group serves as the independent appraiser for policyholders and carriers, and as a neutral umpire when the two appointed appraisers reach an impasse.
+              TruClaims Appraisal Group serves as the independent appraiser for policyholders and carriers, and as a neutral umpire when the two appointed appraisers reach an impasse. Share your documentation through the <Link to="/contact" className="text-steel-blue-600 font-semibold">contact form</Link> to confirm eligibility.
             </p>
             <div className="mt-8">
               <Link to="/services" className="btn-secondary inline-flex items-center justify-center">
@@ -120,6 +182,51 @@ const Home = () => {
 
       {/* Stats Section */}
       <StatsSection />
+
+      {/* FAQ Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0 }}
+            transition={{ duration: 0.4 }}
+            className="text-center mb-12"
+          >
+            <h2 className="section-title mb-4">Insurance Appraisal FAQ</h2>
+            <p className="text-gray-600 max-w-3xl mx-auto">
+              Quick answers to common questions about invoking appraisal, required documentation, and how neutrality is maintained throughout the process.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {faqItems.map((item, index) => (
+              <motion.div
+                key={item.question}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                className="bg-parchment-50 border border-parchment-200 rounded-2xl p-6 shadow-sm"
+              >
+                <h3 className="text-lg font-semibold text-ink-black-800 mb-3">{item.question}</h3>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  {item.answer}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="text-center mt-10">
+            <Link to="/process" className="btn-outline mr-0 sm:mr-4 inline-flex mb-4 sm:mb-0">
+              Understand the Appraisal Clause
+            </Link>
+            <Link to="/contact" className="btn-primary inline-flex">
+              Submit Documentation
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* Why TruClaims */}
       <section ref={valuesRef} className="py-20 bg-parchment-50">

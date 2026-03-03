@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion';
 import { Shield, Award, Scale, CheckCircle, MapPin, Briefcase } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import PageMetadata from '../components/PageMetadata';
+
+const SITE_URL = 'https://www.truclaimsadvisorygroup.com';
 
 const credentials = [
   'Texas All Lines Adjuster License #2532605',
@@ -114,9 +117,32 @@ const experience = [
 
 const headshotSrc = `${import.meta.env.BASE_URL}larryon-truman.jpg`;
 
+const aboutStructuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Larryon Truman',
+    jobTitle: 'Principal Appraiser',
+    worksFor: {
+      '@type': 'Organization',
+      name: 'TruClaims Appraisal Group',
+    },
+    url: 'https://www.truclaimsadvisorygroup.com/about',
+    image: `${SITE_URL}/larryon-truman.jpg`,
+    knowsAbout: ['Insurance appraisal', 'Umpire services', 'NFIP flood claims'],
+    sameAs: ['https://www.linkedin.com/in/larryontruman'],
+  },
+];
+
 export default function About() {
   return (
     <div className="min-h-screen bg-parchment-50">
+      <PageMetadata
+        title="About TruClaims Appraisal Group"
+        description="Independent insurance appraisal firm led by Larryon Truman — multi-state licensed, NFIP certified, and experienced across catastrophic deployments."
+        canonicalPath="/about"
+        structuredData={aboutStructuredData}
+      />
       {/* Header */}
       <section className="bg-gradient-to-br from-ink-black-800 via-ink-black-900 to-ink-black-950 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
