@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Hero from '../components/home/Hero';
 import StatsSection from '../components/home/StatsSection';
 import ServiceAreaSection from '../components/home/ServiceAreaSection';
+import CarrierLogoGrid from '../components/home/CarrierLogoGrid';
 import PageMetadata from '../components/PageMetadata';
 
 const values = [
@@ -201,6 +202,9 @@ const Home = () => {
 
       {/* Stats Section */}
       <StatsSection />
+
+      {/* Carrier Logo Grid */}
+      <CarrierLogoGrid />
 
       {/* FAQ Section */}
       <section className="py-20 bg-white">
