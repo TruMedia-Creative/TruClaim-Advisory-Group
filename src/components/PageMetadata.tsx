@@ -61,7 +61,8 @@ export default function PageMetadata({
   }, [title, description, canonicalPath, imageUrl]);
 
   useEffect(() => {
-    const scriptId = `ld-json-${canonicalPath}`;
+    const safeId = canonicalPath.replace(/[^a-z0-9-]/gi, '-');
+    const scriptId = `ld-json-${safeId}`;
     let script = document.head.querySelector<HTMLScriptElement>(`#${scriptId}`);
 
     if (structuredData) {
