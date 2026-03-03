@@ -226,7 +226,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.6 }}
           >
-            Independent Insurance Appraisal & Umpire Services in Texas and Louisiana
+            Fair. Neutral. Resolved.
           </motion.h1>
 
           <motion.p
@@ -235,7 +235,7 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 0.8 }}
           >
-            When policyholders and insurance carriers disagree on the amount of loss, the appraisal clause provides a structured, binding resolution process. TruClaims Appraisal Group delivers independent, evidence-based valuations grounded in inspection, documentation, and policy-consistent methodology.
+            Structured insurance appraisal and umpire services delivering fair, defensible settlements for homeowners, businesses, and carriers across Texas and Louisiana.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -245,11 +245,11 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 0.6 }}
           >
-            <Link to="/services" className="btn-secondary inline-flex items-center justify-center">
-              Request Appraisal Services
+            <Link to="/contact" className="btn-secondary inline-flex items-center justify-center">
+              Request a Claim Review 
             </Link>
-            <Link to="/contact" className="btn-primary inline-flex items-center justify-center">
-              Schedule a Consultation
+            <Link to="/services" className="btn-primary inline-flex items-center justify-center">
+              View Services
             </Link>
           </motion.div>
         </motion.div>

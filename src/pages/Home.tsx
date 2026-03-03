@@ -16,6 +16,14 @@ const values = [
     { icon: FileSearch, title: "Preloss Restoration Standard", desc: "The appraisal process is designed to restore the insured property to its preloss condition. That is the valuation standard applied to every inspection, estimate, and award." },
   ];
 
+const claimPainPoints = [
+    'Incomplete or undervalued scopes that miss code compliance and labor requirements',
+    'Disagreements about causation, matching, or the appropriate repair methodology',
+    'Delayed supplements or settlement timelines that keep properties in limbo',
+    'Limited transparency into how the appraisal clause should be executed',
+    'Strained collaboration between the insured, carrier, and contractors on-site',
+  ];
+
 const faqItems = [
     {
       question: 'When should I invoke the appraisal clause?',
@@ -86,7 +94,7 @@ const Home = () => {
       {/* Hero Section */}
       <Hero />
 
-      {/* What Is an Amount of Loss Dispute? */}
+      {/* When a Claim Doesn't Feel Right */}
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
@@ -96,15 +104,26 @@ const Home = () => {
             transition={{ duration: 0.4 }}
           >
             <HelpCircle className="mx-auto text-steel-blue-500 mb-4" size={36} />
-            <h2 className="section-title mb-4">What Is an Amount of Loss Dispute?</h2>
-            <p className="text-gray-600 text-lg leading-relaxed mb-4">
-              When a policyholder and an insurance carrier cannot agree on the dollar value of a covered loss, an <strong>amount of loss dispute</strong> exists. The <Link to="/process" className="text-steel-blue-600 font-semibold">appraisal clause</Link> — found in most property insurance policies — provides a structured, binding process to resolve that disagreement without litigation.
+            <h2 className="section-title mb-4">When a Claim Doesn't Feel Right...</h2>
+            <p className="text-gray-600 text-lg leading-relaxed mb-6">
+              After a catastrophic event or significant property loss, the process should provide clarity. When communication breaks down, the claim can feel off long before a settlement is reached.
             </p>
+            <ul className="grid gap-4 sm:grid-cols-2 text-left my-8">
+              {claimPainPoints.map((point) => (
+                <li
+                  key={point}
+                  className="flex items-start gap-3 p-4 rounded-2xl border border-parchment-200 bg-parchment-50 shadow-sm"
+                >
+                  <span className="mt-1 h-2.5 w-2.5 rounded-full bg-steel-blue-500 flex-shrink-0" />
+                  <span className="text-gray-700 text-sm leading-relaxed">{point}</span>
+                </li>
+              ))}
+            </ul>
             <p className="text-gray-600 leading-relaxed mb-4">
-              An appraisal addresses the <em>amount of loss only</em>. It does not resolve coverage disputes, determine liability, or override policy exclusions. Both parties appoint an independent appraiser; if the two appraisers cannot agree, they jointly select a neutral umpire whose decision, combined with either appraiser's agreement, becomes the binding appraisal award.
+              When estimates do not align, restoration stalls and properties remain short of their preloss condition.
             </p>
             <p className="text-gray-600 leading-relaxed">
-              TruClaims Appraisal Group serves as the independent appraiser for policyholders and carriers, and as a neutral umpire when the two appointed appraisers reach an impasse. Share your documentation through the <Link to="/contact" className="text-steel-blue-600 font-semibold">contact form</Link> to confirm eligibility.
+              TruClaims Appraisal Group delivers structured inspections, detailed documentation, and a neutral appraisal path so every party knows how the dispute will be resolved.
             </p>
             <div className="mt-8">
               <Link to="/services" className="btn-secondary inline-flex items-center justify-center">
