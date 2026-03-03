@@ -169,13 +169,13 @@ export default function About() {
               className="bg-gray-50 rounded-2xl shadow-lg overflow-hidden"
             >
               {/* Profile header */}
-              <div className="border-b border-gray-200">
+              <div className="flex items-center gap-5 px-8 py-6 border-b border-gray-200">
                 <img
                   src={headshotSrc}
                   alt="Larryon Truman, Principal Appraiser at TruClaims Appraisal Group"
-                  className="w-22 h-22 rounded-xl object-cover object-top "
+                  className="w-20 h-20 rounded-xl object-cover object-top flex-shrink-0"
                 />
-                <div className="px-8 py-5">
+                <div>
                   <p className="text-lg font-bold text-ink-black-800">Larryon Truman</p>
                   <p className="text-sm text-steel-blue-600 font-medium">Principal Appraiser</p>
                   <p className="text-xs text-gray-500 mt-0.5">Lumberton, TX · (903) 315-0136</p>

@@ -150,6 +150,39 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* CTA */}
+      <section className="py-16 bg-ink-black-800 text-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0 }}
+            transition={{ duration: 0.4 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">
+              Ready to Get Started?
+            </h2>
+            <p className="text-ink-black-200 text-lg mb-8 max-w-xl mx-auto">
+              If you are facing an amount of loss dispute in Texas or Louisiana, submit your documentation for an independent appraisal review.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                to="/process"
+                className="btn-outline px-8 py-4 text-lg text-white border-white/80"
+              >
+                View the Appraisal Process
+              </Link>
+              <Link
+                to="/contact"
+                className="btn-primary px-8 py-4 text-lg"
+              >
+                Request an Appraisal Review
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
     </div>
   );
 };

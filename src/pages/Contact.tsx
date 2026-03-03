@@ -216,7 +216,7 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-parchment-100">
       {/* Header */}
-      <section className="bg-ink-black-800 text-white py-16">
+      <section className="bg-gradient-to-br from-ink-black-800 via-ink-black-900 to-ink-black-950 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">Request an Insurance Appraisal Review</h1>
           <p className="text-ink-black-200 text-lg max-w-2xl">

@@ -91,7 +91,7 @@ export default function ServiceAreaSection() {
             <div className="mt-8">
               <Link
                 to="/contact"
-                className="inline-flex items-center px-6 py-3 bg-ink-black-800 text-white rounded-lg font-semibold hover:bg-ink-black-700 transition-colors"
+                className="btn-primary"
               >
                 Request Appraisal Services
               </Link>
