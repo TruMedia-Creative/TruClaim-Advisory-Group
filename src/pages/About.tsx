@@ -8,8 +8,9 @@ const SITE_URL = 'https://www.truclaimsadvisorygroup.com';
 const principalBullets = [
   'Texas All Lines Adjuster License #2532605',
   'Texas LA&H / P&C License #1917567',
+  'Licensed P&C (Property & Casualty) and Licensed Adjuster',
   'NFIP Flood Certification #0070011243',
-  'Multi-state licensed: AL, FL, GA, IN, KY, LA, MI, MN, MS, NC, OK, SC',
+  'Multi-state licensed: AL, FL, GA, IN, KY, LA, MI, MN, MS, NM, OK, SC',
   'CAT & daily claims experience across Gulf Coast and hail corridor',
   'Spanish-speaking adjuster',
 ];
@@ -18,11 +19,11 @@ const licenses = [
   'Texas All Lines Adjuster License #2532605',
   'Texas LA&H / P&C License #1917567',
   'NFIP Flood Certification #0070011243',
-  'Non-Resident Licensed: AL, FL, GA, IN, KY, LA, MI, MN, MS, NC, OK, SC',
+  'Non-Resident Licensed: AL, FL, GA, IN, KY, LA, MI, MN, MS, NM, OK, SC',
   'State Farm Certified – Rope & Harness / Steep & High Roof',
   'USAA Certified Adjuster',
-  'TWIA / TFPA Certified',
-  'Xactimate Certified Estimator',
+  'TWIA / TFPA Residential & Commercial Certified',
+  'Xactimate Estimating Software (Proficient)',
 ];
 
 const whoWeServe = [
@@ -66,10 +67,16 @@ const catEvents = [
   { event: 'Hurricane Ian', location: 'Florida' },
   { event: 'Hurricane Isaias', location: 'New Jersey' },
   { event: 'Hurricane Ida', location: 'Louisiana' },
+  { event: 'Hurricane Milton', location: 'Florida' },
+  { event: 'Hurricane Helene', location: 'Florida' },
   { event: 'Texas Freeze', location: 'Texas' },
   { event: 'SE Texas Wind & TWIA Events', location: 'Texas' },
   { event: 'OKC Hail Deployments', location: 'Oklahoma' },
-  { event: 'NFIP Flood Deployments', location: 'South Texas' },
+  { event: 'MN Wind & Hail', location: 'Minnesota' },
+  { event: 'NE Wind & Hail', location: 'Nebraska' },
+  { event: 'SC Wind & Hail', location: 'South Carolina' },
+  { event: 'NC Wind & Hail', location: 'North Carolina' },
+  { event: 'NFIP Flood Deployments', location: 'South Texas & Florida' },
 ];
 
 const appraisalProcess = [
