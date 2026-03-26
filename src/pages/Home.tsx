@@ -164,12 +164,12 @@ const Home = () => {
               Ready to Get Started?
             </h2>
             <p className="text-ink-black-200 text-lg mb-8 max-w-xl mx-auto">
-              If you are facing an amount of loss dispute in Texas or Louisiana, submit your documentation for an independent appraisal review.
+              If you are facing a dispute over the amount of loss in Texas or Louisiana, submit your documentation for an independent appraisal review.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/process"
-                className="btn-outline px-8 py-4 text-lg text-white border-white/80"
+                className="btn-outline-light"
               >
                 View the Appraisal Process
               </Link>

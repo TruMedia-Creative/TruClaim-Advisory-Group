@@ -181,7 +181,7 @@ export default function Services() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/process"
-                className="btn-outline px-8 py-4 text-lg text-white border-white/80"
+                className="btn-outline-light"
               >
                 View the Appraisal Process
               </Link>

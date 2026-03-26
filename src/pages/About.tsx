@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Shield, Award, Scale, CheckCircle, MapPin, Briefcase } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { PHONE_DISPLAY } from '../lib/contact';
 
 const credentials = [
   'Texas All Lines Adjuster License #2532605',
@@ -178,7 +179,7 @@ export default function About() {
                 <div>
                   <p className="text-lg font-bold text-ink-black-800">Larryon Truman</p>
                   <p className="text-sm text-steel-blue-600 font-medium">Principal Appraiser</p>
-                  <p className="text-xs text-gray-500 mt-0.5">Lumberton, TX · (903) 315-0136</p>
+                  <p className="text-xs text-gray-500 mt-0.5">Lumberton, TX · {PHONE_DISPLAY}</p>
                 </div>
               </div>
               {/* Credentials */}
