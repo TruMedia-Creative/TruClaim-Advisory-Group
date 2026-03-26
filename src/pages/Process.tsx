@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { FileText, Search, ClipboardList, Scale, CheckCircle, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import PageMetadata from '../components/PageMetadata';
 
 const steps = [
   {
@@ -54,9 +55,29 @@ const nextSteps = [
   'We provide a clear assessment of whether appraisal is the appropriate path and what the next step is',
 ];
 
+const processStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'Insurance Appraisal Process',
+  description:
+    'Five-step walkthrough of the insurance appraisal clause process from documentation submission to binding award resolution.',
+  step: steps.map((step) => ({
+    '@type': 'HowToStep',
+    position: Number(step.number),
+    name: step.title,
+    itemListElement: step.description,
+  })),
+};
+
 export default function Process() {
   return (
     <div className="min-h-screen bg-parchment-50">
+      <PageMetadata
+        title="Insurance Appraisal Process"
+        description="Understand the five-step insurance appraisal process — documentation, scope review, inspection, reconciliation, and award resolution."
+        canonicalPath="/process"
+        structuredData={processStructuredData}
+      />
       {/* Header */}
       <section className="bg-gradient-to-br from-ink-black-800 via-ink-black-900 to-ink-black-950 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

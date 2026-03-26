@@ -3,12 +3,13 @@ import { MapPin, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const serviceAreas = [
-    {
+  {
     region: 'Texas',
     cities: [
       'Houston', 'Dallas–Fort Worth', 'San Antonio', 'Austin', 'Corpus Christi',
       'Beaumont', 'Port Arthur', 'Lubbock', 'McAllen', 'El Paso',
     ],
+    cta: { label: 'Texas Coverage Details', href: '/texas' },
   },
   {
     region: 'Louisiana',
@@ -16,6 +17,7 @@ const serviceAreas = [
       'New Orleans', 'Baton Rouge', 'Lake Charles', 'Lafayette', 'Shreveport',
       'Metairie', 'Kenner', 'Bossier City', 'Houma', 'Monroe',
     ],
+    cta: { label: 'Louisiana Coverage Details', href: '/louisiana' },
   },
 ];
 
@@ -61,9 +63,14 @@ export default function ServiceAreaSection() {
             </h3>
             <div className="space-y-4">
               {serviceAreas.map((area) => (
-                <div key={area.region} className="bg-white rounded-xl p-5 shadow-md border border-gray-100">
+                <div key={area.region} className="bg-white rounded-xl p-5 shadow-md border border-gray-100 space-y-2">
                   <h4 className="font-semibold text-ink-black-800 text-lg mb-2">{area.region}</h4>
                   <p className="text-gray-600 text-sm">{area.cities.join(' · ')}</p>
+                  {area.cta && (
+                    <Link to={area.cta.href} className="text-sm font-semibold text-steel-blue-600 hover:text-steel-blue-500">
+                      {area.cta.label} →
+                    </Link>
+                  )}
                 </div>
               ))}
             </div>
