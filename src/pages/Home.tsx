@@ -31,7 +31,7 @@ const values = [
   {
     icon: Handshake,
     title: 'Credentialed & Licensed',
-    desc: 'Licensed in Texas and 12 additional states, NFIP certified, State Farm, USAA, and TWIA certified — with 6+ years of CAT and daily claims experience and certified Xactimate expertise.',
+    desc: 'Licensed in Texas and 12 additional states, NFIP certified, State Farm, USAA, and TWIA certified — with extensive CAT and daily claims experience.',
   },
   {
     icon: Users,
