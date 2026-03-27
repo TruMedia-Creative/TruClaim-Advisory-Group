@@ -122,3 +122,16 @@ src/
 ## Environment Variables
 
 None required. This is a pure frontend marketing site with no backend, authentication, or external APIs.
+
+## Contact Form Email Delivery
+
+The contact form posts to `/api/contact`, a Vercel Serverless Function that relays submissions (including file uploads up to 10&nbsp;MB each) via [Resend](https://resend.com/).
+
+1. Create a Resend account and add/verify your custom domain (DKIM/SPF records will be required in GoDaddy).
+2. Generate an API key and add the following environment variables to your Vercel project (Project → Settings → Environment Variables):
+  - `RESEND_API_KEY` – the secret key you generated.
+  - `CONTACT_FROM_EMAIL` – the verified sender, e.g. `TruClaim Contact <contact@yourdomain.com>`.
+  - `CONTACT_TO_EMAIL` – the inbox that should receive submissions.
+3. Redeploy (or trigger “Redeploy with existing build”) so the new env vars are available to the function.
+
+> Local testing: add the same variables to a `.env.local` file and run `vercel dev` so `/api/contact` is available while you build locally.
