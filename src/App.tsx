@@ -8,6 +8,7 @@ import Contact from './pages/Contact';
 import Process from './pages/Process';
 import Texas from './pages/Texas';
 import Louisiana from './pages/Louisiana';
+import NotFound from './pages/NotFound';
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 function App() {
@@ -30,6 +31,7 @@ function App() {
                   <Route path="/louisiana" element={<Louisiana />} />
                   <Route path="/about" element={<About />} />
                   <Route path="/contact" element={<Contact />} />
+                  <Route path="*" element={<NotFound />} />
                 </Routes>
               </Layout>
             }

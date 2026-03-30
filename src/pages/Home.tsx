@@ -1,5 +1,5 @@
-import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { useRef, useState } from 'react';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
 import {
   Users,
   Shield,
@@ -9,6 +9,8 @@ import {
   FileSearch,
   HelpCircle,
   UserCheck,
+  ChevronDown,
+  Quote,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Hero from '../components/home/Hero';
@@ -72,6 +74,37 @@ const faqItems = [
     answer:
       'Share your carrier scope or settlement summary, any contractor estimates, claim photos, and correspondence that outlines the disputed items. This allows us to confirm eligibility and prepare for the on-site inspection.',
   },
+  {
+    question: 'How long does the appraisal process take?',
+    answer:
+      'Timeline varies based on property complexity, scheduling availability, and the responsiveness of all parties. After receiving your documentation, we typically complete an initial review within 5–7 business days and coordinate the on-site inspection shortly thereafter.',
+  },
+  {
+    question: 'What states do you operate in?',
+    answer:
+      'TruClaims Appraisal Group is based in Texas and maintains primary service coverage in Texas and Louisiana. We are also licensed in 12 additional states, enabling multi-state CAT deployment and appraisal engagements beyond the Gulf Coast region.',
+  },
+];
+
+const testimonials = [
+  {
+    quote:
+      'TruClaims provided an objective, well-documented appraisal that held up through the entire process. The estimate was thorough and the methodology was clearly explained at every step.',
+    name: 'Commercial Property Owner',
+    location: 'Houston, TX',
+  },
+  {
+    quote:
+      'After months of back-and-forth with my carrier, engaging an independent appraiser was the right move. The process was professional and the final award accurately reflected the scope of our loss.',
+    name: 'Residential Policyholder',
+    location: 'Beaumont, TX',
+  },
+  {
+    quote:
+      'We retained TruClaims as our umpire and appreciated their impartiality. They reviewed both estimates carefully and delivered a well-reasoned award that both appraisers could stand behind.',
+    name: 'Insurance Carrier Representative',
+    location: 'Baton Rouge, LA',
+  },
 ];
 
 const homeStructuredData = [
@@ -114,6 +147,7 @@ const homeStructuredData = [
 const Home = () => {
   const valuesRef = useRef(null);
   const valuesInView = useInView(valuesRef, { once: true, margin: '-100px' });
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
     <div>
@@ -265,11 +299,60 @@ const Home = () => {
       {/* Stats Section */}
       {/* <StatsSection /> */}
 
-      
+      {/* Testimonials Section */}
+      <section className="py-20 bg-parchment-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0 }}
+            transition={{ duration: 0.4 }}
+            className="text-center mb-12"
+          >
+            <Quote className="mx-auto text-steel-blue-500 mb-4" size={36} />
+            <h2 className="section-title mb-4">What Clients Are Saying</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Independent, evidence-based appraisals that hold up — for policyholders, carriers,
+              and attorneys across Texas and Louisiana.
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="grid md:grid-cols-3 gap-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0 }}
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.08 } },
+            }}
+          >
+            {testimonials.map((t) => (
+              <motion.div
+                key={t.name}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+                }}
+                className="bg-white rounded-2xl p-8 shadow-lg flex flex-col"
+              >
+                <Quote className="text-steel-blue-400 mb-4 flex-shrink-0" size={24} />
+                <p className="text-gray-700 leading-relaxed text-sm flex-grow italic">
+                  "{t.quote}"
+                </p>
+                <div className="mt-6 pt-4 border-t border-parchment-200">
+                  <p className="font-semibold text-ink-black-800 text-sm">{t.name}</p>
+                  <p className="text-steel-blue-500 text-xs mt-0.5">{t.location}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
 
       {/* FAQ Section */}
       <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -284,18 +367,47 @@ const Home = () => {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="space-y-3">
             {faqItems.map((item, index) => (
               <motion.div
                 key={item.question}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="bg-parchment-50 border border-parchment-200 rounded-2xl p-6 shadow-sm"
+                transition={{ duration: 0.35, delay: index * 0.05 }}
+                className="rounded-2xl border border-parchment-200 bg-parchment-50 shadow-sm overflow-hidden"
               >
-                <h3 className="text-lg font-semibold text-ink-black-800 mb-3">{item.question}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{item.answer}</p>
+                <button
+                  className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
+                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                  aria-expanded={openFaq === index}
+                >
+                  <span className="text-base font-semibold text-ink-black-800 leading-snug">
+                    {item.question}
+                  </span>
+                  <motion.span
+                    animate={{ rotate: openFaq === index ? 180 : 0 }}
+                    transition={{ duration: 0.25 }}
+                    className="flex-shrink-0 text-steel-blue-500"
+                  >
+                    <ChevronDown size={20} />
+                  </motion.span>
+                </button>
+                <AnimatePresence initial={false}>
+                  {openFaq === index && (
+                    <motion.div
+                      key="content"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: 'easeInOut' }}
+                    >
+                      <p className="px-6 pb-5 text-gray-600 text-sm leading-relaxed">
+                        {item.answer}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.div>
             ))}
           </div>
