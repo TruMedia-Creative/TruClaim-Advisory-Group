@@ -13,6 +13,8 @@ const BackToTop = () => {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    // Initialize visibility based on current scroll position on mount
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
