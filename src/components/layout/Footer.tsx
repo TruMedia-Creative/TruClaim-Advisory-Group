@@ -54,8 +54,16 @@ const Footer = () => {
           <p className="text-ink-black-300 text-sm">
             &copy; {new Date().getFullYear()} TruClaims Appraisal Group. All rights reserved.
           </p>
-          <p className="text-ink-black-400 text-sm mt-2 md:mt-0">
-            truclaimsadvisorygroup.com
+          <p className="text-ink-black-400 text-sm mt-2 md:mt-0 flex flex-col md:flex-row md:items-center md:space-x-2 text-center md:text-left">
+            <span>truclaimsadvisorygroup.com</span>
+            <a
+              href="https://www.trumediacreative.com"
+              className="text-steel-blue-400 hover:text-white transition"
+              target="_blank"
+              rel="noreferrer"
+            >
+              |  Site by TruMedia Creative
+            </a>
           </p>
         </div>
       </div>
