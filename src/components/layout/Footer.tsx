@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { MapPin, Phone } from 'lucide-react';
+import { MapPin, Phone, Linkedin } from 'lucide-react';
 import { PHONE_DISPLAY, PHONE_TEL } from '../../lib/contact';
 
 const Footer = () => {
@@ -15,9 +15,20 @@ const Footer = () => {
               </div>
               <span className="font-display font-bold text-2xl">TruClaims Appraisal Group</span>
             </div>
-            <p className="text-ink-black-200 max-w-md">
+            <p className="text-ink-black-200 max-w-md mb-6">
               TruClaims Appraisal Group provides insurance adjusting appraisals and umpiring for individuals and insurance carriers across Texas and Louisiana.
             </p>
+            {/* Social links */}
+            <a
+              href="https://www.linkedin.com/company/truclaims-advisory-group"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="TruClaims Appraisal Group on LinkedIn"
+              className="inline-flex items-center gap-2 text-ink-black-200 hover:text-white transition text-sm"
+            >
+              <Linkedin size={18} />
+              <span>LinkedIn</span>
+            </a>
           </div>
 
           {/* Quick Links */}
