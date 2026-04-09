@@ -185,6 +185,7 @@ export default function Hero() {
           alt="Independent insurance appraiser reviewing a residential property exterior damaged by wind and hail"
           className="w-full h-full object-cover"
           loading="eager"
+          fetchPriority="high"
           decoding="async"
         />
       </div>
