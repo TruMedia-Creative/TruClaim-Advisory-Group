@@ -17,15 +17,15 @@ failure_taxonomy:
     hallucination: [invented_facts, fictional_citations]
     incompleteness: [partial_answer, missing_key_info]
     inaccuracy: [wrong_numbers, wrong_dates]
-  
+
   communication:
     tone_mismatch: [too_casual, too_formal]
     clarity: [ambiguous, jargon_heavy]
-  
+
   context:
     user_context: [ignored_preferences, misunderstood_intent]
     retrieved_context: [ignored_documents, wrong_context]
-  
+
   safety:
     missing_disclaimers: [legal, medical, financial]
 ```
@@ -49,16 +49,16 @@ client.spans.add_span_annotation(
 ## Add Annotation (TypeScript)
 
 ```typescript
-import { addSpanAnnotation } from "@arizeai/phoenix-client/spans";
+import { addSpanAnnotation } from '@arizeai/phoenix-client/spans';
 
 await addSpanAnnotation({
   spanAnnotation: {
-    spanId: "abc123",
-    name: "failure_category",
-    label: "hallucination",
+    spanId: 'abc123',
+    name: 'failure_category',
+    label: 'hallucination',
     explanation: "invented a feature that doesn't exist",
-    annotatorKind: "HUMAN",
-  }
+    annotatorKind: 'HUMAN',
+  },
 });
 ```
 

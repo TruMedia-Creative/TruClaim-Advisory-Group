@@ -6,16 +6,32 @@ const serviceAreas = [
   {
     region: 'Texas',
     cities: [
-      'Houston', 'Dallas–Fort Worth', 'San Antonio', 'Austin', 'Corpus Christi',
-      'Beaumont', 'Port Arthur', 'Lubbock', 'McAllen', 'El Paso',
+      'Houston',
+      'Dallas–Fort Worth',
+      'San Antonio',
+      'Austin',
+      'Corpus Christi',
+      'Beaumont',
+      'Port Arthur',
+      'Lubbock',
+      'McAllen',
+      'El Paso',
     ],
     cta: { label: 'Texas Coverage Details', href: '/texas' },
   },
   {
     region: 'Louisiana',
     cities: [
-      'New Orleans', 'Baton Rouge', 'Lake Charles', 'Lafayette', 'Shreveport',
-      'Metairie', 'Kenner', 'Bossier City', 'Houma', 'Monroe',
+      'New Orleans',
+      'Baton Rouge',
+      'Lake Charles',
+      'Lafayette',
+      'Shreveport',
+      'Metairie',
+      'Kenner',
+      'Bossier City',
+      'Houma',
+      'Monroe',
     ],
     cta: { label: 'Louisiana Coverage Details', href: '/louisiana' },
   },
@@ -43,9 +59,13 @@ export default function ServiceAreaSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="section-title">Independent Appraisal Services for Policyholders and Carriers</h2>
+          <h2 className="section-title">
+            Independent Appraisal Services for Policyholders and Carriers
+          </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto mt-4">
-            TruClaims Appraisal Group provides independent insurance appraisal and umpire services across Texas and Louisiana, with travel available nationwide for large-loss and catastrophic events.
+            TruClaims Appraisal Group provides independent insurance appraisal and umpire services
+            across Texas and Louisiana, with travel available nationwide for large-loss and
+            catastrophic events.
           </p>
         </motion.div>
 
@@ -63,11 +83,17 @@ export default function ServiceAreaSection() {
             </h3>
             <div className="space-y-4">
               {serviceAreas.map((area) => (
-                <div key={area.region} className="bg-white rounded-xl p-5 shadow-md border border-gray-100 space-y-2">
+                <div
+                  key={area.region}
+                  className="bg-white rounded-xl p-5 shadow-md border border-gray-100 space-y-2"
+                >
                   <h4 className="font-semibold text-ink-black-800 text-lg mb-2">{area.region}</h4>
                   <p className="text-gray-600 text-sm">{area.cities.join(' · ')}</p>
                   {area.cta && (
-                    <Link to={area.cta.href} className="text-sm font-semibold text-steel-blue-600 hover:text-steel-blue-500">
+                    <Link
+                      to={area.cta.href}
+                      className="text-sm font-semibold text-steel-blue-600 hover:text-steel-blue-500"
+                    >
                       {area.cta.label} →
                     </Link>
                   )}
@@ -86,20 +112,22 @@ export default function ServiceAreaSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <h3 className="text-2xl font-bold text-ink-black-800 mb-6">Types of Claims We Handle</h3>
+            <h3 className="text-2xl font-bold text-ink-black-800 mb-6">
+              Types of Claims We Handle
+            </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {serviceTypes.map((type) => (
-                <div key={type} className="flex items-start gap-3 bg-white rounded-lg p-4 shadow-sm border border-gray-100">
+                <div
+                  key={type}
+                  className="flex items-start gap-3 bg-white rounded-lg p-4 shadow-sm border border-gray-100"
+                >
                   <CheckCircle className="text-steel-blue-500 flex-shrink-0 mt-0.5" size={18} />
                   <span className="text-gray-700 text-sm">{type}</span>
                 </div>
               ))}
             </div>
             <div className="mt-8">
-              <Link
-                to="/contact"
-                className="btn-primary"
-              >
+              <Link to="/contact" className="btn-primary">
                 Request Appraisal Services
               </Link>
             </div>

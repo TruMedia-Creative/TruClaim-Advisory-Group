@@ -33,8 +33,8 @@ When a script is loaded asynchronously, the browser can compile it on a backgrou
 **JavaScript dynamic creation (defaults to async):**
 
 ```javascript
-const script = document.createElement("script");
-script.src = "file.js";
+const script = document.createElement('script');
+script.src = 'file.js';
 document.body.appendChild(script);
 ```
 
@@ -51,7 +51,7 @@ document.body.appendChild(script);
 
 ```javascript
 const blob = new Blob([codeString]);
-const script = document.createElement("script");
+const script = document.createElement('script');
 const url = URL.createObjectURL(blob);
 script.onload = script.onerror = () => URL.revokeObjectURL(url);
 script.src = url;
@@ -128,11 +128,11 @@ emscripten_push_main_loop_blocker();
 
 ### Performance Targets
 
-| Metric | Target |
-|---|---|
-| Initial content appearance | 1-2 seconds |
-| User-perceptible delay | 50ms or less |
-| Sluggish threshold | Greater than 200ms |
+| Metric                     | Target             |
+| -------------------------- | ------------------ |
+| Initial content appearance | 1-2 seconds        |
+| User-perceptible delay     | 50ms or less       |
+| Sluggish threshold         | Greater than 200ms |
 
 Users on older or slower devices experience longer delays than developers -- always optimize accordingly.
 
@@ -151,11 +151,13 @@ WebRTC data channels let you send text or binary data over an active connection 
 WebRTC establishes a peer-to-peer connection between two browsers. Once established, a data channel can be opened on that connection. Data channels come in two flavors:
 
 **Reliable Channels:**
+
 - Guarantee that messages arrive at the peer.
 - Maintain message order -- messages arrive in the same sequence they were sent.
 - Analogous to TCP sockets.
 
 **Unreliable Channels:**
+
 - Make no guarantees about message delivery.
 - Messages may not arrive in any particular order.
 - Messages may not arrive at all.
@@ -231,19 +233,19 @@ Combines multiple audio clips into a single file, playing specific sections by t
 **JavaScript:**
 
 ```javascript
-const myAudio = document.getElementById("myAudio");
-const buttons = document.getElementsByTagName("button");
+const myAudio = document.getElementById('myAudio');
+const buttons = document.getElementsByTagName('button');
 let stopTime = 0;
 
 for (const button of buttons) {
-  button.addEventListener("click", () => {
+  button.addEventListener('click', () => {
     myAudio.currentTime = button.dataset.start;
     stopTime = Number(button.dataset.stop);
     myAudio.play();
   });
 }
 
-myAudio.addEventListener("timeupdate", () => {
+myAudio.addEventListener('timeupdate', () => {
   if (myAudio.currentTime > stopTime) {
     myAudio.pause();
   }
@@ -253,8 +255,8 @@ myAudio.addEventListener("timeupdate", () => {
 **Priming audio for mobile (trigger on first user interaction):**
 
 ```javascript
-const myAudio = document.createElement("audio");
-myAudio.src = "my-sprite.mp3";
+const myAudio = document.createElement('audio');
+myAudio.src = 'my-sprite.mp3';
 myAudio.play();
 myAudio.pause();
 ```
@@ -300,8 +302,8 @@ function playTrack(audioBuffer) {
 **Handle autoplay policy in playback handlers:**
 
 ```javascript
-playButton.addEventListener("click", () => {
-  if (audioCtx.state === "suspended") {
+playButton.addEventListener('click', () => {
+  if (audioCtx.state === 'suspended') {
     audioCtx.resume();
   }
 
@@ -341,12 +343,12 @@ Particularly useful for WebGL 3D games to tie audio to visual objects and the pl
 
 ### Decision Matrix
 
-| Technique | Use When | Pros | Cons |
-|---|---|---|---|
-| Audio Sprites | Many short sounds, mobile | Reduces HTTP requests, mobile-friendly | Seeking accuracy reduced at low bitrates |
-| Basic `<audio>` | Simple linear playback | Broad support | Limited control, autoplay restrictions |
-| Web Audio API | Dynamic music, 3D positioning, precise timing | Full control, real-time manipulation, sync | More complex code |
-| Positional Audio | 3D immersive games | Realism, player immersion | Requires WebGL context awareness |
+| Technique        | Use When                                      | Pros                                       | Cons                                     |
+| ---------------- | --------------------------------------------- | ------------------------------------------ | ---------------------------------------- |
+| Audio Sprites    | Many short sounds, mobile                     | Reduces HTTP requests, mobile-friendly     | Seeking accuracy reduced at low bitrates |
+| Basic `<audio>`  | Simple linear playback                        | Broad support                              | Limited control, autoplay restrictions   |
+| Web Audio API    | Dynamic music, 3D positioning, precise timing | Full control, real-time manipulation, sync | More complex code                        |
+| Positional Audio | 3D immersive games                            | Realism, player immersion                  | Requires WebGL context awareness         |
 
 ---
 
@@ -398,10 +400,8 @@ class CircleEntity extends BaseEntity {
   radius = 10;
 
   isCollidingWith(other) {
-    const dx =
-      this.position.x + this.radius - (other.position.x + other.radius);
-    const dy =
-      this.position.y + this.radius - (other.position.y + other.radius);
+    const dx = this.position.x + this.radius - (other.position.x + other.radius);
+    const dy = this.position.y + this.radius - (other.position.y + other.radius);
     const distance = Math.sqrt(dx * dx + dy * dy);
     return distance < this.radius + other.radius;
   }
@@ -421,6 +421,7 @@ SAT is more complex to implement but handles arbitrary convex polygon shapes.
 Testing every entity against every other entity is computationally expensive (O(n^2)). Games split collision detection into two phases:
 
 **Broad Phase** -- Uses spatial data structures to quickly identify which entities could be colliding:
+
 - Quad Trees
 - R-Trees
 - Spatial Hashmaps
@@ -459,21 +460,21 @@ const collider = {
   staticEntities: [],
   checkCollision() {
     const isColliding = this.staticEntities.some((staticEntity) =>
-      this.moveableEntity.isCollidingWith(staticEntity),
+      this.moveableEntity.isCollidingWith(staticEntity)
     );
     this.moveableEntity.setCollisionState(isColliding);
   },
 };
 
-const container = document.getElementById("container");
+const container = document.getElementById('container');
 
 class BaseEntity {
   ref;
   position;
   constructor(position) {
     this.position = position;
-    this.ref = document.createElement("div");
-    this.ref.classList.add("entity");
+    this.ref = document.createElement('div');
+    this.ref.classList.add('entity');
     this.ref.style.left = `${this.position.x}px`;
     this.ref.style.top = `${this.position.y}px`;
     container.appendChild(this.ref);
@@ -488,30 +489,30 @@ class BaseEntity {
     this.ref.style.top = `${this.position.y}px`;
   }
   setCollisionState(isColliding) {
-    if (isColliding && !this.ref.classList.contains("collision-state")) {
-      this.ref.classList.add("collision-state");
+    if (isColliding && !this.ref.classList.contains('collision-state')) {
+      this.ref.classList.add('collision-state');
     } else if (!isColliding) {
-      this.ref.classList.remove("collision-state");
+      this.ref.classList.remove('collision-state');
     }
   }
   isCollidingWith(other) {
-    throw new Error("isCollidingWith must be implemented in subclasses");
+    throw new Error('isCollidingWith must be implemented in subclasses');
   }
 }
 
-document.addEventListener("keydown", (e) => {
+document.addEventListener('keydown', (e) => {
   e.preventDefault();
   switch (e.key) {
-    case "ArrowLeft":
+    case 'ArrowLeft':
       collider.moveableEntity.shiftPosition(-5, 0);
       break;
-    case "ArrowUp":
+    case 'ArrowUp':
       collider.moveableEntity.shiftPosition(0, -5);
       break;
-    case "ArrowRight":
+    case 'ArrowRight':
       collider.moveableEntity.shiftPosition(5, 0);
       break;
-    case "ArrowDown":
+    case 'ArrowDown':
       collider.moveableEntity.shiftPosition(0, 5);
       break;
   }
@@ -580,16 +581,19 @@ Key principle: Only render visible tiles to optimize performance. Apply the came
 ### Tilemap Types
 
 **Square Tiles (most common):**
+
 - Top-down view for RPGs and strategy games (Warcraft 2, Final Fantasy).
 - Side view for platformers (Super Mario Bros).
 
 **Isometric Tilemaps:**
+
 - Creates the illusion of a 3D environment.
 - Popular in simulation and strategy games (SimCity 2000, Pharaoh, Final Fantasy Tactics).
 
 ### Layers
 
 Multiple visual layers enable:
+
 - Reusing tiles across different background types.
 - Characters appearing behind or in front of terrain (walking behind trees).
 - Richer worlds with fewer tile variations.
@@ -599,6 +603,7 @@ Example: A rock tile rendered on a separate layer over grass, sand, or brick bac
 ### Logic Grid
 
 A separate grid for non-visual game logic:
+
 - **Collision detection:** Mark walkable vs. blocked tiles.
 - **Character spawning:** Define spawn point locations.
 - **Pathfinding:** Create navigation graphs.
@@ -632,14 +637,14 @@ Security note: User interaction with the controller is required while the page i
 
 **Gamepad object properties:**
 
-| Property | Description |
-|---|---|
-| `id` | String containing controller information |
-| `index` | Unique identifier for the connected device |
-| `connected` | Boolean indicating connection status |
-| `mapping` | Layout type ("standard" is the common option) |
-| `axes` | Array of floats (-1 to 1) representing analog stick positions |
-| `buttons` | Array of GamepadButton objects with `pressed` and `value` properties |
+| Property    | Description                                                          |
+| ----------- | -------------------------------------------------------------------- |
+| `id`        | String containing controller information                             |
+| `index`     | Unique identifier for the connected device                           |
+| `connected` | Boolean indicating connection status                                 |
+| `mapping`   | Layout type ("standard" is the common option)                        |
+| `axes`      | Array of floats (-1 to 1) representing analog stick positions        |
+| `buttons`   | Array of GamepadButton objects with `pressed` and `value` properties |
 
 ### When to Use It
 
@@ -671,9 +676,21 @@ const gamepadAPI = {
 ```javascript
 const gamepadAPI = {
   buttons: [
-    "DPad-Up", "DPad-Down", "DPad-Left", "DPad-Right",
-    "Start", "Back", "Axis-Left", "Axis-Right",
-    "LB", "RB", "Power", "A", "B", "X", "Y",
+    'DPad-Up',
+    'DPad-Down',
+    'DPad-Left',
+    'DPad-Right',
+    'Start',
+    'Back',
+    'Axis-Left',
+    'Axis-Right',
+    'LB',
+    'RB',
+    'Power',
+    'A',
+    'B',
+    'X',
+    'Y',
   ],
 };
 ```
@@ -681,8 +698,8 @@ const gamepadAPI = {
 **Event listeners:**
 
 ```javascript
-window.addEventListener("gamepadconnected", gamepadAPI.connect);
-window.addEventListener("gamepaddisconnected", gamepadAPI.disconnect);
+window.addEventListener('gamepadconnected', gamepadAPI.connect);
+window.addEventListener('gamepaddisconnected', gamepadAPI.disconnect);
 ```
 
 **Connection and disconnection handlers:**
@@ -761,6 +778,7 @@ buttonPressed(button, hold) {
 ```
 
 Parameters:
+
 - `button` -- the button name to listen for.
 - `hold` -- if true, holding the button counts as continuous action; if false, only new presses register.
 
@@ -768,10 +786,10 @@ Parameters:
 
 ```javascript
 if (gamepadAPI.turbo) {
-  if (gamepadAPI.buttonPressed("A", "hold")) {
+  if (gamepadAPI.buttonPressed('A', 'hold')) {
     this.turbo_fire();
   }
-  if (gamepadAPI.buttonPressed("B")) {
+  if (gamepadAPI.buttonPressed('B')) {
     this.managePause();
   }
 }
@@ -809,6 +827,7 @@ A technique for rendering pixel art without blurriness on high-resolution displa
 The CSS `image-rendering` property controls how browsers scale images. Setting it to `pixelated` enforces nearest-neighbor scaling, which preserves the crisp, blocky look of pixel art instead of applying bilinear or bicubic smoothing.
 
 **Key CSS values:**
+
 - `pixelated` -- preserves crisp edges for pixel art.
 - `crisp-edges` -- alternative supported on some browsers.
 
@@ -821,9 +840,7 @@ The CSS `image-rendering` property controls how browsers scale images. Setting i
 ### Technique 1: Scaling `<img>` Elements with CSS
 
 ```html
-<img
-  src="character.png"
-  alt="pixel art character, upscaled with CSS, appearing crisp" />
+<img src="character.png" alt="pixel art character, upscaled with CSS, appearing crisp" />
 ```
 
 ```css
@@ -851,13 +868,13 @@ canvas {
 ```
 
 ```javascript
-const ctx = document.getElementById("game").getContext("2d");
+const ctx = document.getElementById('game').getContext('2d');
 
 const image = new Image();
 image.onload = () => {
   ctx.drawImage(image, 0, 0);
 };
-image.src = "cat.png";
+image.src = 'cat.png';
 ```
 
 ### Technique 3: Arbitrary Canvas Scaling with Correction
@@ -865,7 +882,7 @@ image.src = "cat.png";
 For non-integer scale factors, image pixels must align to canvas pixels at integer multiples:
 
 ```javascript
-const ctx = document.getElementById("game").getContext("2d");
+const ctx = document.getElementById('game').getContext('2d');
 ctx.scale(0.8, 0.8);
 
 const image = new Image();
@@ -873,10 +890,11 @@ image.onload = () => {
   // Correct formula: dWidth = sWidth / xScale * n (where n is an integer)
   ctx.drawImage(image, 0, 0, 128, 128, 0, 0, 128 / 0.8, 128 / 0.8);
 };
-image.src = "cat.png";
+image.src = 'cat.png';
 ```
 
 When using `drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)`:
+
 - `dWidth` must equal `sWidth / xScale * n`
 - `dHeight` must equal `sHeight / yScale * m`
 - Where `n` and `m` are positive integers (1, 2, 3, etc.)

@@ -25,11 +25,7 @@ const structuredData = {
   name: 'TruClaims Appraisal Group — Louisiana Insurance Appraisal Services',
   url: 'https://www.truclaimsadvisorygroup.com/louisiana',
   areaServed: 'Louisiana',
-  serviceType: [
-    'Insurance appraisal',
-    'Umpire services',
-    'Flood loss valuation',
-  ],
+  serviceType: ['Insurance appraisal', 'Umpire services', 'Flood loss valuation'],
   telephone: '+1-903-315-0136',
   address: {
     '@type': 'PostalAddress',
@@ -63,7 +59,8 @@ export default function Louisiana() {
               Insurance Appraisal & Umpire Services in Louisiana
             </h1>
             <p className="text-ink-black-200 text-lg max-w-3xl mx-auto">
-              Serving South Louisiana parishes impacted by hurricanes Laura, Delta, Ida, and ongoing coastal flood events — as well as North Louisiana hail, wind, and commercial losses.
+              Serving South Louisiana parishes impacted by hurricanes Laura, Delta, Ida, and ongoing
+              coastal flood events — as well as North Louisiana hail, wind, and commercial losses.
             </p>
           </motion.div>
         </div>
@@ -80,7 +77,8 @@ export default function Louisiana() {
           >
             <h2 className="section-title mb-4">Priority Parishes</h2>
             <p className="text-gray-600 mb-6">
-              Deployment-ready within 24 hours for hurricane or catastrophic declarations; routine inspections scheduled weekly across the parishes below.
+              Deployment-ready within 24 hours for hurricane or catastrophic declarations; routine
+              inspections scheduled weekly across the parishes below.
             </p>
             <ul className="space-y-4">
               {parishes.map((item) => (
@@ -138,9 +136,13 @@ export default function Louisiana() {
             viewport={{ once: true, amount: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <h2 className="text-3xl font-display font-bold mb-4">Need an Umpire After a Stalemate?</h2>
+            <h2 className="text-3xl font-display font-bold mb-4">
+              Need an Umpire After a Stalemate?
+            </h2>
             <p className="text-gray-600 text-lg mb-8">
-              TruClaims Appraisal Group accepts neutral umpire appointments throughout Louisiana when two appraisers cannot agree on the award. Documentation reviews and pre-hearing coordination keep the process efficient and defensible.
+              TruClaims Appraisal Group accepts neutral umpire appointments throughout Louisiana
+              when two appraisers cannot agree on the award. Documentation reviews and pre-hearing
+              coordination keep the process efficient and defensible.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/services" className="btn-secondary">

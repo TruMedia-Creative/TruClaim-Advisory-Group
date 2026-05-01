@@ -39,9 +39,7 @@ const structuredData = {
     addressRegion: 'TX',
     addressCountry: 'US',
   },
-  sameAs: [
-    'https://www.linkedin.com/company/truclaims-advisory-group',
-  ],
+  sameAs: ['https://www.linkedin.com/company/truclaims-advisory-group'],
 };
 
 export default function Texas() {
@@ -69,7 +67,9 @@ export default function Texas() {
               Independent Insurance Appraisal in Texas
             </h1>
             <p className="text-ink-black-200 text-lg max-w-3xl mx-auto">
-              Serving policyholders, carriers, and counsel across Houston, Dallas–Fort Worth, Austin, San Antonio, the Rio Grande Valley, and the entire Gulf Coast with evidence-based valuations and neutral umpire services.
+              Serving policyholders, carriers, and counsel across Houston, Dallas–Fort Worth,
+              Austin, San Antonio, the Rio Grande Valley, and the entire Gulf Coast with
+              evidence-based valuations and neutral umpire services.
             </p>
           </motion.div>
         </div>
@@ -85,11 +85,15 @@ export default function Texas() {
           >
             <h2 className="section-title mb-4">Where We Work Most Often</h2>
             <p className="text-gray-600 mb-6">
-              Travel fees are waived inside the highlighted metro areas below. Large-loss and catastrophe deployments are available statewide with rapid mobilization.
+              Travel fees are waived inside the highlighted metro areas below. Large-loss and
+              catastrophe deployments are available statewide with rapid mobilization.
             </p>
             <div className="space-y-4">
               {metroAreas.map((area) => (
-                <div key={area.name} className="p-4 border border-gray-100 rounded-xl flex items-start gap-3">
+                <div
+                  key={area.name}
+                  className="p-4 border border-gray-100 rounded-xl flex items-start gap-3"
+                >
                   <div className="w-10 h-10 rounded-full bg-ink-black-800 text-white flex items-center justify-center font-semibold">
                     <MapPin size={18} />
                   </div>
@@ -147,9 +151,12 @@ export default function Texas() {
             viewport={{ once: true, amount: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <h2 className="text-3xl font-display font-bold mb-4">Need an Independent Appraiser in Texas?</h2>
+            <h2 className="text-3xl font-display font-bold mb-4">
+              Need an Independent Appraiser in Texas?
+            </h2>
             <p className="text-ink-black-200 text-lg mb-8">
-              Share your carrier estimate, settlement summary, and claim photos to determine whether the appraisal clause is the correct path. We respond within one business day.
+              Share your carrier estimate, settlement summary, and claim photos to determine whether
+              the appraisal clause is the correct path. We respond within one business day.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/process" className="btn-outline">

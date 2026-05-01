@@ -9,16 +9,18 @@ export const config = {
 };
 
 const parseFormData = (req: VercelRequest) =>
-  new Promise<{ fields: Record<string, string | string[]>; files: Record<string, File | File[]> }>((resolve, reject) => {
-    const form = new IncomingForm({ multiples: true, maxFileSize: 10 * 1024 * 1024 });
-    form.parse(req, (err, fields, files) => {
-      if (err) {
-        reject(err);
-        return;
-      }
-      resolve({ fields, files: files as Record<string, File | File[]> });
-    });
-  });
+  new Promise<{ fields: Record<string, string | string[]>; files: Record<string, File | File[]> }>(
+    (resolve, reject) => {
+      const form = new IncomingForm({ multiples: true, maxFileSize: 10 * 1024 * 1024 });
+      form.parse(req, (err, fields, files) => {
+        if (err) {
+          reject(err);
+          return;
+        }
+        resolve({ fields, files: files as Record<string, File | File[]> });
+      });
+    }
+  );
 
 const coerceToString = (value: string | string[] | undefined): string => {
   if (Array.isArray(value)) return value[0] ?? '';
@@ -65,7 +67,10 @@ const buildAttachments = async (files: Record<string, File | File[]>) => {
 const buildHtmlBody = (fields: Record<string, string>) => {
   const section = (title: string, entries: Array<[string, string]>) => {
     const rows = entries
-      .map(([label, value]) => `<tr><td style="padding:4px 8px;font-weight:600;">${label}</td><td style="padding:4px 8px;">${value || '—'}</td></tr>`) //
+      .map(
+        ([label, value]) =>
+          `<tr><td style="padding:4px 8px;font-weight:600;">${label}</td><td style="padding:4px 8px;">${value || '—'}</td></tr>`
+      ) //
       .join('');
     return `<h3 style="margin:16px 0 8px;font-size:16px;">${title}</h3><table style="width:100%;border-collapse:collapse;">${rows}</table>`;
   };
@@ -125,10 +130,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     const { fields, files } = await parseFormData(req);
 
-    const normalizedFields = Object.entries(fields).reduce<Record<string, string>>((acc, [key, value]) => {
-      acc[key] = coerceToString(value);
-      return acc;
-    }, {});
+    const normalizedFields = Object.entries(fields).reduce<Record<string, string>>(
+      (acc, [key, value]) => {
+        acc[key] = coerceToString(value);
+        return acc;
+      },
+      {}
+    );
 
     const attachments = await buildAttachments(files);
 

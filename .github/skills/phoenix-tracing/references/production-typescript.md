@@ -4,22 +4,22 @@
 
 ## Metadata
 
-| Attribute | Value |
-|-----------|-------|
-| Priority | Critical - production readiness |
-| Impact | Security, Performance |
-| Setup Time | 5-15 min |
+| Attribute  | Value                           |
+| ---------- | ------------------------------- |
+| Priority   | Critical - production readiness |
+| Impact     | Security, Performance           |
+| Setup Time | 5-15 min                        |
 
 ## Batch Processing
 
 **Enable batch processing for production efficiency.** Batching reduces network overhead by sending spans in groups rather than individually.
 
 ```typescript
-import { register } from "@arizeai/phoenix-otel";
+import { register } from '@arizeai/phoenix-otel';
 
 const provider = register({
-  projectName: "my-app",
-  batch: true,  // Production default
+  projectName: 'my-app',
+  batch: true, // Production default
 });
 ```
 
@@ -30,18 +30,18 @@ const provider = register({
 ```typescript
 // Explicit shutdown to flush queued spans
 const provider = register({
-  projectName: "my-app",
+  projectName: 'my-app',
   batch: true,
 });
 
 async function main() {
   await doWork();
-  await provider.shutdown();  // Flush spans before exit
+  await provider.shutdown(); // Flush spans before exit
 }
 
 main().catch(async (error) => {
   console.error(error);
-  await provider.shutdown();  // Flush on error too
+  await provider.shutdown(); // Flush on error too
   process.exit(1);
 });
 ```
@@ -51,11 +51,11 @@ main().catch(async (error) => {
 ```typescript
 // Graceful shutdown on SIGTERM
 const provider = register({
-  projectName: "my-server",
+  projectName: 'my-server',
   batch: true,
 });
 
-process.on("SIGTERM", async () => {
+process.on('SIGTERM', async () => {
   await provider.shutdown();
   process.exit(0);
 });
@@ -80,13 +80,13 @@ export OPENINFERENCE_BASE64_IMAGE_MAX_LENGTH=10000  # Limit image size
 **TypeScript TraceConfig:**
 
 ```typescript
-import { register } from "@arizeai/phoenix-otel";
-import { OpenAIInstrumentation } from "@arizeai/openinference-instrumentation-openai";
+import { register } from '@arizeai/phoenix-otel';
+import { OpenAIInstrumentation } from '@arizeai/openinference-instrumentation-openai';
 
 const traceConfig = {
   hideInputs: true,
   hideOutputs: true,
-  hideInputMessages: true
+  hideInputMessages: true,
 };
 
 const instrumentation = new OpenAIInstrumentation({ traceConfig });
@@ -101,8 +101,8 @@ const instrumentation = new OpenAIInstrumentation({ traceConfig });
 **Suppress specific code blocks:**
 
 ```typescript
-import { suppressTracing } from "@opentelemetry/core";
-import { context } from "@opentelemetry/api";
+import { suppressTracing } from '@opentelemetry/core';
+import { context } from '@opentelemetry/api';
 
 await context.with(suppressTracing(context.active()), async () => {
   internalLogging(); // No spans generated
@@ -121,7 +121,7 @@ export OTEL_TRACES_SAMPLER_ARG="0.1"  # Sample 10%
 ## Error Handling
 
 ```typescript
-import { SpanStatusCode } from "@opentelemetry/api";
+import { SpanStatusCode } from '@opentelemetry/api';
 
 try {
   result = await riskyOperation();

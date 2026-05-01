@@ -16,7 +16,8 @@ const Footer = () => {
               <span className="font-display font-bold text-2xl">TruClaims Appraisal Group</span>
             </div>
             <p className="text-ink-black-200 max-w-md mb-6">
-              TruClaims Appraisal Group provides insurance adjusting appraisals and umpiring for individuals and insurance carriers across Texas and Louisiana.
+              TruClaims Appraisal Group provides insurance adjusting appraisals and umpiring for
+              individuals and insurance carriers across Texas and Louisiana.
             </p>
             {/* Social links */}
             <a
@@ -36,13 +37,41 @@ const Footer = () => {
             <h3 className="font-semibold text-lg mb-4 text-steel-blue-500">Quick Links</h3>
             <nav aria-label="Quick links">
               <ul className="space-y-2">
-                <li><Link to="/" className="text-ink-black-200 hover:text-white transition">Home</Link></li>
-                <li><Link to="/services" className="text-ink-black-200 hover:text-white transition">Services</Link></li>
-                <li><Link to="/process" className="text-ink-black-200 hover:text-white transition">Process</Link></li>
-                <li><Link to="/about" className="text-ink-black-200 hover:text-white transition">About</Link></li>
-                <li><Link to="/contact" className="text-ink-black-200 hover:text-white transition">Contact</Link></li>
-                <li><Link to="/texas" className="text-ink-black-200 hover:text-white transition">Texas Service Area</Link></li>
-                <li><Link to="/louisiana" className="text-ink-black-200 hover:text-white transition">Louisiana Service Area</Link></li>
+                <li>
+                  <Link to="/" className="text-ink-black-200 hover:text-white transition">
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/services" className="text-ink-black-200 hover:text-white transition">
+                    Services
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/process" className="text-ink-black-200 hover:text-white transition">
+                    Process
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/about" className="text-ink-black-200 hover:text-white transition">
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/contact" className="text-ink-black-200 hover:text-white transition">
+                    Contact
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/texas" className="text-ink-black-200 hover:text-white transition">
+                    Texas Service Area
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/louisiana" className="text-ink-black-200 hover:text-white transition">
+                    Louisiana Service Area
+                  </Link>
+                </li>
               </ul>
             </nav>
           </div>
@@ -57,7 +86,9 @@ const Footer = () => {
               </li>
               <li className="flex items-start space-x-2 text-ink-black-200">
                 <Phone size={18} className="mt-1 flex-shrink-0" />
-                <a href={PHONE_TEL} className="hover:text-white transition">{PHONE_DISPLAY}</a>
+                <a href={PHONE_TEL} className="hover:text-white transition">
+                  {PHONE_DISPLAY}
+                </a>
               </li>
             </ul>
           </div>
@@ -75,7 +106,7 @@ const Footer = () => {
               target="_blank"
               rel="noreferrer"
             >
-              |  Site by TruMedia Creative
+              | Site by TruMedia Creative
             </a>
           </p>
         </div>

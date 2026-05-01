@@ -37,13 +37,13 @@ Prefer `createSpy: vi.fn` as the default for consistency and easier action-spy a
 
 ```ts
 const wrapper = mount(ComponentUnderTest, {
-	global: {
-		plugins: [
-			createTestingPinia({
-				createSpy: vi.fn,
-			}),
-		],
-	},
+  global: {
+    plugins: [
+      createTestingPinia({
+        createSpy: vi.fn,
+      }),
+    ],
+  },
 });
 ```
 
@@ -66,14 +66,14 @@ Use `stubActions: false` only when the test must validate the action's real beha
 
 ```ts
 const wrapper = mount(ComponentUnderTest, {
-	global: {
-		plugins: [
-			createTestingPinia({
-				createSpy: vi.fn,
-				stubActions: false,
-			}),
-		],
-	},
+  global: {
+    plugins: [
+      createTestingPinia({
+        createSpy: vi.fn,
+        stubActions: false,
+      }),
+    ],
+  },
 });
 ```
 
@@ -81,17 +81,17 @@ const wrapper = mount(ComponentUnderTest, {
 
 ```ts
 const wrapper = mount(ComponentUnderTest, {
-	global: {
-		plugins: [
-			createTestingPinia({
-				createSpy: vi.fn,
-				initialState: {
-					counter: { n: 20 },
-					user: { name: "Leia Organa" },
-				},
-			}),
-		],
-	},
+  global: {
+    plugins: [
+      createTestingPinia({
+        createSpy: vi.fn,
+        initialState: {
+          counter: { n: 20 },
+          user: { name: 'Leia Organa' },
+        },
+      }),
+    ],
+  },
 });
 ```
 
@@ -99,14 +99,14 @@ const wrapper = mount(ComponentUnderTest, {
 
 ```ts
 const wrapper = mount(ComponentUnderTest, {
-	global: {
-		plugins: [
-			createTestingPinia({
-				createSpy: vi.fn,
-				plugins: [myPiniaPlugin],
-			}),
-		],
-	},
+  global: {
+    plugins: [
+      createTestingPinia({
+        createSpy: vi.fn,
+        plugins: [myPiniaPlugin],
+      }),
+    ],
+  },
 });
 ```
 
@@ -127,13 +127,13 @@ Prefer pure store tests with `createPinia()` when the goal is to validate store 
 
 ```ts
 beforeEach(() => {
-	setActivePinia(createPinia());
+  setActivePinia(createPinia());
 });
 
-it("increments", () => {
-	const counter = useCounterStore();
-	counter.increment();
-	expect(counter.n).toBe(1);
+it('increments', () => {
+  const counter = useCounterStore();
+  counter.increment();
+  expect(counter.n).toBe(1);
 });
 ```
 
@@ -154,16 +154,16 @@ Follow Vue Test Utils guidance: <https://test-utils.vuejs.org/guide/>
 Emit and assert payload:
 
 ```ts
-await wrapper.find("button").trigger("click");
-expect(wrapper.emitted("submit")?.[0]?.[0]).toBe("Mango Mission");
+await wrapper.find('button').trigger('click');
+expect(wrapper.emitted('submit')?.[0]?.[0]).toBe('Mango Mission');
 ```
 
 Update input and assert output:
 
 ```ts
-await wrapper.find("input").setValue("Agent Violet");
-await wrapper.find("form").trigger("submit");
-expect(wrapper.emitted("save")?.[0]?.[0]).toBe("Agent Violet");
+await wrapper.find('input').setValue('Agent Violet');
+await wrapper.find('form').trigger('submit');
+expect(wrapper.emitted('save')?.[0]?.[0]).toBe('Agent Violet');
 ```
 
 ## Test Writing Workflow

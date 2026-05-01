@@ -1,11 +1,12 @@
 ---
 description: "Use when building or editing Nuxt UI frontend files for this project. Covers the repo's brand language, visual system, semantic color usage, typography, motion, spacing, and component styling."
 applyTo:
-  - "app/**/*.vue"
-  - "app/**/*.ts"
-  - "app/assets/css/**"
-  - "app.config.ts"
+  - 'app/**/*.vue'
+  - 'app/**/*.ts'
+  - 'app/assets/css/**'
+  - 'app.config.ts'
 ---
+
 # Sippd Frontend Style System
 
 - Treat the visual style as clean product design with a light-first presentation, restrained chrome, and deliberate contrast rather than generic SaaS defaults.

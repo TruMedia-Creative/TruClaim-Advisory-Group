@@ -4,12 +4,12 @@ CI/CD evals vs production monitoring - complementary approaches.
 
 ## Two Evaluation Modes
 
-| Aspect | CI/CD Evals | Production Monitoring |
-| ------ | ----------- | -------------------- |
-| **When** | Pre-deployment | Post-deployment, ongoing |
-| **Data** | Fixed dataset | Sampled traffic |
-| **Goal** | Prevent regression | Detect drift |
-| **Response** | Block deploy | Alert & analyze |
+| Aspect       | CI/CD Evals        | Production Monitoring    |
+| ------------ | ------------------ | ------------------------ |
+| **When**     | Pre-deployment     | Post-deployment, ongoing |
+| **Data**     | Fixed dataset      | Sampled traffic          |
+| **Goal**     | Prevent regression | Detect drift             |
+| **Response** | Block deploy       | Alert & analyze          |
 
 ## CI/CD Evaluations
 
@@ -56,12 +56,12 @@ for trace in traces:
 ### TypeScript
 
 ```typescript
-import { getTraces } from "@arizeai/phoenix-client/traces";
-import { getSpans } from "@arizeai/phoenix-client/spans";
+import { getTraces } from '@arizeai/phoenix-client/traces';
+import { getSpans } from '@arizeai/phoenix-client/spans';
 
 // Sample recent traces (last hour)
 const { traces } = await getTraces({
-  project: { projectName: "my-app" },
+  project: { projectName: 'my-app' },
   startTime: new Date(Date.now() - 60 * 60 * 1000),
   includeSpans: true,
   limit: 100,
@@ -69,7 +69,7 @@ const { traces } = await getTraces({
 
 // Or sample spans directly for evaluation
 const { spans } = await getSpans({
-  project: { projectName: "my-app" },
+  project: { projectName: 'my-app' },
   startTime: new Date(Date.now() - 60 * 60 * 1000),
   limit: 100,
 });

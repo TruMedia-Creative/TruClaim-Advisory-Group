@@ -97,8 +97,9 @@ class SearchResults extends React.Component {
       this.currentRequest?.cancel();
       // Start the new request for the updated query
       this.setState({ loading: true, results: [] });
-      this.currentRequest = searchAPI(this.props.query)
-        .then(results => this.setState({ results, loading: false }));
+      this.currentRequest = searchAPI(this.props.query).then((results) =>
+        this.setState({ results, loading: false })
+      );
     }
   }
 }

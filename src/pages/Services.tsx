@@ -64,7 +64,7 @@ const services = [
     description:
       'We review existing contractor estimates and insurance settlements to identify deficiencies, missed line items, or undervalued repairs. Our independent Xactimate review helps ensure the scope of loss is complete and accurate before any appraisal is filed.',
     bullets: [
-      'Review of carrier\'s scope, settlement, and pricing',
+      "Review of carrier's scope, settlement, and pricing",
       'Xactimate estimate validation and gap analysis',
       'Review of contractor estimates for completeness',
       'Identification of omissions and undervalued repairs',
@@ -133,7 +133,8 @@ export default function Services() {
               Insurance Appraisal and Umpire Services in Texas and Louisiana
             </h1>
             <p className="text-ink-black-200 text-lg max-w-2xl mx-auto">
-              Independent, evidence-based appraisal and umpire services for residential, commercial, and catastrophic property loss disputes.
+              Independent, evidence-based appraisal and umpire services for residential, commercial,
+              and catastrophic property loss disputes.
             </p>
           </motion.div>
         </div>
@@ -196,19 +197,14 @@ export default function Services() {
               Ready to Get Started?
             </h2>
             <p className="text-ink-black-200 text-lg mb-8 max-w-xl mx-auto">
-              If you are facing an amount of loss dispute in Texas or Louisiana, review our appraisal process or contact us to submit your documentation for independent review.
+              If you are facing an amount of loss dispute in Texas or Louisiana, review our
+              appraisal process or contact us to submit your documentation for independent review.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/process"
-                className="btn-outline-light"
-              >
+              <Link to="/process" className="btn-outline-light">
                 View the Appraisal Process
               </Link>
-              <Link
-                to="/contact"
-                className="btn-primary px-8 py-4 text-lg"
-              >
+              <Link to="/contact" className="btn-primary px-8 py-4 text-lg">
                 Request an Appraisal Review
               </Link>
             </div>

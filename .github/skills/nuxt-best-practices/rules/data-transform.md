@@ -14,16 +14,17 @@ Transform and filter data in useFetch options rather than in templates or comput
 ```vue
 <script setup>
 // BAD: Full response sent to client, transformed on every render
-const { data: response } = await useFetch('/api/users')
+const { data: response } = await useFetch('/api/users');
 
 // Computed runs on every access
-const users = computed(() => 
-  response.value?.data?.users?.map(u => ({
-    id: u.id,
-    displayName: `${u.firstName} ${u.lastName}`,
-    avatar: u.profile?.avatar || '/default.png'
-  })) ?? []
-)
+const users = computed(
+  () =>
+    response.value?.data?.users?.map((u) => ({
+      id: u.id,
+      displayName: `${u.firstName} ${u.lastName}`,
+      avatar: u.profile?.avatar || '/default.png',
+    })) ?? []
+);
 </script>
 
 <template>
@@ -46,7 +47,7 @@ interface User {
 
 // GOOD: Transform happens once, smaller payload to client
 const { data: users } = await useFetch<User[]>('/api/users', {
-  transform: (response) => 
+  transform: (response) =>
     response.data.users.map(u => ({
       id: u.id,
       displayName: `${u.firstName} ${u.lastName}`,
@@ -70,8 +71,8 @@ const { data: users } = await useFetch<User[]>('/api/users', {
 <script setup>
 // Only these fields are sent to the client
 const { data: users } = await useFetch('/api/users', {
-  pick: ['id', 'name', 'email']
-})
+  pick: ['id', 'name', 'email'],
+});
 
 // For nested picking with transform
 const { data: user } = await useFetch(`/api/users/${id}`, {
@@ -79,8 +80,8 @@ const { data: user } = await useFetch(`/api/users/${id}`, {
     id: response.id,
     name: response.name,
     // Exclude sensitive/large fields like password, fullProfile, etc.
-  })
-})
+  }),
+});
 </script>
 ```
 
@@ -120,10 +121,10 @@ const { data, error } = await useFetch('/api/data', {
     // Normalize error format
     throw createError({
       statusCode: response.status,
-      message: response._data?.message || 'Unknown error'
-    })
-  }
-})
+      message: response._data?.message || 'Unknown error',
+    });
+  },
+});
 </script>
 ```
 

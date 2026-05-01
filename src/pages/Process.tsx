@@ -91,7 +91,8 @@ export default function Process() {
               The Insurance Appraisal Process
             </h1>
             <p className="text-ink-black-200 text-lg max-w-2xl mx-auto">
-              A structured walkthrough of the appraisal clause process — from initial documentation to a binding award.
+              A structured walkthrough of the appraisal clause process — from initial documentation
+              to a binding award.
             </p>
           </motion.div>
         </div>
@@ -108,38 +109,39 @@ export default function Process() {
           >
             <h2 className="section-title">How the Appraisal Clause Process Works</h2>
             <p className="text-gray-600 max-w-2xl mx-auto mt-4">
-              The appraisal clause is a policy-prescribed mechanism for resolving amount of loss disputes. It does not determine coverage — that remains with the insurance carrier. The steps below outline the process from first contact to a binding appraisal award.
+              The appraisal clause is a policy-prescribed mechanism for resolving amount of loss
+              disputes. It does not determine coverage — that remains with the insurance carrier.
+              The steps below outline the process from first contact to a binding appraisal award.
             </p>
           </motion.div>
 
           <div className="space-y-8">
             {steps.map((step) => (
-                <motion.div
-                  key={step.number}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0 }}
-                  transition={{ duration: 0.4 }}
-                  className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 flex gap-6 items-start"
-                >
-                  {/* Step number + icon */}
-                  <div className="flex flex-col items-center gap-2 flex-shrink-0">
-                    <span className="text-4xl font-display font-bold text-ink-black-200 leading-none">
-                      {step.number}
-                    </span>
-                    <div className="w-12 h-12 bg-gradient-to-br from-ink-black-800 to-ink-black-600 rounded-xl flex items-center justify-center">
-                      <step.icon className="text-steel-blue-400" size={22} />
-                    </div>
+              <motion.div
+                key={step.number}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0 }}
+                transition={{ duration: 0.4 }}
+                className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 flex gap-6 items-start"
+              >
+                {/* Step number + icon */}
+                <div className="flex flex-col items-center gap-2 flex-shrink-0">
+                  <span className="text-4xl font-display font-bold text-ink-black-200 leading-none">
+                    {step.number}
+                  </span>
+                  <div className="w-12 h-12 bg-gradient-to-br from-ink-black-800 to-ink-black-600 rounded-xl flex items-center justify-center">
+                    <step.icon className="text-steel-blue-400" size={22} />
                   </div>
+                </div>
 
-                  {/* Content */}
-                  <div className="pt-1">
-                    <h3 className="text-xl font-bold text-ink-black-800 mb-2">{step.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">{step.description}</p>
-                  </div>
-                </motion.div>
-              )
-            )}
+                {/* Content */}
+                <div className="pt-1">
+                  <h3 className="text-xl font-bold text-ink-black-800 mb-2">{step.title}</h3>
+                  <p className="text-gray-600 leading-relaxed">{step.description}</p>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -223,30 +225,37 @@ export default function Process() {
               visible: { transition: { staggerChildren: 0.08 } },
             }}
           >
-            {['Submit docs & estimates', 'Initial scope review', 'On-site inspection', 'Scope reconciliation & valuation', 'Binding award resolution'].map(
-              (label, index) => (
-                <motion.div
-                  key={label}
-                  variants={{
-                    hidden: { opacity: 0, y: 16 },
-                    visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-                  }}
-                  className="flex items-center gap-3"
-                >
-                  <div className="flex flex-col items-center">
-                    <div className="w-10 h-10 rounded-full bg-steel-blue-500 text-ink-black-900 flex items-center justify-center font-bold flex-shrink-0">
-                      {index + 1}
-                    </div>
-                    <span className="text-sm text-ink-black-200 mt-2 text-center max-w-[100px]">
-                      {label}
-                    </span>
+            {[
+              'Submit docs & estimates',
+              'Initial scope review',
+              'On-site inspection',
+              'Scope reconciliation & valuation',
+              'Binding award resolution',
+            ].map((label, index) => (
+              <motion.div
+                key={label}
+                variants={{
+                  hidden: { opacity: 0, y: 16 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+                }}
+                className="flex items-center gap-3"
+              >
+                <div className="flex flex-col items-center">
+                  <div className="w-10 h-10 rounded-full bg-steel-blue-500 text-ink-black-900 flex items-center justify-center font-bold flex-shrink-0">
+                    {index + 1}
                   </div>
-                  {index < 4 && (
-                    <ArrowRight className="text-ink-black-400 flex-shrink-0 hidden sm:block mb-5" size={20} />
-                  )}
-                </motion.div>
-              )
-            )}
+                  <span className="text-sm text-ink-black-200 mt-2 text-center max-w-[100px]">
+                    {label}
+                  </span>
+                </div>
+                {index < 4 && (
+                  <ArrowRight
+                    className="text-ink-black-400 flex-shrink-0 hidden sm:block mb-5"
+                    size={20}
+                  />
+                )}
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </section>
@@ -262,7 +271,8 @@ export default function Process() {
           >
             <h2 className="section-title mb-4">Ready to Submit Your Claim Documentation?</h2>
             <p className="text-gray-600 text-lg mb-8 max-w-xl mx-auto">
-              If you are facing an amount of loss dispute in Texas or Louisiana, submit your documentation for an independent appraisal review.
+              If you are facing an amount of loss dispute in Texas or Louisiana, submit your
+              documentation for an independent appraisal review.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/services" className="btn-outline">

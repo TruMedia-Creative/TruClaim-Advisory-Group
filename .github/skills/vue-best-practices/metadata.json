@@ -14,12 +14,5 @@
     "async",
     "advanced"
   ],
-  "tags": [
-    "vue",
-    "vue3",
-    "performance",
-    "optimization",
-    "best-practices",
-    "composition-api"
-  ]
+  "tags": ["vue", "vue3", "performance", "optimization", "best-practices", "composition-api"]
 }

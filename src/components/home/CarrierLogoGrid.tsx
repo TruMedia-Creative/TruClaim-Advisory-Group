@@ -67,13 +67,17 @@ const CarrierLogoGrid = ({
               variants={itemVariants}
               className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm flex items-center justify-center hover:shadow-md transition-shadow duration-300"
             >
-              <img
-                src={`${import.meta.env.BASE_URL}${carrier.logo}`}
-                alt={`${carrier.name} logo`}
-                loading="lazy"
-                decoding="async"
-                className="h-12 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              />
+              <div className="h-12 w-full max-w-44">
+                <img
+                  src={`${import.meta.env.BASE_URL}${carrier.logo}`}
+                  alt={`${carrier.name} logo`}
+                  loading="lazy"
+                  decoding="async"
+                  width="176"
+                  height="48"
+                  className="h-full w-full object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                />
+              </div>
             </motion.div>
           ))}
         </motion.div>

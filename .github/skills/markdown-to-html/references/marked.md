@@ -62,8 +62,8 @@ const inputDir = './docs';
 const outputDir = './html';
 
 readdirSync(inputDir)
-  .filter(file => file.endsWith('.md'))
-  .forEach(file => {
+  .filter((file) => file.endsWith('.md'))
+  .forEach((file) => {
     const markdown = readFileSync(join(inputDir, file), 'utf-8');
     const html = marked.parse(markdown);
     const outputFile = basename(file, '.md') + '.html';
@@ -81,9 +81,9 @@ import { marked } from 'marked';
 
 // Configure options
 marked.setOptions({
-  gfm: true,           // GitHub Flavored Markdown
-  breaks: true,        // Convert \n to <br>
-  pedantic: false,     // Don't conform to original markdown.pl
+  gfm: true, // GitHub Flavored Markdown
+  breaks: true, // Convert \n to <br>
+  pedantic: false, // Don't conform to original markdown.pl
 });
 
 const html = marked.parse(markdownContent);

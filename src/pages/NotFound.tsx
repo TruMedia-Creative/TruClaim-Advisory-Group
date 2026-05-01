@@ -85,7 +85,10 @@ export default function NotFound() {
 
           <p className="mt-8 text-sm text-gray-500">
             Need immediate assistance?{' '}
-            <a href={PHONE_TEL} className="text-steel-blue-500 hover:text-steel-blue-600 font-medium inline-flex items-center gap-1 transition-colors">
+            <a
+              href={PHONE_TEL}
+              className="text-steel-blue-500 hover:text-steel-blue-600 font-medium inline-flex items-center gap-1 transition-colors"
+            >
               <Phone size={14} />
               {PHONE_DISPLAY}
             </a>

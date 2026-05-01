@@ -5,15 +5,15 @@ LLM evaluators use a language model to judge outputs. Uses Vercel AI SDK.
 ## Quick Start
 
 ```typescript
-import { createClassificationEvaluator } from "@arizeai/phoenix-evals";
-import { openai } from "@ai-sdk/openai";
+import { createClassificationEvaluator } from '@arizeai/phoenix-evals';
+import { openai } from '@ai-sdk/openai';
 
 const helpfulness = await createClassificationEvaluator<{
   input: string;
   output: string;
 }>({
-  name: "helpfulness",
-  model: openai("gpt-4o"),
+  name: 'helpfulness',
+  model: openai('gpt-4o'),
   promptTemplate: `Rate helpfulness.
 <question>{{input}}</question>
 <response>{{output}}</response>
@@ -29,14 +29,14 @@ Use XML tags: `<question>{{input}}</question>`, `<response>{{output}}</response>
 ## Custom Evaluator with asExperimentEvaluator
 
 ```typescript
-import { asExperimentEvaluator } from "@arizeai/phoenix-client/experiments";
+import { asExperimentEvaluator } from '@arizeai/phoenix-client/experiments';
 
 const customEval = asExperimentEvaluator({
-  name: "custom",
-  kind: "LLM",
+  name: 'custom',
+  kind: 'LLM',
   evaluate: async ({ input, output }) => {
     // Your LLM call here
-    return { score: 1.0, label: "pass", explanation: "..." };
+    return { score: 1.0, label: 'pass', explanation: '...' };
   },
 });
 ```
@@ -44,10 +44,10 @@ const customEval = asExperimentEvaluator({
 ## Pre-Built Evaluators
 
 ```typescript
-import { createFaithfulnessEvaluator } from "@arizeai/phoenix-evals";
+import { createFaithfulnessEvaluator } from '@arizeai/phoenix-evals';
 
 const faithfulnessEvaluator = createFaithfulnessEvaluator({
-  model: openai("gpt-4o"),
+  model: openai('gpt-4o'),
 });
 ```
 

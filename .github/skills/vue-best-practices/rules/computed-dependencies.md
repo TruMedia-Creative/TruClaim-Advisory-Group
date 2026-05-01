@@ -13,7 +13,7 @@ Computed properties recalculate when ANY dependency changes. Keep dependencies m
 
 ```vue
 <script setup>
-import { reactive, computed } from 'vue'
+import { reactive, computed } from 'vue';
 
 const state = reactive({
   user: {
@@ -21,15 +21,15 @@ const state = reactive({
     email: 'john@example.com',
     preferences: { theme: 'dark', notifications: true },
     lastLogin: new Date(),
-    sessionCount: 42
-  }
-})
+    sessionCount: 42,
+  },
+});
 
 // BAD: Depends on entire user object
 // Recalculates when ANY user property changes
 const greeting = computed(() => {
-  return `Hello, ${state.user.name}!`
-})
+  return `Hello, ${state.user.name}!`;
+});
 </script>
 ```
 
@@ -37,7 +37,7 @@ const greeting = computed(() => {
 
 ```vue
 <script setup>
-import { reactive, computed } from 'vue'
+import { reactive, computed } from 'vue';
 
 const state = reactive({
   user: {
@@ -45,15 +45,15 @@ const state = reactive({
     email: 'john@example.com',
     preferences: { theme: 'dark', notifications: true },
     lastLogin: new Date(),
-    sessionCount: 42
-  }
-})
+    sessionCount: 42,
+  },
+});
 
 // GOOD: Only depends on user.name
 // Only recalculates when name changes
 const greeting = computed(() => {
-  return `Hello, ${state.user.name}!`
-})
+  return `Hello, ${state.user.name}!`;
+});
 </script>
 ```
 
@@ -72,7 +72,7 @@ const expensiveComputed = computed(() => {
 })
 
 // BETTER: Derive a simpler dependency first
-const activeStatuses = computed(() => 
+const activeStatuses = computed(() =>
   items.value.map(item => item.status)
 )
 
@@ -86,19 +86,17 @@ const hasActiveItem = computed(() =>
 
 ```vue
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed } from 'vue';
 
-const data = ref({ a: 1, b: 2, c: 3 })
+const data = ref({ a: 1, b: 2, c: 3 });
 
 // BAD: Overlapping dependencies cause extra recalculations
-const sumAB = computed(() => data.value.a + data.value.b)
-const sumBC = computed(() => data.value.b + data.value.c)
-const total = computed(() => sumAB.value + sumBC.value) // b counted twice
+const sumAB = computed(() => data.value.a + data.value.b);
+const sumBC = computed(() => data.value.b + data.value.c);
+const total = computed(() => sumAB.value + sumBC.value); // b counted twice
 
 // BETTER: Direct calculation
-const total = computed(() => 
-  data.value.a + data.value.b + data.value.c
-)
+const total = computed(() => data.value.a + data.value.b + data.value.c);
 </script>
 ```
 
@@ -106,25 +104,25 @@ const total = computed(() =>
 
 ```vue
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed } from 'vue';
 
 // BAD: One reactive object
 const form = reactive({
   name: '',
   email: '',
-  message: ''
-})
+  message: '',
+});
 
 // Any change triggers this recompute
-const isValid = computed(() => form.name && form.email)
+const isValid = computed(() => form.name && form.email);
 
 // GOOD: Separate refs for truly independent values
-const name = ref('')
-const email = ref('')
-const message = ref('')
+const name = ref('');
+const email = ref('');
+const message = ref('');
 
 // Only depends on name and email, not message
-const isValid = computed(() => name.value && email.value)
+const isValid = computed(() => name.value && email.value);
 </script>
 ```
 

@@ -25,8 +25,8 @@ class UserProfile extends React.Component {
     if (nextProps.userId !== this.props.userId) {
       this.setState({ loading: true, profile: null });
       fetchProfile(nextProps.userId)
-        .then(profile => this.setState({ profile, loading: false }))
-        .catch(err => this.setState({ error: err, loading: false }));
+        .then((profile) => this.setState({ profile, loading: false }))
+        .catch((err) => this.setState({ error: err, loading: false }));
     }
   }
 }
@@ -41,8 +41,8 @@ class UserProfile extends React.Component {
       // Use this.props (not nextProps - the update already happened)
       this.setState({ loading: true, profile: null });
       fetchProfile(this.props.userId)
-        .then(profile => this.setState({ profile, loading: false }))
-        .catch(err => this.setState({ error: err, loading: false }));
+        .then((profile) => this.setState({ profile, loading: false }))
+        .catch((err) => this.setState({ error: err, loading: false }));
     }
   }
 }
@@ -60,7 +60,7 @@ class UserProfile extends React.Component {
     if (prevProps.userId !== this.props.userId) {
       const requestId = ++this._requestId;
       this.setState({ loading: true });
-      fetchProfile(this.props.userId).then(profile => {
+      fetchProfile(this.props.userId).then((profile) => {
         // Ignore stale responses if userId changed again
         if (requestId === this._requestId) {
           this.setState({ profile, loading: false });

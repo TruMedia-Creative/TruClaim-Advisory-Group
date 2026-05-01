@@ -115,8 +115,8 @@ services:
   dashboard:
     image: mcr.microsoft.com/dotnet/aspire-dashboard:latest
     ports:
-      - "18888:18888"
-      - "4317:18889"
+      - '18888:18888'
+      - '4317:18889'
 
   api:
     build: ./api
@@ -211,14 +211,14 @@ trace.set_tracer_provider(provider)
 ### JavaScript (OpenTelemetry SDK)
 
 ```javascript
-const { NodeTracerProvider } = require("@opentelemetry/sdk-trace-node");
-const { OTLPTraceExporter } = require("@opentelemetry/exporter-trace-otlp-grpc");
+const { NodeTracerProvider } = require('@opentelemetry/sdk-trace-node');
+const { OTLPTraceExporter } = require('@opentelemetry/exporter-trace-otlp-grpc');
 
 const provider = new NodeTracerProvider();
 provider.addSpanProcessor(
   new BatchSpanProcessor(
     new OTLPTraceExporter({
-      url: process.env.OTEL_EXPORTER_OTLP_ENDPOINT || "http://localhost:4317",
+      url: process.env.OTEL_EXPORTER_OTLP_ENDPOINT || 'http://localhost:4317',
     })
   )
 );

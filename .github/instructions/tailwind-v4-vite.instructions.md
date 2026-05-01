@@ -31,30 +31,25 @@ Add the `@tailwindcss/vite` plugin to your Vite configuration file:
 
 ```typescript
 // vite.config.ts
-import { defineConfig } from 'vite'
-import tailwindcss from '@tailwindcss/vite'
+import { defineConfig } from 'vite';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  plugins: [
-    tailwindcss(),
-  ],
-})
+  plugins: [tailwindcss()],
+});
 ```
 
 For React projects with Vite:
 
 ```typescript
 // vite.config.ts
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  plugins: [
-    react(),
-    tailwindcss(),
-  ],
-})
+  plugins: [react(), tailwindcss()],
+});
 ```
 
 ### Step 3: Import Tailwind CSS
@@ -62,7 +57,7 @@ export default defineConfig({
 Add the Tailwind CSS import to your main CSS file (e.g., `src/index.css` or `src/App.css`):
 
 ```css
-@import "tailwindcss";
+@import 'tailwindcss';
 ```
 
 ### Step 4: Verify CSS Import in Entry Point
@@ -71,7 +66,7 @@ Ensure your main CSS file is imported in your application entry point:
 
 ```typescript
 // src/main.tsx or src/main.ts
-import './index.css'
+import './index.css';
 ```
 
 ### Step 5: Start Development Server
@@ -96,7 +91,7 @@ module.exports = {
     extend: {},
   },
   plugins: [],
-}
+};
 ```
 
 ### Do NOT Create postcss.config.js for Tailwind
@@ -110,7 +105,7 @@ module.exports = {
     tailwindcss: {},
     autoprefixer: {},
   },
-}
+};
 ```
 
 ### Do NOT Use Old Directives
@@ -124,7 +119,7 @@ The old `@tailwind` directives are replaced by a single import:
 @tailwind utilities;
 
 /* ✅ NEW - Use this in Tailwind v4 */
-@import "tailwindcss";
+@import 'tailwindcss';
 ```
 
 ## CSS-First Configuration (Tailwind v4)
@@ -134,7 +129,7 @@ The old `@tailwind` directives are replaced by a single import:
 Use the `@theme` directive in your CSS to customize your design tokens:
 
 ```css
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
   --color-primary: #3b82f6;
@@ -149,7 +144,7 @@ Use the `@theme` directive in your CSS to customize your design tokens:
 Define custom utilities directly in CSS:
 
 ```css
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @utility content-auto {
   content-visibility: auto;
@@ -168,7 +163,7 @@ Define custom utilities directly in CSS:
 Define custom variants in CSS:
 
 ```css
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @variant hocus (&:hover, &:focus);
 @variant group-hocus (:merge(.group):hover &, :merge(.group):focus &);
@@ -193,11 +188,9 @@ Test the installation with a simple component:
 export function TestComponent() {
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <h1 className="text-3xl font-bold text-blue-600 underline">
-        Hello, Tailwind CSS v4!
-      </h1>
+      <h1 className="text-3xl font-bold text-blue-600 underline">Hello, Tailwind CSS v4!</h1>
     </div>
-  )
+  );
 }
 ```
 
@@ -223,7 +216,7 @@ npm install @tailwindcss/vite
 If TypeScript cannot find types for the Vite plugin, ensure you have the correct import:
 
 ```typescript
-import tailwindcss from '@tailwindcss/vite'
+import tailwindcss from '@tailwindcss/vite';
 ```
 
 ## Migration from Tailwind v3

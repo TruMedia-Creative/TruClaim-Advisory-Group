@@ -10,21 +10,21 @@ Mobile touch controls are essential for web-based games targeting mobile devices
 
 The core touch events available in the browser are:
 
-| Event | Description |
-|-------|-------------|
-| `touchstart` | Fired when the user places a finger on the screen |
-| `touchmove` | Fired when the user moves a finger while touching the screen |
-| `touchend` | Fired when the user lifts a finger from the screen |
+| Event         | Description                                                                    |
+| ------------- | ------------------------------------------------------------------------------ |
+| `touchstart`  | Fired when the user places a finger on the screen                              |
+| `touchmove`   | Fired when the user moves a finger while touching the screen                   |
+| `touchend`    | Fired when the user lifts a finger from the screen                             |
 | `touchcancel` | Fired when a touch is cancelled or interrupted (e.g., finger moves off-screen) |
 
 **Registering touch event listeners:**
 
 ```javascript
-const canvas = document.querySelector("canvas");
-canvas.addEventListener("touchstart", handleStart);
-canvas.addEventListener("touchmove", handleMove);
-canvas.addEventListener("touchend", handleEnd);
-canvas.addEventListener("touchcancel", handleCancel);
+const canvas = document.querySelector('canvas');
+canvas.addEventListener('touchstart', handleStart);
+canvas.addEventListener('touchmove', handleMove);
+canvas.addEventListener('touchend', handleEnd);
+canvas.addEventListener('touchcancel', handleCancel);
 ```
 
 **Touch event properties:**
@@ -38,8 +38,8 @@ canvas.addEventListener("touchcancel", handleCancel);
 **Pure JavaScript touch handler:**
 
 ```javascript
-document.addEventListener("touchstart", touchHandler);
-document.addEventListener("touchmove", touchHandler);
+document.addEventListener('touchstart', touchHandler);
+document.addEventListener('touchmove', touchHandler);
 
 function touchHandler(e) {
   if (e.touches) {
@@ -56,9 +56,9 @@ Phaser manages touch input through "pointers" representing individual fingers:
 
 ```javascript
 // Access pointers
-this.game.input.activePointer;       // Most recently active pointer
-this.game.input.pointer1;            // First pointer
-this.game.input.pointer2;            // Second pointer
+this.game.input.activePointer; // Most recently active pointer
+this.game.input.pointer1; // First pointer
+this.game.input.pointer2; // Second pointer
 
 // Add more pointers (up to 10 total)
 this.game.input.addPointer();
@@ -73,7 +73,7 @@ this.game.input.onHold.add(itemHeld, this);
 **Draggable sprite for ship movement:**
 
 ```javascript
-const player = this.game.add.sprite(30, 30, "ship");
+const player = this.game.add.sprite(30, 30, 'ship');
 player.inputEnabled = true;
 player.input.enableDrag();
 player.events.onDragStart.add(onDragStart, this);
@@ -88,8 +88,9 @@ function onDragStart(sprite, pointer) {
 
 ```javascript
 this.buttonShoot = this.add.button(
-  this.world.width * 0.5, 0,
-  "button-alpha",    // transparent image
+  this.world.width * 0.5,
+  0,
+  'button-alpha', // transparent image
   null,
   this
 );
@@ -101,8 +102,8 @@ this.buttonShoot.onInputUp.add(this.goShootReleased, this);
 
 ```javascript
 this.gamepad = this.game.plugins.add(Phaser.Plugin.VirtualGamepad);
-this.joystick = this.gamepad.addJoystick(100, 420, 1.2, "gamepad");
-this.button = this.gamepad.addButton(400, 420, 1.0, "gamepad");
+this.joystick = this.gamepad.addJoystick(100, 420, 1.2, 'gamepad');
+this.button = this.gamepad.addButton(400, 420, 1.0, 'gamepad');
 ```
 
 ### Best Practices
@@ -125,8 +126,8 @@ Desktop keyboard and mouse controls provide precise input for web games and are 
 **Keyboard events:**
 
 ```javascript
-document.addEventListener("keydown", keyDownHandler);
-document.addEventListener("keyup", keyUpHandler);
+document.addEventListener('keydown', keyDownHandler);
+document.addEventListener('keyup', keyUpHandler);
 ```
 
 - `event.code` returns readable key identifiers such as `"ArrowLeft"`, `"ArrowRight"`, `"ArrowUp"`, `"ArrowDown"`.
@@ -135,8 +136,8 @@ document.addEventListener("keyup", keyUpHandler);
 **Phaser keyboard API:**
 
 ```javascript
-this.cursors = this.input.keyboard.createCursorKeys();  // Arrow key objects
-this.keyLeft = this.input.keyboard.addKey(Phaser.KeyCode.A);  // Custom key binding
+this.cursors = this.input.keyboard.createCursorKeys(); // Arrow key objects
+this.keyLeft = this.input.keyboard.addKey(Phaser.KeyCode.A); // Custom key binding
 // Check key state with .isDown property
 // Listen for press events with .onDown.add()
 ```
@@ -144,13 +145,13 @@ this.keyLeft = this.input.keyboard.addKey(Phaser.KeyCode.A);  // Custom key bind
 **Phaser mouse API:**
 
 ```javascript
-this.game.input.mousePointer;                    // Mouse position and state
-this.game.input.mousePointer.isDown;             // Is any mouse button pressed
-this.game.input.mousePointer.x;                  // Mouse X coordinate
-this.game.input.mousePointer.y;                  // Mouse Y coordinate
-this.game.input.mousePointer.leftButton.isDown;  // Left mouse button
+this.game.input.mousePointer; // Mouse position and state
+this.game.input.mousePointer.isDown; // Is any mouse button pressed
+this.game.input.mousePointer.x; // Mouse X coordinate
+this.game.input.mousePointer.y; // Mouse Y coordinate
+this.game.input.mousePointer.leftButton.isDown; // Left mouse button
 this.game.input.mousePointer.rightButton.isDown; // Right mouse button
-this.game.input.activePointer;                   // Platform-independent (mouse + touch)
+this.game.input.activePointer; // Platform-independent (mouse + touch)
 ```
 
 ### Code Examples
@@ -164,17 +165,17 @@ let upPressed = false;
 let downPressed = false;
 
 function keyDownHandler(event) {
-  if (event.code === "ArrowRight") rightPressed = true;
-  else if (event.code === "ArrowLeft") leftPressed = true;
-  if (event.code === "ArrowDown") downPressed = true;
-  else if (event.code === "ArrowUp") upPressed = true;
+  if (event.code === 'ArrowRight') rightPressed = true;
+  else if (event.code === 'ArrowLeft') leftPressed = true;
+  if (event.code === 'ArrowDown') downPressed = true;
+  else if (event.code === 'ArrowUp') upPressed = true;
 }
 
 function keyUpHandler(event) {
-  if (event.code === "ArrowRight") rightPressed = false;
-  else if (event.code === "ArrowLeft") leftPressed = false;
-  if (event.code === "ArrowDown") downPressed = false;
-  else if (event.code === "ArrowUp") upPressed = false;
+  if (event.code === 'ArrowRight') rightPressed = false;
+  else if (event.code === 'ArrowLeft') leftPressed = false;
+  if (event.code === 'ArrowDown') downPressed = false;
+  else if (event.code === 'ArrowUp') upPressed = false;
 }
 ```
 
@@ -231,11 +232,11 @@ if (this.keyFire1.isDown || this.keyFire2.isDown) {
 
 ```javascript
 if (this.game.device.desktop) {
-  moveText = "Arrow keys or WASD to move";
-  shootText = "X or Space to shoot";
+  moveText = 'Arrow keys or WASD to move';
+  shootText = 'X or Space to shoot';
 } else {
-  moveText = "Tap and hold to move";
-  shootText = "Tap to shoot";
+  moveText = 'Tap and hold to move';
+  shootText = 'Tap to shoot';
 }
 ```
 
@@ -257,8 +258,8 @@ The Gamepad API enables web games to detect and respond to gamepad and controlle
 **Core events:**
 
 ```javascript
-window.addEventListener("gamepadconnected", gamepadHandler);
-window.addEventListener("gamepaddisconnected", gamepadHandler);
+window.addEventListener('gamepadconnected', gamepadHandler);
+window.addEventListener('gamepaddisconnected', gamepadHandler);
 ```
 
 **Gamepad object properties:**
@@ -269,20 +270,20 @@ window.addEventListener("gamepaddisconnected", gamepadHandler);
 
 **Standard button/axes mapping (Xbox 360 layout):**
 
-| Input | Index | Type |
-|-------|-------|------|
-| A Button | 0 | Button |
-| B Button | 1 | Button |
-| X Button | 2 | Button |
-| Y Button | 3 | Button |
-| D-Pad Up | 12 | Button |
-| D-Pad Down | 13 | Button |
-| D-Pad Left | 14 | Button |
-| D-Pad Right | 15 | Button |
-| Left Stick X | axes[0] | Axis |
-| Left Stick Y | axes[1] | Axis |
-| Right Stick X | axes[2] | Axis |
-| Right Stick Y | axes[3] | Axis |
+| Input         | Index   | Type   |
+| ------------- | ------- | ------ |
+| A Button      | 0       | Button |
+| B Button      | 1       | Button |
+| X Button      | 2       | Button |
+| Y Button      | 3       | Button |
+| D-Pad Up      | 12      | Button |
+| D-Pad Down    | 13      | Button |
+| D-Pad Left    | 14      | Button |
+| D-Pad Right   | 15      | Button |
+| Left Stick X  | axes[0] | Axis   |
+| Left Stick Y  | axes[1] | Axis   |
+| Right Stick X | axes[2] | Axis   |
+| Right Stick Y | axes[3] | Axis   |
 
 ### Code Examples
 
@@ -297,7 +298,7 @@ function gamepadHandler(e) {
   console.log(`Gamepad: ${controller.id}`);
 }
 
-window.addEventListener("gamepadconnected", gamepadHandler);
+window.addEventListener('gamepadconnected', gamepadHandler);
 ```
 
 **Polling button states each frame:**
@@ -326,11 +327,13 @@ function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   gamepadUpdateHandler();
 
-  if (gamepadButtonPressedHandler(12)) playerY -= 5;  // D-Pad Up
-  else if (gamepadButtonPressedHandler(13)) playerY += 5;  // D-Pad Down
-  if (gamepadButtonPressedHandler(14)) playerX -= 5;  // D-Pad Left
-  else if (gamepadButtonPressedHandler(15)) playerX += 5;  // D-Pad Right
-  if (gamepadButtonPressedHandler(0)) alert("BOOM!");  // A Button
+  if (gamepadButtonPressedHandler(12))
+    playerY -= 5; // D-Pad Up
+  else if (gamepadButtonPressedHandler(13)) playerY += 5; // D-Pad Down
+  if (gamepadButtonPressedHandler(14))
+    playerX -= 5; // D-Pad Left
+  else if (gamepadButtonPressedHandler(15)) playerX += 5; // D-Pad Right
+  if (gamepadButtonPressedHandler(0)) alert('BOOM!'); // A Button
 
   ctx.drawImage(img, playerX, playerY);
   requestAnimationFrame(draw);
@@ -382,9 +385,24 @@ const GamepadAPI = {
   },
 
   buttons: {
-    layout: ["A", "B", "X", "Y", "LB", "RB", "LT", "RT",
-             "Back", "Start", "LS", "RS",
-             "DPad-Up", "DPad-Down", "DPad-Left", "DPad-Right"],
+    layout: [
+      'A',
+      'B',
+      'X',
+      'Y',
+      'LB',
+      'RB',
+      'LT',
+      'RT',
+      'Back',
+      'Start',
+      'LS',
+      'RS',
+      'DPad-Up',
+      'DPad-Down',
+      'DPad-Left',
+      'DPad-Right',
+    ],
     cache: [],
     status: [],
     pressed(button, hold) {
@@ -396,25 +414,27 @@ const GamepadAPI = {
         newPress = false;
       }
       return newPress;
-    }
+    },
   },
 
   axes: {
-    status: []
-  }
+    status: [],
+  },
 };
 
-window.addEventListener("gamepadconnected", GamepadAPI.connect);
-window.addEventListener("gamepaddisconnected", GamepadAPI.disconnect);
+window.addEventListener('gamepadconnected', GamepadAPI.connect);
+window.addEventListener('gamepaddisconnected', GamepadAPI.disconnect);
 ```
 
 **Analog stick movement with deadzone threshold:**
 
 ```javascript
 if (GamepadAPI.axes.status) {
-  if (GamepadAPI.axes.status[0] > 0.5) playerX += 5;       // Right
+  if (GamepadAPI.axes.status[0] > 0.5)
+    playerX += 5; // Right
   else if (GamepadAPI.axes.status[0] < -0.5) playerX -= 5; // Left
-  if (GamepadAPI.axes.status[1] > 0.5) playerY += 5;       // Down
+  if (GamepadAPI.axes.status[1] > 0.5)
+    playerY += 5; // Down
   else if (GamepadAPI.axes.status[1] < -0.5) playerY -= 5; // Up
 }
 ```
@@ -424,15 +444,15 @@ if (GamepadAPI.axes.status) {
 ```javascript
 if (this.game.device.desktop) {
   if (GamepadAPI.active) {
-    moveText = "DPad or left Stick to move";
-    shootText = "A to shoot, Y for controls";
+    moveText = 'DPad or left Stick to move';
+    shootText = 'A to shoot, Y for controls';
   } else {
-    moveText = "Arrow keys or WASD to move";
-    shootText = "X or Space to shoot";
+    moveText = 'Arrow keys or WASD to move';
+    shootText = 'X or Space to shoot';
   }
 } else {
-  moveText = "Tap and hold to move";
-  shootText = "Tap to shoot";
+  moveText = 'Tap and hold to move';
+  shootText = 'Tap to shoot';
 }
 ```
 
@@ -469,14 +489,14 @@ if (this.cursors.right.isDown) {
 }
 
 // Discover manufacturer-specific remote key codes
-window.addEventListener("keydown", (event) => {
+window.addEventListener('keydown', (event) => {
   console.log(event.keyCode);
 });
 
 // Handle custom remote buttons (codes vary by manufacturer)
-window.addEventListener("keydown", (event) => {
+window.addEventListener('keydown', (event) => {
   switch (event.keyCode) {
-    case 8:   // Pause (Panasonic example)
+    case 8: // Pause (Panasonic example)
       break;
     case 588: // Custom action
       break;
@@ -583,18 +603,18 @@ doppler.init((bandwidth) => {
 **Code Example (custom setup with Cylon.js):**
 
 ```javascript
-const Cylon = require("cylon");
+const Cylon = require('cylon');
 
 Cylon.robot({
   connections: {
-    arduino: { adaptor: "firmata", port: "/dev/ttyACM0" },
+    arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' },
   },
   devices: {
-    makey: { driver: "makey-button", pin: 2 },
+    makey: { driver: 'makey-button', pin: 2 },
   },
   work(my) {
-    my.makey.on("push", () => {
-      console.log("Button pushed!");
+    my.makey.on('push', () => {
+      console.log('Button pushed!');
       // Trigger game action
     });
   },

@@ -5,9 +5,9 @@ Use these patterns directly when writing tests with `@pinia/testing`.
 ## Component mount with `createTestingPinia`
 
 ```ts
-import { mount } from "@vue/test-utils";
-import { createTestingPinia } from "@pinia/testing";
-import { vi } from "vitest";
+import { mount } from '@vue/test-utils';
+import { createTestingPinia } from '@pinia/testing';
+import { vi } from 'vitest';
 
 const wrapper = mount(ComponentUnderTest, {
   global: {
@@ -48,7 +48,7 @@ const wrapper = mount(ComponentUnderTest, {
         createSpy: vi.fn,
         initialState: {
           counter: { n: 10 },
-          profile: { name: "Sherlock Holmes" },
+          profile: { name: 'Sherlock Holmes' },
         },
       }),
     ],

@@ -35,10 +35,10 @@ Always use tools `#search`, `#searchResults`,`#fetch`, `#editFiles`, `#runComman
 Only display results in table with icons:
 
 ```markdown
-| Module | Current | Latest | Status | Action | Docs |
-|--------|---------|--------|--------|--------|------|
-| avm/res/compute/vm | 0.1.0 | 0.2.0 | 🔄 | Updated | [📖](link) |
-| avm/res/storage/account | 0.3.0 | 0.3.0 | ✅ | Current | [📖](link) |
+| Module                  | Current | Latest | Status | Action  | Docs       |
+| ----------------------- | ------- | ------ | ------ | ------- | ---------- |
+| avm/res/compute/vm      | 0.1.0   | 0.2.0  | 🔄     | Updated | [📖](link) |
+| avm/res/storage/account | 0.3.0   | 0.3.0  | ✅     | Current | [📖](link) |
 
 ### Summary of Updates
 

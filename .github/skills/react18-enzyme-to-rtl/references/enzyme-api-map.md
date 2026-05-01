@@ -56,11 +56,11 @@ const items = screen.getAllByRole('listitem');
 
 ```jsx
 // Enzyme - find by text:
-wrapper.find('.message').text() === 'Hello'
+wrapper.find('.message').text() === 'Hello';
 
 // RTL:
-screen.getByText('Hello')
-screen.getByText(/hello/i)  // case-insensitive regex
+screen.getByText('Hello');
+screen.getByText(/hello/i); // case-insensitive regex
 ```
 
 ---
@@ -182,17 +182,17 @@ describe('LoginForm', () => {
     const wrapper = shallow(<LoginForm onSubmit={mockSubmit} />);
 
     wrapper.find('input[name="email"]').simulate('change', {
-      target: { value: 'user@example.com' }
+      target: { value: 'user@example.com' },
     });
     wrapper.find('input[name="password"]').simulate('change', {
-      target: { value: 'password123' }
+      target: { value: 'password123' },
     });
     wrapper.find('button[type="submit"]').simulate('click');
 
     expect(wrapper.state('loading')).toBe(true);
     expect(mockSubmit).toHaveBeenCalledWith({
       email: 'user@example.com',
-      password: 'password123'
+      password: 'password123',
     });
   });
 });
@@ -217,7 +217,7 @@ describe('LoginForm', () => {
     expect(screen.getByRole('button', { name: /submit/i })).toBeDisabled(); // loading state
     expect(mockSubmit).toHaveBeenCalledWith({
       email: 'user@example.com',
-      password: 'password123'
+      password: 'password123',
     });
   });
 });

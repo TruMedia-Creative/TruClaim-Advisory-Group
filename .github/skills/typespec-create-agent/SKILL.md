@@ -83,6 +83,7 @@ namespace [AgentName] {
 ## Examples
 
 Ask the user:
+
 1. What is the agent's purpose and role?
 2. What capabilities does it need?
 3. What knowledge sources should it access?

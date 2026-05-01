@@ -5,6 +5,7 @@
 TruClaim Advisory Group is an independent insurance appraisal and catastrophe loss valuation firm. The website is a pure marketing presence; there is no authentication, member portal, or backend.
 
 **Primary goals of the site:**
+
 - Clearly communicate services: insurance appraisal, umpire services, catastrophic loss valuation, litigation support, residential and commercial property claims.
 - Establish professional credibility through experience, specialties, and service area coverage.
 - Convert visitors into inquiries via phone, email, or the contact form.
@@ -15,18 +16,18 @@ TruClaim Advisory Group is an independent insurance appraisal and catastrophe lo
 
 ## Tech Constraints
 
-| Concern | Decision |
-|---------|----------|
-| Framework | React 19 with TypeScript (strict mode) |
-| Build tool | Vite 7 |
-| Styling | Tailwind CSS v3 — utility-first, no CSS-in-JS |
-| Animation | Framer Motion 11 only — no other animation libraries |
-| Icons | Lucide React only — no other icon sets |
-| Routing | React Router DOM v7 — `<BrowserRouter>` with nested `<Routes>` |
-| Package manager | **pnpm** — never use npm or yarn |
-| Environment variables | None required; do not add `.env` secrets to source |
-| Deployment target | Vercel (see `vercel.json`) |
-| No backend | No API routes, authentication, databases, or server-side logic |
+| Concern               | Decision                                                       |
+| --------------------- | -------------------------------------------------------------- |
+| Framework             | React 19 with TypeScript (strict mode)                         |
+| Build tool            | Vite 7                                                         |
+| Styling               | Tailwind CSS v3 — utility-first, no CSS-in-JS                  |
+| Animation             | Framer Motion 11 only — no other animation libraries           |
+| Icons                 | Lucide React only — no other icon sets                         |
+| Routing               | React Router DOM v7 — `<BrowserRouter>` with nested `<Routes>` |
+| Package manager       | **pnpm** — never use npm or yarn                               |
+| Environment variables | None required; do not add `.env` secrets to source             |
+| Deployment target     | Vercel (see `vercel.json`)                                     |
+| No backend            | No API routes, authentication, databases, or server-side logic |
 
 **Dependency rule:** Do not add new runtime dependencies without explicit approval. Prefer the libraries already installed.
 
@@ -66,7 +67,7 @@ TruClaim Advisory Group is an independent insurance appraisal and catastrophe lo
 - **Be minimal and surgical.** Change as few lines as possible. Prefer editing existing files over creating new ones unless the task clearly requires a new file.
 - **Match existing patterns exactly.** Before generating new code, identify the pattern used in the closest existing file and replicate it (animation variants, className ordering, component structure).
 - **Include helpful inline comments only where behavior is non-obvious.** Do not comment every line; comment complex animation logic, non-trivial z-index stacking, or math-heavy layout calculations.
-- **Take screenshots when done and when reviewing code** *(Copilot Coding Agent)*. After completing a UI change, start the dev server and take a screenshot of the affected page(s) so the visual impact is visible to the reviewer.
+- **Take screenshots when done and when reviewing code** _(Copilot Coding Agent)_. After completing a UI change, start the dev server and take a screenshot of the affected page(s) so the visual impact is visible to the reviewer.
 - **Do not introduce new dependencies.** Use the libraries already in `package.json`.
 - **TypeScript first.** All generated code must be valid TypeScript. Do not use `.js` or `.jsx` extensions for new source files.
 - **Keep pages self-contained.** Page-level data (service lists, stat counters, nav links) should be defined as `const` arrays at the top of the relevant file, not in a separate data file, unless reuse across multiple pages requires it.

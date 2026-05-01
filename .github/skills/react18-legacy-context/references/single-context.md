@@ -22,7 +22,7 @@ class ThemeProvider extends React.Component {
   state = { theme: 'light' };
 
   toggleTheme = () => {
-    this.setState(s => ({ theme: s.theme === 'light' ? 'dark' : 'light' }));
+    this.setState((s) => ({ theme: s.theme === 'light' ? 'dark' : 'light' }));
   };
 
   getChildContext() {
@@ -99,7 +99,7 @@ class ThemeProvider extends React.Component {
   state = { theme: 'light' };
 
   toggleTheme = () => {
-    this.setState(s => ({ theme: s.theme === 'light' ? 'dark' : 'light' }));
+    this.setState((s) => ({ theme: s.theme === 'light' ? 'dark' : 'light' }));
   };
 
   render() {
@@ -189,11 +189,7 @@ class Dashboard extends React.Component {
       <ThemeContext.Consumer>
         {({ theme }) => (
           <AuthContext.Consumer>
-            {({ user }) => (
-              <div className={`dashboard-${theme}`}>
-                Welcome, {user.name}
-              </div>
-            )}
+            {({ user }) => <div className={`dashboard-${theme}`}>Welcome, {user.name}</div>}
           </AuthContext.Consumer>
         )}
       </ThemeContext.Consumer>

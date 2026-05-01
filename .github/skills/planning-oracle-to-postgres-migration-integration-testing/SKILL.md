@@ -27,6 +27,7 @@ Rank artifacts by migration risk. Prioritize methods that use Oracle-specific fe
 **Step 3: Write the testing plan**
 
 Write a markdown plan covering:
+
 - List of testable artifacts with method signatures
 - Recommended test cases per artifact
 - Seed data requirements

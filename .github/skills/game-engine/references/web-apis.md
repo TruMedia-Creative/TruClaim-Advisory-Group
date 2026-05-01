@@ -19,12 +19,12 @@ asm.js is a strict, highly optimizable subset of JavaScript designed for near-na
 
 ### Key Concepts
 
-| Concept | Description |
-|---------|-------------|
-| Allowed constructs | `while`, `if`, numbers (strict int/float), top-level named functions, arithmetic, function calls, heap accesses |
-| Disallowed constructs | Objects, strings, closures, dynamic type coercion, heap-allocating constructs |
-| Compiler toolchain | Emscripten compiles C/C++ to asm.js |
-| Engine recognition | Browsers detect the `"use asm"` directive and apply ahead-of-time compilation |
+| Concept               | Description                                                                                                     |
+| --------------------- | --------------------------------------------------------------------------------------------------------------- |
+| Allowed constructs    | `while`, `if`, numbers (strict int/float), top-level named functions, arithmetic, function calls, heap accesses |
+| Disallowed constructs | Objects, strings, closures, dynamic type coercion, heap-allocating constructs                                   |
+| Compiler toolchain    | Emscripten compiles C/C++ to asm.js                                                                             |
+| Engine recognition    | Browsers detect the `"use asm"` directive and apply ahead-of-time compilation                                   |
 
 ### Deprecation Notice
 
@@ -35,14 +35,18 @@ asm.js is deprecated. **WebAssembly (Wasm)** is the modern successor and offers 
 ```javascript
 // asm.js module pattern (simplified)
 function MyModule(stdlib, foreign, heap) {
-  "use asm";
+  'use asm';
 
   var sqrt = stdlib.Math.sqrt;
   var HEAP32 = new stdlib.Int32Array(heap);
 
   function distance(x1, y1, x2, y2) {
-    x1 = +x1; y1 = +y1; x2 = +x2; y2 = +y2;
-    var dx = 0.0, dy = 0.0;
+    x1 = +x1;
+    y1 = +y1;
+    x2 = +x2;
+    y2 = +y2;
+    var dx = 0.0,
+      dy = 0.0;
     dx = +(x2 - x1);
     dy = +(y2 - y1);
     return +sqrt(dx * dx + dy * dy);
@@ -69,17 +73,17 @@ The Canvas API provides a means for drawing 2D graphics via JavaScript and the H
 
 ### Key Interfaces
 
-| Interface | Purpose |
-|-----------|---------|
-| `HTMLCanvasElement` | The `<canvas>` HTML element |
-| `CanvasRenderingContext2D` | The main 2D drawing interface |
-| `ImageData` | Raw pixel data for direct manipulation |
-| `ImageBitmap` | Bitmap image data for efficient drawing |
-| `Path2D` | Reusable path objects |
-| `OffscreenCanvas` | Offscreen rendering, usable in Web Workers |
-| `CanvasPattern` | Repeating image patterns |
-| `CanvasGradient` | Color gradients |
-| `TextMetrics` | Text measurement data |
+| Interface                  | Purpose                                    |
+| -------------------------- | ------------------------------------------ |
+| `HTMLCanvasElement`        | The `<canvas>` HTML element                |
+| `CanvasRenderingContext2D` | The main 2D drawing interface              |
+| `ImageData`                | Raw pixel data for direct manipulation     |
+| `ImageBitmap`              | Bitmap image data for efficient drawing    |
+| `Path2D`                   | Reusable path objects                      |
+| `OffscreenCanvas`          | Offscreen rendering, usable in Web Workers |
+| `CanvasPattern`            | Repeating image patterns                   |
+| `CanvasGradient`           | Color gradients                            |
+| `TextMetrics`              | Text measurement data                      |
 
 ### Key Methods (CanvasRenderingContext2D)
 
@@ -97,19 +101,19 @@ The Canvas API provides a means for drawing 2D graphics via JavaScript and the H
 ```
 
 ```javascript
-const canvas = document.getElementById("game");
-const ctx = canvas.getContext("2d");
+const canvas = document.getElementById('game');
+const ctx = canvas.getContext('2d');
 
 // Clear the frame
 ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 // Draw a filled rectangle (e.g., a platform)
-ctx.fillStyle = "green";
+ctx.fillStyle = 'green';
 ctx.fillRect(100, 400, 200, 20);
 
 // Draw a sprite
 const sprite = new Image();
-sprite.src = "player.png";
+sprite.src = 'player.png';
 sprite.onload = () => {
   ctx.drawImage(sprite, playerX, playerY, 32, 32);
 };
@@ -143,20 +147,20 @@ CSS is the language used to describe the presentation of web documents. In the c
 
 ### Key Properties for Games
 
-| Property / Feature | Use Case |
-|--------------------|----------|
-| `transform` | Rotate, scale, translate UI elements |
-| `transition` | Smooth property changes (e.g., health bar width) |
-| `animation` / `@keyframes` | Looping or triggered UI animations |
-| `opacity` | Fade effects for overlays and modals |
-| `pointer-events` | Let clicks pass through overlay layers to the canvas |
-| `cursor` | Set custom cursors or hide the cursor (`cursor: none`) |
-| `z-index` | Layer UI above the game canvas |
-| `position: fixed / absolute` | Anchor HUD elements to viewport |
-| `display: flex / grid` | Responsive layout for menus and panels |
-| `filter` | Blur, brightness, contrast effects on DOM elements |
-| `mix-blend-mode` | Blend overlay effects with the canvas |
-| `will-change` | Hint the browser to optimize animated properties |
+| Property / Feature           | Use Case                                               |
+| ---------------------------- | ------------------------------------------------------ |
+| `transform`                  | Rotate, scale, translate UI elements                   |
+| `transition`                 | Smooth property changes (e.g., health bar width)       |
+| `animation` / `@keyframes`   | Looping or triggered UI animations                     |
+| `opacity`                    | Fade effects for overlays and modals                   |
+| `pointer-events`             | Let clicks pass through overlay layers to the canvas   |
+| `cursor`                     | Set custom cursors or hide the cursor (`cursor: none`) |
+| `z-index`                    | Layer UI above the game canvas                         |
+| `position: fixed / absolute` | Anchor HUD elements to viewport                        |
+| `display: flex / grid`       | Responsive layout for menus and panels                 |
+| `filter`                     | Blur, brightness, contrast effects on DOM elements     |
+| `mix-blend-mode`             | Blend overlay effects with the canvas                  |
+| `will-change`                | Hint the browser to optimize animated properties       |
 
 ### Code Example
 
@@ -168,9 +172,9 @@ CSS is the language used to describe the presentation of web documents. In the c
   left: 0;
   width: 100%;
   padding: 10px;
-  pointer-events: none;       /* clicks pass through to canvas */
+  pointer-events: none; /* clicks pass through to canvas */
   z-index: 10;
-  font-family: "Press Start 2P", monospace;
+  font-family: 'Press Start 2P', monospace;
   color: white;
   text-shadow: 2px 2px 0 black;
 }
@@ -191,8 +195,13 @@ CSS is the language used to describe the presentation of web documents. In the c
 
 /* Pulsing damage indicator */
 @keyframes damage-flash {
-  0%, 100% { opacity: 0; }
-  50% { opacity: 0.4; }
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.4;
+  }
 }
 .damage-overlay {
   position: fixed;
@@ -219,32 +228,32 @@ The Fullscreen API provides methods to present a specific element (and its desce
 
 ### Key Interfaces and Methods
 
-| API | Description |
-|-----|-------------|
-| `Element.requestFullscreen()` | Enters fullscreen mode. Returns a `Promise`. |
-| `Document.exitFullscreen()` | Exits fullscreen mode. Returns a `Promise`. |
-| `Document.fullscreenElement` | The element currently in fullscreen, or `null`. |
-| `Document.fullscreenEnabled` | Boolean indicating whether fullscreen is available. |
-| `fullscreenchange` event | Fired when fullscreen state changes. |
-| `fullscreenerror` event | Fired if entering/exiting fullscreen fails. |
+| API                           | Description                                         |
+| ----------------------------- | --------------------------------------------------- |
+| `Element.requestFullscreen()` | Enters fullscreen mode. Returns a `Promise`.        |
+| `Document.exitFullscreen()`   | Exits fullscreen mode. Returns a `Promise`.         |
+| `Document.fullscreenElement`  | The element currently in fullscreen, or `null`.     |
+| `Document.fullscreenEnabled`  | Boolean indicating whether fullscreen is available. |
+| `fullscreenchange` event      | Fired when fullscreen state changes.                |
+| `fullscreenerror` event       | Fired if entering/exiting fullscreen fails.         |
 
 ### Code Example
 
 ```javascript
-const gameContainer = document.getElementById("game-container");
+const gameContainer = document.getElementById('game-container');
 
 // Enter fullscreen on button click
-document.getElementById("fullscreenBtn").addEventListener("click", () => {
+document.getElementById('fullscreenBtn').addEventListener('click', () => {
   if (document.fullscreenEnabled) {
-    gameContainer.requestFullscreen().catch(err => {
-      console.error("Fullscreen request failed:", err);
+    gameContainer.requestFullscreen().catch((err) => {
+      console.error('Fullscreen request failed:', err);
     });
   }
 });
 
 // Toggle fullscreen with a key press
-document.addEventListener("keydown", (e) => {
-  if (e.key === "F11") {
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'F11') {
     e.preventDefault();
     if (!document.fullscreenElement) {
       gameContainer.requestFullscreen();
@@ -255,7 +264,7 @@ document.addEventListener("keydown", (e) => {
 });
 
 // Respond to fullscreen changes (resize canvas, adjust UI)
-document.addEventListener("fullscreenchange", () => {
+document.addEventListener('fullscreenchange', () => {
   if (document.fullscreenElement) {
     resizeCanvasToFullscreen();
   } else {
@@ -288,30 +297,30 @@ The Gamepad API provides a standardized interface for detecting and reading inpu
 
 ### Key Interfaces
 
-| Interface | Description |
-|-----------|-------------|
-| `Gamepad` | Represents a connected controller with buttons, axes, and metadata |
-| `GamepadButton` | Represents a single button -- `pressed` (boolean) and `value` (pressure 0..1) |
-| `GamepadEvent` | Event object for `gamepadconnected` and `gamepaddisconnected` events |
-| `GamepadHapticActuator` | Hardware interface for haptic feedback (experimental) |
+| Interface               | Description                                                                   |
+| ----------------------- | ----------------------------------------------------------------------------- |
+| `Gamepad`               | Represents a connected controller with buttons, axes, and metadata            |
+| `GamepadButton`         | Represents a single button -- `pressed` (boolean) and `value` (pressure 0..1) |
+| `GamepadEvent`          | Event object for `gamepadconnected` and `gamepaddisconnected` events          |
+| `GamepadHapticActuator` | Hardware interface for haptic feedback (experimental)                         |
 
 ### Key Methods and Events
 
-| API | Description |
-|-----|-------------|
-| `navigator.getGamepads()` | Returns an array of `Gamepad` objects for all connected controllers |
-| `gamepadconnected` event | Fired on `window` when a controller is connected |
-| `gamepaddisconnected` event | Fired on `window` when a controller is disconnected |
+| API                         | Description                                                         |
+| --------------------------- | ------------------------------------------------------------------- |
+| `navigator.getGamepads()`   | Returns an array of `Gamepad` objects for all connected controllers |
+| `gamepadconnected` event    | Fired on `window` when a controller is connected                    |
+| `gamepaddisconnected` event | Fired on `window` when a controller is disconnected                 |
 
 ### Code Example
 
 ```javascript
 // Detect controller connections
-window.addEventListener("gamepadconnected", (e) => {
+window.addEventListener('gamepadconnected', (e) => {
   console.log(`Gamepad connected: ${e.gamepad.id}`);
 });
 
-window.addEventListener("gamepaddisconnected", (e) => {
+window.addEventListener('gamepaddisconnected', (e) => {
   console.log(`Gamepad disconnected: ${e.gamepad.id}`);
 });
 
@@ -358,28 +367,28 @@ IndexedDB is a low-level, asynchronous, transactional, client-side database buil
 
 ### Key Interfaces
 
-| Interface | Purpose | Game Use Case |
-|-----------|---------|---------------|
-| `indexedDB.open()` | Open or create a database | Initialize the game database on startup |
-| `IDBDatabase` | Database connection | Manage the connection lifetime |
-| `IDBTransaction` | Scope and access control for reads/writes | Atomic save-game operations |
-| `IDBObjectStore` | Primary data container | Store player profiles, level data, settings |
-| `IDBIndex` | Secondary lookup keys | Query items by type, rarity, or other properties |
-| `IDBCursor` | Iterate over records | Batch operations on game data |
-| `IDBKeyRange` | Define key ranges for queries | Fetch scores within a range, recent save slots |
-| `IDBRequest` | Async operation handle | Manage callbacks for all database operations |
+| Interface          | Purpose                                   | Game Use Case                                    |
+| ------------------ | ----------------------------------------- | ------------------------------------------------ |
+| `indexedDB.open()` | Open or create a database                 | Initialize the game database on startup          |
+| `IDBDatabase`      | Database connection                       | Manage the connection lifetime                   |
+| `IDBTransaction`   | Scope and access control for reads/writes | Atomic save-game operations                      |
+| `IDBObjectStore`   | Primary data container                    | Store player profiles, level data, settings      |
+| `IDBIndex`         | Secondary lookup keys                     | Query items by type, rarity, or other properties |
+| `IDBCursor`        | Iterate over records                      | Batch operations on game data                    |
+| `IDBKeyRange`      | Define key ranges for queries             | Fetch scores within a range, recent save slots   |
+| `IDBRequest`       | Async operation handle                    | Manage callbacks for all database operations     |
 
 ### Code Example
 
 ```javascript
 // Open (or create) the game database
-const request = indexedDB.open("MyGameDB", 1);
+const request = indexedDB.open('MyGameDB', 1);
 
 request.onupgradeneeded = (event) => {
   const db = event.target.result;
   // Create an object store for save data
-  const saveStore = db.createObjectStore("saves", { keyPath: "slotId" });
-  saveStore.createIndex("timestamp", "timestamp");
+  const saveStore = db.createObjectStore('saves', { keyPath: 'slotId' });
+  saveStore.createIndex('timestamp', 'timestamp');
 };
 
 request.onsuccess = (event) => {
@@ -387,8 +396,8 @@ request.onsuccess = (event) => {
 
   // Save game state
   function saveGame(slot, gameState) {
-    const tx = db.transaction("saves", "readwrite");
-    const store = tx.objectStore("saves");
+    const tx = db.transaction('saves', 'readwrite');
+    const store = tx.objectStore('saves');
     store.put({
       slotId: slot,
       timestamp: Date.now(),
@@ -401,8 +410,8 @@ request.onsuccess = (event) => {
   // Load game state
   function loadGame(slot) {
     return new Promise((resolve, reject) => {
-      const tx = db.transaction("saves", "readonly");
-      const store = tx.objectStore("saves");
+      const tx = db.transaction('saves', 'readonly');
+      const store = tx.objectStore('saves');
       const req = store.get(slot);
       req.onsuccess = () => resolve(req.result);
       req.onerror = () => reject(req.error);
@@ -431,16 +440,16 @@ JavaScript is a lightweight, dynamically typed, prototype-based programming lang
 
 ### Key Language Features for Games
 
-| Feature | Game Application |
-|---------|------------------|
-| Classes and inheritance | Entity hierarchies (GameObject, Player, Enemy) |
-| Closures | Encapsulated state in callbacks and event handlers |
-| `requestAnimationFrame` | The core game loop driver |
-| Promises / async-await | Asset loading, server calls, scene transitions |
-| Destructuring and spread | Clean configuration and state passing |
-| `Map` and `Set` | Entity lookup tables, unique ID tracking, collision sets |
-| Template literals | Debug output, dynamic text rendering |
-| Modules (import/export) | Organize game code into systems and components |
+| Feature                  | Game Application                                         |
+| ------------------------ | -------------------------------------------------------- |
+| Classes and inheritance  | Entity hierarchies (GameObject, Player, Enemy)           |
+| Closures                 | Encapsulated state in callbacks and event handlers       |
+| `requestAnimationFrame`  | The core game loop driver                                |
+| Promises / async-await   | Asset loading, server calls, scene transitions           |
+| Destructuring and spread | Clean configuration and state passing                    |
+| `Map` and `Set`          | Entity lookup tables, unique ID tracking, collision sets |
+| Template literals        | Debug output, dynamic text rendering                     |
+| Modules (import/export)  | Organize game code into systems and components           |
 
 ### Code Example
 
@@ -452,8 +461,12 @@ class GameObject {
     this.y = y;
     this.active = true;
   }
-  update(dt) { /* override in subclasses */ }
-  render(ctx) { /* override in subclasses */ }
+  update(dt) {
+    /* override in subclasses */
+  }
+  render(ctx) {
+    /* override in subclasses */
+  }
 }
 
 class Player extends GameObject {
@@ -467,7 +480,7 @@ class Player extends GameObject {
     if (input.right) this.x += this.speed * dt;
   }
   render(ctx) {
-    ctx.fillStyle = "blue";
+    ctx.fillStyle = 'blue';
     ctx.fillRect(this.x, this.y, 32, 32);
   }
 }
@@ -508,23 +521,23 @@ The Pointer Lock API (formerly Mouse Lock API) provides access to raw mouse move
 
 ### Key Interfaces and Methods
 
-| API | Description |
-|-----|-------------|
+| API                                    | Description                                            |
+| -------------------------------------- | ------------------------------------------------------ |
 | `element.requestPointerLock(options?)` | Locks the pointer to the element. Returns a `Promise`. |
-| `document.exitPointerLock()` | Releases the pointer lock. |
-| `document.pointerLockElement` | The element currently holding the lock, or `null`. |
-| `MouseEvent.movementX` | Horizontal delta since the last `mousemove` event. |
-| `MouseEvent.movementY` | Vertical delta since the last `mousemove` event. |
-| `pointerlockchange` event | Fired when lock state changes. |
-| `pointerlockerror` event | Fired if locking or unlocking fails. |
+| `document.exitPointerLock()`           | Releases the pointer lock.                             |
+| `document.pointerLockElement`          | The element currently holding the lock, or `null`.     |
+| `MouseEvent.movementX`                 | Horizontal delta since the last `mousemove` event.     |
+| `MouseEvent.movementY`                 | Vertical delta since the last `mousemove` event.       |
+| `pointerlockchange` event              | Fired when lock state changes.                         |
+| `pointerlockerror` event               | Fired if locking or unlocking fails.                   |
 
 ### Code Example
 
 ```javascript
-const canvas = document.getElementById("game");
+const canvas = document.getElementById('game');
 
 // Request pointer lock on click (user gesture required)
-canvas.addEventListener("click", async () => {
+canvas.addEventListener('click', async () => {
   if (!document.pointerLockElement) {
     await canvas.requestPointerLock({
       unadjustedMovement: true, // raw input, no OS acceleration
@@ -533,20 +546,20 @@ canvas.addEventListener("click", async () => {
 });
 
 // Respond to lock state changes
-document.addEventListener("pointerlockchange", () => {
+document.addEventListener('pointerlockchange', () => {
   if (document.pointerLockElement === canvas) {
-    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener('mousemove', handleMouseMove);
   } else {
-    document.removeEventListener("mousemove", handleMouseMove);
+    document.removeEventListener('mousemove', handleMouseMove);
   }
 });
 
 // Use movement deltas for camera rotation
 const sensitivity = 0.002;
 function handleMouseMove(e) {
-  camera.yaw   += e.movementX * sensitivity;
-  camera.pitch  += e.movementY * sensitivity;
-  camera.pitch   = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, camera.pitch));
+  camera.yaw += e.movementX * sensitivity;
+  camera.pitch += e.movementY * sensitivity;
+  camera.pitch = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, camera.pitch));
 }
 ```
 
@@ -575,19 +588,19 @@ SVG is an XML-based markup language for describing two-dimensional vector graphi
 
 ### Key Elements
 
-| Element | Game Use Case |
-|---------|---------------|
-| `<rect>` | Health bars, UI panels, platforms |
-| `<circle>`, `<ellipse>` | Targets, particles, indicators |
-| `<path>` | Complex vector art, custom shapes |
-| `<polygon>`, `<polyline>` | Grid overlays, wireframe elements |
-| `<g>` | Group elements for collective transforms |
-| `<defs>`, `<use>`, `<symbol>` | Reusable sprite definitions |
-| `<text>`, `<tspan>` | Score displays, labels, dialog |
-| `<filter>` | Blur, shadow, and color effects |
-| `<clipPath>`, `<mask>` | Viewport clipping, reveal effects |
-| `<linearGradient>`, `<radialGradient>` | Shading and depth effects |
-| `<animate>`, `<animateTransform>` | Declarative UI animations |
+| Element                                | Game Use Case                            |
+| -------------------------------------- | ---------------------------------------- |
+| `<rect>`                               | Health bars, UI panels, platforms        |
+| `<circle>`, `<ellipse>`                | Targets, particles, indicators           |
+| `<path>`                               | Complex vector art, custom shapes        |
+| `<polygon>`, `<polyline>`              | Grid overlays, wireframe elements        |
+| `<g>`                                  | Group elements for collective transforms |
+| `<defs>`, `<use>`, `<symbol>`          | Reusable sprite definitions              |
+| `<text>`, `<tspan>`                    | Score displays, labels, dialog           |
+| `<filter>`                             | Blur, shadow, and color effects          |
+| `<clipPath>`, `<mask>`                 | Viewport clipping, reveal effects        |
+| `<linearGradient>`, `<radialGradient>` | Shading and depth effects                |
+| `<animate>`, `<animateTransform>`      | Declarative UI animations                |
 
 ### Code Example
 
@@ -613,8 +626,7 @@ SVG is an XML-based markup language for describing two-dimensional vector graphi
 // Update health bar programmatically
 function setHealth(percent) {
   const maxWidth = 214;
-  document.getElementById("health-fill")
-    .setAttribute("width", maxWidth * (percent / 100));
+  document.getElementById('health-fill').setAttribute('width', maxWidth * (percent / 100));
 }
 ```
 
@@ -637,37 +649,37 @@ Typed Arrays are array-like views over raw binary data buffers (`ArrayBuffer`). 
 
 ### Key Types
 
-| Type | Bytes | Range | Game Use Case |
-|------|-------|-------|---------------|
-| `Float32Array` | 4 | ~3.4e38 | Vertex positions, normals, UVs, physics values |
-| `Float64Array` | 8 | ~1.8e308 | High-precision calculations, simulation |
-| `Uint8Array` | 1 | 0 -- 255 | Texture/pixel data, color channels |
-| `Uint8ClampedArray` | 1 | 0 -- 255 (clamped) | `ImageData` pixel manipulation |
-| `Uint16Array` | 2 | 0 -- 65535 | Index buffers (small meshes) |
-| `Uint32Array` | 4 | 0 -- ~4.3 billion | Index buffers (large meshes), IDs |
-| `Int16Array` | 2 | -32768 -- 32767 | Audio samples, quantized normals |
-| `Int32Array` | 4 | ~-2.1 billion -- ~2.1 billion | Integer game data |
+| Type                | Bytes | Range                         | Game Use Case                                  |
+| ------------------- | ----- | ----------------------------- | ---------------------------------------------- |
+| `Float32Array`      | 4     | ~3.4e38                       | Vertex positions, normals, UVs, physics values |
+| `Float64Array`      | 8     | ~1.8e308                      | High-precision calculations, simulation        |
+| `Uint8Array`        | 1     | 0 -- 255                      | Texture/pixel data, color channels             |
+| `Uint8ClampedArray` | 1     | 0 -- 255 (clamped)            | `ImageData` pixel manipulation                 |
+| `Uint16Array`       | 2     | 0 -- 65535                    | Index buffers (small meshes)                   |
+| `Uint32Array`       | 4     | 0 -- ~4.3 billion             | Index buffers (large meshes), IDs              |
+| `Int16Array`        | 2     | -32768 -- 32767               | Audio samples, quantized normals               |
+| `Int32Array`        | 4     | ~-2.1 billion -- ~2.1 billion | Integer game data                              |
 
 ### Key Properties and Methods
 
 ```javascript
-const verts = new Float32Array([0, 0, 0,  1, 0, 0,  0, 1, 0]);
+const verts = new Float32Array([0, 0, 0, 1, 0, 0, 0, 1, 0]);
 
-verts.buffer;             // The underlying ArrayBuffer
-verts.byteLength;         // Total size in bytes
-verts.byteOffset;         // Byte offset into the buffer
-verts.length;             // Number of elements
-verts.BYTES_PER_ELEMENT;  // 4 for Float32Array
+verts.buffer; // The underlying ArrayBuffer
+verts.byteLength; // Total size in bytes
+verts.byteOffset; // Byte offset into the buffer
+verts.length; // Number of elements
+verts.BYTES_PER_ELEMENT; // 4 for Float32Array
 
 // Write data
-verts.set([1, 2, 3], 0);            // Copy values at offset
-verts.copyWithin(6, 0, 3);          // Duplicate first vertex to third slot
+verts.set([1, 2, 3], 0); // Copy values at offset
+verts.copyWithin(6, 0, 3); // Duplicate first vertex to third slot
 
 // Read sub-views (no copy)
 const firstTriangle = verts.subarray(0, 9);
 
 // Functional methods
-const scaled = verts.map(v => v * 2);
+const scaled = verts.map((v) => v * 2);
 const max = verts.reduce((a, v) => Math.max(a, v), -Infinity);
 ```
 
@@ -676,15 +688,27 @@ const max = verts.reduce((a, v) => Math.max(a, v), -Infinity);
 ```javascript
 // Build a quad for WebGL rendering
 const positions = new Float32Array([
-  -0.5, -0.5, 0,   // bottom-left
-   0.5, -0.5, 0,   // bottom-right
-   0.5,  0.5, 0,   // top-right
-  -0.5,  0.5, 0,   // top-left
+  -0.5,
+  -0.5,
+  0, // bottom-left
+  0.5,
+  -0.5,
+  0, // bottom-right
+  0.5,
+  0.5,
+  0, // top-right
+  -0.5,
+  0.5,
+  0, // top-left
 ]);
 
 const indices = new Uint16Array([
-  0, 1, 2,  // first triangle
-  0, 2, 3,  // second triangle
+  0,
+  1,
+  2, // first triangle
+  0,
+  2,
+  3, // second triangle
 ]);
 
 // Upload to WebGL
@@ -700,7 +724,7 @@ gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indices, gl.STATIC_DRAW);
 const sampleRate = 44100;
 const audioBuffer = new Float32Array(sampleRate); // 1 second
 for (let i = 0; i < sampleRate; i++) {
-  audioBuffer[i] = Math.sin(2 * Math.PI * 440 * i / sampleRate);
+  audioBuffer[i] = Math.sin((2 * Math.PI * 440 * i) / sampleRate);
 }
 ```
 
@@ -723,31 +747,31 @@ The Web Audio API is a high-level system for controlling audio on the web. It us
 
 ### Key Interfaces
 
-| Interface | Purpose |
-|-----------|---------|
-| `AudioContext` | The main audio-processing graph; must be created first |
-| `AudioBufferSourceNode` | Plays pre-loaded audio (SFX, music) from an `AudioBuffer` |
-| `OscillatorNode` | Generates waveforms (sine, square, triangle, sawtooth) |
-| `GainNode` | Controls volume / amplitude |
-| `BiquadFilterNode` | Low-pass, high-pass, band-pass filters |
-| `ConvolverNode` | Convolution reverb using impulse responses |
-| `DelayNode` | Delay-line effect (echo, chorus) |
-| `DynamicsCompressorNode` | Prevents clipping when mixing many sounds |
-| `PannerNode` | Positions a sound source in 3D space |
-| `AudioListener` | Represents the player's ears in 3D space |
-| `StereoPannerNode` | Simple left/right panning |
-| `AnalyserNode` | Real-time frequency and time-domain analysis |
-| `AudioWorkletNode` | Custom audio processing off the main thread |
+| Interface                | Purpose                                                   |
+| ------------------------ | --------------------------------------------------------- |
+| `AudioContext`           | The main audio-processing graph; must be created first    |
+| `AudioBufferSourceNode`  | Plays pre-loaded audio (SFX, music) from an `AudioBuffer` |
+| `OscillatorNode`         | Generates waveforms (sine, square, triangle, sawtooth)    |
+| `GainNode`               | Controls volume / amplitude                               |
+| `BiquadFilterNode`       | Low-pass, high-pass, band-pass filters                    |
+| `ConvolverNode`          | Convolution reverb using impulse responses                |
+| `DelayNode`              | Delay-line effect (echo, chorus)                          |
+| `DynamicsCompressorNode` | Prevents clipping when mixing many sounds                 |
+| `PannerNode`             | Positions a sound source in 3D space                      |
+| `AudioListener`          | Represents the player's ears in 3D space                  |
+| `StereoPannerNode`       | Simple left/right panning                                 |
+| `AnalyserNode`           | Real-time frequency and time-domain analysis              |
+| `AudioWorkletNode`       | Custom audio processing off the main thread               |
 
 ### Common Routing Patterns
 
-| Use Case | Routing Graph |
-|----------|---------------|
-| Background music | `BufferSource` -> `GainNode` -> `Destination` |
-| Positional SFX | `BufferSource` -> `PannerNode` -> `GainNode` -> `Destination` |
-| Reverb environment | `BufferSource` -> `ConvolverNode` -> `GainNode` -> `Destination` |
-| UI feedback tone | `OscillatorNode` -> `GainNode` -> `Destination` |
-| Master mix | Multiple sources -> individual `GainNode` -> `DynamicsCompressorNode` -> `Destination` |
+| Use Case           | Routing Graph                                                                          |
+| ------------------ | -------------------------------------------------------------------------------------- |
+| Background music   | `BufferSource` -> `GainNode` -> `Destination`                                          |
+| Positional SFX     | `BufferSource` -> `PannerNode` -> `GainNode` -> `Destination`                          |
+| Reverb environment | `BufferSource` -> `ConvolverNode` -> `GainNode` -> `Destination`                       |
+| UI feedback tone   | `OscillatorNode` -> `GainNode` -> `Destination`                                        |
+| Master mix         | Multiple sources -> individual `GainNode` -> `DynamicsCompressorNode` -> `Destination` |
 
 ### Code Example
 
@@ -780,8 +804,8 @@ function playPositionalSound(buffer, x, y, z) {
   source.buffer = buffer;
 
   const panner = audioCtx.createPanner();
-  panner.panningModel = "HRTF";
-  panner.distanceModel = "inverse";
+  panner.panningModel = 'HRTF';
+  panner.distanceModel = 'inverse';
   panner.refDistance = 1;
   panner.maxDistance = 100;
   panner.positionX.value = x;
@@ -826,20 +850,20 @@ WebGL (Web Graphics Library) is a JavaScript API for rendering hardware-accelera
 
 ### Key Interfaces
 
-| Interface | Purpose |
-|-----------|---------|
-| `WebGLRenderingContext` | WebGL 1 rendering context (OpenGL ES 2.0) |
-| `WebGL2RenderingContext` | WebGL 2 rendering context (OpenGL ES 3.0) |
-| `WebGLProgram` | Linked vertex + fragment shader program |
-| `WebGLShader` | Individual vertex or fragment shader |
-| `WebGLBuffer` | GPU memory buffer (vertices, indices) |
-| `WebGLTexture` | Texture data for surfaces |
-| `WebGLFramebuffer` | Off-screen render target (shadow maps, post-processing) |
-| `WebGLRenderbuffer` | Non-texture render buffer (depth, stencil) |
-| `WebGLVertexArrayObject` | Cached vertex attribute configuration (WebGL 2) |
-| `WebGLUniformLocation` | Reference to a shader uniform variable |
-| `WebGLSampler` | Texture sampling parameters (WebGL 2) |
-| `WebGLTransformFeedback` | GPU-to-GPU data streaming (WebGL 2) |
+| Interface                | Purpose                                                 |
+| ------------------------ | ------------------------------------------------------- |
+| `WebGLRenderingContext`  | WebGL 1 rendering context (OpenGL ES 2.0)               |
+| `WebGL2RenderingContext` | WebGL 2 rendering context (OpenGL ES 3.0)               |
+| `WebGLProgram`           | Linked vertex + fragment shader program                 |
+| `WebGLShader`            | Individual vertex or fragment shader                    |
+| `WebGLBuffer`            | GPU memory buffer (vertices, indices)                   |
+| `WebGLTexture`           | Texture data for surfaces                               |
+| `WebGLFramebuffer`       | Off-screen render target (shadow maps, post-processing) |
+| `WebGLRenderbuffer`      | Non-texture render buffer (depth, stencil)              |
+| `WebGLVertexArrayObject` | Cached vertex attribute configuration (WebGL 2)         |
+| `WebGLUniformLocation`   | Reference to a shader uniform variable                  |
+| `WebGLSampler`           | Texture sampling parameters (WebGL 2)                   |
+| `WebGLTransformFeedback` | GPU-to-GPU data streaming (WebGL 2)                     |
 
 ### WebGL 2 Features Important for Games
 
@@ -852,17 +876,17 @@ WebGL (Web Graphics Library) is a JavaScript API for rendering hardware-accelera
 
 ### Context Management Events
 
-| Event | Description |
-|-------|-------------|
-| `webglcontextlost` | GPU context lost (device disconnect, resource limits). Games must handle this gracefully. |
-| `webglcontextrestored` | GPU context recovered. Games should reload GPU resources. |
-| `webglcontextcreationerror` | Context initialization failed. |
+| Event                       | Description                                                                               |
+| --------------------------- | ----------------------------------------------------------------------------------------- |
+| `webglcontextlost`          | GPU context lost (device disconnect, resource limits). Games must handle this gracefully. |
+| `webglcontextrestored`      | GPU context recovered. Games should reload GPU resources.                                 |
+| `webglcontextcreationerror` | Context initialization failed.                                                            |
 
 ### Code Example
 
 ```javascript
-const canvas = document.getElementById("game");
-const gl = canvas.getContext("webgl2");
+const canvas = document.getElementById('game');
+const gl = canvas.getContext('webgl2');
 
 // Vertex shader
 const vsSource = `#version 300 es
@@ -909,7 +933,7 @@ const buffer = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
 gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
 
-const aPos = gl.getAttribLocation(program, "aPosition");
+const aPos = gl.getAttribLocation(program, 'aPosition');
 gl.enableVertexAttribArray(aPos);
 gl.vertexAttribPointer(aPos, 3, gl.FLOAT, false, 0, 0);
 
@@ -921,13 +945,13 @@ gl.drawArrays(gl.TRIANGLES, 0, 3);
 
 ### Recommended Libraries
 
-| Library | Description |
-|---------|-------------|
-| three.js | Full-featured 3D engine |
+| Library    | Description                                              |
+| ---------- | -------------------------------------------------------- |
+| three.js   | Full-featured 3D engine                                  |
 | Babylon.js | Complete game engine with physics, audio, and networking |
-| PlayCanvas | Cloud-based game engine |
-| Pixi.js | Lightweight 2D renderer |
-| glMatrix | Matrix and vector math library |
+| PlayCanvas | Cloud-based game engine                                  |
+| Pixi.js    | Lightweight 2D renderer                                  |
+| glMatrix   | Matrix and vector math library                           |
 
 ---
 
@@ -946,23 +970,23 @@ WebRTC (Web Real-Time Communication) enables peer-to-peer communication between 
 
 ### Key Interfaces
 
-| Interface | Purpose |
-|-----------|---------|
-| `RTCPeerConnection` | Manages the connection between two peers, including media streams and data channels |
-| `RTCDataChannel` | Bi-directional channel for arbitrary data (game state, commands, chat) |
-| `RTCSessionDescription` | Session negotiation via SDP (offer/answer model) |
-| `RTCIceCandidate` | Connectivity candidate for NAT/firewall traversal |
-| `RTCRtpSender` / `RTCRtpReceiver` | Manage audio/video encoding and transmission |
-| `RTCStatsReport` | Connection statistics (latency, packet loss, bandwidth) for optimization |
+| Interface                         | Purpose                                                                             |
+| --------------------------------- | ----------------------------------------------------------------------------------- |
+| `RTCPeerConnection`               | Manages the connection between two peers, including media streams and data channels |
+| `RTCDataChannel`                  | Bi-directional channel for arbitrary data (game state, commands, chat)              |
+| `RTCSessionDescription`           | Session negotiation via SDP (offer/answer model)                                    |
+| `RTCIceCandidate`                 | Connectivity candidate for NAT/firewall traversal                                   |
+| `RTCRtpSender` / `RTCRtpReceiver` | Manage audio/video encoding and transmission                                        |
+| `RTCStatsReport`                  | Connection statistics (latency, packet loss, bandwidth) for optimization            |
 
 ### Key Events
 
-| Event | Description |
-|-------|-------------|
-| `datachannel` | Remote peer opened a data channel |
-| `connectionstatechange` | Peer connection state changed |
-| `icecandidate` | New ICE candidate available |
-| `track` | Incoming media track (audio/video) |
+| Event                   | Description                        |
+| ----------------------- | ---------------------------------- |
+| `datachannel`           | Remote peer opened a data channel  |
+| `connectionstatechange` | Peer connection state changed      |
+| `icecandidate`          | New ICE candidate available        |
+| `track`                 | Incoming media track (audio/video) |
 
 ### Connection Lifecycle
 
@@ -979,17 +1003,17 @@ WebRTC (Web Real-Time Communication) enables peer-to-peer communication between 
 ```javascript
 // Peer A: Create connection and data channel
 const peerA = new RTCPeerConnection({
-  iceServers: [{ urls: "stun:stun.l.google.com:19302" }]
+  iceServers: [{ urls: 'stun:stun.l.google.com:19302' }],
 });
 
-const gameChannel = peerA.createDataChannel("game", {
-  ordered: false,       // Allow out-of-order delivery (lower latency)
-  maxRetransmits: 0,    // Unreliable mode (like UDP)
+const gameChannel = peerA.createDataChannel('game', {
+  ordered: false, // Allow out-of-order delivery (lower latency)
+  maxRetransmits: 0, // Unreliable mode (like UDP)
 });
 
 gameChannel.onopen = () => {
   // Send game state updates
-  gameChannel.send(JSON.stringify({ type: "move", x: 10, y: 20 }));
+  gameChannel.send(JSON.stringify({ type: 'move', x: 10, y: 20 }));
 };
 
 gameChannel.onmessage = (event) => {
@@ -999,7 +1023,7 @@ gameChannel.onmessage = (event) => {
 
 // Peer B: Receive the data channel
 const peerB = new RTCPeerConnection({
-  iceServers: [{ urls: "stun:stun.l.google.com:19302" }]
+  iceServers: [{ urls: 'stun:stun.l.google.com:19302' }],
 });
 
 peerB.ondatachannel = (event) => {
@@ -1044,51 +1068,53 @@ The WebSocket API enables persistent, full-duplex communication between a browse
 
 ### Key Interface: WebSocket
 
-| Member | Description |
-|--------|-------------|
-| `new WebSocket(url, protocols?)` | Opens a connection to the server |
-| `send(data)` | Transmit data (string, ArrayBuffer, Blob) |
-| `close(code?, reason?)` | Gracefully close the connection |
-| `readyState` | Current state: CONNECTING (0), OPEN (1), CLOSING (2), CLOSED (3) |
-| `bufferedAmount` | Bytes queued but not yet sent (for flow control) |
-| `binaryType` | Set to `"arraybuffer"` or `"blob"` for binary data |
+| Member                           | Description                                                      |
+| -------------------------------- | ---------------------------------------------------------------- |
+| `new WebSocket(url, protocols?)` | Opens a connection to the server                                 |
+| `send(data)`                     | Transmit data (string, ArrayBuffer, Blob)                        |
+| `close(code?, reason?)`          | Gracefully close the connection                                  |
+| `readyState`                     | Current state: CONNECTING (0), OPEN (1), CLOSING (2), CLOSED (3) |
+| `bufferedAmount`                 | Bytes queued but not yet sent (for flow control)                 |
+| `binaryType`                     | Set to `"arraybuffer"` or `"blob"` for binary data               |
 
 ### Events
 
-| Event | Description |
-|-------|-------------|
-| `open` | Connection established and ready |
-| `message` | Data received from server (access via `event.data`) |
-| `close` | Connection closed (access code/reason via `CloseEvent`) |
-| `error` | An error occurred |
+| Event     | Description                                             |
+| --------- | ------------------------------------------------------- |
+| `open`    | Connection established and ready                        |
+| `message` | Data received from server (access via `event.data`)     |
+| `close`   | Connection closed (access code/reason via `CloseEvent`) |
+| `error`   | An error occurred                                       |
 
 ### Code Example
 
 ```javascript
 // Connect to the game server
-const socket = new WebSocket("wss://game.example.com/ws");
-socket.binaryType = "arraybuffer";
+const socket = new WebSocket('wss://game.example.com/ws');
+socket.binaryType = 'arraybuffer';
 
-socket.addEventListener("open", () => {
+socket.addEventListener('open', () => {
   // Authenticate and join a game room
-  socket.send(JSON.stringify({
-    type: "join",
-    room: "room-42",
-    playerId: "player-1"
-  }));
+  socket.send(
+    JSON.stringify({
+      type: 'join',
+      room: 'room-42',
+      playerId: 'player-1',
+    })
+  );
 });
 
-socket.addEventListener("message", (event) => {
-  if (typeof event.data === "string") {
+socket.addEventListener('message', (event) => {
+  if (typeof event.data === 'string') {
     const msg = JSON.parse(event.data);
     switch (msg.type) {
-      case "state":
+      case 'state':
         updateWorldState(msg.state);
         break;
-      case "playerJoined":
+      case 'playerJoined':
         addRemotePlayer(msg.player);
         break;
-      case "playerLeft":
+      case 'playerLeft':
         removeRemotePlayer(msg.playerId);
         break;
     }
@@ -1099,7 +1125,7 @@ socket.addEventListener("message", (event) => {
   }
 });
 
-socket.addEventListener("close", (event) => {
+socket.addEventListener('close', (event) => {
   console.log(`Disconnected: ${event.code} ${event.reason}`);
   showReconnectPrompt();
 });
@@ -1107,13 +1133,15 @@ socket.addEventListener("close", (event) => {
 // Send player input to the server each tick
 function sendInput(input) {
   if (socket.readyState === WebSocket.OPEN) {
-    socket.send(JSON.stringify({
-      type: "input",
-      keys: input.keys,
-      mouseX: input.mouseX,
-      mouseY: input.mouseY,
-      timestamp: performance.now(),
-    }));
+    socket.send(
+      JSON.stringify({
+        type: 'input',
+        keys: input.keys,
+        mouseX: input.mouseX,
+        mouseY: input.mouseY,
+        timestamp: performance.now(),
+      })
+    );
   }
 }
 ```
@@ -1144,31 +1172,31 @@ The WebVR API is **deprecated and non-standard**. It was never ratified as a web
 
 ### Key Interfaces
 
-| Interface | Purpose |
-|-----------|---------|
-| `VRDisplay` | Represents a VR headset. Core methods: `requestPresent()`, `requestAnimationFrame()`, `getFrameData()`, `submitFrame()`. |
-| `VRFrameData` | Pose, view matrices, and projection matrices for the current frame. |
-| `VRPose` | Position, orientation, velocity, and acceleration at a given timestamp. |
-| `VREyeParameters` | Per-eye field of view and rendering offset. |
-| `VRStageParameters` | Room-scale play area dimensions and transform. |
-| `VRDisplayCapabilities` | Device capability flags (has position tracking, has external display, etc.). |
-| `Navigator.getVRDisplays()` | Returns a promise resolving to an array of connected `VRDisplay` objects. |
+| Interface                   | Purpose                                                                                                                  |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `VRDisplay`                 | Represents a VR headset. Core methods: `requestPresent()`, `requestAnimationFrame()`, `getFrameData()`, `submitFrame()`. |
+| `VRFrameData`               | Pose, view matrices, and projection matrices for the current frame.                                                      |
+| `VRPose`                    | Position, orientation, velocity, and acceleration at a given timestamp.                                                  |
+| `VREyeParameters`           | Per-eye field of view and rendering offset.                                                                              |
+| `VRStageParameters`         | Room-scale play area dimensions and transform.                                                                           |
+| `VRDisplayCapabilities`     | Device capability flags (has position tracking, has external display, etc.).                                             |
+| `Navigator.getVRDisplays()` | Returns a promise resolving to an array of connected `VRDisplay` objects.                                                |
 
 ### Key Events
 
-| Event | Description |
-|-------|-------------|
-| `vrdisplayconnect` | A VR headset was connected |
-| `vrdisplaydisconnect` | A VR headset was disconnected |
+| Event                    | Description                                     |
+| ------------------------ | ----------------------------------------------- |
+| `vrdisplayconnect`       | A VR headset was connected                      |
+| `vrdisplaydisconnect`    | A VR headset was disconnected                   |
 | `vrdisplaypresentchange` | The headset entered or exited presentation mode |
-| `vrdisplayactivate` | The headset is ready to present |
+| `vrdisplayactivate`      | The headset is ready to present                 |
 
 ### Code Example
 
 ```javascript
 // Check for WebVR support
 if (navigator.getVRDisplays) {
-  navigator.getVRDisplays().then(displays => {
+  navigator.getVRDisplays().then((displays) => {
     if (displays.length === 0) return;
     const vrDisplay = displays[0];
 
@@ -1222,22 +1250,22 @@ The Web Workers API enables running JavaScript in background threads separate fr
 
 ### Worker Types
 
-| Type | Description | Game Use Case |
-|------|-------------|---------------|
-| Dedicated Worker (`Worker`) | Single-owner background thread | Physics, AI, pathfinding for one game instance |
-| Shared Worker (`SharedWorker`) | Shared across multiple windows/tabs | Multi-tab or multi-iframe game scenarios |
-| Service Worker | Network proxy with offline support | Asset caching, offline play |
+| Type                           | Description                         | Game Use Case                                  |
+| ------------------------------ | ----------------------------------- | ---------------------------------------------- |
+| Dedicated Worker (`Worker`)    | Single-owner background thread      | Physics, AI, pathfinding for one game instance |
+| Shared Worker (`SharedWorker`) | Shared across multiple windows/tabs | Multi-tab or multi-iframe game scenarios       |
+| Service Worker                 | Network proxy with offline support  | Asset caching, offline play                    |
 
 ### Key Interfaces
 
-| API | Description |
-|-----|-------------|
-| `new Worker(scriptURL)` | Create a dedicated worker from a script file |
-| `worker.postMessage(data)` | Send data to the worker |
-| `worker.onmessage` | Receive data from the worker (via `event.data`) |
-| `worker.terminate()` | Immediately stop the worker |
-| Inside worker: `self.postMessage(data)` | Send data back to the main thread |
-| Inside worker: `self.onmessage` | Receive data from the main thread |
+| API                                     | Description                                     |
+| --------------------------------------- | ----------------------------------------------- |
+| `new Worker(scriptURL)`                 | Create a dedicated worker from a script file    |
+| `worker.postMessage(data)`              | Send data to the worker                         |
+| `worker.onmessage`                      | Receive data from the worker (via `event.data`) |
+| `worker.terminate()`                    | Immediately stop the worker                     |
+| Inside worker: `self.postMessage(data)` | Send data back to the main thread               |
+| Inside worker: `self.onmessage`         | Receive data from the main thread               |
 
 ### Limitations
 
@@ -1252,19 +1280,19 @@ The Web Workers API enables running JavaScript in background threads separate fr
 
 ```javascript
 // Create a physics worker
-const physicsWorker = new Worker("physics-worker.js");
+const physicsWorker = new Worker('physics-worker.js');
 
 // Send world state to the worker each frame
 function updatePhysics(entities) {
   // Transfer the buffer for zero-copy performance
   const buffer = serializeEntities(entities);
-  physicsWorker.postMessage({ type: "step", buffer }, [buffer]);
+  physicsWorker.postMessage({ type: 'step', buffer }, [buffer]);
 }
 
 // Receive results from the worker
 physicsWorker.onmessage = (event) => {
   const { type, buffer } = event.data;
-  if (type === "result") {
+  if (type === 'result') {
     applyPhysicsResults(buffer);
   }
 };
@@ -1275,7 +1303,7 @@ physicsWorker.onmessage = (event) => {
 ```javascript
 self.onmessage = (event) => {
   const { type, buffer } = event.data;
-  if (type === "step") {
+  if (type === 'step') {
     const positions = new Float32Array(buffer);
 
     // Run physics simulation
@@ -1284,7 +1312,7 @@ self.onmessage = (event) => {
     }
 
     // Send results back, transferring the buffer
-    self.postMessage({ type: "result", buffer: positions.buffer }, [positions.buffer]);
+    self.postMessage({ type: 'result', buffer: positions.buffer }, [positions.buffer]);
   }
 };
 ```
@@ -1307,34 +1335,34 @@ self.onmessage = (event) => {
 
 ### Key Methods
 
-| Method | Description |
-|--------|-------------|
-| `open(method, url, async?)` | Initialize a request (GET, POST, etc.) |
-| `send(body?)` | Send the request; `body` can be string, FormData, ArrayBuffer, Blob |
-| `setRequestHeader(name, value)` | Set an HTTP header (call after `open`, before `send`) |
-| `abort()` | Cancel an in-progress request |
-| `getResponseHeader(name)` | Retrieve a specific response header value |
+| Method                          | Description                                                         |
+| ------------------------------- | ------------------------------------------------------------------- |
+| `open(method, url, async?)`     | Initialize a request (GET, POST, etc.)                              |
+| `send(body?)`                   | Send the request; `body` can be string, FormData, ArrayBuffer, Blob |
+| `setRequestHeader(name, value)` | Set an HTTP header (call after `open`, before `send`)               |
+| `abort()`                       | Cancel an in-progress request                                       |
+| `getResponseHeader(name)`       | Retrieve a specific response header value                           |
 
 ### Key Properties
 
-| Property | Description |
-|----------|-------------|
-| `response` | The response body as the type specified by `responseType` |
-| `responseType` | Expected response format: `""`, `"text"`, `"json"`, `"arraybuffer"`, `"blob"`, `"document"` |
-| `status` | HTTP status code (200, 404, etc.) |
-| `readyState` | Request lifecycle state (0 = UNSENT through 4 = DONE) |
-| `timeout` | Milliseconds before the request auto-aborts |
-| `withCredentials` | Whether to include cookies in cross-origin requests |
+| Property          | Description                                                                                 |
+| ----------------- | ------------------------------------------------------------------------------------------- |
+| `response`        | The response body as the type specified by `responseType`                                   |
+| `responseType`    | Expected response format: `""`, `"text"`, `"json"`, `"arraybuffer"`, `"blob"`, `"document"` |
+| `status`          | HTTP status code (200, 404, etc.)                                                           |
+| `readyState`      | Request lifecycle state (0 = UNSENT through 4 = DONE)                                       |
+| `timeout`         | Milliseconds before the request auto-aborts                                                 |
+| `withCredentials` | Whether to include cookies in cross-origin requests                                         |
 
 ### Events
 
-| Event | Description |
-|-------|-------------|
-| `load` | Request completed successfully |
-| `error` | Request failed |
-| `progress` | Periodic progress updates during download |
-| `abort` | Request was aborted |
-| `readystatechange` | `readyState` changed |
+| Event              | Description                               |
+| ------------------ | ----------------------------------------- |
+| `load`             | Request completed successfully            |
+| `error`            | Request failed                            |
+| `progress`         | Periodic progress updates during download |
+| `abort`            | Request was aborted                       |
+| `readystatechange` | `readyState` changed                      |
 
 ### Code Example
 
@@ -1343,8 +1371,8 @@ self.onmessage = (event) => {
 function loadLevel(url) {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
-    xhr.open("GET", url);
-    xhr.responseType = "json";
+    xhr.open('GET', url);
+    xhr.responseType = 'json';
 
     xhr.onload = () => {
       if (xhr.status === 200) {
@@ -1353,7 +1381,7 @@ function loadLevel(url) {
         reject(new Error(`Failed to load level: ${xhr.status}`));
       }
     };
-    xhr.onerror = () => reject(new Error("Network error"));
+    xhr.onerror = () => reject(new Error('Network error'));
     xhr.send();
   });
 }
@@ -1362,8 +1390,8 @@ function loadLevel(url) {
 function loadBinaryAsset(url, onProgress) {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
-    xhr.open("GET", url);
-    xhr.responseType = "arraybuffer";
+    xhr.open('GET', url);
+    xhr.responseType = 'arraybuffer';
 
     xhr.onprogress = (event) => {
       if (event.lengthComputable && onProgress) {
@@ -1378,15 +1406,16 @@ function loadBinaryAsset(url, onProgress) {
         reject(new Error(`Failed to load asset: ${xhr.status}`));
       }
     };
-    xhr.onerror = () => reject(new Error("Network error"));
+    xhr.onerror = () => reject(new Error('Network error'));
     xhr.send();
   });
 }
 
 // Usage
-loadLevel("levels/level1.json").then(data => initLevel(data));
-loadBinaryAsset("models/tank.bin", pct => updateLoadingBar(pct))
-  .then(buf => parseModel(new Float32Array(buf)));
+loadLevel('levels/level1.json').then((data) => initLevel(data));
+loadBinaryAsset('models/tank.bin', (pct) => updateLoadingBar(pct)).then((buf) =>
+  parseModel(new Float32Array(buf))
+);
 ```
 
 ### Note on Fetch API

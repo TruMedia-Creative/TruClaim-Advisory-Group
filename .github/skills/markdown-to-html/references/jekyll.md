@@ -68,13 +68,13 @@ myblog/
 
 ## CLI Commands
 
-| Command | Description |
-|---------|-------------|
-| `jekyll new <name>` | Create new site |
-| `jekyll build` | Build to `_site/` |
-| `jekyll serve` | Build and serve locally |
-| `jekyll clean` | Remove generated files |
-| `jekyll doctor` | Check for issues |
+| Command             | Description             |
+| ------------------- | ----------------------- |
+| `jekyll new <name>` | Create new site         |
+| `jekyll build`      | Build to `_site/`       |
+| `jekyll serve`      | Build and serve locally |
+| `jekyll clean`      | Remove generated files  |
+| `jekyll doctor`     | Check for issues        |
 
 ### Build Options
 
@@ -108,14 +108,14 @@ bundle exec jekyll serve --port 8080
 bundle exec jekyll serve --host 0.0.0.0
 ```
 
-## Configuration (_config.yml)
+## Configuration (\_config.yml)
 
 ```yaml
 # Site settings
 title: My Blog
 description: A great blog
-baseurl: ""
-url: "https://example.com"
+baseurl: ''
+url: 'https://example.com'
 
 # Build settings
 markdown: kramdown
@@ -139,10 +139,10 @@ collections:
 # Defaults
 defaults:
   - scope:
-      path: ""
-      type: "posts"
+      path: ''
+      type: 'posts'
     values:
-      layout: "post"
+      layout: 'post'
 
 # Exclude from processing
 exclude:
@@ -159,12 +159,12 @@ Every content file needs YAML front matter:
 ```markdown
 ---
 layout: post
-title: "My First Post"
+title: 'My First Post'
 date: 2025-01-28 12:00:00 -0500
 categories: blog tutorial
 tags: [jekyll, markdown]
 author: John Doe
-excerpt: "A brief introduction..."
+excerpt: 'A brief introduction...'
 published: true
 ---
 
@@ -179,7 +179,7 @@ Your content here...
 # _config.yml
 markdown: kramdown
 kramdown:
-  input: GFM                    # GitHub Flavored Markdown
+  input: GFM # GitHub Flavored Markdown
   syntax_highlighter: rouge
   syntax_highlighter_opts:
     block:
@@ -197,8 +197,8 @@ gem 'jekyll-commonmark-ghpages'
 # _config.yml
 markdown: CommonMarkGhPages
 commonmark:
-  options: ["SMART", "FOOTNOTES"]
-  extensions: ["strikethrough", "autolink", "table"]
+  options: ['SMART', 'FOOTNOTES']
+  extensions: ['strikethrough', 'autolink', 'table']
 ```
 
 ## Liquid Templating
@@ -244,31 +244,30 @@ commonmark:
 
 ## Layouts
 
-### Basic Layout (_layouts/default.html)
+### Basic Layout (\_layouts/default.html)
 
 ```html
 <!DOCTYPE html>
 <html>
-<head>
-  <title>{{ page.title }} | {{ site.title }}</title>
-  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-</head>
-<body>
-  {% include header.html %}
-  <main>
-    {{ content }}
-  </main>
-  {% include footer.html %}
-</body>
+  <head>
+    <title>{{ page.title }} | {{ site.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
+  </head>
+  <body>
+    {% include header.html %}
+    <main>{{ content }}</main>
+    {% include footer.html %}
+  </body>
 </html>
 ```
 
-### Post Layout (_layouts/post.html)
+### Post Layout (\_layouts/post.html)
 
 ```html
 ---
 layout: default
 ---
+
 <article>
   <h1>{{ page.title }}</h1>
   <time>{{ page.date | date: "%B %d, %Y" }}</time>
@@ -303,14 +302,14 @@ plugins:
 
 ## Troubleshooting
 
-| Issue | Solution |
-|-------|----------|
-| Ruby 3.0+ webrick error | `bundle add webrick` |
-| Permission denied | Use `--user-install` or rbenv |
-| Slow builds | Use `--incremental` |
-| Liquid errors | Check for unescaped `{` `}` |
-| Encoding issues | Add `encoding: utf-8` to config |
-| Plugin not loading | Add to both Gemfile and _config.yml |
+| Issue                   | Solution                             |
+| ----------------------- | ------------------------------------ |
+| Ruby 3.0+ webrick error | `bundle add webrick`                 |
+| Permission denied       | Use `--user-install` or rbenv        |
+| Slow builds             | Use `--incremental`                  |
+| Liquid errors           | Check for unescaped `{` `}`          |
+| Encoding issues         | Add `encoding: utf-8` to config      |
+| Plugin not loading      | Add to both Gemfile and \_config.yml |
 
 ## Resources
 

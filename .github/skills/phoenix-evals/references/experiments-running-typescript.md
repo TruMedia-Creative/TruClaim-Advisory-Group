@@ -5,11 +5,8 @@ Execute experiments with `runExperiment`.
 ## Basic Usage
 
 ```typescript
-import { createClient } from "@arizeai/phoenix-client";
-import {
-  runExperiment,
-  asExperimentEvaluator,
-} from "@arizeai/phoenix-client/experiments";
+import { createClient } from '@arizeai/phoenix-client';
+import { runExperiment, asExperimentEvaluator } from '@arizeai/phoenix-client/experiments';
 
 const client = createClient();
 
@@ -18,18 +15,18 @@ const task = async (example: { input: Record<string, unknown> }) => {
 };
 
 const exactMatch = asExperimentEvaluator({
-  name: "exact_match",
-  kind: "CODE",
+  name: 'exact_match',
+  kind: 'CODE',
   evaluate: async ({ output, expected }) => ({
     score: output === expected?.answer ? 1.0 : 0.0,
-    label: output === expected?.answer ? "match" : "no_match",
+    label: output === expected?.answer ? 'match' : 'no_match',
   }),
 });
 
 const experiment = await runExperiment({
   client,
-  experimentName: "qa-experiment-v1",
-  dataset: { datasetId: "your-dataset-id" },
+  experimentName: 'qa-experiment-v1',
+  dataset: { datasetId: 'your-dataset-id' },
   task,
   evaluators: [exactMatch],
 });
@@ -64,8 +61,8 @@ interface EvaluatorParams {
 ```typescript
 const experiment = await runExperiment({
   client,
-  experimentName: "my-experiment",
-  dataset: { datasetName: "qa-test-v1" },
+  experimentName: 'my-experiment',
+  dataset: { datasetName: 'qa-test-v1' },
   task,
   evaluators,
   repetitions: 3, // Run each example 3 times
@@ -76,7 +73,7 @@ const experiment = await runExperiment({
 ## Add Evaluations Later
 
 ```typescript
-import { evaluateExperiment } from "@arizeai/phoenix-client/experiments";
+import { evaluateExperiment } from '@arizeai/phoenix-client/experiments';
 
 await evaluateExperiment({ client, experiment, evaluators: [newEvaluator] });
 ```

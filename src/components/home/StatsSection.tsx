@@ -61,7 +61,7 @@ const stats = [
   },
 ];
 
-function AnimatedStat({ stat, index }: { stat: typeof stats[0]; index: number }) {
+function AnimatedStat({ stat, index }: { stat: (typeof stats)[0]; index: number }) {
   const { count, ref } = useCounter(stat.value, 2000);
 
   return (
@@ -75,7 +75,9 @@ function AnimatedStat({ stat, index }: { stat: typeof stats[0]; index: number })
     >
       <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 h-full border border-gray-100 overflow-hidden">
         {/* Animated background gradient on hover */}
-        <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
+        <div
+          className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}
+        />
 
         {/* Icon with pulse animation */}
         <motion.div
@@ -89,11 +91,7 @@ function AnimatedStat({ stat, index }: { stat: typeof stats[0]; index: number })
         {/* Animated counter */}
         <div className="mb-2">
           <span className="text-4xl md:text-5xl font-bold text-ink-black-800">
-            {stat.value === 500 ? (
-              <>${count}</>
-            ) : (
-              count
-            )}
+            {stat.value === 500 ? <>${count}</> : count}
           </span>
           <span className="text-3xl md:text-4xl font-bold text-steel-blue-500">{stat.suffix}</span>
         </div>
@@ -169,15 +167,15 @@ function WaterWaves() {
         <motion.path
           d="M0,50 Q150,30 300,50 T600,50 T900,50 T1200,50 L1200,100 L0,100 Z"
           fill="url(#waveGradient)"
-          initial={{ d: "M0,50 Q150,30 300,50 T600,50 T900,50 T1200,50 L1200,100 L0,100 Z" }}
+          initial={{ d: 'M0,50 Q150,30 300,50 T600,50 T900,50 T1200,50 L1200,100 L0,100 Z' }}
           animate={{
             d: [
-              "M0,50 Q150,30 300,50 T600,50 T900,50 T1200,50 L1200,100 L0,100 Z",
-              "M0,50 Q150,70 300,50 T600,50 T900,50 T1200,50 L1200,100 L0,100 Z",
-              "M0,50 Q150,30 300,50 T600,50 T900,50 T1200,50 L1200,100 L0,100 Z"
-            ]
+              'M0,50 Q150,30 300,50 T600,50 T900,50 T1200,50 L1200,100 L0,100 Z',
+              'M0,50 Q150,70 300,50 T600,50 T900,50 T1200,50 L1200,100 L0,100 Z',
+              'M0,50 Q150,30 300,50 T600,50 T900,50 T1200,50 L1200,100 L0,100 Z',
+            ],
           }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
         />
       </svg>
     </div>
@@ -186,7 +184,10 @@ function WaterWaves() {
 
 export default function StatsSection() {
   return (
-    <section id="stats-section" className="py-24 bg-gradient-to-b from-parchment-100 to-parchment-50 relative overflow-hidden">
+    <section
+      id="stats-section"
+      className="py-24 bg-gradient-to-b from-parchment-100 to-parchment-50 relative overflow-hidden"
+    >
       {/* Sun rays decoration */}
       <SunRays />
 
@@ -213,7 +214,8 @@ export default function StatsSection() {
           </motion.div>
           <h2 className="section-title">Experience That Resolves Complex Claims</h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Our expertise allows us to deliver accurate, defensible valuations across a wide range of property loss scenarios.
+            Our expertise allows us to deliver accurate, defensible valuations across a wide range
+            of property loss scenarios.
           </p>
         </motion.div>
 
@@ -234,7 +236,10 @@ export default function StatsSection() {
           <div className="inline-flex items-center gap-3 bg-white px-6 py-3 rounded-full shadow-md border border-gray-100">
             <Award className="w-5 h-5 text-steel-blue-500" />
             <span className="text-gray-600">
-              Trusted by leading <span className="font-semibold text-ink-black-800">insurers, adjusters & attorneys</span>
+              Trusted by leading{' '}
+              <span className="font-semibold text-ink-black-800">
+                insurers, adjusters & attorneys
+              </span>
             </span>
           </div>
         </motion.div>

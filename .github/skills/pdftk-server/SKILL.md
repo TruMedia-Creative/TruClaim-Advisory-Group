@@ -142,14 +142,14 @@ pdftk A=even.pdf B=odd.pdf shuffle A B output collated.pdf
 
 ## Troubleshooting
 
-| Issue | Solution |
-|-------|----------|
-| `pdftk` command not found | Verify installation; check that pdftk is in your system PATH |
-| Cannot decrypt PDF | Ensure you are providing the correct owner or user password via `input_pw` |
-| Output file is empty or corrupt | Check input file integrity; try running `pdftk input.pdf output repaired.pdf` first |
-| Form fields not visible after fill | Use the `flatten` flag to merge fields into the page content |
-| Watermark not appearing | Ensure the input PDF has transparent regions; use `stamp` for opaque overlays |
-| Permission denied errors | Check file permissions on input and output paths |
+| Issue                              | Solution                                                                            |
+| ---------------------------------- | ----------------------------------------------------------------------------------- |
+| `pdftk` command not found          | Verify installation; check that pdftk is in your system PATH                        |
+| Cannot decrypt PDF                 | Ensure you are providing the correct owner or user password via `input_pw`          |
+| Output file is empty or corrupt    | Check input file integrity; try running `pdftk input.pdf output repaired.pdf` first |
+| Form fields not visible after fill | Use the `flatten` flag to merge fields into the page content                        |
+| Watermark not appearing            | Ensure the input PDF has transparent regions; use `stamp` for opaque overlays       |
+| Permission denied errors           | Check file permissions on input and output paths                                    |
 
 ## References
 

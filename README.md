@@ -4,15 +4,15 @@ Marketing website for **TruClaims Appraisal Group** — an independent insurance
 
 ## Tech Stack
 
-| Concern | Technology |
-|---------|-----------|
-| Framework | React 19 + TypeScript |
-| Build tool | Vite 7 |
-| Styling | Tailwind CSS v3 |
-| Animation | Framer Motion 11 |
-| Icons | Lucide React |
-| Routing | React Router DOM v7 |
-| Package manager | pnpm |
+| Concern         | Technology            |
+| --------------- | --------------------- |
+| Framework       | React 19 + TypeScript |
+| Build tool      | Vite 7                |
+| Styling         | Tailwind CSS v3       |
+| Animation       | Framer Motion 11      |
+| Icons           | Lucide React          |
+| Routing         | React Router DOM v7   |
+| Package manager | pnpm                  |
 
 ## Prerequisites
 
@@ -31,17 +31,17 @@ pnpm dev
 
 ## Available Scripts
 
-| Script | Description |
-|--------|-------------|
-| `pnpm dev` | Start Vite dev server with HMR |
-| `pnpm build` | Type-check then produce a production build in `dist/` |
-| `pnpm preview` | Locally preview the production build |
-| `pnpm lint` | Run ESLint |
-| `pnpm lint:fix` | Run ESLint and auto-fix violations |
-| `pnpm typecheck` | Run TypeScript compiler check without emitting files |
-| `pnpm format` | Format all files with Prettier |
-| `pnpm format:check` | Check formatting without writing files |
-| `pnpm depcheck` | Check for unused or missing dependencies |
+| Script              | Description                                           |
+| ------------------- | ----------------------------------------------------- |
+| `pnpm dev`          | Start Vite dev server with HMR                        |
+| `pnpm build`        | Type-check then produce a production build in `dist/` |
+| `pnpm preview`      | Locally preview the production build                  |
+| `pnpm lint`         | Run ESLint                                            |
+| `pnpm lint:fix`     | Run ESLint and auto-fix violations                    |
+| `pnpm typecheck`    | Run TypeScript compiler check without emitting files  |
+| `pnpm format`       | Format all files with Prettier                        |
+| `pnpm format:check` | Check formatting without writing files                |
+| `pnpm depcheck`     | Check for unused or missing dependencies              |
 
 ## Deployment
 
@@ -81,6 +81,7 @@ A GitHub Actions workflow (`.github/workflows/deploy.yml`) builds and publishes 
 3. Push a commit to `main` (or run the workflow manually via **Actions → Deploy to GitHub Pages → Run workflow**).
 
 The workflow will:
+
 - Install dependencies with `pnpm install --frozen-lockfile`
 - Build the project with `pnpm run build`
 - Upload the `dist/` directory as a Pages artifact
@@ -129,9 +130,11 @@ The contact form posts to `/api/contact`, a Vercel Serverless Function that rela
 
 1. Create a Resend account and add/verify your custom domain (DKIM/SPF records will be required in GoDaddy).
 2. Generate an API key and add the following environment variables to your Vercel project (Project → Settings → Environment Variables):
-  - `RESEND_API_KEY` – the secret key you generated.
-  - `CONTACT_FROM_EMAIL` – the verified sender, e.g. `TruClaim Contact <contact@yourdomain.com>`.
-  - `CONTACT_TO_EMAIL` – the inbox that should receive submissions.
+
+- `RESEND_API_KEY` – the secret key you generated.
+- `CONTACT_FROM_EMAIL` – the verified sender, e.g. `TruClaim Contact <contact@yourdomain.com>`.
+- `CONTACT_TO_EMAIL` – the inbox that should receive submissions.
+
 3. Redeploy (or trigger “Redeploy with existing build”) so the new env vars are available to the function.
 
 > Local testing: add the same variables to a `.env.local` file and run `vercel dev` so `/api/contact` is available while you build locally.

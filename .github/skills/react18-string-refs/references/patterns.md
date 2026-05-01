@@ -179,7 +179,9 @@ class TabPanel extends React.Component {
         {this.props.tabs.map((tab, i) => (
           <button
             key={tab.id}
-            ref={el => { this.tabRefs[i] = el; }}  // callback ref stores DOM node directly
+            ref={(el) => {
+              this.tabRefs[i] = el;
+            }} // callback ref stores DOM node directly
           >
             {tab.label}
           </button>

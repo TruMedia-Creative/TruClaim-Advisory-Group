@@ -22,28 +22,28 @@ Apply these character mappings to create visual emphasis in plain text:
 Use bold for key phrases, section headers, and emphasis words.
 
 | Plain | Unicode Bold |
-|-------|-------------|
-| A-Z   | 𝗔-𝗭         |
-| a-z   | 𝗮-𝘇         |
-| 0-9   | 𝟬-𝟵         |
+| ----- | ------------ |
+| A-Z   | 𝗔-𝗭          |
+| a-z   | 𝗮-𝘇          |
+| 0-9   | 𝟬-𝟵          |
 
 ### Italic (Mathematical Sans-Serif Italic)
 
 Use italic for subtle emphasis, technical terms, or quotes.
 
 | Plain | Unicode Italic |
-|-------|---------------|
-| A-Z   | 𝘈-𝘡           |
-| a-z   | 𝘢-𝘻           |
+| ----- | -------------- |
+| A-Z   | 𝘈-𝘡            |
+| a-z   | 𝘢-𝘻            |
 
 ### Bold-Italic (Mathematical Sans-Serif Bold Italic)
 
 Use sparingly for maximum emphasis.
 
 | Plain | Unicode Bold-Italic |
-|-------|-------------------|
-| A-Z   | 𝘼-𝙕               |
-| a-z   | 𝙖-𝙯               |
+| ----- | ------------------- |
+| A-Z   | 𝘼-𝙕                 |
+| a-z   | 𝙖-𝙯                 |
 
 ## Visual Separators
 

@@ -1,5 +1,16 @@
 import { motion, useReducedMotion } from 'framer-motion';
-import { Shield, Award, Scale, CheckCircle, MapPin, Briefcase, ClipboardList, Search, FileCheck, Handshake } from 'lucide-react';
+import {
+  Shield,
+  Award,
+  Scale,
+  CheckCircle,
+  MapPin,
+  Briefcase,
+  ClipboardList,
+  Search,
+  FileCheck,
+  Handshake,
+} from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PageMetadata from '../components/PageMetadata';
 
@@ -45,7 +56,7 @@ const values = [
     icon: Scale,
     title: 'Procedural Discipline',
     description:
-      'Every engagement follows the policy\'s appraisal clause: on-site inspection, defensible Xactimate estimates, and consistent methodology.',
+      "Every engagement follows the policy's appraisal clause: on-site inspection, defensible Xactimate estimates, and consistent methodology.",
   },
   {
     icon: Award,
@@ -84,13 +95,15 @@ const appraisalProcess = [
     icon: ClipboardList,
     step: '01',
     title: 'File Review & Scope Analysis',
-    description: 'Review policy, prior estimates, and claim documentation to identify scope disputes.',
+    description:
+      'Review policy, prior estimates, and claim documentation to identify scope disputes.',
   },
   {
     icon: Search,
     step: '02',
     title: 'On-Site Inspection',
-    description: 'Conduct a thorough physical inspection with photo documentation for every engagement.',
+    description:
+      'Conduct a thorough physical inspection with photo documentation for every engagement.',
   },
   {
     icon: FileCheck,
@@ -102,7 +115,8 @@ const appraisalProcess = [
     icon: Handshake,
     step: '04',
     title: 'Award Negotiation & Settlement',
-    description: 'Work toward a fair, policy-consistent award through the appraisal or umpire process.',
+    description:
+      'Work toward a fair, policy-consistent award through the appraisal or umpire process.',
   },
 ];
 
@@ -213,7 +227,8 @@ export default function About() {
               Independent. Evidence-Based. Policy-Consistent.
             </p>
             <p className="text-steel-blue-300 text-sm font-medium tracking-wide">
-              Licensed in Texas & additional states · CAT & NFIP experience · State Farm, USAA & TWIA certified
+              Licensed in Texas & additional states · CAT & NFIP experience · State Farm, USAA &
+              TWIA certified
             </p>
           </motion.div>
         </div>
@@ -228,7 +243,9 @@ export default function About() {
             transition={{ duration: 0.4 }}
             className="text-center"
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-400 mb-5">Who We Serve</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-400 mb-5">
+              Who We Serve
+            </p>
             <div className="flex flex-wrap justify-center gap-3">
               {whoWeServe.map((type) => (
                 <span
@@ -255,7 +272,10 @@ export default function About() {
             >
               <h2 className="section-title mb-6">Our Principal</h2>
               <p className="text-gray-600 leading-relaxed mb-6">
-                TruClaims Appraisal Group operates as a neutral, independent appraiser — retained by policyholders, carriers, and as a neutral umpire. Every engagement follows the same evidence-based methodology: on-site inspection, detailed documentation, and policy-consistent valuation, with no advocacy on either side.
+                TruClaims Appraisal Group operates as a neutral, independent appraiser — retained by
+                policyholders, carriers, and as a neutral umpire. Every engagement follows the same
+                evidence-based methodology: on-site inspection, detailed documentation, and
+                policy-consistent valuation, with no advocacy on either side.
               </p>
               <ul className="space-y-3">
                 {principalBullets.map((bullet) => (
@@ -277,6 +297,10 @@ export default function About() {
               <img
                 src={headshotSrc}
                 alt="Larryon Truman, Principal Appraiser at TruClaims Appraisal Group"
+                width="4284"
+                height="5712"
+                loading="lazy"
+                decoding="async"
                 className="w-full object-cover object-top"
               />
               <div className="px-8 py-6">
@@ -329,7 +353,10 @@ export default function About() {
             className="mb-8"
           >
             <h2 className="section-title mb-2">Catastrophe & Large-Loss Engagements</h2>
-            <p className="text-gray-500 text-sm">Selected deployments across the Gulf Coast, Texas hail corridor, and NFIP flood regions.</p>
+            <p className="text-gray-500 text-sm">
+              Selected deployments across the Gulf Coast, Texas hail corridor, and NFIP flood
+              regions.
+            </p>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -384,7 +411,9 @@ export default function About() {
                 className="bg-parchment-50 rounded-xl p-6 border border-parchment-200"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="text-xs font-bold text-steel-blue-500 tracking-widest">{step.step}</span>
+                  <span className="text-xs font-bold text-steel-blue-500 tracking-widest">
+                    {step.step}
+                  </span>
                   <div className="w-9 h-9 bg-ink-black-800 rounded-lg flex items-center justify-center flex-shrink-0">
                     <step.icon className="text-steel-blue-400" size={18} />
                   </div>
@@ -457,7 +486,8 @@ export default function About() {
           >
             <h2 className="section-title">Professional Background</h2>
             <p className="text-gray-600 max-w-2xl mx-auto mt-4">
-              Hands-on claims expertise combined with decades of construction and operations leadership.
+              Hands-on claims expertise combined with decades of construction and operations
+              leadership.
             </p>
           </motion.div>
 
@@ -561,7 +591,8 @@ export default function About() {
               Request an Independent Appraisal Review
             </h2>
             <p className="text-ink-black-200 text-lg mb-2 max-w-xl mx-auto">
-              TruClaims Appraisal Group is available for amount of loss disputes in Texas and Louisiana.
+              TruClaims Appraisal Group is available for amount of loss disputes in Texas and
+              Louisiana.
             </p>
             <p className="text-steel-blue-300 text-sm mb-10">
               Serving Texas & Louisiana · Travel available for CAT events
@@ -570,7 +601,10 @@ export default function About() {
               <Link to="/contact" className="btn-primary w-full sm:w-auto">
                 Request Appraisal
               </Link>
-              <Link to="/contact" className="btn-outline border-white/60 text-white hover:bg-white/10 hover:text-white w-full sm:w-auto">
+              <Link
+                to="/contact"
+                className="btn-outline border-white/60 text-white hover:bg-white/10 hover:text-white w-full sm:w-auto"
+              >
                 Schedule Consultation
               </Link>
             </div>

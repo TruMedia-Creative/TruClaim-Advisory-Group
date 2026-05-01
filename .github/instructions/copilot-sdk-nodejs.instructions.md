@@ -1,7 +1,7 @@
 ---
-applyTo: "**.ts, **.js, package.json"
-description: "This file provides guidance on building Node.js/TypeScript applications using GitHub Copilot SDK."
-name: "GitHub Copilot SDK Node.js Instructions"
+applyTo: '**.ts, **.js, package.json'
+description: 'This file provides guidance on building Node.js/TypeScript applications using GitHub Copilot SDK.'
+name: 'GitHub Copilot SDK Node.js Instructions'
 ---
 
 ## Core Principles
@@ -30,7 +30,7 @@ yarn add @github/copilot-sdk
 ### Basic Client Setup
 
 ```typescript
-import { CopilotClient, approveAll } from "@github/copilot-sdk";
+import { CopilotClient, approveAll } from '@github/copilot-sdk';
 
 const client = new CopilotClient();
 await client.start();
@@ -105,7 +105,7 @@ const session = await client.createSession({
 ### Resuming Sessions
 
 ```typescript
-const session = await client.resumeSession("session-id", {
+const session = await client.resumeSession('session-id', {
   tools: [myNewTool],
   onPermissionRequest: approveAll,
 });
@@ -129,14 +129,14 @@ ALWAYS use async/await or Promises for waiting on session events:
 ```typescript
 await new Promise<void>((resolve) => {
   session.on((event) => {
-    if (event.type === "assistant.message") {
+    if (event.type === 'assistant.message') {
       console.log(event.data.content);
-    } else if (event.type === "session.idle") {
+    } else if (event.type === 'session.idle') {
       resolve();
     }
   });
 
-  session.send({ prompt: "..." });
+  session.send({ prompt: '...' });
 });
 ```
 
@@ -159,25 +159,25 @@ Use discriminated unions with type guards for event handling:
 ```typescript
 session.on((event) => {
   switch (event.type) {
-    case "user.message":
+    case 'user.message':
       // Handle user message
       break;
-    case "assistant.message":
+    case 'assistant.message':
       console.log(event.data.content);
       break;
-    case "tool.executionStart":
+    case 'tool.executionStart':
       // Tool execution started
       break;
-    case "tool.executionComplete":
+    case 'tool.executionComplete':
       // Tool execution completed
       break;
-    case "session.start":
+    case 'session.start':
       // Session started
       break;
-    case "session.idle":
+    case 'session.idle':
       // Session is idle (processing complete)
       break;
-    case "session.error":
+    case 'session.error':
       console.error(`Error: ${event.data.message}`);
       break;
   }
@@ -192,9 +192,9 @@ Set `streaming: true` in SessionConfig:
 
 ```typescript
 const session = await client.createSession({
-    onPermissionRequest: approveAll,
-    model: "gpt-5",
-    streaming: true,
+  onPermissionRequest: approveAll,
+  model: 'gpt-5',
+  streaming: true,
 });
 ```
 
@@ -206,31 +206,31 @@ Handle both delta events (incremental) and final events:
 await new Promise<void>((resolve) => {
   session.on((event) => {
     switch (event.type) {
-      case "assistant.message_delta":
+      case 'assistant.message_delta':
         // Incremental text chunk
         process.stdout.write(event.data.deltaContent);
         break;
-      case "assistant.reasoning_delta":
+      case 'assistant.reasoning_delta':
         // Incremental reasoning chunk (model-dependent)
         process.stdout.write(event.data.deltaContent);
         break;
-      case "assistant.message":
+      case 'assistant.message':
         // Final complete message
-        console.log("\n--- Final ---");
+        console.log('\n--- Final ---');
         console.log(event.data.content);
         break;
-      case "assistant.reasoning":
+      case 'assistant.reasoning':
         // Final reasoning content
-        console.log("--- Reasoning ---");
+        console.log('--- Reasoning ---');
         console.log(event.data.content);
         break;
-      case "session.idle":
+      case 'session.idle':
         resolve();
         break;
     }
   });
 
-  session.send({ prompt: "Tell me a story" });
+  session.send({ prompt: 'Tell me a story' });
 });
 ```
 
@@ -243,21 +243,21 @@ Note: Final events (`assistant.message`, `assistant.reasoning`) are ALWAYS sent 
 Use `defineTool` for type-safe tool definitions:
 
 ```typescript
-import { defineTool } from "@github/copilot-sdk";
+import { defineTool } from '@github/copilot-sdk';
 
 const session = await client.createSession({
-    onPermissionRequest: approveAll,
-    model: "gpt-5",
+  onPermissionRequest: approveAll,
+  model: 'gpt-5',
   tools: [
     defineTool({
-      name: "lookup_issue",
-      description: "Fetch issue details from tracker",
+      name: 'lookup_issue',
+      description: 'Fetch issue details from tracker',
       parameters: {
-        type: "object",
+        type: 'object',
         properties: {
-          id: { type: "string", description: "Issue ID" },
+          id: { type: 'string', description: 'Issue ID' },
         },
-        required: ["id"],
+        required: ['id'],
       },
       handler: async (args) => {
         const issue = await fetchIssue(args.id);
@@ -273,20 +273,20 @@ const session = await client.createSession({
 The SDK supports Zod schemas for parameters:
 
 ```typescript
-import { z } from "zod";
+import { z } from 'zod';
 
 const session = await client.createSession({
-    onPermissionRequest: approveAll,
+  onPermissionRequest: approveAll,
   tools: [
     defineTool({
-      name: "get_weather",
-      description: "Get weather for a location",
+      name: 'get_weather',
+      description: 'Get weather for a location',
       parameters: z.object({
-        location: z.string().describe("City name"),
-        units: z.enum(["celsius", "fahrenheit"]).optional(),
+        location: z.string().describe('City name'),
+        units: z.enum(['celsius', 'fahrenheit']).optional(),
       }),
       handler: async (args) => {
-        return { temperature: 72, units: args.units || "fahrenheit" };
+        return { temperature: 72, units: args.units || 'fahrenheit' };
       },
     }),
   ],
@@ -321,10 +321,10 @@ When Copilot invokes a tool, the client automatically:
 
 ```typescript
 const session = await client.createSession({
-    onPermissionRequest: approveAll,
-    model: "gpt-5",
+  onPermissionRequest: approveAll,
+  model: 'gpt-5',
   systemMessage: {
-    mode: "append",
+    mode: 'append',
     content: `
 <workflow_rules>
 - Always check for security vulnerabilities
@@ -339,11 +339,11 @@ const session = await client.createSession({
 
 ```typescript
 const session = await client.createSession({
-    onPermissionRequest: approveAll,
-    model: "gpt-5",
+  onPermissionRequest: approveAll,
+  model: 'gpt-5',
   systemMessage: {
-    mode: "replace",
-    content: "You are a helpful assistant.",
+    mode: 'replace',
+    content: 'You are a helpful assistant.',
   },
 });
 ```
@@ -354,12 +354,12 @@ Attach files to messages:
 
 ```typescript
 await session.send({
-  prompt: "Analyze this file",
+  prompt: 'Analyze this file',
   attachments: [
     {
-      type: "file",
-      path: "/path/to/file.ts",
-      displayName: "My File",
+      type: 'file',
+      path: '/path/to/file.ts',
+      displayName: 'My File',
     },
   ],
 });
@@ -374,8 +374,8 @@ Use the `mode` property in message options:
 
 ```typescript
 await session.send({
-  prompt: "...",
-  mode: "enqueue",
+  prompt: '...',
+  mode: 'enqueue',
 });
 ```
 
@@ -385,17 +385,17 @@ Sessions are independent and can run concurrently:
 
 ```typescript
 const session1 = await client.createSession({
-    onPermissionRequest: approveAll,
-    model: "gpt-5",
+  onPermissionRequest: approveAll,
+  model: 'gpt-5',
 });
 const session2 = await client.createSession({
-    onPermissionRequest: approveAll,
-    model: "claude-sonnet-4.5",
+  onPermissionRequest: approveAll,
+  model: 'claude-sonnet-4.5',
 });
 
 await Promise.all([
-  session1.send({ prompt: "Hello from session 1" }),
-  session2.send({ prompt: "Hello from session 2" }),
+  session1.send({ prompt: 'Hello from session 1' }),
+  session2.send({ prompt: 'Hello from session 2' }),
 ]);
 ```
 
@@ -405,11 +405,11 @@ Use custom API providers via `provider`:
 
 ```typescript
 const session = await client.createSession({
-    onPermissionRequest: approveAll,
+  onPermissionRequest: approveAll,
   provider: {
-    type: "openai",
-    baseUrl: "https://api.openai.com/v1",
-    apiKey: "your-api-key",
+    type: 'openai',
+    baseUrl: 'https://api.openai.com/v1',
+    apiKey: 'your-api-key',
   },
 });
 ```
@@ -454,7 +454,7 @@ const state = client.getState();
 ```typescript
 try {
   const session = await client.createSession({ onPermissionRequest: approveAll });
-  await session.send({ prompt: "Hello" });
+  await session.send({ prompt: 'Hello' });
 } catch (error) {
   console.error(`Error: ${error.message}`);
 }
@@ -466,7 +466,7 @@ Monitor `session.error` event type for runtime errors:
 
 ```typescript
 session.on((event) => {
-  if (event.type === "session.error") {
+  if (event.type === 'session.error') {
     console.error(`Session Error: ${event.data.message}`);
   }
 });
@@ -477,7 +477,7 @@ session.on((event) => {
 Use ping to verify server connectivity:
 
 ```typescript
-const response = await client.ping("health check");
+const response = await client.ping('health check');
 console.log(`Server responded at ${new Date(response.timestamp)}`);
 ```
 
@@ -505,9 +505,7 @@ try {
 ### Cleanup Function Pattern
 
 ```typescript
-async function withClient<T>(
-  fn: (client: CopilotClient) => Promise<T>,
-): Promise<T> {
+async function withClient<T>(fn: (client: CopilotClient) => Promise<T>): Promise<T> {
   const client = new CopilotClient();
   try {
     await client.start();
@@ -519,7 +517,7 @@ async function withClient<T>(
 
 async function withSession<T>(
   client: CopilotClient,
-  fn: (session: CopilotSession) => Promise<T>,
+  fn: (session: CopilotSession) => Promise<T>
 ): Promise<T> {
   const session = await client.createSession({ onPermissionRequest: approveAll });
   try {
@@ -532,7 +530,7 @@ async function withSession<T>(
 // Usage
 await withClient(async (client) => {
   await withSession(client, async (session) => {
-    await session.send({ prompt: "Hello!" });
+    await session.send({ prompt: 'Hello!' });
   });
 });
 ```
@@ -556,7 +554,7 @@ await withClient(async (client) => {
 ### Simple Query-Response
 
 ```typescript
-import { CopilotClient, approveAll } from "@github/copilot-sdk";
+import { CopilotClient, approveAll } from '@github/copilot-sdk';
 
 const client = new CopilotClient();
 try {
@@ -564,19 +562,19 @@ try {
 
   const session = await client.createSession({
     onPermissionRequest: approveAll,
-    model: "gpt-5",
+    model: 'gpt-5',
   });
   try {
     await new Promise<void>((resolve) => {
       session.on((event) => {
-        if (event.type === "assistant.message") {
+        if (event.type === 'assistant.message') {
           console.log(event.data.content);
-        } else if (event.type === "session.idle") {
+        } else if (event.type === 'session.idle') {
           resolve();
         }
       });
 
-      session.send({ prompt: "What is 2+2?" });
+      session.send({ prompt: 'What is 2+2?' });
     });
   } finally {
     await session.destroy();
@@ -594,12 +592,12 @@ const session = await client.createSession({ onPermissionRequest: approveAll });
 async function sendAndWait(prompt: string): Promise<void> {
   await new Promise<void>((resolve, reject) => {
     const unsubscribe = session.on((event) => {
-      if (event.type === "assistant.message") {
+      if (event.type === 'assistant.message') {
         console.log(event.data.content);
-      } else if (event.type === "session.idle") {
+      } else if (event.type === 'session.idle') {
         unsubscribe();
         resolve();
-      } else if (event.type === "session.error") {
+      } else if (event.type === 'session.error') {
         unsubscribe();
         reject(new Error(event.data.message));
       }
@@ -609,15 +607,15 @@ async function sendAndWait(prompt: string): Promise<void> {
   });
 }
 
-await sendAndWait("What is the capital of France?");
-await sendAndWait("What is its population?");
+await sendAndWait('What is the capital of France?');
+await sendAndWait('What is its population?');
 ```
 
 ### SendAndWait Helper
 
 ```typescript
 // Use built-in sendAndWait for simpler synchronous interaction
-const response = await session.sendAndWait({ prompt: "What is 2+2?" }, 60000);
+const response = await session.sendAndWait({ prompt: 'What is 2+2?' }, 60000);
 
 if (response) {
   console.log(response.data.content);
@@ -627,8 +625,8 @@ if (response) {
 ### Tool with Type-Safe Parameters
 
 ```typescript
-import { z } from "zod";
-import { defineTool } from "@github/copilot-sdk";
+import { z } from 'zod';
+import { defineTool } from '@github/copilot-sdk';
 
 interface UserInfo {
   id: string;
@@ -638,20 +636,20 @@ interface UserInfo {
 }
 
 const session = await client.createSession({
-    onPermissionRequest: approveAll,
+  onPermissionRequest: approveAll,
   tools: [
     defineTool({
-      name: "get_user",
-      description: "Retrieve user information",
+      name: 'get_user',
+      description: 'Retrieve user information',
       parameters: z.object({
-        userId: z.string().describe("User ID"),
+        userId: z.string().describe('User ID'),
       }),
       handler: async (args): Promise<UserInfo> => {
         return {
           id: args.userId,
-          name: "John Doe",
-          email: "john@example.com",
-          role: "Developer",
+          name: 'John Doe',
+          email: 'john@example.com',
+          role: 'Developer',
         };
       },
     }),
@@ -662,38 +660,38 @@ const session = await client.createSession({
 ### Streaming with Progress
 
 ```typescript
-let currentMessage = "";
+let currentMessage = '';
 
 const unsubscribe = session.on((event) => {
-  if (event.type === "assistant.message_delta") {
+  if (event.type === 'assistant.message_delta') {
     currentMessage += event.data.deltaContent;
     process.stdout.write(event.data.deltaContent);
-  } else if (event.type === "assistant.message") {
-    console.log("\n\n=== Complete ===");
+  } else if (event.type === 'assistant.message') {
+    console.log('\n\n=== Complete ===');
     console.log(`Total length: ${event.data.content.length} chars`);
-  } else if (event.type === "session.idle") {
+  } else if (event.type === 'session.idle') {
     unsubscribe();
   }
 });
 
-await session.send({ prompt: "Write a long story" });
+await session.send({ prompt: 'Write a long story' });
 ```
 
 ### Error Recovery
 
 ```typescript
 session.on((event) => {
-  if (event.type === "session.error") {
-    console.error("Session error:", event.data.message);
+  if (event.type === 'session.error') {
+    console.error('Session error:', event.data.message);
     // Optionally retry or handle error
   }
 });
 
 try {
-  await session.send({ prompt: "risky operation" });
+  await session.send({ prompt: 'risky operation' });
 } catch (error) {
   // Handle send errors
-  console.error("Failed to send:", error);
+  console.error('Failed to send:', error);
 }
 ```
 
@@ -702,10 +700,10 @@ try {
 ### Type Inference
 
 ```typescript
-import type { SessionEvent, AssistantMessageEvent } from "@github/copilot-sdk";
+import type { SessionEvent, AssistantMessageEvent } from '@github/copilot-sdk';
 
 session.on((event: SessionEvent) => {
-  if (event.type === "assistant.message") {
+  if (event.type === 'assistant.message') {
     // TypeScript knows event is AssistantMessageEvent here
     const content: string = event.data.content;
   }
@@ -715,9 +713,9 @@ session.on((event: SessionEvent) => {
 ### Generic Helper
 
 ```typescript
-async function waitForEvent<T extends SessionEvent["type"]>(
+async function waitForEvent<T extends SessionEvent['type']>(
   session: CopilotSession,
-  eventType: T,
+  eventType: T
 ): Promise<Extract<SessionEvent, { type: T }>> {
   return new Promise((resolve) => {
     const unsubscribe = session.on((event) => {
@@ -730,6 +728,6 @@ async function waitForEvent<T extends SessionEvent["type"]>(
 }
 
 // Usage
-const message = await waitForEvent(session, "assistant.message");
+const message = await waitForEvent(session, 'assistant.message');
 console.log(message.data.content);
 ```

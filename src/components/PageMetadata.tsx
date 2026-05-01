@@ -57,7 +57,6 @@ export default function PageMetadata({
       document.head.appendChild(canonicalLink);
     }
     canonicalLink.setAttribute('href', canonicalUrl);
-
   }, [title, description, canonicalPath, imageUrl]);
 
   useEffect(() => {

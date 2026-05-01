@@ -13,10 +13,10 @@ Automatically create spans for LLM calls without code changes.
 **CommonJS (automatic):**
 
 ```javascript
-const { register } = require("@arizeai/phoenix-otel");
-const OpenAI = require("openai");
+const { register } = require('@arizeai/phoenix-otel');
+const OpenAI = require('openai');
 
-register({ projectName: "my-app" });
+register({ projectName: 'my-app' });
 
 const client = new OpenAI();
 ```
@@ -24,11 +24,11 @@ const client = new OpenAI();
 **ESM (manual required):**
 
 ```typescript
-import { register, registerInstrumentations } from "@arizeai/phoenix-otel";
-import { OpenAIInstrumentation } from "@arizeai/openinference-instrumentation-openai";
-import OpenAI from "openai";
+import { register, registerInstrumentations } from '@arizeai/phoenix-otel';
+import { OpenAIInstrumentation } from '@arizeai/openinference-instrumentation-openai';
+import OpenAI from 'openai';
 
-register({ projectName: "my-app" });
+register({ projectName: 'my-app' });
 
 const instrumentation = new OpenAIInstrumentation();
 instrumentation.manuallyInstrument(OpenAI);

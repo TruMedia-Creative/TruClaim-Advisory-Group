@@ -126,14 +126,17 @@ function BackgroundRays() {
 function WaterWaves() {
   const shouldReduceMotion = useReducedMotion();
   return (
-    <div aria-hidden="true" className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none overflow-hidden">
+    <div
+      aria-hidden="true"
+      className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none overflow-hidden"
+    >
       {/* Wave layer 1 - fastest */}
       <motion.svg
         viewBox="0 0 1200 120"
         preserveAspectRatio="none"
         className="absolute bottom-0 w-[200%] h-20"
         animate={shouldReduceMotion ? {} : { x: [0, -600] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
       >
         <path
           d="M0,60 Q150,20 300,60 T600,60 T900,60 T1200,60 L1200,120 L0,120 Z"
@@ -147,7 +150,7 @@ function WaterWaves() {
         preserveAspectRatio="none"
         className="absolute bottom-0 w-[200%] h-24"
         animate={shouldReduceMotion ? {} : { x: [-300, -900] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 12, repeat: Infinity, ease: 'linear' }}
       >
         <path
           d="M0,70 Q150,40 300,70 T600,70 T900,70 T1200,70 L1200,120 L0,120 Z"
@@ -161,7 +164,7 @@ function WaterWaves() {
         preserveAspectRatio="none"
         className="absolute bottom-0 w-[200%] h-28"
         animate={shouldReduceMotion ? {} : { x: [-150, -750] }}
-        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
       >
         <path
           d="M0,80 Q150,50 300,80 T600,80 T900,80 T1200,80 L1200,120 L0,120 Z"
@@ -183,13 +186,20 @@ export default function Hero() {
       aria-label="TruClaims Appraisal Group hero section"
     >
       <div className="absolute inset-0">
-        <img
-          src={`${import.meta.env.BASE_URL}hero-house.jpg`}
-          alt="Independent insurance appraiser reviewing a residential property exterior damaged by wind and hail"
-          className="w-full h-full object-cover"
-          loading="eager"
-          decoding="async"
-        />
+        <picture className="block h-full w-full">
+          <source srcSet={`${import.meta.env.BASE_URL}hero-house.webp`} type="image/webp" />
+          <img
+            src={`${import.meta.env.BASE_URL}hero-house.jpg`}
+            alt="Independent insurance appraiser reviewing a residential property exterior damaged by wind and hail"
+            className="w-full h-full object-cover"
+            width="1920"
+            height="1280"
+            sizes="100vw"
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
+          />
+        </picture>
       </div>
       {/* Gradient overlay — semi-transparent so the background image shows through */}
       <div className="absolute inset-0 bg-gradient-to-br from-ink-black-800/75 via-ink-black-900/80 to-ink-black-950/85" />
@@ -238,7 +248,8 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 0.8 }}
           >
-            Structured insurance appraisal and umpire services delivering fair, defensible settlements for homeowners, businesses, and carriers across Texas and Louisiana.
+            Structured insurance appraisal and umpire services delivering fair, defensible
+            settlements for homeowners, businesses, and carriers across Texas and Louisiana.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -249,14 +260,13 @@ export default function Hero() {
             transition={{ delay: 1, duration: 0.6 }}
           >
             <Link to="/contact" className="btn-secondary inline-flex items-center justify-center">
-              Request a Claim Review 
+              Request a Claim Review
             </Link>
             <Link to="/services" className="btn-primary inline-flex items-center justify-center">
               View Services
             </Link>
           </motion.div>
         </motion.div>
-
       </div>
 
       {/* Scroll indicator — positioned relative to section so it sits at the bottom of the viewport */}
@@ -266,7 +276,11 @@ export default function Hero() {
         animate={{ opacity: 1, y: [0, 10, 0] }}
         transition={{ delay: 1.5, y: { repeat: Infinity, duration: 2 } }}
       >
-        <button onClick={scrollToStats} aria-label="Scroll down" className="text-steel-blue-400 hover:text-steel-blue-300 transition-colors">
+        <button
+          onClick={scrollToStats}
+          aria-label="Scroll down"
+          className="text-steel-blue-400 hover:text-steel-blue-300 transition-colors"
+        >
           <ChevronDown className="w-8 h-8" />
         </button>
       </motion.div>

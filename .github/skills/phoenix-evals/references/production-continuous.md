@@ -4,14 +4,15 @@ Capability vs regression evals and the ongoing feedback loop.
 
 ## Two Types of Evals
 
-| Type | Pass Rate Target | Purpose | Update |
-| ---- | ---------------- | ------- | ------ |
-| **Capability** | 50-80% | Measure improvement | Add harder cases |
-| **Regression** | 95-100% | Catch breakage | Add fixed bugs |
+| Type           | Pass Rate Target | Purpose             | Update           |
+| -------------- | ---------------- | ------------------- | ---------------- |
+| **Capability** | 50-80%           | Measure improvement | Add harder cases |
+| **Regression** | 95-100%          | Catch breakage      | Add fixed bugs   |
 
 ## Saturation
 
 When capability evals hit >95% pass rate, they're saturated:
+
 1. Graduate passing cases to regression suite
 2. Add new challenging cases to capability suite
 
@@ -67,12 +68,12 @@ client.spans.log_span_annotations_dataframe(dataframe=annotations_df)
 ### TypeScript
 
 ```typescript
-import { getSpans } from "@arizeai/phoenix-client/spans";
-import { logSpanAnnotations } from "@arizeai/phoenix-client/spans";
+import { getSpans } from '@arizeai/phoenix-client/spans';
+import { logSpanAnnotations } from '@arizeai/phoenix-client/spans';
 
 // 1. Sample recent spans
 const { spans } = await getSpans({
-  project: { projectName: "my-app" },
+  project: { projectName: 'my-app' },
   startTime: new Date(Date.now() - 60 * 60 * 1000),
   parentId: null, // root spans only
   limit: 100,
@@ -82,7 +83,7 @@ const { spans } = await getSpans({
 const results = await Promise.all(
   spans.map(async (span) => ({
     spanId: span.context.span_id,
-    ...await runEvaluators(span, [qualityEval, safetyEval]),
+    ...(await runEvaluators(span, [qualityEval, safetyEval])),
   }))
 );
 
@@ -90,10 +91,10 @@ const results = await Promise.all(
 await logSpanAnnotations({
   spanAnnotations: results.map((r) => ({
     spanId: r.spanId,
-    name: "quality",
+    name: 'quality',
     score: r.qualityScore,
     label: r.qualityLabel,
-    annotatorKind: "LLM" as const,
+    annotatorKind: 'LLM' as const,
   })),
 });
 ```
@@ -113,10 +114,10 @@ traces = client.traces.get_traces(
 
 ```typescript
 // TypeScript: identify slow traces
-import { getTraces } from "@arizeai/phoenix-client/traces";
+import { getTraces } from '@arizeai/phoenix-client/traces';
 
 const { traces } = await getTraces({
-  project: { projectName: "my-app" },
+  project: { projectName: 'my-app' },
   startTime: new Date(Date.now() - 60 * 60 * 1000),
   limit: 50,
 });
@@ -124,11 +125,11 @@ const { traces } = await getTraces({
 
 ## Alerting
 
-| Condition | Severity | Action |
-| --------- | -------- | ------ |
-| Regression < 98% | Critical | Page oncall |
-| Capability declining | Warning | Slack notify |
-| Capability > 95% for 7d | Info | Schedule review |
+| Condition               | Severity | Action          |
+| ----------------------- | -------- | --------------- |
+| Regression < 98%        | Critical | Page oncall     |
+| Capability declining    | Warning  | Slack notify    |
+| Capability > 95% for 7d | Info     | Schedule review |
 
 ## Key Principles
 

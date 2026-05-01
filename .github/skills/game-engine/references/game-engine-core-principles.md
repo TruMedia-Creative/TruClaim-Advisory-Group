@@ -11,6 +11,7 @@ Source: https://www.gamedev.net/articles/programming/general-and-gameplay-progra
 A game engine is a reusable software framework that abstracts the common systems needed to build games. Rather than writing rendering, physics, input, and audio code from scratch for every project, a well-designed engine provides these as modular, configurable subsystems.
 
 Key motivations:
+
 - **Reusability** -- Use the same codebase across multiple game projects.
 - **Separation of engine code from game code** -- Engine developers and game designers can work independently.
 - **Maintainability** -- Well-structured code is easier to debug, extend, and optimize.
@@ -25,6 +26,7 @@ Key motivations:
 Every major system in the engine should be an independent module with a well-defined interface. Modules should communicate through clean APIs rather than reaching into each other's internals.
 
 **Why it matters:**
+
 - Swap implementations without affecting other systems (e.g., replace OpenGL renderer with Vulkan).
 - Test individual systems in isolation.
 - Allow teams to work on different modules in parallel.
@@ -49,6 +51,7 @@ engine/
 Each system should have a single, clearly defined responsibility. Avoid mixing rendering logic with physics, or input handling with game state management.
 
 **Practical guidelines:**
+
 - The renderer should not know about game mechanics.
 - The physics engine should not know how entities are rendered.
 - Input processing should translate raw device events into abstract actions that game code can consume.
@@ -59,6 +62,7 @@ Each system should have a single, clearly defined responsibility. Avoid mixing r
 Wherever possible, behavior should be controlled by data rather than hard-coded logic. This allows designers and artists to modify game behavior without recompiling code.
 
 **Examples of data-driven approaches:**
+
 - Level layouts defined in data files (JSON, XML, binary) rather than code.
 - Entity properties and behaviors configured through component data.
 - Shader parameters exposed as material properties editable in tools.
@@ -113,6 +117,7 @@ GameObject
 ```
 
 Problems with this approach:
+
 - Adding a new entity type that combines traits from multiple branches requires restructuring the hierarchy or using multiple inheritance.
 - Deep hierarchies are fragile; changes to base classes ripple through all descendants.
 - Classes accumulate unused behavior over time.
@@ -126,7 +131,7 @@ const player = world.createEntity();
 // Attach components to define what it is
 world.addComponent(player, new Position(100, 200));
 world.addComponent(player, new Velocity(0, 0));
-world.addComponent(player, new Sprite("player.png"));
+world.addComponent(player, new Sprite('player.png'));
 world.addComponent(player, new Health(100));
 world.addComponent(player, new PlayerInput());
 
@@ -134,9 +139,9 @@ world.addComponent(player, new PlayerInput());
 const flyingEnemy = world.createEntity();
 world.addComponent(flyingEnemy, new Position(400, 50));
 world.addComponent(flyingEnemy, new Velocity(0, 0));
-world.addComponent(flyingEnemy, new Sprite("bat.png"));
+world.addComponent(flyingEnemy, new Sprite('bat.png'));
 world.addComponent(flyingEnemy, new Health(30));
-world.addComponent(flyingEnemy, new AIBehavior("patrol_fly"));
+world.addComponent(flyingEnemy, new AIBehavior('patrol_fly'));
 world.addComponent(flyingEnemy, new Flying());
 ```
 
@@ -213,6 +218,7 @@ public:
 The resource manager handles loading, caching, and lifetime management of game assets.
 
 **Key responsibilities:**
+
 - **Asynchronous loading** -- Load assets in background threads to avoid stalling the game loop.
 - **Reference counting** -- Track how many systems use an asset; unload when no longer referenced.
 - **Caching** -- Keep recently used assets in memory to avoid redundant disk reads.
@@ -238,7 +244,7 @@ class ResourceManager {
     }
 
     // Start async load
-    const promise = this._loadFromDisk(path).then(resource => {
+    const promise = this._loadFromDisk(path).then((resource) => {
       this.cache.set(path, resource);
       this.loading.delete(path);
       return resource;
@@ -393,12 +399,12 @@ class InputManager {
 
 // Usage
 const input = new InputManager();
-input.bind("Jump", "Space");
-input.bind("MoveLeft", "KeyA");
-input.bind("MoveRight", "KeyD");
+input.bind('Jump', 'Space');
+input.bind('MoveLeft', 'KeyA');
+input.bind('MoveRight', 'KeyD');
 
 // In game update:
-if (input.isActionActive("Jump")) {
+if (input.isActionActive('Jump')) {
   player.jump();
 }
 ```
@@ -443,17 +449,17 @@ class EventBus {
 // Usage
 const events = new EventBus();
 
-events.on("collision", (data) => {
+events.on('collision', (data) => {
   console.log(`${data.entityA} collided with ${data.entityB}`);
 });
 
-events.on("entityDestroyed", (data) => {
+events.on('entityDestroyed', (data) => {
   spawnExplosion(data.position);
   addScore(data.points);
 });
 
 // Emit from physics system
-events.emit("collision", { entityA: player, entityB: wall });
+events.emit('collision', { entityA: player, entityB: wall });
 ```
 
 **Deferred events:**
@@ -534,21 +540,27 @@ A well-designed engine abstracts platform-specific code behind a uniform interfa
 
 **Areas requiring abstraction:**
 
-| Concern | Examples |
-|---|---|
-| Windowing | Win32, X11, Cocoa, SDL, GLFW |
-| Graphics API | OpenGL, Vulkan, DirectX, Metal, WebGL |
-| File I/O | POSIX, Win32, virtual file systems |
-| Threading | pthreads, Win32 threads, Web Workers |
-| Audio output | WASAPI, CoreAudio, ALSA, Web Audio |
+| Concern       | Examples                                |
+| ------------- | --------------------------------------- |
+| Windowing     | Win32, X11, Cocoa, SDL, GLFW            |
+| Graphics API  | OpenGL, Vulkan, DirectX, Metal, WebGL   |
+| File I/O      | POSIX, Win32, virtual file systems      |
+| Threading     | pthreads, Win32 threads, Web Workers    |
+| Audio output  | WASAPI, CoreAudio, ALSA, Web Audio      |
 | Input devices | DirectInput, XInput, evdev, Gamepad API |
 
 ```javascript
 // Abstract file system interface
 class FileSystem {
-  async readFile(path) { throw new Error("Not implemented"); }
-  async writeFile(path, data) { throw new Error("Not implemented"); }
-  async exists(path) { throw new Error("Not implemented"); }
+  async readFile(path) {
+    throw new Error('Not implemented');
+  }
+  async writeFile(path, data) {
+    throw new Error('Not implemented');
+  }
+  async exists(path) {
+    throw new Error('Not implemented');
+  }
 }
 
 // Web implementation
@@ -562,7 +574,7 @@ class WebFileSystem extends FileSystem {
 // Node.js implementation
 class NodeFileSystem extends FileSystem {
   async readFile(path) {
-    const fs = require("fs").promises;
+    const fs = require('fs').promises;
     return fs.readFile(path);
   }
 }
@@ -592,7 +604,7 @@ Engine subsystems must be initialized in dependency order and shut down in rever
 class Engine {
   async initialize() {
     this.logger = new Logger();
-    this.config = new Config("engine.json");
+    this.config = new Config('engine.json');
     this.platform = new Platform();
     await this.platform.createWindow(this.config.window);
 
@@ -604,7 +616,7 @@ class Engine {
     this.events = new EventBus();
     this.scenes = new SceneManager();
 
-    this.logger.info("Engine initialized");
+    this.logger.info('Engine initialized');
   }
 
   shutdown() {
@@ -615,7 +627,7 @@ class Engine {
     this.audio.cleanup();
     this.renderer.cleanup();
     this.platform.cleanup();
-    this.logger.info("Engine shutdown complete");
+    this.logger.info('Engine shutdown complete');
   }
 
   run() {
@@ -659,13 +671,13 @@ Organize data by how it is accessed rather than by object-oriented abstractions.
 ```javascript
 // Array of Structures (cache-unfriendly for position-only iteration)
 const entities = [
-  { position: {x: 0, y: 0}, sprite: "hero.png", health: 100 },
-  { position: {x: 5, y: 3}, sprite: "bat.png", health: 30 },
+  { position: { x: 0, y: 0 }, sprite: 'hero.png', health: 100 },
+  { position: { x: 5, y: 3 }, sprite: 'bat.png', health: 30 },
 ];
 
 // Structure of Arrays (cache-friendly for position-only iteration)
 const positions = { x: [0, 5], y: [0, 3] };
-const sprites = ["hero.png", "bat.png"];
+const sprites = ['hero.png', 'bat.png'];
 const healths = [100, 30];
 ```
 
@@ -681,15 +693,15 @@ Group similar operations together to reduce overhead from context switching, dra
 
 ## Summary of Key Principles
 
-| Principle | Description |
-|---|---|
-| Modularity | Independent subsystems with clean interfaces |
-| Separation of concerns | Each system has a single responsibility |
-| Data-driven design | Behavior controlled by data, not hard-coded logic |
-| Composition over inheritance | ECS pattern for flexible entity construction |
-| Minimal dependencies | Clean, hierarchical dependency graph |
-| Platform abstraction | Uniform interfaces over platform-specific code |
-| Fixed timestep physics | Deterministic simulation independent of frame rate |
-| Event-driven communication | Decoupled interaction through publish-subscribe |
-| Data-oriented performance | Optimize memory layout for access patterns |
-| Measure before optimizing | Profile to identify actual bottlenecks |
+| Principle                    | Description                                        |
+| ---------------------------- | -------------------------------------------------- |
+| Modularity                   | Independent subsystems with clean interfaces       |
+| Separation of concerns       | Each system has a single responsibility            |
+| Data-driven design           | Behavior controlled by data, not hard-coded logic  |
+| Composition over inheritance | ECS pattern for flexible entity construction       |
+| Minimal dependencies         | Clean, hierarchical dependency graph               |
+| Platform abstraction         | Uniform interfaces over platform-specific code     |
+| Fixed timestep physics       | Deterministic simulation independent of frame rate |
+| Event-driven communication   | Decoupled interaction through publish-subscribe    |
+| Data-oriented performance    | Optimize memory layout for access patterns         |
+| Measure before optimizing    | Profile to identify actual bottlenecks             |

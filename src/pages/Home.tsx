@@ -196,7 +196,7 @@ const Home = () => {
             <p className="text-gray-600 mb-10 leading-relaxed">
               You deserve a process that is structured, professional, and fair.
             </p>
-             <h2 className="section-title mb-4">A Structured Path to Fair Resolution</h2>
+            <h2 className="section-title mb-4">A Structured Path to Fair Resolution</h2>
             <p className="text-gray-600 text-lg leading-relaxed mb-6">
               TruClaims Appraisal Group provides neutral, integrity-driven insurance appraisal and
               umpire services across Texas and Louisiana.
@@ -218,7 +218,7 @@ const Home = () => {
           </motion.div>
         </div>
       </section>
-      
+
       {/* Service Area Section */}
       <ServiceAreaSection />
       {/* Who We Serve */}
@@ -312,8 +312,8 @@ const Home = () => {
             <Quote className="mx-auto text-steel-blue-500 mb-4" size={36} />
             <h2 className="section-title mb-4">What Clients Are Saying</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Independent, evidence-based appraisals that hold up — for policyholders, carriers,
-              and attorneys across Texas and Louisiana.
+              Independent, evidence-based appraisals that hold up — for policyholders, carriers, and
+              attorneys across Texas and Louisiana.
             </p>
           </motion.div>
 
@@ -466,19 +466,14 @@ const Home = () => {
               Ready to Get Started?
             </h2>
             <p className="text-ink-black-200 text-lg mb-8 max-w-xl mx-auto">
-              If you are facing a dispute over the amount of loss in Texas or Louisiana, submit your documentation for an independent appraisal review.
+              If you are facing a dispute over the amount of loss in Texas or Louisiana, submit your
+              documentation for an independent appraisal review.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/process"
-                className="btn-outline-light"
-              >
+              <Link to="/process" className="btn-outline-light">
                 View the Appraisal Process
               </Link>
-              <Link
-                to="/contact"
-                className="btn-primary px-8 py-4 text-lg"
-              >
+              <Link to="/contact" className="btn-primary px-8 py-4 text-lg">
                 Request an Appraisal Review
               </Link>
             </div>

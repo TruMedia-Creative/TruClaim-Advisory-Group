@@ -25,7 +25,7 @@ const steps = [
     icon: Search,
     title: 'Initial Scope Review',
     description:
-      "We review the submitted documentation, evaluate the full scope of loss, and identify any deficiencies in pricing, missed line items, or scope inconsistencies.",
+      'We review the submitted documentation, evaluate the full scope of loss, and identify any deficiencies in pricing, missed line items, or scope inconsistencies.',
   },
   {
     number: '03',
@@ -79,7 +79,8 @@ interface FileFields {
 const inputClass =
   'w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-ink-black-500 focus:border-transparent bg-white text-sm';
 const labelClass = 'block text-sm font-medium text-gray-700 mb-1';
-const sectionHeadingClass = 'text-sm font-bold text-ink-black-800 uppercase tracking-wider mb-4 pb-2 border-b border-gray-200';
+const sectionHeadingClass =
+  'text-sm font-bold text-ink-black-800 uppercase tracking-wider mb-4 pb-2 border-b border-gray-200';
 
 const Contact = () => {
   const [formData, setFormData] = useState<FormFields>({
@@ -115,7 +116,7 @@ const Contact = () => {
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -201,7 +202,12 @@ const Contact = () => {
         inspectionAvailability: '',
         referralSource: '',
       });
-      setFileData({ carrierEstimate: null, settlementLetter: null, damagePhotos: null, contractorEstimate: null });
+      setFileData({
+        carrierEstimate: null,
+        settlementLetter: null,
+        damagePhotos: null,
+        contractorEstimate: null,
+      });
       // File inputs cannot be reset via state; clear them via the DOM
       document.querySelectorAll<HTMLInputElement>('input[type="file"]').forEach((input) => {
         input.value = '';
@@ -234,9 +240,13 @@ const Contact = () => {
       {/* Header */}
       <section className="bg-gradient-to-br from-ink-black-800 via-ink-black-900 to-ink-black-950 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">Request an Insurance Appraisal Review</h1>
+          <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">
+            Request an Insurance Appraisal Review
+          </h1>
           <p className="text-ink-black-200 text-lg max-w-2xl">
-            If you are facing an amount of loss dispute in Texas or Louisiana, submit your documentation below for an independent appraisal review. Please include your carrier estimate, settlement summary, contractor estimate (if applicable), and claim photos.
+            If you are facing an amount of loss dispute in Texas or Louisiana, submit your
+            documentation below for an independent appraisal review. Please include your carrier
+            estimate, settlement summary, contractor estimate (if applicable), and claim photos.
           </p>
         </div>
       </section>
@@ -244,13 +254,8 @@ const Contact = () => {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-[1fr_1.6fr] gap-12 items-start">
-
             {/* Left — 4-Step Process */}
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-            >
+            <motion.div variants={containerVariants} initial="hidden" animate="visible">
               <motion.h2
                 variants={itemVariants}
                 className="text-2xl font-bold text-ink-black-800 mb-2"
@@ -269,9 +274,7 @@ const Contact = () => {
                       <div className="w-11 h-11 rounded-full bg-ink-black-800 text-white flex items-center justify-center flex-shrink-0 text-xs font-bold">
                         {number}
                       </div>
-                      {number !== '04' && (
-                        <div className="w-px flex-1 bg-ink-black-200 mt-2" />
-                      )}
+                      {number !== '04' && <div className="w-px flex-1 bg-ink-black-200 mt-2" />}
                     </div>
 
                     {/* Content */}
@@ -294,17 +297,20 @@ const Contact = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
             >
               <div className="bg-white rounded-2xl shadow-lg p-8">
-                <h2 className="text-2xl font-bold text-ink-black-800 mb-6">Request Appraisal Services</h2>
+                <h2 className="text-2xl font-bold text-ink-black-800 mb-6">
+                  Request Appraisal Services
+                </h2>
 
                 <form onSubmit={handleSubmit} className="space-y-8">
-
                   {/* Section 1 — Contact Information */}
                   <div>
                     <h3 className={sectionHeadingClass}>Contact Information</h3>
                     <div className="space-y-4">
                       <div className="grid sm:grid-cols-2 gap-4">
                         <div>
-                          <label htmlFor="name" className={labelClass}>Full Name *</label>
+                          <label htmlFor="name" className={labelClass}>
+                            Full Name *
+                          </label>
                           <input
                             id="name"
                             type="text"
@@ -318,7 +324,9 @@ const Contact = () => {
                           />
                         </div>
                         <div>
-                          <label htmlFor="phone" className={labelClass}>Phone Number *</label>
+                          <label htmlFor="phone" className={labelClass}>
+                            Phone Number *
+                          </label>
                           <input
                             id="phone"
                             type="tel"
@@ -333,7 +341,9 @@ const Contact = () => {
                         </div>
                       </div>
                       <div>
-                        <label htmlFor="email" className={labelClass}>Email Address *</label>
+                        <label htmlFor="email" className={labelClass}>
+                          Email Address *
+                        </label>
                         <input
                           id="email"
                           type="email"
@@ -347,7 +357,9 @@ const Contact = () => {
                         />
                       </div>
                       <div>
-                        <label htmlFor="propertyAddress" className={labelClass}>Property Address (Loss Location) *</label>
+                        <label htmlFor="propertyAddress" className={labelClass}>
+                          Property Address (Loss Location) *
+                        </label>
                         <input
                           id="propertyAddress"
                           type="text"
@@ -361,7 +373,9 @@ const Contact = () => {
                         />
                       </div>
                       <div>
-                        <label htmlFor="state" className={labelClass}>State *</label>
+                        <label htmlFor="state" className={labelClass}>
+                          State *
+                        </label>
                         <select
                           id="state"
                           name="state"
@@ -371,7 +385,9 @@ const Contact = () => {
                           onChange={handleChange}
                           className={inputClass}
                         >
-                          <option value="" disabled>Select state…</option>
+                          <option value="" disabled>
+                            Select state…
+                          </option>
                           <option value="AL">Alabama</option>
                           <option value="AK">Alaska</option>
                           <option value="AZ">Arizona</option>
@@ -434,7 +450,9 @@ const Contact = () => {
                     <div className="space-y-4">
                       <div className="grid sm:grid-cols-2 gap-4">
                         <div>
-                          <label htmlFor="insuranceCompany" className={labelClass}>Insurance Company *</label>
+                          <label htmlFor="insuranceCompany" className={labelClass}>
+                            Insurance Company *
+                          </label>
                           <input
                             id="insuranceCompany"
                             type="text"
@@ -448,7 +466,9 @@ const Contact = () => {
                           />
                         </div>
                         <div>
-                          <label htmlFor="claimNumber" className={labelClass}>Claim Number *</label>
+                          <label htmlFor="claimNumber" className={labelClass}>
+                            Claim Number *
+                          </label>
                           <input
                             id="claimNumber"
                             type="text"
@@ -464,7 +484,9 @@ const Contact = () => {
                       </div>
                       <div className="grid sm:grid-cols-2 gap-4">
                         <div>
-                          <label htmlFor="dateOfLoss" className={labelClass}>Date of Loss *</label>
+                          <label htmlFor="dateOfLoss" className={labelClass}>
+                            Date of Loss *
+                          </label>
                           <input
                             id="dateOfLoss"
                             type="date"
@@ -477,7 +499,9 @@ const Contact = () => {
                           />
                         </div>
                         <div>
-                          <label htmlFor="typeOfLoss" className={labelClass}>Type of Loss *</label>
+                          <label htmlFor="typeOfLoss" className={labelClass}>
+                            Type of Loss *
+                          </label>
                           <select
                             id="typeOfLoss"
                             name="typeOfLoss"
@@ -498,7 +522,9 @@ const Contact = () => {
                       </div>
                       <div className="grid sm:grid-cols-2 gap-4">
                         <div>
-                          <label htmlFor="carrierIssuedPayment" className={labelClass}>Has the carrier issued a payment? *</label>
+                          <label htmlFor="carrierIssuedPayment" className={labelClass}>
+                            Has the carrier issued a payment? *
+                          </label>
                           <select
                             id="carrierIssuedPayment"
                             name="carrierIssuedPayment"
@@ -514,7 +540,9 @@ const Contact = () => {
                           </select>
                         </div>
                         <div>
-                          <label htmlFor="settlementAmount" className={labelClass}>Total settlement amount received</label>
+                          <label htmlFor="settlementAmount" className={labelClass}>
+                            Total settlement amount received
+                          </label>
                           <input
                             id="settlementAmount"
                             type="text"
@@ -536,12 +564,38 @@ const Contact = () => {
                       PDF, JPG, or PNG accepted. Max 10 MB per file.
                     </p>
                     <div className="space-y-4">
-                      {([
-                        { name: 'carrierEstimate', label: 'Carrier Estimate (PDF) *', accept: '.pdf', required: true, multiple: false },
-                        { name: 'settlementLetter', label: 'Settlement Letter (if separate)', accept: '.pdf,.jpg,.jpeg,.png', required: false, multiple: false },
-                        { name: 'damagePhotos', label: 'Photos of the Damage *', accept: '.jpg,.jpeg,.png', required: true, multiple: true },
-                        { name: 'contractorEstimate', label: 'Contractor Estimate (if available)', accept: '.pdf,.jpg,.jpeg,.png', required: false, multiple: false },
-                      ] as const).map(({ name, label, accept, required, multiple }) => (
+                      {(
+                        [
+                          {
+                            name: 'carrierEstimate',
+                            label: 'Carrier Estimate (PDF) *',
+                            accept: '.pdf',
+                            required: true,
+                            multiple: false,
+                          },
+                          {
+                            name: 'settlementLetter',
+                            label: 'Settlement Letter (if separate)',
+                            accept: '.pdf,.jpg,.jpeg,.png',
+                            required: false,
+                            multiple: false,
+                          },
+                          {
+                            name: 'damagePhotos',
+                            label: 'Photos of the Damage *',
+                            accept: '.jpg,.jpeg,.png',
+                            required: true,
+                            multiple: true,
+                          },
+                          {
+                            name: 'contractorEstimate',
+                            label: 'Contractor Estimate (if available)',
+                            accept: '.pdf,.jpg,.jpeg,.png',
+                            required: false,
+                            multiple: false,
+                          },
+                        ] as const
+                      ).map(({ name, label, accept, required, multiple }) => (
                         <div key={name}>
                           <label className={labelClass}>{label}</label>
                           <input
@@ -557,7 +611,10 @@ const Contact = () => {
                         </div>
                       ))}
                       {fileError && (
-                        <div role="alert" className="bg-red-50 border border-red-200 text-red-800 rounded-lg px-4 py-3 text-sm">
+                        <div
+                          role="alert"
+                          className="bg-red-50 border border-red-200 text-red-800 rounded-lg px-4 py-3 text-sm"
+                        >
                           {fileError}
                         </div>
                       )}
@@ -569,7 +626,9 @@ const Contact = () => {
                     <h3 className={sectionHeadingClass}>Qualification Questions</h3>
                     <div className="space-y-4">
                       <div>
-                        <label htmlFor="whatWasMissed" className={labelClass}>Describe the amount of loss dispute or scope discrepancy *</label>
+                        <label htmlFor="whatWasMissed" className={labelClass}>
+                          Describe the amount of loss dispute or scope discrepancy *
+                        </label>
                         <textarea
                           id="whatWasMissed"
                           name="whatWasMissed"
@@ -584,7 +643,9 @@ const Contact = () => {
                       </div>
                       <div className="grid sm:grid-cols-2 gap-4">
                         <div>
-                          <label htmlFor="appraisalInvoked" className={labelClass}>Has appraisal been formally invoked? *</label>
+                          <label htmlFor="appraisalInvoked" className={labelClass}>
+                            Has appraisal been formally invoked? *
+                          </label>
                           <select
                             id="appraisalInvoked"
                             name="appraisalInvoked"
@@ -601,7 +662,9 @@ const Contact = () => {
                           </select>
                         </div>
                         <div>
-                          <label htmlFor="hasRepresentation" className={labelClass}>Represented by a public adjuster or attorney? *</label>
+                          <label htmlFor="hasRepresentation" className={labelClass}>
+                            Represented by a public adjuster or attorney? *
+                          </label>
                           <select
                             id="hasRepresentation"
                             name="hasRepresentation"
@@ -622,10 +685,14 @@ const Contact = () => {
 
                   {/* Optional Fields */}
                   <div>
-                    <h3 className={`${sectionHeadingClass} text-gray-400`}>Optional — Additional Details</h3>
+                    <h3 className={`${sectionHeadingClass} text-gray-400`}>
+                      Optional — Additional Details
+                    </h3>
                     <div className="space-y-4">
                       <div>
-                        <label htmlFor="deadline" className={labelClass}>Deadline or time sensitivity</label>
+                        <label htmlFor="deadline" className={labelClass}>
+                          Deadline or time sensitivity
+                        </label>
                         <input
                           id="deadline"
                           type="text"
@@ -637,7 +704,9 @@ const Contact = () => {
                         />
                       </div>
                       <div>
-                        <label htmlFor="inspectionAvailability" className={labelClass}>Preferred inspection availability</label>
+                        <label htmlFor="inspectionAvailability" className={labelClass}>
+                          Preferred inspection availability
+                        </label>
                         <input
                           id="inspectionAvailability"
                           type="text"
@@ -649,7 +718,9 @@ const Contact = () => {
                         />
                       </div>
                       <div>
-                        <label htmlFor="referralSource" className={labelClass}>How did you hear about us?</label>
+                        <label htmlFor="referralSource" className={labelClass}>
+                          How did you hear about us?
+                        </label>
                         <input
                           id="referralSource"
                           type="text"
@@ -664,16 +735,23 @@ const Contact = () => {
                   </div>
 
                   {submitSuccess && (
-                    <div role="alert" className="flex items-center gap-3 bg-green-50 border border-green-200 text-green-800 rounded-lg px-4 py-3">
+                    <div
+                      role="alert"
+                      className="flex items-center gap-3 bg-green-50 border border-green-200 text-green-800 rounded-lg px-4 py-3"
+                    >
                       <CheckCircle size={18} className="flex-shrink-0" />
                       <span className="text-sm font-medium">
-                        Thank you for your inquiry. We will review your submission and be in touch shortly.
+                        Thank you for your inquiry. We will review your submission and be in touch
+                        shortly.
                       </span>
                     </div>
                   )}
 
                   {submitError && (
-                    <div role="alert" className="bg-red-50 border border-red-200 text-red-800 rounded-lg px-4 py-3 text-sm">
+                    <div
+                      role="alert"
+                      className="bg-red-50 border border-red-200 text-red-800 rounded-lg px-4 py-3 text-sm"
+                    >
                       {submitError}
                     </div>
                   )}
@@ -688,7 +766,6 @@ const Contact = () => {
                 </form>
               </div>
             </motion.div>
-
           </div>
         </div>
       </section>

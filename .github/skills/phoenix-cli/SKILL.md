@@ -5,7 +5,7 @@ license: Apache-2.0
 compatibility: Requires Node.js (for npx) or global install of @arizeai/phoenix-cli. Optionally requires jq for JSON processing.
 metadata:
   author: arize-ai
-  version: "2.0.0"
+  version: '2.0.0'
 ---
 
 # Phoenix CLI

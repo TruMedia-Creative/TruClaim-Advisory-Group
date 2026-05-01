@@ -4,10 +4,10 @@ Setup Phoenix tracing in TypeScript/JavaScript with `@arizeai/phoenix-otel`.
 
 ## Metadata
 
-| Attribute | Value |
-|-----------|-------|
-| Priority | Critical - required for all tracing |
-| Setup Time | <5 min |
+| Attribute  | Value                               |
+| ---------- | ----------------------------------- |
+| Priority   | Critical - required for all tracing |
+| Setup Time | <5 min                              |
 
 ## Quick Start
 
@@ -16,8 +16,8 @@ npm install @arizeai/phoenix-otel
 ```
 
 ```typescript
-import { register } from "@arizeai/phoenix-otel";
-register({ projectName: "my-app" });
+import { register } from '@arizeai/phoenix-otel';
+register({ projectName: 'my-app' });
 ```
 
 Connects to `http://localhost:6006` by default.
@@ -25,13 +25,13 @@ Connects to `http://localhost:6006` by default.
 ## Configuration
 
 ```typescript
-import { register } from "@arizeai/phoenix-otel";
+import { register } from '@arizeai/phoenix-otel';
 
 register({
-  projectName: "my-app",
-  url: "http://localhost:6006",
+  projectName: 'my-app',
+  url: 'http://localhost:6006',
   apiKey: process.env.PHOENIX_API_KEY,
-  batch: true
+  batch: true,
 });
 ```
 
@@ -48,20 +48,20 @@ export PHOENIX_PROJECT_NAME="my-app"
 **CommonJS (automatic):**
 
 ```javascript
-const { register } = require("@arizeai/phoenix-otel");
-register({ projectName: "my-app" });
+const { register } = require('@arizeai/phoenix-otel');
+register({ projectName: 'my-app' });
 
-const OpenAI = require("openai");
+const OpenAI = require('openai');
 ```
 
 **ESM (manual instrumentation required):**
 
 ```typescript
-import { register, registerInstrumentations } from "@arizeai/phoenix-otel";
-import { OpenAIInstrumentation } from "@arizeai/openinference-instrumentation-openai";
-import OpenAI from "openai";
+import { register, registerInstrumentations } from '@arizeai/phoenix-otel';
+import { OpenAIInstrumentation } from '@arizeai/openinference-instrumentation-openai';
+import OpenAI from 'openai';
 
-register({ projectName: "my-app" });
+register({ projectName: 'my-app' });
 
 const instrumentation = new OpenAIInstrumentation();
 instrumentation.manuallyInstrument(OpenAI);
@@ -77,9 +77,9 @@ registerInstrumentations({ instrumentations: [instrumentation] });
 ```typescript
 // instrumentation.ts
 export async function register() {
-  if (process.env.NEXT_RUNTIME === "nodejs") {
-    const { register } = await import("@arizeai/phoenix-otel");
-    register({ projectName: "my-nextjs-app" });
+  if (process.env.NEXT_RUNTIME === 'nodejs') {
+    const { register } = await import('@arizeai/phoenix-otel');
+    register({ projectName: 'my-nextjs-app' });
   }
 }
 ```
@@ -87,9 +87,9 @@ export async function register() {
 **Express.js:**
 
 ```typescript
-import { register } from "@arizeai/phoenix-otel";
+import { register } from '@arizeai/phoenix-otel';
 
-register({ projectName: "my-express-app" });
+register({ projectName: 'my-express-app' });
 
 const app = express();
 ```
@@ -102,18 +102,18 @@ const app = express();
 
 ```typescript
 const provider = register({
-  projectName: "my-app",
+  projectName: 'my-app',
   batch: true,
 });
 
 async function main() {
   await doWork();
-  await provider.shutdown();  // Flush spans before exit
+  await provider.shutdown(); // Flush spans before exit
 }
 
 main().catch(async (error) => {
   console.error(error);
-  await provider.shutdown();  // Flush on error too
+  await provider.shutdown(); // Flush on error too
   process.exit(1);
 });
 ```
@@ -123,7 +123,7 @@ main().catch(async (error) => {
 ```typescript
 // Use batch: false for immediate export (no shutdown needed)
 register({
-  projectName: "my-app",
+  projectName: 'my-app',
   batch: false,
 });
 ```
@@ -139,10 +139,10 @@ For production patterns including graceful termination, see `production-typescri
 **Enable diagnostic logging:**
 
 ```typescript
-import { DiagLogLevel, register } from "@arizeai/phoenix-otel";
+import { DiagLogLevel, register } from '@arizeai/phoenix-otel';
 
 register({
-  projectName: "my-app",
+  projectName: 'my-app',
   diagLogLevel: DiagLogLevel.DEBUG,
 });
 ```
@@ -150,16 +150,19 @@ register({
 ## Troubleshooting
 
 **No traces:**
+
 - Verify `PHOENIX_COLLECTOR_ENDPOINT` is correct
 - Set `PHOENIX_API_KEY` for Phoenix Cloud
 - For ESM: Ensure `manuallyInstrument()` is called
 - **With `batch: true`:** Call `provider.shutdown()` before exit to flush queued spans (see Flushing Spans section)
 
 **Traces missing:**
+
 - With `batch: true`: Call `await provider.shutdown()` before process exit to flush queued spans
 - Alternative: Set `batch: false` for immediate export (no shutdown needed)
 
 **Missing attributes:**
+
 - Check instrumentation is registered (ESM requires manual setup)
 - See `instrumentation-auto-typescript.md`
 

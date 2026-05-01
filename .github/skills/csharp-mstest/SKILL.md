@@ -423,6 +423,7 @@ public void BugFix_Issue42_IsResolved() { }
 ```
 
 Work item associations appear in test results and can be used for:
+
 - Tracing test coverage to requirements
 - Linking bug fixes to regression tests
 - Generating traceability reports in CI/CD pipelines

@@ -1,16 +1,25 @@
+import { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 import ScrollToTop from './components/layout/ScrollToTop';
 import Home from './pages/Home';
-import Services from './pages/Services';
-import About from './pages/About';
-import Contact from './pages/Contact';
-import Process from './pages/Process';
-import Texas from './pages/Texas';
-import Louisiana from './pages/Louisiana';
-import NotFound from './pages/NotFound';
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/react";
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
+
+const Services = lazy(() => import('./pages/Services'));
+const About = lazy(() => import('./pages/About'));
+const Contact = lazy(() => import('./pages/Contact'));
+const Process = lazy(() => import('./pages/Process'));
+const Texas = lazy(() => import('./pages/Texas'));
+const Louisiana = lazy(() => import('./pages/Louisiana'));
+const NotFound = lazy(() => import('./pages/NotFound'));
+
+const RouteFallback = () => <div className="min-h-[40vh] bg-parchment-50" aria-hidden="true" />;
+
+const withSuspense = (element: React.ReactNode) => (
+  <Suspense fallback={<RouteFallback />}>{element}</Suspense>
+);
+
 function App() {
   return (
     <>
@@ -25,13 +34,13 @@ function App() {
                   <Route path="/" element={<Home />} />
                   <Route path="/index" element={<Home />} />
                   <Route path="/index.html" element={<Home />} />
-                  <Route path="/services" element={<Services />} />
-                  <Route path="/process" element={<Process />} />
-                  <Route path="/texas" element={<Texas />} />
-                  <Route path="/louisiana" element={<Louisiana />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="*" element={<NotFound />} />
+                  <Route path="/services" element={withSuspense(<Services />)} />
+                  <Route path="/process" element={withSuspense(<Process />)} />
+                  <Route path="/texas" element={withSuspense(<Texas />)} />
+                  <Route path="/louisiana" element={withSuspense(<Louisiana />)} />
+                  <Route path="/about" element={withSuspense(<About />)} />
+                  <Route path="/contact" element={withSuspense(<Contact />)} />
+                  <Route path="*" element={withSuspense(<NotFound />)} />
                 </Routes>
               </Layout>
             }
