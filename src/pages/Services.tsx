@@ -165,7 +165,7 @@ export default function Services() {
                     <service.icon className="text-steel-blue-400" size={26} />
                   </div>
                   <div>
-                    <h2 className="text-xl font-bold text-ink-black-800">{service.title}</h2>
+                    <h3 className="text-xl font-bold text-ink-black-800">{service.title}</h3>
                   </div>
                 </div>
                 <p className="text-gray-600 mb-5 leading-relaxed">{service.description}</p>
