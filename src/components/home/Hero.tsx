@@ -263,7 +263,7 @@ export default function Hero() {
         animate={{ opacity: 1, y: [0, 10, 0] }}
         transition={{ delay: 1.5, y: { repeat: Infinity, duration: 2 } }}
       >
-        <button onClick={scrollToStats} className="text-steel-blue-400 hover:text-steel-blue-300 transition-colors">
+        <button onClick={scrollToStats} aria-label="Scroll down" className="text-steel-blue-400 hover:text-steel-blue-300 transition-colors">
           <ChevronDown className="w-8 h-8" />
         </button>
       </motion.div>

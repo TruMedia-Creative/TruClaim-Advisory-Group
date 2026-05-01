@@ -536,7 +536,7 @@ const Contact = () => {
                         </div>
                       ))}
                       {fileError && (
-                        <div className="bg-red-50 border border-red-200 text-red-800 rounded-lg px-4 py-3 text-sm">
+                        <div role="alert" className="bg-red-50 border border-red-200 text-red-800 rounded-lg px-4 py-3 text-sm">
                           {fileError}
                         </div>
                       )}
@@ -548,10 +548,12 @@ const Contact = () => {
                     <h3 className={sectionHeadingClass}>Qualification Questions</h3>
                     <div className="space-y-4">
                       <div>
-                        <label className={labelClass}>Describe the amount of loss dispute or scope discrepancy *</label>
+                        <label htmlFor="whatWasMissed" className={labelClass}>Describe the amount of loss dispute or scope discrepancy *</label>
                         <textarea
+                          id="whatWasMissed"
                           name="whatWasMissed"
                           required
+                          aria-required="true"
                           rows={3}
                           value={formData.whatWasMissed}
                           onChange={handleChange}
@@ -598,8 +600,9 @@ const Contact = () => {
                     <h3 className={`${sectionHeadingClass} text-gray-400`}>Optional — Additional Details</h3>
                     <div className="space-y-4">
                       <div>
-                        <label className={labelClass}>Deadline or time sensitivity</label>
+                        <label htmlFor="deadline" className={labelClass}>Deadline or time sensitivity</label>
                         <input
+                          id="deadline"
                           type="text"
                           name="deadline"
                           value={formData.deadline}
@@ -609,8 +612,9 @@ const Contact = () => {
                         />
                       </div>
                       <div>
-                        <label className={labelClass}>Preferred inspection availability</label>
+                        <label htmlFor="inspectionAvailability" className={labelClass}>Preferred inspection availability</label>
                         <input
+                          id="inspectionAvailability"
                           type="text"
                           name="inspectionAvailability"
                           value={formData.inspectionAvailability}
@@ -620,8 +624,9 @@ const Contact = () => {
                         />
                       </div>
                       <div>
-                        <label className={labelClass}>How did you hear about us?</label>
+                        <label htmlFor="referralSource" className={labelClass}>How did you hear about us?</label>
                         <input
+                          id="referralSource"
                           type="text"
                           name="referralSource"
                           value={formData.referralSource}
@@ -634,7 +639,7 @@ const Contact = () => {
                   </div>
 
                   {submitSuccess && (
-                    <div className="flex items-center gap-3 bg-green-50 border border-green-200 text-green-800 rounded-lg px-4 py-3">
+                    <div role="alert" className="flex items-center gap-3 bg-green-50 border border-green-200 text-green-800 rounded-lg px-4 py-3">
                       <CheckCircle size={18} className="flex-shrink-0" />
                       <span className="text-sm font-medium">
                         Thank you for your inquiry. We will review your submission and be in touch shortly.
@@ -643,7 +648,7 @@ const Contact = () => {
                   )}
 
                   {submitError && (
-                    <div className="bg-red-50 border border-red-200 text-red-800 rounded-lg px-4 py-3 text-sm">
+                    <div role="alert" className="bg-red-50 border border-red-200 text-red-800 rounded-lg px-4 py-3 text-sm">
                       {submitError}
                     </div>
                   )}

@@ -10,8 +10,14 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <div className="min-h-screen flex flex-col">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-white focus:text-ink-black-800 focus:rounded focus:shadow-lg focus:outline focus:outline-2 focus:outline-steel-blue-500"
+      >
+        Skip to main content
+      </a>
       <Navbar />
-      <main className="flex-grow">
+      <main id="main-content" className="flex-grow">
         {children}
       </main>
       <Footer />

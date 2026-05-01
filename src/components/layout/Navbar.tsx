@@ -38,6 +38,7 @@ const Navbar = () => {
               <Link
                 key={link.path}
                 to={link.path}
+                aria-current={isActive(link.path) ? 'page' : undefined}
                 className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
                   isActive(link.path)
                     ? 'bg-ink-black-800 text-white'
@@ -59,6 +60,9 @@ const Navbar = () => {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
+              aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
               className="p-2 rounded-lg text-gray-700 hover:bg-gray-100"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -71,6 +75,7 @@ const Navbar = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            id="mobile-menu"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}

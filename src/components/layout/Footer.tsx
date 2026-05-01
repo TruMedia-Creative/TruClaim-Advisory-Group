@@ -34,15 +34,17 @@ const Footer = () => {
           {/* Quick Links */}
           <div>
             <h3 className="font-semibold text-lg mb-4 text-steel-blue-500">Quick Links</h3>
-            <ul className="space-y-2">
-              <li><Link to="/" className="text-ink-black-200 hover:text-white transition">Home</Link></li>
-              <li><Link to="/services" className="text-ink-black-200 hover:text-white transition">Services</Link></li>
-              <li><Link to="/process" className="text-ink-black-200 hover:text-white transition">Process</Link></li>
-              <li><Link to="/about" className="text-ink-black-200 hover:text-white transition">About</Link></li>
-              <li><Link to="/contact" className="text-ink-black-200 hover:text-white transition">Contact</Link></li>
-              <li><Link to="/texas" className="text-ink-black-200 hover:text-white transition">Texas Service Area</Link></li>
-              <li><Link to="/louisiana" className="text-ink-black-200 hover:text-white transition">Louisiana Service Area</Link></li>
-            </ul>
+            <nav aria-label="Quick links">
+              <ul className="space-y-2">
+                <li><Link to="/" className="text-ink-black-200 hover:text-white transition">Home</Link></li>
+                <li><Link to="/services" className="text-ink-black-200 hover:text-white transition">Services</Link></li>
+                <li><Link to="/process" className="text-ink-black-200 hover:text-white transition">Process</Link></li>
+                <li><Link to="/about" className="text-ink-black-200 hover:text-white transition">About</Link></li>
+                <li><Link to="/contact" className="text-ink-black-200 hover:text-white transition">Contact</Link></li>
+                <li><Link to="/texas" className="text-ink-black-200 hover:text-white transition">Texas Service Area</Link></li>
+                <li><Link to="/louisiana" className="text-ink-black-200 hover:text-white transition">Louisiana Service Area</Link></li>
+              </ul>
+            </nav>
           </div>
 
           {/* Contact */}
