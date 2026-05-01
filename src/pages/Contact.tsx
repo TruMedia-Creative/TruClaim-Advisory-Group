@@ -304,11 +304,13 @@ const Contact = () => {
                     <div className="space-y-4">
                       <div className="grid sm:grid-cols-2 gap-4">
                         <div>
-                          <label className={labelClass}>Full Name *</label>
+                          <label htmlFor="name" className={labelClass}>Full Name *</label>
                           <input
+                            id="name"
                             type="text"
                             name="name"
                             required
+                            aria-required="true"
                             value={formData.name}
                             onChange={handleChange}
                             className={inputClass}
@@ -316,11 +318,13 @@ const Contact = () => {
                           />
                         </div>
                         <div>
-                          <label className={labelClass}>Phone Number *</label>
+                          <label htmlFor="phone" className={labelClass}>Phone Number *</label>
                           <input
+                            id="phone"
                             type="tel"
                             name="phone"
                             required
+                            aria-required="true"
                             value={formData.phone}
                             onChange={handleChange}
                             className={inputClass}
@@ -329,11 +333,13 @@ const Contact = () => {
                         </div>
                       </div>
                       <div>
-                        <label className={labelClass}>Email Address *</label>
+                        <label htmlFor="email" className={labelClass}>Email Address *</label>
                         <input
+                          id="email"
                           type="email"
                           name="email"
                           required
+                          aria-required="true"
                           value={formData.email}
                           onChange={handleChange}
                           className={inputClass}
@@ -341,11 +347,13 @@ const Contact = () => {
                         />
                       </div>
                       <div>
-                        <label className={labelClass}>Property Address (Loss Location) *</label>
+                        <label htmlFor="propertyAddress" className={labelClass}>Property Address (Loss Location) *</label>
                         <input
+                          id="propertyAddress"
                           type="text"
                           name="propertyAddress"
                           required
+                          aria-required="true"
                           value={formData.propertyAddress}
                           onChange={handleChange}
                           className={inputClass}
@@ -353,10 +361,12 @@ const Contact = () => {
                         />
                       </div>
                       <div>
-                        <label className={labelClass}>State *</label>
+                        <label htmlFor="state" className={labelClass}>State *</label>
                         <select
+                          id="state"
                           name="state"
                           required
+                          aria-required="true"
                           value={formData.state}
                           onChange={handleChange}
                           className={inputClass}
@@ -424,11 +434,13 @@ const Contact = () => {
                     <div className="space-y-4">
                       <div className="grid sm:grid-cols-2 gap-4">
                         <div>
-                          <label className={labelClass}>Insurance Company *</label>
+                          <label htmlFor="insuranceCompany" className={labelClass}>Insurance Company *</label>
                           <input
+                            id="insuranceCompany"
                             type="text"
                             name="insuranceCompany"
                             required
+                            aria-required="true"
                             value={formData.insuranceCompany}
                             onChange={handleChange}
                             className={inputClass}
@@ -436,11 +448,13 @@ const Contact = () => {
                           />
                         </div>
                         <div>
-                          <label className={labelClass}>Claim Number *</label>
+                          <label htmlFor="claimNumber" className={labelClass}>Claim Number *</label>
                           <input
+                            id="claimNumber"
                             type="text"
                             name="claimNumber"
                             required
+                            aria-required="true"
                             value={formData.claimNumber}
                             onChange={handleChange}
                             className={inputClass}
@@ -450,21 +464,25 @@ const Contact = () => {
                       </div>
                       <div className="grid sm:grid-cols-2 gap-4">
                         <div>
-                          <label className={labelClass}>Date of Loss *</label>
+                          <label htmlFor="dateOfLoss" className={labelClass}>Date of Loss *</label>
                           <input
+                            id="dateOfLoss"
                             type="date"
                             name="dateOfLoss"
                             required
+                            aria-required="true"
                             value={formData.dateOfLoss}
                             onChange={handleChange}
                             className={inputClass}
                           />
                         </div>
                         <div>
-                          <label className={labelClass}>Type of Loss *</label>
+                          <label htmlFor="typeOfLoss" className={labelClass}>Type of Loss *</label>
                           <select
+                            id="typeOfLoss"
                             name="typeOfLoss"
                             required
+                            aria-required="true"
                             value={formData.typeOfLoss}
                             onChange={handleChange}
                             className={inputClass}
@@ -480,10 +498,12 @@ const Contact = () => {
                       </div>
                       <div className="grid sm:grid-cols-2 gap-4">
                         <div>
-                          <label className={labelClass}>Has the carrier issued a payment? *</label>
+                          <label htmlFor="carrierIssuedPayment" className={labelClass}>Has the carrier issued a payment? *</label>
                           <select
+                            id="carrierIssuedPayment"
                             name="carrierIssuedPayment"
                             required
+                            aria-required="true"
                             value={formData.carrierIssuedPayment}
                             onChange={handleChange}
                             className={inputClass}
@@ -494,8 +514,9 @@ const Contact = () => {
                           </select>
                         </div>
                         <div>
-                          <label className={labelClass}>Total settlement amount received</label>
+                          <label htmlFor="settlementAmount" className={labelClass}>Total settlement amount received</label>
                           <input
+                            id="settlementAmount"
                             type="text"
                             name="settlementAmount"
                             value={formData.settlementAmount}
@@ -563,10 +584,12 @@ const Contact = () => {
                       </div>
                       <div className="grid sm:grid-cols-2 gap-4">
                         <div>
-                          <label className={labelClass}>Has appraisal been formally invoked? *</label>
+                          <label htmlFor="appraisalInvoked" className={labelClass}>Has appraisal been formally invoked? *</label>
                           <select
+                            id="appraisalInvoked"
                             name="appraisalInvoked"
                             required
+                            aria-required="true"
                             value={formData.appraisalInvoked}
                             onChange={handleChange}
                             className={inputClass}
@@ -578,10 +601,12 @@ const Contact = () => {
                           </select>
                         </div>
                         <div>
-                          <label className={labelClass}>Represented by a public adjuster or attorney? *</label>
+                          <label htmlFor="hasRepresentation" className={labelClass}>Represented by a public adjuster or attorney? *</label>
                           <select
+                            id="hasRepresentation"
                             name="hasRepresentation"
                             required
+                            aria-required="true"
                             value={formData.hasRepresentation}
                             onChange={handleChange}
                             className={inputClass}
