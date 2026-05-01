@@ -32,6 +32,14 @@
     @apply border-2 border-white/80 text-white px-8 py-4 rounded-lg font-semibold text-lg
            hover:bg-white/10 transition-all duration-300;
   }
+
+  /* Focus-visible styles for keyboard navigation */
+  .btn-primary:focus-visible,
+  .btn-secondary:focus-visible,
+  .btn-outline:focus-visible,
+  .btn-outline-light:focus-visible {
+    @apply outline outline-2 outline-offset-2 outline-steel-blue-500;
+  }
   .card {
     @apply bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300;
   }
