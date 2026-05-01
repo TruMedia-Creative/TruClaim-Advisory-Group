@@ -63,16 +63,18 @@
   }
 }
 
-.animate-wave {
-  animation: wave 15s linear infinite;
-}
+@media (prefers-reduced-motion: no-preference) {
+  .animate-wave {
+    animation: wave 15s linear infinite;
+  }
 
-.animate-wave-slow {
-  animation: wave-slow 20s linear infinite;
-}
+  .animate-wave-slow {
+    animation: wave-slow 20s linear infinite;
+  }
 
-.animate-spin-slow {
-  animation: spin 60s linear infinite;
+  .animate-spin-slow {
+    animation: spin 60s linear infinite;
+  }
 }
 
 @keyframes spin {

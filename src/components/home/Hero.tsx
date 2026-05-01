@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -98,8 +98,10 @@ function SunLogo() {
 
 // Animated background sun rays
 function BackgroundRays() {
+  const shouldReduceMotion = useReducedMotion();
+  if (shouldReduceMotion) return null;
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div aria-hidden="true" className="absolute inset-0 overflow-hidden pointer-events-none">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
         {[...Array(16)].map((_, i) => (
           <motion.div
@@ -122,14 +124,15 @@ function BackgroundRays() {
 
 // Animated water waves at bottom
 function WaterWaves() {
+  const shouldReduceMotion = useReducedMotion();
   return (
-    <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none overflow-hidden">
+    <div aria-hidden="true" className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none overflow-hidden">
       {/* Wave layer 1 - fastest */}
       <motion.svg
         viewBox="0 0 1200 120"
         preserveAspectRatio="none"
         className="absolute bottom-0 w-[200%] h-20"
-        animate={{ x: [0, -600] }}
+        animate={shouldReduceMotion ? {} : { x: [0, -600] }}
         transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
       >
         <path
@@ -143,7 +146,7 @@ function WaterWaves() {
         viewBox="0 0 1200 120"
         preserveAspectRatio="none"
         className="absolute bottom-0 w-[200%] h-24"
-        animate={{ x: [-300, -900] }}
+        animate={shouldReduceMotion ? {} : { x: [-300, -900] }}
         transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
       >
         <path
@@ -157,7 +160,7 @@ function WaterWaves() {
         viewBox="0 0 1200 120"
         preserveAspectRatio="none"
         className="absolute bottom-0 w-[200%] h-28"
-        animate={{ x: [-150, -750] }}
+        animate={shouldReduceMotion ? {} : { x: [-150, -750] }}
         transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
       >
         <path
