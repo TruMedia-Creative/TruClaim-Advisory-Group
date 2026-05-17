@@ -12,6 +12,7 @@ interface PageMetadataProps {
   imageUrl?: string;
   structuredData?: StructuredData;
   keywords?: string;
+  robots?: string;
 }
 
 function upsertMeta(tagName: 'name' | 'property', tagValue: string, content: string) {
@@ -33,6 +34,7 @@ export default function PageMetadata({
   imageUrl,
   structuredData,
   keywords,
+  robots = 'index,follow',
 }: PageMetadataProps) {
   useEffect(() => {
     const resolvedPath = canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`;
@@ -43,7 +45,7 @@ export default function PageMetadata({
     document.title = fullTitle;
     upsertMeta('name', 'description', description);
     upsertMeta('name', 'keywords', keywords ?? 'insurance appraisal, umpire services, catastrophic loss valuation, texas claims, louisiana claims');
-    upsertMeta('name', 'robots', 'index,follow');
+    upsertMeta('name', 'robots', robots);
     upsertMeta('property', 'og:title', fullTitle);
     upsertMeta('property', 'og:description', description);
     upsertMeta('property', 'og:type', 'website');
@@ -62,7 +64,7 @@ export default function PageMetadata({
       document.head.appendChild(canonicalLink);
     }
     canonicalLink.setAttribute('href', canonicalUrl);
-  }, [title, description, canonicalPath, imageUrl, keywords]);
+  }, [title, description, canonicalPath, imageUrl, keywords, robots]);
 
   useEffect(() => {
     const safeId = canonicalPath.replace(/[^a-z0-9-]/gi, '-');

@@ -11,6 +11,7 @@ export default function NotFound() {
         title="Page Not Found"
         description="The page you are looking for could not be found. Return to the TruClaim Advisory Group homepage."
         canonicalPath="/404"
+        robots="noindex,follow"
       />
 
       <div className="max-w-xl w-full text-center">

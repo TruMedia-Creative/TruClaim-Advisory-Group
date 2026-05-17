@@ -129,6 +129,11 @@ const Contact = () => {
     setFileError(null);
 
     if (name === 'damagePhotos') {
+      if (files && files.length > 12) {
+        setFileError('You can upload up to 12 damage photos.');
+        e.target.value = '';
+        return;
+      }
       // Validate each selected file against the 10 MB limit
       if (files) {
         for (const f of Array.from(files)) {

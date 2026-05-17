@@ -89,7 +89,7 @@ const faqItems = [
 const testimonials = [
   {
     quote:
-      'TruClaim Advisory provided an objective, well-documented appraisal that held up through the entire process. The estimate was thorough and the methodology was clearly explained at every step.',
+      'TruClaim Advisory Group provided an objective, well-documented appraisal that held up through the entire process. The estimate was thorough and the methodology was clearly explained at every step.',
     name: 'Commercial Property Owner',
     location: 'Houston, TX',
   },
@@ -101,7 +101,7 @@ const testimonials = [
   },
   {
     quote:
-      'We retained TruClaim Advisory as our umpire and appreciated their impartiality. They reviewed both estimates carefully and delivered a well-reasoned award that both appraisers could stand behind.',
+      'We retained TruClaim Advisory Group as our umpire and appreciated their impartiality. They reviewed both estimates carefully and delivered a well-reasoned award that both appraisers could stand behind.',
     name: 'Insurance Carrier Representative',
     location: 'Baton Rouge, LA',
   },

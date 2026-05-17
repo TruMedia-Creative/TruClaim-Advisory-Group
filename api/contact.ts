@@ -12,6 +12,7 @@ const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024;
 const MAX_DAMAGE_PHOTOS = 12;
 const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
 const RATE_LIMIT_MAX_REQUESTS = 5;
+const MAX_TRACKED_IPS = 2000;
 
 const requestTimestampsByIp = new Map<string, number[]>();
 
@@ -83,7 +84,27 @@ const getClientIp = (req: VercelRequest): string => {
   return req.socket.remoteAddress ?? 'unknown';
 };
 
+const pruneRateLimitEntries = (now: number) => {
+  for (const [ip, timestamps] of requestTimestampsByIp.entries()) {
+    const recent = timestamps.filter((timestamp) => now - timestamp < RATE_LIMIT_WINDOW_MS);
+    if (recent.length === 0) {
+      requestTimestampsByIp.delete(ip);
+      continue;
+    }
+    requestTimestampsByIp.set(ip, recent);
+  }
+
+  if (requestTimestampsByIp.size <= MAX_TRACKED_IPS) return;
+
+  for (const ip of requestTimestampsByIp.keys()) {
+    requestTimestampsByIp.delete(ip);
+    if (requestTimestampsByIp.size <= MAX_TRACKED_IPS) break;
+  }
+};
+
 const isRateLimited = (ip: string, now: number): boolean => {
+  pruneRateLimitEntries(now);
+
   const history = requestTimestampsByIp.get(ip) ?? [];
   const recent = history.filter((timestamp) => now - timestamp < RATE_LIMIT_WINDOW_MS);
 
@@ -105,6 +126,12 @@ interface ResendAttachment {
 
 const validateFiles = (files: Record<string, File | File[]>) => {
   const damagePhotos = collectFileArray(files.damagePhotos);
+  if (collectFileArray(files.carrierEstimate).length === 0) {
+    throw new Error('Missing required files: carrierEstimate');
+  }
+  if (damagePhotos.length === 0) {
+    throw new Error('Missing required files: damagePhotos');
+  }
   if (damagePhotos.length > MAX_DAMAGE_PHOTOS) {
     throw new Error('Too many damage photos attached');
   }
