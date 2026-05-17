@@ -21,7 +21,7 @@ const withSuspense = (element: React.ReactNode) => (
 );
 
 function App() {
-  const shouldLoadVercelTelemetry = import.meta.env.PROD;
+  const isProduction = import.meta.env.PROD;
 
   return (
     <>
@@ -49,12 +49,12 @@ function App() {
           />
         </Routes>
       </Router>
-      {shouldLoadVercelTelemetry ? (
+      {isProduction && (
         <>
           <Analytics />
           <SpeedInsights />
         </>
-      ) : null}
+      )}
     </>
   );
 }
