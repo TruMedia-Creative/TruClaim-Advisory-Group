@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { track } from '@vercel/analytics';
 import { CheckCircle, ClipboardList, Search, MapPin, Award } from 'lucide-react';
 import PageMetadata from '../components/PageMetadata';
+import { MAX_DAMAGE_PHOTOS } from '../lib/contact';
 
 const contactStructuredData = {
   '@context': 'https://schema.org',
@@ -129,8 +130,8 @@ const Contact = () => {
     setFileError(null);
 
     if (name === 'damagePhotos') {
-      if (files && files.length > 12) {
-        setFileError('You can upload up to 12 damage photos.');
+      if (files && files.length > MAX_DAMAGE_PHOTOS) {
+        setFileError(`You can upload up to ${MAX_DAMAGE_PHOTOS} damage photos.`);
         e.target.value = '';
         return;
       }

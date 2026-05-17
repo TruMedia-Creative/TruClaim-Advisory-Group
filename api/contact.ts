@@ -1,6 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { IncomingForm, type File } from 'formidable';
 import { promises as fs } from 'node:fs';
+import { MAX_DAMAGE_PHOTOS } from '../src/lib/contact';
 
 export const config = {
   api: {
@@ -9,7 +10,6 @@ export const config = {
 };
 
 const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024;
-const MAX_DAMAGE_PHOTOS = 12;
 const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
 const RATE_LIMIT_MAX_REQUESTS = 5;
 const MAX_TRACKED_IPS = 2000;
@@ -96,7 +96,15 @@ const pruneRateLimitEntries = (now: number) => {
 
   if (requestTimestampsByIp.size <= MAX_TRACKED_IPS) return;
 
-  for (const ip of requestTimestampsByIp.keys()) {
+  const ipsByOldestRecentActivity = [...requestTimestampsByIp.entries()]
+    .sort(([, timestampsA], [, timestampsB]) => {
+      const lastSeenA = timestampsA[timestampsA.length - 1] ?? 0;
+      const lastSeenB = timestampsB[timestampsB.length - 1] ?? 0;
+      return lastSeenA - lastSeenB;
+    })
+    .map(([ip]) => ip);
+
+  for (const ip of ipsByOldestRecentActivity) {
     requestTimestampsByIp.delete(ip);
     if (requestTimestampsByIp.size <= MAX_TRACKED_IPS) break;
   }
