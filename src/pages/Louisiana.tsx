@@ -22,7 +22,7 @@ const specialties = [
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
-  name: 'TruClaims Appraisal Group — Louisiana Insurance Appraisal Services',
+  name: 'TruClaim Advisory Group — Louisiana Insurance Appraisal Services',
   url: 'https://www.truclaimsadvisorygroup.com/louisiana',
   areaServed: 'Louisiana',
   serviceType: ['Insurance appraisal', 'Umpire services', 'Flood loss valuation'],
@@ -41,6 +41,7 @@ export default function Louisiana() {
         title="Louisiana Insurance Appraisal Services"
         description="Independent insurance appraisal, umpire, and NFIP flood claim support throughout Louisiana — serving New Orleans, Baton Rouge, Lake Charles, Lafayette, and Shreveport."
         canonicalPath="/louisiana"
+        keywords="louisiana insurance appraiser, new orleans appraisal services, baton rouge appraisal services, louisiana umpire"
         structuredData={structuredData}
       />
 
@@ -140,7 +141,7 @@ export default function Louisiana() {
               Need an Umpire After a Stalemate?
             </h2>
             <p className="text-gray-600 text-lg mb-8">
-              TruClaims Appraisal Group accepts neutral umpire appointments throughout Louisiana
+              TruClaim Advisory Group accepts neutral umpire appointments throughout Louisiana
               when two appraisers cannot agree on the award. Documentation reviews and pre-hearing
               coordination keep the process efficient and defensible.
             </p>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { track } from '@vercel/analytics';
 import { CheckCircle, ClipboardList, Search, MapPin, Award } from 'lucide-react';
 import PageMetadata from '../components/PageMetadata';
 
@@ -16,7 +17,7 @@ const steps = [
   {
     number: '01',
     icon: ClipboardList,
-    title: 'Submit Documentation',
+    title: 'Start Review',
     description:
       'Complete the form and upload your carrier estimate or settlement summary, contractor estimate (if applicable), and photos of the damage.',
   },
@@ -65,6 +66,7 @@ interface FormFields {
   deadline: string;
   inspectionAvailability: string;
   referralSource: string;
+  companyWebsite: string;
 }
 
 interface FileFields {
@@ -101,6 +103,7 @@ const Contact = () => {
     deadline: '',
     inspectionAvailability: '',
     referralSource: '',
+    companyWebsite: '',
   });
 
   const [fileData, setFileData] = useState<FileFields>({
@@ -151,11 +154,19 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (isSubmitting) return;
+    if (isSubmitting || fileError) return;
 
     setIsSubmitting(true);
     setSubmitError(null);
     setSubmitSuccess(false);
+    track('contact_form_submit_started');
+
+    if (formData.companyWebsite.trim()) {
+      track('contact_form_honeypot_blocked');
+      setSubmitSuccess(true);
+      setIsSubmitting(false);
+      return;
+    }
 
     try {
       const payload = new FormData();
@@ -182,6 +193,11 @@ const Contact = () => {
 
       if (!response.ok) throw new Error('Failed to submit contact form');
 
+      track('contact_form_submit_succeeded', {
+        state: formData.state || 'unknown',
+        typeOfLoss: formData.typeOfLoss || 'unknown',
+      });
+
       setSubmitSuccess(true);
       setFormData({
         name: '',
@@ -201,6 +217,7 @@ const Contact = () => {
         deadline: '',
         inspectionAvailability: '',
         referralSource: '',
+        companyWebsite: '',
       });
       setFileData({
         carrierEstimate: null,
@@ -213,6 +230,7 @@ const Contact = () => {
         input.value = '';
       });
     } catch {
+      track('contact_form_submit_failed');
       setSubmitError('Something went wrong while submitting the form. Please try again.');
     } finally {
       setIsSubmitting(false);
@@ -235,6 +253,7 @@ const Contact = () => {
         title="Request an Insurance Appraisal Review"
         description="Submit your settlement summary, estimates, and claim documentation for an independent insurance appraisal serving Texas and Louisiana."
         canonicalPath="/contact"
+        keywords="request insurance appraisal, appraisal consultation texas, appraisal consultation louisiana, amount of loss dispute"
         structuredData={contactStructuredData}
       />
       {/* Header */}
@@ -298,10 +317,20 @@ const Contact = () => {
             >
               <div className="bg-white rounded-2xl shadow-lg p-8">
                 <h2 className="text-2xl font-bold text-ink-black-800 mb-6">
-                  Request Appraisal Services
+                  Request Appraisal Review
                 </h2>
 
                 <form onSubmit={handleSubmit} className="space-y-8">
+                  <input
+                    type="text"
+                    name="companyWebsite"
+                    value={formData.companyWebsite}
+                    onChange={handleChange}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    className="hidden"
+                    aria-hidden="true"
+                  />
                   {/* Section 1 — Contact Information */}
                   <div>
                     <h3 className={sectionHeadingClass}>Contact Information</h3>

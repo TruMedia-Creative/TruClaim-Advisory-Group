@@ -7,7 +7,7 @@ const steps = [
   {
     number: '01',
     icon: FileText,
-    title: 'Submit Documentation',
+    title: 'Start Review',
     description:
       'Provide your carrier estimate or settlement summary, claim photos, and any contractor estimates you have received. This allows us to assess the scope and determine whether the appraisal clause applies.',
   },

@@ -24,7 +24,7 @@ const claimTypes = [
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
-  name: 'TruClaims Appraisal Group — Texas Insurance Appraisal Services',
+  name: 'TruClaim Advisory Group — Texas Insurance Appraisal Services',
   url: 'https://www.truclaimsadvisorygroup.com/texas',
   areaServed: 'Texas',
   serviceType: [
@@ -49,6 +49,7 @@ export default function Texas() {
         title="Texas Insurance Appraisal Services"
         description="Independent insurance appraisal, umpire, and catastrophic loss valuation services across Texas — covering Houston, Dallas–Fort Worth, San Antonio, Austin, and the Gulf Coast."
         canonicalPath="/texas"
+        keywords="texas insurance appraiser, houston appraisal services, dallas appraisal services, texas umpire"
         structuredData={structuredData}
       />
 
@@ -163,7 +164,7 @@ export default function Texas() {
                 Review Our Process
               </Link>
               <Link to="/contact" className="btn-secondary">
-                Submit Documentation
+                Start Review
               </Link>
             </div>
           </motion.div>

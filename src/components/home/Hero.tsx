@@ -4,13 +4,15 @@ import { Link } from 'react-router-dom';
 
 // SVG Sun Logo Component
 function SunLogo() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <motion.svg
       viewBox="0 0 120 120"
       className="w-28 h-28"
-      initial={{ scale: 0, rotate: -180 }}
-      animate={{ scale: 1, rotate: 0 }}
-      transition={{ delay: 0.2, type: 'spring', stiffness: 100, damping: 15 }}
+      initial={shouldReduceMotion ? false : { scale: 0, rotate: -180 }}
+      animate={shouldReduceMotion ? { scale: 1, rotate: 0 } : { scale: 1, rotate: 0 }}
+      transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.2, type: 'spring', stiffness: 100, damping: 15 }}
     >
       <defs>
         <linearGradient id="sunGradientLogo" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -176,14 +178,18 @@ function WaterWaves() {
 }
 
 export default function Hero() {
+  const shouldReduceMotion = useReducedMotion();
+
   const scrollToStats = () => {
-    document.getElementById('service-area')?.scrollIntoView({ behavior: 'smooth' });
+    document
+      .getElementById('service-area')
+      ?.scrollIntoView({ behavior: shouldReduceMotion ? 'auto' : 'smooth' });
   };
 
   return (
     <section
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-ink-black-900"
-      aria-label="TruClaims Appraisal Group hero section"
+      aria-label="TruClaim Advisory Group hero section"
     >
       <div className="absolute inset-0">
         <picture className="block h-full w-full">
@@ -229,7 +235,7 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.6 }}
           >
-            TruClaims Appraisal Group
+            TruClaim Advisory Group
           </motion.p>
 
           {/* SEO-optimized H1 */}
@@ -260,7 +266,7 @@ export default function Hero() {
             transition={{ delay: 1, duration: 0.6 }}
           >
             <Link to="/contact" className="btn-secondary inline-flex items-center justify-center">
-              Request a Claim Review
+              Request Appraisal Review
             </Link>
             <Link to="/services" className="btn-primary inline-flex items-center justify-center">
               View Services
@@ -273,10 +279,11 @@ export default function Hero() {
       <motion.div
         className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2"
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1, y: [0, 10, 0] }}
-        transition={{ delay: 1.5, y: { repeat: Infinity, duration: 2 } }}
+        animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: [0, 10, 0] }}
+        transition={shouldReduceMotion ? { delay: 1.5 } : { delay: 1.5, y: { repeat: Infinity, duration: 2 } }}
       >
         <button
+          type="button"
           onClick={scrollToStats}
           aria-label="Scroll down"
           className="text-steel-blue-400 hover:text-steel-blue-300 transition-colors"
