@@ -20,7 +20,7 @@
     "@vercel/node": "^5.8.2",
     "@vercel/speed-insights": "^2.0.0",
     "formidable": "^3.5.4",
-    "framer-motion": "^11.15.0",
+    "framer-motion": "^12.38.0",
     "lucide-react": "^0.469.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
