@@ -63,7 +63,7 @@ export default function ServiceAreaSection() {
             Independent Appraisal Services for Policyholders and Carriers
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto mt-4">
-            TruClaims Appraisal Group provides independent insurance appraisal and umpire services
+            TruClaims Advisory Group provides independent insurance appraisal and umpire services
             across Texas and Louisiana, with travel available nationwide for large-loss and
             catastrophic events.
           </p>
@@ -128,7 +128,7 @@ export default function ServiceAreaSection() {
             </div>
             <div className="mt-8">
               <Link to="/contact" className="btn-primary">
-                Request Appraisal Services
+                Request Appraisal Review
               </Link>
             </div>
           </motion.div>

@@ -1,8 +1,8 @@
-# TruClaim Advisory Group Website Project
+# TruClaims Advisory Group Website Project
 
 ## Overview
 
-Website for **TruClaim Advisory Group** — an independent insurance appraisal and catastrophe loss valuation firm. The site is a simple marketing presence (no portal, no authentication, no member network).
+Website for **TruClaims Advisory Group** — an independent insurance appraisal and catastrophe loss valuation firm. The site is a simple marketing presence (no portal, no authentication, no member network).
 
 Primary goals:
 

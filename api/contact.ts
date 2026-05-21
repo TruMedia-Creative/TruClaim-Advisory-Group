@@ -1,6 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { IncomingForm, type File } from 'formidable';
 import { promises as fs } from 'node:fs';
+import { MAX_DAMAGE_PHOTOS } from '../src/lib/contact';
 
 export const config = {
   api: {
@@ -8,10 +9,72 @@ export const config = {
   },
 };
 
+const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024;
+const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
+const RATE_LIMIT_MAX_REQUESTS = 5;
+const MAX_TRACKED_IPS = 2000;
+const MAX_FILENAME_LENGTH = 120;
+
+const requestTimestampsByIp = new Map<string, number[]>();
+
+const REQUIRED_FIELDS = [
+  'name',
+  'phone',
+  'email',
+  'propertyAddress',
+  'state',
+  'insuranceCompany',
+  'claimNumber',
+  'dateOfLoss',
+  'typeOfLoss',
+  'carrierIssuedPayment',
+  'whatWasMissed',
+  'appraisalInvoked',
+  'hasRepresentation',
+] as const;
+
+const allowedMimeTypesByField: Record<string, Set<string>> = {
+  carrierEstimate: new Set(['application/pdf']),
+  settlementLetter: new Set(['application/pdf', 'image/jpeg', 'image/png']),
+  damagePhotos: new Set(['image/jpeg', 'image/png']),
+  contractorEstimate: new Set(['application/pdf', 'image/jpeg', 'image/png']),
+};
+
+const maxFilesByField: Record<string, number> = {
+  carrierEstimate: 1,
+  settlementLetter: 1,
+  damagePhotos: MAX_DAMAGE_PHOTOS,
+  contractorEstimate: 1,
+};
+
+const maxLengthByField: Record<string, number> = {
+  name: 120,
+  phone: 50,
+  email: 254,
+  propertyAddress: 250,
+  state: 2,
+  insuranceCompany: 120,
+  claimNumber: 120,
+  dateOfLoss: 50,
+  typeOfLoss: 120,
+  carrierIssuedPayment: 120,
+  settlementAmount: 120,
+  whatWasMissed: 4000,
+  appraisalInvoked: 20,
+  hasRepresentation: 20,
+  deadline: 120,
+  inspectionAvailability: 250,
+  referralSource: 120,
+  companyWebsite: 250,
+};
+
 const parseFormData = (req: VercelRequest) =>
   new Promise<{ fields: Record<string, string | string[]>; files: Record<string, File | File[]> }>(
     (resolve, reject) => {
-      const form = new IncomingForm({ multiples: true, maxFileSize: 10 * 1024 * 1024 });
+      const form = new IncomingForm({
+        multiples: true,
+        maxFileSize: MAX_FILE_SIZE_BYTES,
+      });
       form.parse(req, (err, fields, files) => {
         if (err) {
           reject(err);
@@ -27,9 +90,69 @@ const coerceToString = (value: string | string[] | undefined): string => {
   return value ?? '';
 };
 
+const sanitizeInput = (value: string): string => value.replace(/\s+/g, ' ').trim();
+
+const escapeHtml = (value: string): string =>
+  value
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+
 const collectFileArray = (fileOrFiles?: File | File[]): File[] => {
   if (!fileOrFiles) return [];
   return Array.isArray(fileOrFiles) ? fileOrFiles : [fileOrFiles];
+};
+
+const getClientIp = (req: VercelRequest): string | null => {
+  const xForwardedFor = req.headers['x-forwarded-for'];
+  if (typeof xForwardedFor === 'string' && xForwardedFor.length > 0) {
+    return xForwardedFor.split(',')[0]?.trim() || null;
+  }
+  return req.socket.remoteAddress ?? null;
+};
+
+const pruneRateLimitEntries = (now: number) => {
+  for (const [ip, timestamps] of requestTimestampsByIp.entries()) {
+    const recent = timestamps.filter((timestamp) => now - timestamp < RATE_LIMIT_WINDOW_MS);
+    if (recent.length === 0) {
+      requestTimestampsByIp.delete(ip);
+      continue;
+    }
+    requestTimestampsByIp.set(ip, recent);
+  }
+
+  if (requestTimestampsByIp.size <= MAX_TRACKED_IPS) return;
+
+  const ipsByOldestRecentActivity = [...requestTimestampsByIp.entries()]
+    .sort(([, timestampsA], [, timestampsB]) => {
+      const lastSeenA = timestampsA[timestampsA.length - 1] ?? 0;
+      const lastSeenB = timestampsB[timestampsB.length - 1] ?? 0;
+      return lastSeenA - lastSeenB;
+    })
+    .map(([ip]) => ip);
+
+  for (const ip of ipsByOldestRecentActivity) {
+    requestTimestampsByIp.delete(ip);
+    if (requestTimestampsByIp.size <= MAX_TRACKED_IPS) break;
+  }
+};
+
+const isRateLimited = (ip: string, now: number): boolean => {
+  pruneRateLimitEntries(now);
+
+  const history = requestTimestampsByIp.get(ip) ?? [];
+  const recent = history.filter((timestamp) => now - timestamp < RATE_LIMIT_WINDOW_MS);
+
+  if (recent.length >= RATE_LIMIT_MAX_REQUESTS) {
+    requestTimestampsByIp.set(ip, recent);
+    return true;
+  }
+
+  recent.push(now);
+  requestTimestampsByIp.set(ip, recent);
+  return false;
 };
 
 interface ResendAttachment {
@@ -37,6 +160,75 @@ interface ResendAttachment {
   content: string;
   contentType?: string;
 }
+
+const validateFiles = (files: Record<string, File | File[]>) => {
+  const damagePhotos = collectFileArray(files.damagePhotos);
+  if (collectFileArray(files.carrierEstimate).length === 0) {
+    throw new Error('Missing required files: carrierEstimate');
+  }
+  if (damagePhotos.length === 0) {
+    throw new Error('Missing required files: damagePhotos');
+  }
+  if (damagePhotos.length > MAX_DAMAGE_PHOTOS) {
+    throw new Error('Too many damage photos attached');
+  }
+
+  for (const [fieldName, allowedMimeTypes] of Object.entries(allowedMimeTypesByField)) {
+    const fieldFiles = collectFileArray(files[fieldName]);
+    const maxFilesForField = maxFilesByField[fieldName];
+    if (maxFilesForField !== undefined && fieldFiles.length > maxFilesForField) {
+      throw new Error(`Too many files attached for ${fieldName}`);
+    }
+
+    for (const file of fieldFiles) {
+      if (!file.mimetype || !allowedMimeTypes.has(file.mimetype)) {
+        throw new Error(`Invalid file type received for ${fieldName}`);
+      }
+
+      if (file.size > MAX_FILE_SIZE_BYTES) {
+        throw new Error(`File size exceeds limit for ${fieldName}`);
+      }
+    }
+  }
+};
+
+const validateFieldLengths = (fields: Record<string, string>) => {
+  for (const [field, maxLength] of Object.entries(maxLengthByField)) {
+    const value = fields[field];
+    if (value && value.length > maxLength) {
+      throw new Error(`Invalid field length for ${field}`);
+    }
+  }
+};
+
+const sanitizeFilename = (value: string): string =>
+  value
+    .replace(/[\\/]/g, '-')
+    .split('')
+    .filter((char) => {
+      const code = char.charCodeAt(0);
+      return code >= 32 && code !== 127;
+    })
+    .join('')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, MAX_FILENAME_LENGTH) || 'document';
+
+const validateFields = (fields: Record<string, string>) => {
+  const missing = REQUIRED_FIELDS.filter((key) => !fields[key]);
+  if (missing.length > 0) {
+    throw new Error(`Missing required fields: ${missing.join(', ')}`);
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(fields.email)) {
+    throw new Error('Invalid email format');
+  }
+
+  if (fields.state.length !== 2) {
+    throw new Error('Invalid state code');
+  }
+};
 
 const buildAttachments = async (files: Record<string, File | File[]>) => {
   const attachmentFields: Array<[string, string]> = [
@@ -53,8 +245,9 @@ const buildAttachments = async (files: Record<string, File | File[]>) => {
     for (const [index, file] of fieldFiles.entries()) {
       if (!file.filepath) continue;
       const buffer = await fs.readFile(file.filepath);
+      const safeOriginalFilename = sanitizeFilename(file.originalFilename ?? 'document');
       attachments.push({
-        filename: `${prefix}${fieldFiles.length > 1 ? `-${index + 1}` : ''}-${file.originalFilename ?? 'document'}`,
+        filename: `${prefix}${fieldFiles.length > 1 ? `-${index + 1}` : ''}-${safeOriginalFilename}`,
         content: buffer.toString('base64'),
         contentType: file.mimetype ?? 'application/octet-stream',
       });
@@ -69,10 +262,10 @@ const buildHtmlBody = (fields: Record<string, string>) => {
     const rows = entries
       .map(
         ([label, value]) =>
-          `<tr><td style="padding:4px 8px;font-weight:600;">${label}</td><td style="padding:4px 8px;">${value || '—'}</td></tr>`
-      ) //
+          `<tr><td style="padding:4px 8px;font-weight:600;">${escapeHtml(label)}</td><td style="padding:4px 8px;">${escapeHtml(value || '—')}</td></tr>`
+      )
       .join('');
-    return `<h3 style="margin:16px 0 8px;font-size:16px;">${title}</h3><table style="width:100%;border-collapse:collapse;">${rows}</table>`;
+    return `<h3 style="margin:16px 0 8px;font-size:16px;">${escapeHtml(title)}</h3><table style="width:100%;border-collapse:collapse;">${rows}</table>`;
   };
 
   const contactSection = section('Contact Information', [
@@ -103,7 +296,7 @@ const buildHtmlBody = (fields: Record<string, string>) => {
 
   return `
     <div style="font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,sans-serif;font-size:14px;color:#111827;">
-      <p>A new appraisal request was submitted via the TruClaim Advisory Group contact form.</p>
+      <p>A new appraisal request was submitted via the TruClaims Advisory Group contact form.</p>
       ${contactSection}
       ${claimSection}
       ${qualificationSection}
@@ -115,6 +308,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     res.status(405).json({ error: 'Method Not Allowed' });
+    return;
+  }
+
+  const clientIp = getClientIp(req);
+  if (clientIp && isRateLimited(clientIp, Date.now())) {
+    res.status(429).json({ error: 'Too many submissions. Please try again later.' });
     return;
   }
 
@@ -132,11 +331,20 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const normalizedFields = Object.entries(fields).reduce<Record<string, string>>(
       (acc, [key, value]) => {
-        acc[key] = coerceToString(value);
+        acc[key] = sanitizeInput(coerceToString(value));
         return acc;
       },
       {}
     );
+
+    if (normalizedFields.companyWebsite) {
+      res.status(202).json({ success: true });
+      return;
+    }
+
+    validateFieldLengths(normalizedFields);
+    validateFields(normalizedFields);
+    validateFiles(files);
 
     const attachments = await buildAttachments(files);
 
@@ -157,15 +365,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     });
 
     if (!response.ok) {
-      const errorBody = await response.text();
-      console.error('Resend error', errorBody);
       res.status(502).json({ error: 'Email provider rejected the request' });
       return;
     }
 
     res.status(200).json({ success: true });
   } catch (error) {
-    console.error('Contact submission failed', error);
-    res.status(500).json({ error: 'Failed to process submission' });
+    const message = error instanceof Error ? error.message : 'Failed to process submission';
+    const statusCode = message.startsWith('File size exceeds')
+      ? 413
+      : message.startsWith('Missing required') || message.startsWith('Invalid') || message.startsWith('Too many')
+        ? 400
+        : 500;
+    res.status(statusCode).json({ error: message });
   }
 }

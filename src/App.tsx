@@ -21,6 +21,8 @@ const withSuspense = (element: React.ReactNode) => (
 );
 
 function App() {
+  const isProduction = import.meta.env.PROD;
+
   return (
     <>
       <Router basename={import.meta.env.BASE_URL}>
@@ -47,8 +49,12 @@ function App() {
           />
         </Routes>
       </Router>
-      <Analytics />
-      <SpeedInsights />
+      {isProduction && (
+        <>
+          <Analytics />
+          <SpeedInsights />
+        </>
+      )}
     </>
   );
 }

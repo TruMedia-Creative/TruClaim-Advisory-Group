@@ -1,6 +1,6 @@
-# TruClaims Appraisal Group
+# TruClaims Advisory Group
 
-Marketing website for **TruClaims Appraisal Group** — an independent insurance appraisal and catastrophe loss valuation firm serving Texas, Louisiana, and nationwide for large-loss events.
+Marketing website for **TruClaims Advisory Group** — an independent insurance appraisal and catastrophe loss valuation firm serving Texas, Louisiana, and nationwide for large-loss events.
 
 ## Tech Stack
 
@@ -105,6 +105,15 @@ location / {
 }
 ```
 
+
+## Quality Baseline
+
+Use `docs/quality-baseline.md` to track:
+
+- Lighthouse and Core Web Vitals baseline measurements
+- Contact funnel conversion baselines
+- Pre-release quality checks for each deployment
+
 ## Project Structure
 
 ```text
@@ -122,7 +131,9 @@ src/
 
 ## Environment Variables
 
-None required. This is a pure frontend marketing site with no backend, authentication, or external APIs.
+No client-side environment variables are required for the marketing pages.
+
+The contact API (`/api/contact`) requires server-side Vercel environment variables: `RESEND_API_KEY`, `CONTACT_FROM_EMAIL`, and `CONTACT_TO_EMAIL`.
 
 ## Contact Form Email Delivery
 

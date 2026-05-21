@@ -2,7 +2,7 @@
 
 ## Project context
 
-This repository uses modern TypeScript-first web development and GitHub Copilot-assisted workflows. Prefer simple, maintainable implementations over clever abstractions.
+TruClaims Advisory Group is an independent insurance appraisal and catastrophe loss valuation firm. The website is a pure marketing presence; there is no authentication, member portal, or backend.
 
 ## Package manager
 

@@ -11,6 +11,8 @@ interface PageMetadataProps {
   canonicalPath: string;
   imageUrl?: string;
   structuredData?: StructuredData;
+  keywords?: string;
+  robots?: string;
 }
 
 function upsertMeta(tagName: 'name' | 'property', tagValue: string, content: string) {
@@ -31,20 +33,25 @@ export default function PageMetadata({
   canonicalPath,
   imageUrl,
   structuredData,
+  keywords,
+  robots = 'index,follow',
 }: PageMetadataProps) {
   useEffect(() => {
     const resolvedPath = canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`;
     const canonicalUrl = `${SITE_URL}${resolvedPath}`;
-    const fullTitle = `${title} | TruClaims Appraisal Group`;
+    const fullTitle = `${title} | TruClaims Advisory Group`;
     const socialImage = imageUrl ?? DEFAULT_IMAGE;
 
     document.title = fullTitle;
     upsertMeta('name', 'description', description);
+    upsertMeta('name', 'keywords', keywords ?? 'insurance appraisal, umpire services, catastrophic loss valuation, texas claims, louisiana claims');
+    upsertMeta('name', 'robots', robots);
     upsertMeta('property', 'og:title', fullTitle);
     upsertMeta('property', 'og:description', description);
     upsertMeta('property', 'og:type', 'website');
     upsertMeta('property', 'og:url', canonicalUrl);
     upsertMeta('property', 'og:image', socialImage);
+    upsertMeta('property', 'og:locale', 'en_US');
     upsertMeta('name', 'twitter:card', 'summary_large_image');
     upsertMeta('name', 'twitter:title', fullTitle);
     upsertMeta('name', 'twitter:description', description);
@@ -57,7 +64,7 @@ export default function PageMetadata({
       document.head.appendChild(canonicalLink);
     }
     canonicalLink.setAttribute('href', canonicalUrl);
-  }, [title, description, canonicalPath, imageUrl]);
+  }, [title, description, canonicalPath, imageUrl, keywords, robots]);
 
   useEffect(() => {
     const safeId = canonicalPath.replace(/[^a-z0-9-]/gi, '-');

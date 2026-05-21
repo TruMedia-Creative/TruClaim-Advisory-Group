@@ -38,7 +38,7 @@ interface CarrierLogoGridProps {
 
 const CarrierLogoGrid = ({
   heading = 'Carriers We Work With',
-  subheading = 'TruClaims Appraisal Group has direct field experience with the following carriers — serving as a policyholder-appointed appraiser, a carrier-retained appraiser, and a neutral umpire.',
+  subheading = 'TruClaims Advisory Group has direct field experience with the following carriers — serving as a policyholder-appointed appraiser, a carrier-retained appraiser, and a neutral umpire.',
 }: CarrierLogoGridProps) => {
   return (
     <section className="py-20 bg-white">

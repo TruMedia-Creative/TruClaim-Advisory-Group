@@ -191,7 +191,7 @@ const aboutStructuredData = [
     jobTitle: 'Principal Appraiser',
     worksFor: {
       '@type': 'Organization',
-      name: 'TruClaims Appraisal Group',
+      name: 'TruClaims Advisory Group',
     },
     url: 'https://www.truclaimsadvisorygroup.com/about',
     image: `${SITE_URL}/larryon-truman.jpg`,
@@ -205,7 +205,7 @@ export default function About() {
   return (
     <div className="min-h-screen bg-parchment-50">
       <PageMetadata
-        title="About TruClaims Appraisal Group"
+        title="About TruClaims Advisory Group"
         description="Independent insurance appraisal firm led by Larryon Truman — multi-state licensed, NFIP certified, and experienced across catastrophic deployments."
         canonicalPath="/about"
         structuredData={aboutStructuredData}
@@ -221,7 +221,7 @@ export default function About() {
             className="text-center"
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-4">
-              About TruClaims Appraisal Group
+              About TruClaims Advisory Group
             </h1>
             <p className="text-ink-black-200 text-lg max-w-2xl mx-auto mb-4">
               Independent. Evidence-Based. Policy-Consistent.
@@ -272,7 +272,7 @@ export default function About() {
             >
               <h2 className="section-title mb-6">Our Principal</h2>
               <p className="text-gray-600 leading-relaxed mb-6">
-                TruClaims Appraisal Group operates as a neutral, independent appraiser — retained by
+                TruClaims Advisory Group operates as a neutral, independent appraiser — retained by
                 policyholders, carriers, and as a neutral umpire. Every engagement follows the same
                 evidence-based methodology: on-site inspection, detailed documentation, and
                 policy-consistent valuation, with no advocacy on either side.
@@ -296,7 +296,7 @@ export default function About() {
             >
               <img
                 src={headshotSrc}
-                alt="Larryon Truman, Principal Appraiser at TruClaims Appraisal Group"
+                alt="Larryon Truman, Principal Appraiser at TruClaims Advisory Group"
                 width="4284"
                 height="5712"
                 loading="lazy"
@@ -591,7 +591,7 @@ export default function About() {
               Request an Independent Appraisal Review
             </h2>
             <p className="text-ink-black-200 text-lg mb-2 max-w-xl mx-auto">
-              TruClaims Appraisal Group is available for amount of loss disputes in Texas and
+              TruClaims Advisory Group is available for amount of loss disputes in Texas and
               Louisiana.
             </p>
             <p className="text-steel-blue-300 text-sm mb-10">
@@ -599,13 +599,13 @@ export default function About() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/contact" className="btn-primary w-full sm:w-auto">
-                Request Appraisal
+                Request Appraisal Review
               </Link>
               <Link
                 to="/contact"
                 className="btn-outline border-white/60 text-white hover:bg-white/10 hover:text-white w-full sm:w-auto"
               >
-                Schedule Consultation
+                Request Consultation
               </Link>
             </div>
           </motion.div>

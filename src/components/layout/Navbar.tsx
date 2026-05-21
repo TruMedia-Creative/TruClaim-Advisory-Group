@@ -36,7 +36,7 @@ const Navbar = () => {
               </div>
               <div className="hidden sm:block">
                 <span className="text-ink-black-800 font-display font-bold text-xl">
-                  TruClaims Appraisal Group
+                  TruClaims Advisory Group
                 </span>
               </div>
             </Link>
@@ -49,7 +49,7 @@ const Navbar = () => {
                 key={link.path}
                 to={link.path}
                 aria-current={isActive(link.path) ? 'page' : undefined}
-                className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
+                className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-blue-500 ${
                   isActive(link.path)
                     ? 'bg-ink-black-800 text-white'
                     : 'text-gray-700 hover:bg-ink-black-50 hover:text-ink-black-800'
@@ -60,15 +60,16 @@ const Navbar = () => {
             ))}
             <Link
               to="/contact"
-              className="ml-4 px-4 py-2 bg-steel-blue-500 text-ink-black-900 rounded-lg font-semibold hover:bg-steel-blue-400 transition-all duration-200"
+              className="ml-4 px-4 py-2 bg-steel-blue-500 text-ink-black-900 rounded-lg font-semibold hover:bg-steel-blue-400 transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-blue-500"
             >
-              Request Appraisal
+              Request Appraisal Review
             </Link>
           </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
             <button
+              type="button"
               onClick={() => setIsOpen(!isOpen)}
               aria-expanded={isOpen}
               aria-controls="mobile-menu"
@@ -97,7 +98,7 @@ const Navbar = () => {
                   key={link.path}
                   to={link.path}
                   onClick={() => setIsOpen(false)}
-                  className={`block px-4 py-3 rounded-lg font-medium transition-all ${
+                  className={`block px-4 py-3 rounded-lg font-medium transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-blue-500 ${
                     isActive(link.path)
                       ? 'bg-ink-black-800 text-white'
                       : 'text-gray-700 hover:bg-ink-black-50'
@@ -109,9 +110,9 @@ const Navbar = () => {
               <Link
                 to="/contact"
                 onClick={() => setIsOpen(false)}
-                className="block px-4 py-3 bg-steel-blue-500 text-ink-black-900 rounded-lg font-semibold text-center"
+                className="block px-4 py-3 bg-steel-blue-500 text-ink-black-900 rounded-lg font-semibold text-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-blue-500"
               >
-                Request Appraisal
+                Request Appraisal Review
               </Link>
             </div>
           </motion.div>
