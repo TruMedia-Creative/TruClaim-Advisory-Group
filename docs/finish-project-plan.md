@@ -38,7 +38,7 @@
 | CI uses `actions/checkout@v6` | 🔴 Critical | `v6` does not exist; GitHub Actions will fail. Should be `@v4`. |
 | No tests | 🟠 High | Zero test files. No Playwright, no Vitest, no unit tests. The CI only runs lint + typecheck. |
 | Deployment conflict | 🟠 High | The `api/contact.ts` Vercel serverless function is **incompatible** with the GitHub Pages deploy path. Contact form will silently 404 on Pages builds. The primary deploy target must be Vercel. |
-| `pnpm.overrides` deprecated | 🟠 High | `package.json` uses the old `"pnpm": { "overrides": … }` field which current pnpm ignores. Dependency override intentions are silently skipped. Must migrate to `pnpm-workspace.yaml` `catalog:` or `.npmrc` `overrides.`. |
+| `pnpm.overrides` deprecated | 🟠 High | `package.json` uses the old `"pnpm": { "overrides": … }` field which current pnpm ignores. Dependency override intentions are silently skipped. Must migrate to the `overrides:` key in `pnpm-workspace.yaml` (the current pnpm workspace settings format). |
 | Contact form accessibility | 🟠 High | Form inputs lack `aria-required`, `aria-invalid`, and `aria-describedby` for error messages. Error/success states are not announced to screen readers. |
 | Skip-navigation link | 🟠 High | No skip-to-main-content link. Keyboard-only and screen-reader users cannot bypass the navigation. |
 | Stats counter ignores `prefers-reduced-motion` | 🟡 Medium | `StatsSection` drives animated counters via `requestAnimationFrame` — not gated by `useReducedMotion`. Should fall back to static final values when motion is reduced. |
@@ -86,7 +86,7 @@
 
 ### Area: Dependency/Config Hygiene (P1)
 
-14. **Migrate `pnpm.overrides`** from `package.json` to `pnpm-workspace.yaml` `overrides:` block (or remove if no longer needed)
+14. **Migrate `pnpm.overrides`** from the `package.json` `"pnpm"` field to the top-level `overrides:` key in `pnpm-workspace.yaml` (the [current pnpm workspace settings format](https://pnpm.io/pnpm-workspace_yaml)), or remove the overrides if they are no longer necessary
 15. **Create `.env.example`** documenting the three required Vercel env vars
 16. **Remove `vite.svg`** from `public/`
 17. **Clean up `pnpm-workspace.yaml`** — remove unused `packages/*` and `apps/*` entries
@@ -286,7 +286,7 @@ The site is considered **production-ready** when all Phase 1–3 criteria pass a
 | `larryon-truman.jpg` is a client-provided photo — resizing may need approval | Medium | Low | Compress and convert to WebP without cropping; confirm with client before going live |
 | Vercel env vars not configured — contact form silently broken in production | High | High | Add a clear health-check log in the API handler that emits a warning if env vars are absent; document setup in README |
 | Google Search Console domain verification delayed | Low | Low | Submit sitemap as soon as console is verified; organic traffic not affected during setup |
-| Playwright tests flaky on CI due to animation timings | Medium | Medium | Use `page.waitForSelector` and disable Framer Motion in the test environment via a `?noMotion=1` query param or `VITE_DISABLE_MOTION=true` env var |
+| Playwright tests flaky on CI due to animation timings | Medium | Medium | Use web-first assertions (`await expect(locator).toBeVisible()`) instead of raw `waitForSelector`; disable Framer Motion in the test environment via a `VITE_DISABLE_MOTION=true` env var |
 | `pnpm-workspace.yaml` `minimumReleaseAge` policy blocks very recent package versions in CI | Medium | Low | This is an environment-specific pnpm policy (24-hour minimum age). Either relax the policy or pin package versions and avoid same-day upgrades |
 | Resend free tier limits (100 emails/day) | Low | Low | Monitor usage in Resend dashboard; upgrade plan before launch if expected volume exceeds limit |
 
