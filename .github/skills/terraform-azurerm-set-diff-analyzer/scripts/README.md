@@ -108,7 +108,7 @@ name: Terraform Plan Analysis
 on:
   pull_request:
     paths:
-      - '**.tf'
+      - "**.tf"
 
 jobs:
   analyze:
@@ -150,18 +150,18 @@ jobs:
 ```yaml
 - task: TerraformCLI@0
   inputs:
-    command: 'plan'
-    commandOptions: '-out=plan.tfplan'
+    command: "plan"
+    commandOptions: "-out=plan.tfplan"
 
 - script: |
     terraform show -json plan.tfplan > plan.json
     python scripts/analyze_plan.py plan.json --format markdown > $(Build.ArtifactStagingDirectory)/analysis.md
-  displayName: 'Analyze Plan'
+  displayName: "Analyze Plan"
 
 - task: PublishBuildArtifacts@1
   inputs:
-    pathToPublish: '$(Build.ArtifactStagingDirectory)/analysis.md'
-    artifactName: 'plan-analysis'
+    pathToPublish: "$(Build.ArtifactStagingDirectory)/analysis.md"
+    artifactName: "plan-analysis"
 ```
 
 ### Filtering Examples

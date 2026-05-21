@@ -55,7 +55,10 @@ Create sophisticated formatting for your prose and code on GitHub with simple sy
 ### Parsed HTML
 
 ```html
-<p>Create sophisticated formatting for your prose and code on GitHub with simple syntax.</p>
+<p>
+  Create sophisticated formatting for your prose and code on GitHub with simple
+  syntax.
+</p>
 ```
 
 ---
@@ -340,7 +343,9 @@ git add
 ```
 
 ```html
-<a href="https://github.com/github/support" class="user-mention">@github/support</a>
+<a href="https://github.com/github/support" class="user-mention"
+  >@github/support</a
+>
 ```
 
 ---

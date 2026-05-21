@@ -24,7 +24,12 @@ function confirmDelete() {
     :ui="{ footer: 'justify-end' }"
   >
     <template #footer="{ close }">
-      <UButton label="Cancel" color="neutral" variant="outline" @click="close" />
+      <UButton
+        label="Cancel"
+        color="neutral"
+        variant="outline"
+        @click="close"
+      />
       <UButton label="Delete" color="error" @click="confirmDelete" />
     </template>
   </UModal>
@@ -54,7 +59,12 @@ const emit = defineEmits<{
     :description="description"
   >
     <template #footer>
-      <UButton label="Cancel" color="neutral" variant="outline" @click="emit('close', false)" />
+      <UButton
+        label="Cancel"
+        color="neutral"
+        variant="outline"
+        @click="emit('close', false)"
+      />
       <UButton label="Confirm" color="error" @click="emit('close', true)" />
     </template>
   </UModal>
@@ -68,7 +78,7 @@ const confirm = overlay.create(ConfirmModal);
 
 async function deleteItem(item) {
   const instance = confirm.open({
-    title: 'Delete item',
+    title: "Delete item",
     description: `Are you sure you want to delete "${item.name}"?`,
   });
 
@@ -82,7 +92,7 @@ async function deleteItem(item) {
 
 ```vue
 <script setup lang="ts">
-import * as z from 'zod';
+import * as z from "zod";
 
 const isOpen = ref(false);
 
@@ -103,9 +113,19 @@ function onSave() {
 <template>
   <UButton label="Add user" @click="isOpen = true" />
 
-  <USlideover v-model:open="isOpen" title="Add user" description="Fill in the details below.">
+  <USlideover
+    v-model:open="isOpen"
+    title="Add user"
+    description="Fill in the details below."
+  >
     <template #body>
-      <UForm id="user-form" :schema="schema" :state="state" class="space-y-4" @submit="onSave">
+      <UForm
+        id="user-form"
+        :schema="schema"
+        :state="state"
+        class="space-y-4"
+        @submit="onSave"
+      >
         <UFormField name="name" label="Name">
           <UInput v-model="state.name" />
         </UFormField>
@@ -116,7 +136,12 @@ function onSave() {
     </template>
 
     <template #footer="{ close }">
-      <UButton label="Cancel" color="neutral" variant="outline" @click="close" />
+      <UButton
+        label="Cancel"
+        color="neutral"
+        variant="outline"
+        @click="close"
+      />
       <UButton type="submit" form="user-form" label="Save" />
     </template>
   </USlideover>
@@ -137,24 +162,28 @@ defineShortcuts({
 
 const groups = [
   {
-    id: 'actions',
-    label: 'Actions',
+    id: "actions",
+    label: "Actions",
     items: [
       {
-        label: 'New file',
-        icon: 'i-lucide-file-plus',
-        kbds: ['meta', 'n'],
+        label: "New file",
+        icon: "i-lucide-file-plus",
+        kbds: ["meta", "n"],
         onSelect: () => newFile(),
       },
-      { label: 'New folder', icon: 'i-lucide-folder-plus', onSelect: () => newFolder() },
+      {
+        label: "New folder",
+        icon: "i-lucide-folder-plus",
+        onSelect: () => newFolder(),
+      },
     ],
   },
   {
-    id: 'navigation',
-    label: 'Navigation',
+    id: "navigation",
+    label: "Navigation",
     items: [
-      { label: 'Dashboard', icon: 'i-lucide-house', to: '/dashboard' },
-      { label: 'Settings', icon: 'i-lucide-settings', to: '/settings' },
+      { label: "Dashboard", icon: "i-lucide-house", to: "/dashboard" },
+      { label: "Settings", icon: "i-lucide-settings", to: "/settings" },
     ],
   },
 ];
@@ -191,9 +220,20 @@ const isOpen = ref(false);
     <template #body>
       <div class="space-y-2 p-4">
         <UButton label="Share" icon="i-lucide-share" block variant="ghost" />
-        <UButton label="Export" icon="i-lucide-download" block variant="ghost" />
+        <UButton
+          label="Export"
+          icon="i-lucide-download"
+          block
+          variant="ghost"
+        />
         <USeparator />
-        <UButton label="Delete" icon="i-lucide-trash" block variant="ghost" color="error" />
+        <UButton
+          label="Delete"
+          icon="i-lucide-trash"
+          block
+          variant="ghost"
+          color="error"
+        />
       </div>
     </template>
   </UDrawer>

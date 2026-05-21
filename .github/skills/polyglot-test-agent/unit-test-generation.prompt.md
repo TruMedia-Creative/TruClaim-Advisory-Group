@@ -1,5 +1,5 @@
 ---
-description: 'Best practices and guidelines for generating comprehensive, parameterized unit tests with 80% code coverage across any programming language'
+description: "Best practices and guidelines for generating comprehensive, parameterized unit tests with 80% code coverage across any programming language"
 ---
 
 # Unit Test Generation Prompt
@@ -101,7 +101,7 @@ public sealed class CalculatorTests
 ### TypeScript (Jest)
 
 ```typescript
-describe('Calculator', () => {
+describe("Calculator", () => {
   let sut: Calculator;
 
   beforeEach(() => {
@@ -112,12 +112,12 @@ describe('Calculator', () => {
     [2, 3, 5],
     [-1, 1, 0],
     [0, 0, 0],
-  ])('add(%i, %i) returns %i', (a, b, expected) => {
+  ])("add(%i, %i) returns %i", (a, b, expected) => {
     expect(sut.add(a, b)).toBe(expected);
   });
 
-  it('divide by zero throws error', () => {
-    expect(() => sut.divide(10, 0)).toThrow('Division by zero');
+  it("divide by zero throws error", () => {
+    expect(() => sut.divide(10, 0)).toThrow("Division by zero");
   });
 });
 ```

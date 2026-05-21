@@ -14,7 +14,11 @@ For component API details (props, slots, events, full documentation, examples), 
 **Cursor** — `.cursor/mcp.json`:
 
 ```json
-{ "mcpServers": { "nuxt-ui": { "type": "http", "url": "https://ui.nuxt.com/mcp" } } }
+{
+  "mcpServers": {
+    "nuxt-ui": { "type": "http", "url": "https://ui.nuxt.com/mcp" }
+  }
+}
 ```
 
 **Claude Code**:
@@ -102,15 +106,15 @@ pnpm add @nuxt/ui tailwindcss
 ```ts
 // nuxt.config.ts
 export default defineNuxtConfig({
-  modules: ['@nuxt/ui'],
-  css: ['~/assets/css/main.css'],
+  modules: ["@nuxt/ui"],
+  css: ["~/assets/css/main.css"],
 });
 ```
 
 ```css
 /* app/assets/css/main.css */
-@import 'tailwindcss';
-@import '@nuxt/ui';
+@import "tailwindcss";
+@import "@nuxt/ui";
 ```
 
 ```vue
@@ -130,9 +134,9 @@ pnpm add @nuxt/ui tailwindcss
 
 ```ts
 // vite.config.ts
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
-import ui from '@nuxt/ui/vite';
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import ui from "@nuxt/ui/vite";
 
 export default defineConfig({
   plugins: [vue(), ui()],
@@ -141,11 +145,11 @@ export default defineConfig({
 
 ```ts
 // src/main.ts
-import './assets/css/main.css';
-import { createApp } from 'vue';
-import { createRouter, createWebHistory } from 'vue-router';
-import ui from '@nuxt/ui/vue-plugin';
-import App from './App.vue';
+import "./assets/css/main.css";
+import { createApp } from "vue";
+import { createRouter, createWebHistory } from "vue-router";
+import ui from "@nuxt/ui/vue-plugin";
+import App from "./App.vue";
 
 const app = createApp(App);
 const router = createRouter({
@@ -155,13 +159,13 @@ const router = createRouter({
 
 app.use(router);
 app.use(ui);
-app.mount('#app');
+app.mount("#app");
 ```
 
 ```css
 /* src/assets/css/main.css */
-@import 'tailwindcss';
-@import '@nuxt/ui';
+@import "tailwindcss";
+@import "@nuxt/ui";
 ```
 
 ```vue

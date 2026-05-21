@@ -173,14 +173,14 @@ monitor(function) // Log function calls
 // Check browser
 const userAgent = navigator.userAgent;
 
-if (userAgent.includes('Firefox')) {
+if (userAgent.includes("Firefox")) {
   // Firefox-specific code
-} else if (userAgent.includes('Chrome')) {
+} else if (userAgent.includes("Chrome")) {
   // Chrome-specific code
 }
 
 // Better: Feature detection
-if ('serviceWorker' in navigator) {
+if ("serviceWorker" in navigator) {
   // Modern browser
 }
 ```

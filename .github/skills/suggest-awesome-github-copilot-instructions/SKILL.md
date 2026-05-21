@@ -1,6 +1,6 @@
 ---
 name: suggest-awesome-github-copilot-instructions
-description: 'Suggest relevant GitHub Copilot instruction files from the awesome-copilot repository based on current repository context and chat history, avoiding duplicates with existing instructions in this repository, and identifying outdated instructions that need updates.'
+description: "Suggest relevant GitHub Copilot instruction files from the awesome-copilot repository based on current repository context and chat history, avoiding duplicates with existing instructions in this repository, and identifying outdated instructions that need updates."
 ---
 
 # Suggest Awesome GitHub Copilot Instructions
@@ -90,8 +90,8 @@ Instructions files in awesome-copilot use this front matter format:
 
 ```markdown
 ---
-description: 'Brief description of what this instruction provides'
-applyTo: '**/*.js,**/*.ts' # Optional: glob patterns for file matching
+description: "Brief description of what this instruction provides"
+applyTo: "**/*.js,**/*.ts" # Optional: glob patterns for file matching
 ---
 ```
 

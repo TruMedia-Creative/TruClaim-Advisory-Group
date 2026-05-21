@@ -24,16 +24,16 @@ UEditor
 ```vue
 <script setup lang="ts">
 const content = ref({
-  type: 'doc',
+  type: "doc",
   content: [
     {
-      type: 'heading',
+      type: "heading",
       attrs: { level: 1 },
-      content: [{ type: 'text', text: 'Hello World' }],
+      content: [{ type: "text", text: "Hello World" }],
     },
     {
-      type: 'paragraph',
-      content: [{ type: 'text', text: 'Start writing...' }],
+      type: "paragraph",
+      content: [{ type: "text", text: "Start writing..." }],
     },
   ],
 });
@@ -46,8 +46,14 @@ const content = ref({
     <UEditorMentionMenu
       :editor="editor"
       :items="[
-        { label: 'Benjamin', avatar: { src: 'https://github.com/benjamincanac.png' } },
-        { label: 'Sébastien', avatar: { src: 'https://github.com/atinux.png' } },
+        {
+          label: 'Benjamin',
+          avatar: { src: 'https://github.com/benjamincanac.png' },
+        },
+        {
+          label: 'Sébastien',
+          avatar: { src: 'https://github.com/atinux.png' },
+        },
       ]"
     />
     <UEditorEmojiMenu :editor="editor" />
@@ -127,9 +133,9 @@ Combine with Dashboard layout for a multi-document editor:
 
 ```vue [pages/editor/[id].vue]
 <script setup lang="ts">
-definePageMeta({ layout: 'editor' });
+definePageMeta({ layout: "editor" });
 
-const content = ref({ type: 'doc', content: [] });
+const content = ref({ type: "doc", content: [] });
 </script>
 
 <template>

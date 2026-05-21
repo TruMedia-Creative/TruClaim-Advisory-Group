@@ -80,10 +80,10 @@ const activeItems = computed(() =>
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed } from "vue";
 
 const visibleActiveItems = computed(() =>
-  items.value.filter((item) => item.isActive).filter((item) => item.isVisible)
+  items.value.filter((item) => item.isActive).filter((item) => item.isVisible),
 );
 </script>
 ```
@@ -101,7 +101,7 @@ const visibleActiveItems = computed(() =>
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed } from "vue";
 
 const activeItems = computed(() => items.value.filter((item) => item.isActive));
 </script>

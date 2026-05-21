@@ -51,7 +51,9 @@ Types can also be listed per-repo via `repository.issueTypes` or looked up by na
 ```graphql
 # Header: GraphQL-Features: issue_types
 mutation {
-  updateIssueIssueType(input: { issueId: "ISSUE_NODE_ID", issueTypeId: "IT_xxx" }) {
+  updateIssueIssueType(
+    input: { issueId: "ISSUE_NODE_ID", issueTypeId: "IT_xxx" }
+  ) {
     issue {
       id
       issueType {
@@ -68,7 +70,11 @@ mutation {
 # Header: GraphQL-Features: issue_types
 mutation {
   createIssue(
-    input: { repositoryId: "REPO_NODE_ID", title: "Fix login bug", issueTypeId: "IT_xxx" }
+    input: {
+      repositoryId: "REPO_NODE_ID"
+      title: "Fix login bug"
+      issueTypeId: "IT_xxx"
+    }
   ) {
     issue {
       id

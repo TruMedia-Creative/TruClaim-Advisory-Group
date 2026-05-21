@@ -143,27 +143,27 @@ Module bundler:
 ```javascript
 // webpack.config.js
 module.exports = {
-  entry: './src/index.js',
+  entry: "./src/index.js",
   output: {
-    path: __dirname + '/dist',
-    filename: 'bundle.js',
+    path: __dirname + "/dist",
+    filename: "bundle.js",
   },
   module: {
     rules: [
       {
         test: /\.js$/,
-        use: 'babel-loader',
+        use: "babel-loader",
         exclude: /node_modules/,
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: ["style-loader", "css-loader"],
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: "./src/index.html",
     }),
   ],
 };
@@ -217,14 +217,14 @@ JavaScript testing framework:
 
 ```javascript
 // sum.test.js
-const sum = require('./sum');
+const sum = require("./sum");
 
-describe('sum function', () => {
-  test('adds 1 + 2 to equal 3', () => {
+describe("sum function", () => {
+  test("adds 1 + 2 to equal 3", () => {
     expect(sum(1, 2)).toBe(3);
   });
 
-  test('handles negative numbers', () => {
+  test("handles negative numbers", () => {
     expect(sum(-1, -2)).toBe(-3);
   });
 });
@@ -235,10 +235,10 @@ describe('sum function', () => {
 Vite-powered testing (Jest-compatible):
 
 ```javascript
-import { describe, test, expect } from 'vitest';
+import { describe, test, expect } from "vitest";
 
-describe('math', () => {
-  test('addition', () => {
+describe("math", () => {
+  test("addition", () => {
     expect(1 + 1).toBe(2);
   });
 });
@@ -249,10 +249,10 @@ describe('math', () => {
 End-to-end testing:
 
 ```javascript
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@playwright/test";
 
-test('homepage has title', async ({ page }) => {
-  await page.goto('https://example.com');
+test("homepage has title", async ({ page }) => {
+  await page.goto("https://example.com");
   await expect(page).toHaveTitle(/Example/);
 });
 ```
@@ -266,10 +266,10 @@ JavaScript linter:
 ```javascript
 // .eslintrc.js
 module.exports = {
-  extends: ['eslint:recommended'],
+  extends: ["eslint:recommended"],
   rules: {
-    'no-console': 'warn',
-    'no-unused-vars': 'error',
+    "no-console": "warn",
+    "no-unused-vars": "error",
   },
 };
 ```
@@ -347,7 +347,7 @@ interface User {
 }
 
 function getUser(id: number): User {
-  return { id, name: 'John' };
+  return { id, name: "John" };
 }
 
 // Generics
@@ -385,7 +385,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: "18"
       - run: npm ci
       - run: npm test
 ```
@@ -404,8 +404,8 @@ jobs:
 ```javascript
 // Debugging statements
 debugger; // Pause execution
-console.log('value:', value);
-console.error('error:', error);
+console.log("value:", value);
+console.error("error:", error);
 console.trace(); // Stack trace
 ```
 

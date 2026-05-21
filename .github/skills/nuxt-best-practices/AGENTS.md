@@ -132,7 +132,7 @@ Data fetching can fail or take time. Always handle `error` and `status`/`pending
 ```vue
 <script setup>
 // BAD: No handling of errors or loading states
-const { data: users } = await useFetch('/api/users');
+const { data: users } = await useFetch("/api/users");
 </script>
 
 <template>
@@ -152,7 +152,7 @@ const {
   status,
   error,
   refresh,
-} = await useFetch('/api/users', {
+} = await useFetch("/api/users", {
   default: () => [],
 });
 </script>
@@ -215,7 +215,7 @@ const {
 ```vue
 <script setup>
 // Lazy fetch - doesn't block navigation
-const { data: stats, status } = useLazyFetch('/api/stats');
+const { data: stats, status } = useLazyFetch("/api/stats");
 </script>
 
 <template>
@@ -236,13 +236,16 @@ const { data: stats, status } = useLazyFetch('/api/stats');
 
 ```typescript
 // composables/useFetchWithNotification.ts
-export function useFetchWithNotification<T>(url: string, options?: UseFetchOptions<T>) {
+export function useFetchWithNotification<T>(
+  url: string,
+  options?: UseFetchOptions<T>,
+) {
   const toast = useToast();
 
   const result = useFetch(url, {
     ...options,
     onResponseError: ({ response }) => {
-      toast.error(response._data?.message || 'Request failed');
+      toast.error(response._data?.message || "Request failed");
       options?.onResponseError?.({ response });
     },
   });
@@ -309,7 +312,7 @@ const { data: orders } = await useAsyncData(
 <script setup>
 // List with pagination
 const page = ref(1);
-const { data } = await useFetch('/api/items', {
+const { data } = await useFetch("/api/items", {
   key: `items-page-${page.value}`,
   query: { page },
 });
@@ -321,8 +324,8 @@ const { data } = await useFetch(`/api/items/${route.params.id}`, {
 });
 
 // Filtered data
-const filters = reactive({ status: 'active', category: 'tech' });
-const { data } = await useFetch('/api/items', {
+const filters = reactive({ status: "active", category: "tech" });
+const { data } = await useFetch("/api/items", {
   key: computed(() => `items-${JSON.stringify(filters)}`),
   query: filters,
 });
@@ -333,13 +336,13 @@ const { data } = await useFetch('/api/items', {
 
 ```vue
 <script setup>
-const selectedId = ref('123');
+const selectedId = ref("123");
 
 // Automatically refetches when key changes
 const { data } = await useFetch(() => `/api/items/${selectedId.value}`);
 
 // Or use watch option with explicit key
-const { data } = await useFetch('/api/items', {
+const { data } = await useFetch("/api/items", {
   key: () => `item-${selectedId.value}`,
   query: { id: selectedId },
   watch: [selectedId],
@@ -352,15 +355,15 @@ const { data } = await useFetch('/api/items', {
 ```vue
 <script setup>
 // BAD: Creates many parallel requests
-const items = ref(['a', 'b', 'c']);
+const items = ref(["a", "b", "c"]);
 // Don't do this in a loop!
 for (const id of items.value) {
   await useFetch(`/api/items/${id}`); // Anti-pattern
 }
 
 // GOOD: Fetch all at once
-const { data } = await useFetch('/api/items', {
-  query: { ids: items.value.join(',') },
+const { data } = await useFetch("/api/items", {
+  query: { ids: items.value.join(",") },
 });
 </script>
 ```
@@ -382,7 +385,7 @@ Transform and filter data in useFetch options rather than in templates or comput
 ```vue
 <script setup>
 // BAD: Full response sent to client, transformed on every render
-const { data: response } = await useFetch('/api/users');
+const { data: response } = await useFetch("/api/users");
 
 // Computed runs on every access
 const users = computed(
@@ -390,8 +393,8 @@ const users = computed(
     response.value?.data?.users?.map((u) => ({
       id: u.id,
       displayName: `${u.firstName} ${u.lastName}`,
-      avatar: u.profile?.avatar || '/default.png',
-    })) ?? []
+      avatar: u.profile?.avatar || "/default.png",
+    })) ?? [],
 );
 </script>
 
@@ -438,8 +441,8 @@ const { data: users } = await useFetch<User[]>('/api/users', {
 ```vue
 <script setup>
 // Only these fields are sent to the client
-const { data: users } = await useFetch('/api/users', {
-  pick: ['id', 'name', 'email'],
+const { data: users } = await useFetch("/api/users", {
+  pick: ["id", "name", "email"],
 });
 
 // For nested picking with transform
@@ -483,13 +486,13 @@ const { data } = await useFetch<PaginatedUsers>('/api/users', {
 
 ```vue
 <script setup>
-const { data, error } = await useFetch('/api/data', {
+const { data, error } = await useFetch("/api/data", {
   transform: (response) => response.data,
   onResponseError: ({ response }) => {
     // Normalize error format
     throw createError({
       statusCode: response.status,
-      message: response._data?.message || 'Unknown error',
+      message: response._data?.message || "Unknown error",
     });
   },
 });
@@ -512,14 +515,14 @@ Nuxt's data fetching composables handle SSR, caching, deduplication, and hydrati
 
 ```vue
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted } from "vue";
 
 const users = ref([]);
 const loading = ref(true);
 
 // BAD: Raw fetch causes hydration mismatch and duplicate requests
 onMounted(async () => {
-  const response = await fetch('/api/users');
+  const response = await fetch("/api/users");
   users.value = await response.json();
   loading.value = false;
 });
@@ -538,7 +541,7 @@ onMounted(async () => {
 ```vue
 <script setup>
 // GOOD: useFetch handles SSR, caching, and hydration
-const { data: users, status, error } = await useFetch('/api/users');
+const { data: users, status, error } = await useFetch("/api/users");
 </script>
 
 <template>
@@ -555,7 +558,7 @@ const { data: users, status, error } = await useFetch('/api/users');
 ```vue
 <script setup>
 // useAsyncData for non-fetch async operations
-const { data: config } = await useAsyncData('config', async () => {
+const { data: config } = await useAsyncData("config", async () => {
   const settings = await loadSettings();
   const features = await getFeatureFlags();
   return { settings, features };
@@ -567,11 +570,11 @@ const { data: config } = await useAsyncData('config', async () => {
 
 ```vue
 <script setup>
-const { data, refresh, clear, status } = await useFetch('/api/users', {
+const { data, refresh, clear, status } = await useFetch("/api/users", {
   // Transform response
   transform: (response) => response.users,
   // Pick specific fields (reduces payload)
-  pick: ['id', 'name', 'email'],
+  pick: ["id", "name", "email"],
   // Default value
   default: () => [],
   // Watch for reactive dependencies
@@ -587,10 +590,10 @@ const { data, refresh, clear, status } = await useFetch('/api/users', {
 ```vue
 <script setup>
 // useLazyFetch doesn't block navigation
-const { data: recommendations, status } = useLazyFetch('/api/recommendations');
+const { data: recommendations, status } = useLazyFetch("/api/recommendations");
 
 // Or with lazy option
-const { data: stats } = await useFetch('/api/stats', { lazy: true });
+const { data: stats } = await useFetch("/api/stats", { lazy: true });
 </script>
 ```
 
@@ -695,8 +698,8 @@ export default defineNuxtConfig({
   components: {
     dirs: [
       {
-        path: '~/components/ui',
-        prefix: '', // No prefix for UI components
+        path: "~/components/ui",
+        prefix: "", // No prefix for UI components
       },
     ],
   },
@@ -735,14 +738,17 @@ export function useOAuthProviders() {
 
 ```typescript
 // Then awkward imports
-import { useOAuthProviders, type OAuthProviderId } from '~/composables/auth/use-oauth';
+import {
+  useOAuthProviders,
+  type OAuthProviderId,
+} from "~/composables/auth/use-oauth";
 ```
 
 **Correct (types in dedicated files):**
 
 ```typescript
 // ✅ CORRECT - shared/types/auth.ts
-export type OAuthProviderId = 'google' | 'github' | 'discord';
+export type OAuthProviderId = "google" | "github" | "discord";
 
 export interface OAuthProviderInfo {
   id: OAuthProviderId;
@@ -763,7 +769,7 @@ export function useOAuthProviders() {
 
 ```typescript
 // Clean imports in components
-import type { OAuthProviderId } from '#shared/types/auth';
+import type { OAuthProviderId } from "#shared/types/auth";
 // useOAuthProviders is auto-imported
 const { providers } = useOAuthProviders();
 ```
@@ -772,14 +778,14 @@ const { providers } = useOAuthProviders();
 
 ```typescript
 // Types can be imported without function overhead
-import type { User, Session } from '#shared/types/auth';
+import type { User, Session } from "#shared/types/auth";
 
 // Composables are auto-imported in components
 const { user, login, logout } = useAuth();
 
 // Server code can import types without client composable code
 // server/api/auth.ts
-import type { User } from '#shared/types/auth';
+import type { User } from "#shared/types/auth";
 ```
 
 **Return types for composables:**
@@ -787,8 +793,8 @@ import type { User } from '#shared/types/auth';
 ```typescript
 // Define return type interface in types file
 // app/types/auth.ts
-import type { Ref, ComputedRef } from 'vue';
-import type { User } from '#shared/types/auth';
+import type { Ref, ComputedRef } from "vue";
+import type { User } from "#shared/types/auth";
 
 export interface UseAuthReturn {
   user: Ref<User | null>;
@@ -801,7 +807,7 @@ export interface UseAuthReturn {
 ```typescript
 // Composable uses the return type
 // app/composables/auth/use-auth.ts
-import type { UseAuthReturn } from '~/types/auth';
+import type { UseAuthReturn } from "~/types/auth";
 
 export function useAuth(): UseAuthReturn {
   // Implementation
@@ -859,9 +865,9 @@ Build warning:
 
 ```typescript
 // ✅ CORRECT - app/composables/dashboard/use-dashboard.ts
-import { useTokens } from '../tokens/use-tokens';
-import { useUsage } from '../usage/use-usage';
-import { useAuth } from '../auth/use-auth';
+import { useTokens } from "../tokens/use-tokens";
+import { useUsage } from "../usage/use-usage";
+import { useAuth } from "../auth/use-auth";
 
 export function useDashboard() {
   const { tokens } = useTokens();
@@ -880,9 +886,9 @@ The root `composables/index.ts` barrel file re-exports all composables:
 
 ```typescript
 // composables/index.ts (required for Nuxt auto-import)
-export { useAuth } from './auth/use-auth';
-export { useTokens } from './tokens/use-tokens';
-export { useDashboard } from './dashboard/use-dashboard';
+export { useAuth } from "./auth/use-auth";
+export { useTokens } from "./tokens/use-tokens";
+export { useDashboard } from "./dashboard/use-dashboard";
 ```
 
 When composables use auto-import, they go through this barrel:
@@ -896,8 +902,8 @@ useDashboard -> auto-import -> composables/index.ts -> useTokens -> uses useDash
 ```typescript
 // ✅ In composables - use relative imports
 // app/composables/feature/use-feature.ts
-import { useAuth } from '../auth/use-auth';
-import { useToast } from '../toast/use-toast';
+import { useAuth } from "../auth/use-auth";
+import { useToast } from "../toast/use-toast";
 
 // ✅ In Vue components - use auto-import (or explicit)
 // app/pages/dashboard.vue
@@ -906,18 +912,18 @@ const { tokens } = useTokens(); // Auto-imported
 
 // ✅ In server code - import explicitly
 // server/api/data.ts
-import { someUtil } from '~~/server/utils/helpers';
+import { someUtil } from "~~/server/utils/helpers";
 ```
 
 **Common composable imports to add:**
 
 ```typescript
 // app/composables/dashboard/use-dashboard.ts
-import { useAuth, useSession } from '../auth/use-auth';
-import { useTokens } from '../tokens/use-tokens';
-import { useUsage } from '../usage/use-usage';
-import { useBilling } from '../billing/use-billing';
-import { useToast } from '../toast/use-toast';
+import { useAuth, useSession } from "../auth/use-auth";
+import { useTokens } from "../tokens/use-tokens";
+import { useUsage } from "../usage/use-usage";
+import { useBilling } from "../billing/use-billing";
+import { useToast } from "../toast/use-toast";
 ```
 
 **Rule summary:**
@@ -954,8 +960,8 @@ Nuxt auto-imports from specific directories. The rules for barrel exports (`inde
 ```typescript
 // ❌ WRONG - server/utils/admin/index.ts
 // server/utils/ is scanned RECURSIVELY - barrel causes duplicates!
-export { getAIUsageMetrics } from './ai-usage';
-export { getUserAnalytics } from './user-analytics';
+export { getAIUsageMetrics } from "./ai-usage";
+export { getUserAnalytics } from "./user-analytics";
 // Warning: "Duplicate import: getAIUsageMetrics"
 ```
 
@@ -976,9 +982,9 @@ Per [official Nuxt docs](https://nuxt.com/docs/guide/directory-structure/composa
 ```typescript
 // ✅ CORRECT - composables/index.ts (at ROOT)
 // Required to enable auto-import of nested composables
-export { useAuth, useSession } from './auth/use-auth';
-export { useTokens } from './tokens/use-tokens';
-export { useBilling } from './billing/use-billing';
+export { useAuth, useSession } from "./auth/use-auth";
+export { useTokens } from "./tokens/use-tokens";
+export { useBilling } from "./billing/use-billing";
 ```
 
 ```typescript
@@ -993,8 +999,8 @@ export function useAuth() {
 ```typescript
 // ❌ WRONG - composables/auth/index.ts
 // This creates circular dependencies and duplicates
-export * from './use-auth';
-export * from './use-session';
+export * from "./use-auth";
+export * from "./use-session";
 
 // ✅ CORRECT - Export directly from root composables/index.ts instead
 ```
@@ -1050,7 +1056,7 @@ export function useBilling() { ... }
 ```typescript
 // ❌ WRONG - server/utils/auth.ts
 // NO! Shared types go in shared/types/
-export type OAuthProviderId = 'google' | 'github';
+export type OAuthProviderId = "google" | "github";
 ```
 
 **Correct (dedicated type directories):**
@@ -1077,15 +1083,15 @@ project/
 
 ```typescript
 // Frontend types (from app/types/)
-import type { OAuthProviderUIConfig } from '~/types/auth';
-import type { TierInfo } from '~/types/billing';
+import type { OAuthProviderUIConfig } from "~/types/auth";
+import type { TierInfo } from "~/types/billing";
 
 // Shared types (from shared/types/)
-import type { User, Session } from '#shared/types/auth';
-import type { ApiToken } from '#shared/types/token';
+import type { User, Session } from "#shared/types/auth";
+import type { ApiToken } from "#shared/types/token";
 
 // Server types (from server/types/)
-import type { InternalConfig } from '~~/server/types/internal';
+import type { InternalConfig } from "~~/server/types/internal";
 ```
 
 **Type location decision table:**
@@ -1125,7 +1131,7 @@ Components that use browser-only APIs (window, document, localStorage, etc.) mus
 const width = ref(window.innerWidth);
 
 // localStorage doesn't exist on server!
-const saved = localStorage.getItem('settings');
+const saved = localStorage.getItem("settings");
 </script>
 ```
 
@@ -1185,7 +1191,7 @@ const savedSettings = (ref < Settings) | (null > null);
 onMounted(() => {
   // This only runs on client
   width.value = window.innerWidth;
-  savedSettings.value = JSON.parse(localStorage.getItem('settings') || '{}');
+  savedSettings.value = JSON.parse(localStorage.getItem("settings") || "{}");
 });
 
 // Or use import.meta.client
@@ -1199,12 +1205,12 @@ if (import.meta.client) {
 
 ```vue
 <script setup>
-import { useWindowSize, useLocalStorage, useMediaQuery } from '@vueuse/core';
+import { useWindowSize, useLocalStorage, useMediaQuery } from "@vueuse/core";
 
 // These are SSR-safe!
 const { width, height } = useWindowSize();
-const settings = useLocalStorage('settings', { theme: 'light' });
-const isMobile = useMediaQuery('(max-width: 768px)');
+const settings = useLocalStorage("settings", { theme: "light" });
+const isMobile = useMediaQuery("(max-width: 768px)");
 </script>
 ```
 
@@ -1225,7 +1231,9 @@ const isMobile = useMediaQuery('(max-width: 768px)');
 ```vue
 <script setup>
 // Lazy load heavy client-only component
-const HeavyChart = defineAsyncComponent(() => import('~/components/HeavyChart.client.vue'));
+const HeavyChart = defineAsyncComponent(
+  () => import("~/components/HeavyChart.client.vue"),
+);
 </script>
 
 <template>
@@ -1260,11 +1268,11 @@ export default defineEventHandler(async (event) => {
   const user = await getUser(event);
 
   if (!user) {
-    throw new Error('User not found'); // Generic 500 error
+    throw new Error("User not found"); // Generic 500 error
   }
 
   // Or worse
-  return { error: 'Not found', status: 404 }; // Inconsistent format
+  return { error: "Not found", status: 404 }; // Inconsistent format
 });
 ```
 
@@ -1279,7 +1287,7 @@ export default defineEventHandler(async (event) => {
   if (!user) {
     throw createError({
       statusCode: 404,
-      statusMessage: 'Not Found',
+      statusMessage: "Not Found",
       message: `User with ID ${id} not found`,
     });
   }
@@ -1294,47 +1302,47 @@ export default defineEventHandler(async (event) => {
 // 400 Bad Request - Invalid input
 throw createError({
   statusCode: 400,
-  statusMessage: 'Bad Request',
-  message: 'Invalid email format',
+  statusMessage: "Bad Request",
+  message: "Invalid email format",
   data: {
-    field: 'email',
-    reason: 'Must be a valid email address',
+    field: "email",
+    reason: "Must be a valid email address",
   },
 });
 
 // 401 Unauthorized - Not authenticated
 throw createError({
   statusCode: 401,
-  statusMessage: 'Unauthorized',
-  message: 'Authentication required',
+  statusMessage: "Unauthorized",
+  message: "Authentication required",
 });
 
 // 403 Forbidden - Not authorized
 throw createError({
   statusCode: 403,
-  statusMessage: 'Forbidden',
-  message: 'You do not have permission to access this resource',
+  statusMessage: "Forbidden",
+  message: "You do not have permission to access this resource",
 });
 
 // 404 Not Found
 throw createError({
   statusCode: 404,
-  statusMessage: 'Not Found',
-  message: 'Resource not found',
+  statusMessage: "Not Found",
+  message: "Resource not found",
 });
 
 // 409 Conflict - Duplicate
 throw createError({
   statusCode: 409,
-  statusMessage: 'Conflict',
-  message: 'Email already registered',
+  statusMessage: "Conflict",
+  message: "Email already registered",
 });
 
 // 422 Unprocessable Entity - Validation
 throw createError({
   statusCode: 422,
-  statusMessage: 'Unprocessable Entity',
-  message: 'Validation failed',
+  statusMessage: "Unprocessable Entity",
+  message: "Validation failed",
   data: {
     errors: validationErrors,
   },
@@ -1343,8 +1351,8 @@ throw createError({
 // 500 Internal Server Error
 throw createError({
   statusCode: 500,
-  statusMessage: 'Internal Server Error',
-  message: 'An unexpected error occurred',
+  statusMessage: "Internal Server Error",
+  message: "An unexpected error occurred",
 });
 ```
 
@@ -1355,23 +1363,25 @@ throw createError({
 export function notFound(resource: string, id?: string) {
   throw createError({
     statusCode: 404,
-    statusMessage: 'Not Found',
-    message: id ? `${resource} with ID ${id} not found` : `${resource} not found`,
+    statusMessage: "Not Found",
+    message: id
+      ? `${resource} with ID ${id} not found`
+      : `${resource} not found`,
   });
 }
 
-export function unauthorized(message = 'Authentication required') {
+export function unauthorized(message = "Authentication required") {
   throw createError({
     statusCode: 401,
-    statusMessage: 'Unauthorized',
+    statusMessage: "Unauthorized",
     message,
   });
 }
 
-export function forbidden(message = 'Permission denied') {
+export function forbidden(message = "Permission denied") {
   throw createError({
     statusCode: 403,
-    statusMessage: 'Forbidden',
+    statusMessage: "Forbidden",
     message,
   });
 }
@@ -1379,7 +1389,7 @@ export function forbidden(message = 'Permission denied') {
 export function badRequest(message: string, data?: unknown) {
   throw createError({
     statusCode: 400,
-    statusMessage: 'Bad Request',
+    statusMessage: "Bad Request",
     message,
     data,
   });
@@ -1390,7 +1400,7 @@ export function badRequest(message: string, data?: unknown) {
 // Usage in handlers
 export default defineEventHandler(async (event) => {
   const user = await getUser(id);
-  if (!user) notFound('User', id);
+  if (!user) notFound("User", id);
 
   if (!canAccess(user)) forbidden();
 
@@ -1402,7 +1412,7 @@ export default defineEventHandler(async (event) => {
 
 ```vue
 <script setup>
-const { data, error } = await useFetch('/api/users/123');
+const { data, error } = await useFetch("/api/users/123");
 
 if (error.value) {
   // error.value has shape: { statusCode, statusMessage, message, data }
@@ -1438,44 +1448,48 @@ export default defineEventHandler(async (event) => {
 
 ```typescript
 // ✅ CORRECT - server/api/tokens.post.ts
-import { createTokenSchema } from '#shared/schemas/token';
+import { createTokenSchema } from "#shared/schemas/token";
 
 export default defineEventHandler(async (event) => {
   defineRouteMeta({
     openAPI: {
-      tags: ['Tokens'],
-      summary: 'Create a new API token',
+      tags: ["Tokens"],
+      summary: "Create a new API token",
       description:
-        'Creates a new API token for the authenticated user with specified scopes and optional expiration.',
+        "Creates a new API token for the authenticated user with specified scopes and optional expiration.",
       requestBody: {
         required: true,
         content: {
-          'application/json': {
+          "application/json": {
             schema: {
-              type: 'object',
+              type: "object",
               properties: {
-                name: { type: 'string', description: 'Token name' },
-                scopes: { type: 'array', items: { type: 'string' } },
-                expiresAt: { type: 'string', format: 'date-time', nullable: true },
+                name: { type: "string", description: "Token name" },
+                scopes: { type: "array", items: { type: "string" } },
+                expiresAt: {
+                  type: "string",
+                  format: "date-time",
+                  nullable: true,
+                },
               },
-              required: ['name', 'scopes'],
+              required: ["name", "scopes"],
             },
           },
         },
       },
       responses: {
-        '201': {
-          description: 'Token created successfully',
+        "201": {
+          description: "Token created successfully",
           content: {
-            'application/json': {
+            "application/json": {
               schema: {
-                $ref: '#/components/schemas/ApiToken',
+                $ref: "#/components/schemas/ApiToken",
               },
             },
           },
         },
-        '400': { description: 'Invalid input' },
-        '401': { description: 'Unauthorized' },
+        "400": { description: "Invalid input" },
+        "401": { description: "Unauthorized" },
       },
     },
   });
@@ -1492,8 +1506,8 @@ export default defineEventHandler(async (event) => {
 export default defineEventHandler(async (event) => {
   defineRouteMeta({
     openAPI: {
-      tags: ['Users'],
-      summary: 'Get current user profile',
+      tags: ["Users"],
+      summary: "Get current user profile",
       description: "Returns the authenticated user's profile information",
     },
   });
@@ -1508,11 +1522,11 @@ export default defineEventHandler(async (event) => {
 // GET endpoint
 defineRouteMeta({
   openAPI: {
-    tags: ['Items'],
-    summary: 'List all items',
+    tags: ["Items"],
+    summary: "List all items",
     parameters: [
-      { name: 'page', in: 'query', schema: { type: 'integer' } },
-      { name: 'limit', in: 'query', schema: { type: 'integer' } },
+      { name: "page", in: "query", schema: { type: "integer" } },
+      { name: "limit", in: "query", schema: { type: "integer" } },
     ],
   },
 });
@@ -1520,12 +1534,14 @@ defineRouteMeta({
 // DELETE endpoint
 defineRouteMeta({
   openAPI: {
-    tags: ['Items'],
-    summary: 'Delete an item',
-    parameters: [{ name: 'id', in: 'path', required: true, schema: { type: 'string' } }],
+    tags: ["Items"],
+    summary: "Delete an item",
+    parameters: [
+      { name: "id", in: "path", required: true, schema: { type: "string" } },
+    ],
     responses: {
-      '204': { description: 'Item deleted' },
-      '404': { description: 'Item not found' },
+      "204": { description: "Item deleted" },
+      "404": { description: "Item not found" },
     },
   },
 });
@@ -1533,8 +1549,8 @@ defineRouteMeta({
 // Protected endpoint
 defineRouteMeta({
   openAPI: {
-    tags: ['Admin'],
-    summary: 'Admin-only operation',
+    tags: ["Admin"],
+    summary: "Admin-only operation",
     security: [{ bearerAuth: [] }],
   },
 });
@@ -1605,17 +1621,17 @@ export default defineNuxtConfig({
     // Private keys (server only) - maps from NUXT_*
     oauth: {
       google: {
-        clientId: '', // ← NUXT_OAUTH_GOOGLE_CLIENT_ID
-        clientSecret: '', // ← NUXT_OAUTH_GOOGLE_CLIENT_SECRET
+        clientId: "", // ← NUXT_OAUTH_GOOGLE_CLIENT_ID
+        clientSecret: "", // ← NUXT_OAUTH_GOOGLE_CLIENT_SECRET
       },
     },
     stripe: {
-      secretKey: '', // ← NUXT_STRIPE_SECRET_KEY
+      secretKey: "", // ← NUXT_STRIPE_SECRET_KEY
     },
     // Public keys (exposed to client)
     public: {
-      baseUrl: '', // ← NUXT_PUBLIC_BASE_URL
-      apiVersion: 'v1',
+      baseUrl: "", // ← NUXT_PUBLIC_BASE_URL
+      apiVersion: "v1",
     },
   },
 });
@@ -1660,7 +1676,7 @@ const apiUrl = config.public.baseUrl;
 
 ```typescript
 // nuxt.config.ts or types/nuxt.d.ts
-declare module 'nuxt/schema' {
+declare module "nuxt/schema" {
   interface RuntimeConfig {
     oauth: {
       google: {
@@ -1730,19 +1746,19 @@ export default defineEventHandler(async (event) => {
 
 ```typescript
 // shared/schemas/user.ts
-import { z } from 'zod';
+import { z } from "zod";
 
 export const userQuerySchema = z.object({
   page: z.coerce.number().min(1).default(1),
   limit: z.coerce.number().min(1).max(100).default(20),
   search: z.string().optional(),
-  status: z.enum(['active', 'inactive']).optional(),
+  status: z.enum(["active", "inactive"]).optional(),
 });
 
 export const createUserSchema = z.object({
   name: z.string().min(1).max(100),
   email: z.string().email(),
-  role: z.enum(['user', 'admin']).default('user'),
+  role: z.enum(["user", "admin"]).default("user"),
 });
 
 export type UserQuery = z.infer<typeof userQuerySchema>;
@@ -1751,7 +1767,7 @@ export type CreateUserInput = z.infer<typeof createUserSchema>;
 
 ```typescript
 // ✅ CORRECT - server/api/users.get.ts
-import { userQuerySchema } from '#shared/schemas/user';
+import { userQuerySchema } from "#shared/schemas/user";
 
 export default defineEventHandler(async (event) => {
   // Validates and returns typed object
@@ -1763,7 +1779,7 @@ export default defineEventHandler(async (event) => {
 });
 
 // ✅ CORRECT - server/api/users.post.ts
-import { createUserSchema } from '#shared/schemas/user';
+import { createUserSchema } from "#shared/schemas/user";
 
 export default defineEventHandler(async (event) => {
   // Validates body against schema
@@ -1777,7 +1793,7 @@ export default defineEventHandler(async (event) => {
 **Using safeParse for custom error handling:**
 
 ```typescript
-import { createUserSchema } from '#shared/schemas/user';
+import { createUserSchema } from "#shared/schemas/user";
 
 export default defineEventHandler(async (event) => {
   const rawBody = await readBody(event);
@@ -1786,7 +1802,7 @@ export default defineEventHandler(async (event) => {
   if (!result.success) {
     throw createError({
       statusCode: 400,
-      message: 'Validation failed',
+      message: "Validation failed",
       data: {
         errors: result.error.flatten().fieldErrors,
       },
@@ -1801,7 +1817,7 @@ export default defineEventHandler(async (event) => {
 
 ```typescript
 // server/api/users/[id].get.ts
-import { z } from 'zod';
+import { z } from "zod";
 
 const paramsSchema = z.object({
   id: z.string().uuid(),
@@ -1863,7 +1879,7 @@ export const globalUser = ref<User | null>(null); // Leaks between requests!
 export function useCounter() {
   // useState creates request-scoped state on server
   // and hydrates correctly on client
-  const count = useState<number>('counter', () => 0);
+  const count = useState<number>("counter", () => 0);
 
   function increment() {
     count.value++;
@@ -1876,10 +1892,10 @@ export function useCounter() {
 ```typescript
 // ✅ CORRECT - Shared user state
 export function useUser() {
-  const user = useState<User | null>('user', () => null);
+  const user = useState<User | null>("user", () => null);
 
   async function fetchUser() {
-    const { data } = await useFetch('/api/me');
+    const { data } = await useFetch("/api/me");
     user.value = data.value;
   }
 
@@ -1901,15 +1917,17 @@ export function useUser() {
 ```typescript
 export function useCart() {
   // Key must be unique across the app
-  const items = useState<CartItem[]>('cart-items', () => []);
-  const total = computed(() => items.value.reduce((sum, item) => sum + item.price, 0));
+  const items = useState<CartItem[]>("cart-items", () => []);
+  const total = computed(() =>
+    items.value.reduce((sum, item) => sum + item.price, 0),
+  );
 
   return { items, total };
 }
 
 export function useTheme() {
   // Different key for different state
-  const theme = useState<'light' | 'dark'>('app-theme', () => 'light');
+  const theme = useState<"light" | "dark">("app-theme", () => "light");
 
   return { theme };
 }
@@ -1919,13 +1937,13 @@ export function useTheme() {
 
 ```typescript
 export function useAuth() {
-  const user = useState<User | null>('auth-user', () => null);
+  const user = useState<User | null>("auth-user", () => null);
 
   async function logout() {
-    await $fetch('/api/logout', { method: 'POST' });
+    await $fetch("/api/logout", { method: "POST" });
     user.value = null;
     // Or clear all state
-    clearNuxtState('auth-user');
+    clearNuxtState("auth-user");
   }
 
   return { user, logout };
@@ -1936,14 +1954,14 @@ export function useAuth() {
 
 ```typescript
 // stores/user.ts
-export const useUserStore = defineStore('user', () => {
+export const useUserStore = defineStore("user", () => {
   // Pinia handles SSR automatically in Nuxt
   const user = ref<User | null>(null);
   const isLoggedIn = computed(() => !!user.value);
 
   async function login(credentials: Credentials) {
-    user.value = await $fetch('/api/login', {
-      method: 'POST',
+    user.value = await $fetch("/api/login", {
+      method: "POST",
       body: credentials,
     });
   }
@@ -1968,36 +1986,36 @@ Nuxt provides specific import aliases for different contexts. Using the wrong al
 
 ```typescript
 // ❌ WRONG - Relative paths for shared types
-import type { User } from '../../../shared/types/auth';
-import type { ApiToken } from '../../shared/types/token';
+import type { User } from "../../../shared/types/auth";
+import type { ApiToken } from "../../shared/types/token";
 
 // ❌ WRONG - Using ~/shared instead of #shared
-import type { User } from '~/shared/types/auth';
+import type { User } from "~/shared/types/auth";
 
 // ❌ WRONG - Accessing server types from client
 // In a Vue component:
-import type { InternalConfig } from '~/server/types/internal';
+import type { InternalConfig } from "~/server/types/internal";
 ```
 
 **Correct (proper aliases):**
 
 ```typescript
 // ✅ CORRECT - Shared types (client & server)
-import type { User, Session } from '#shared/types/auth';
-import type { ApiToken, TokenMetadata } from '#shared/types/token';
+import type { User, Session } from "#shared/types/auth";
+import type { ApiToken, TokenMetadata } from "#shared/types/token";
 
 // ✅ CORRECT - Frontend/app types
-import type { TierInfo } from '~/types/billing';
-import type { NavItem } from '~/types/navigation';
+import type { TierInfo } from "~/types/billing";
+import type { NavItem } from "~/types/navigation";
 
 // ✅ CORRECT - Server types (only in server code)
-import type { InternalConfig } from '~~/server/types/internal';
+import type { InternalConfig } from "~~/server/types/internal";
 
 // ✅ CORRECT - Shared schemas
-import { createUserSchema } from '#shared/schemas/user';
+import { createUserSchema } from "#shared/schemas/user";
 
 // ✅ CORRECT - Shared utilities
-import { formatDate } from '#shared/utils/date';
+import { formatDate } from "#shared/utils/date";
 ```
 
 **Import alias reference:**
@@ -2015,10 +2033,10 @@ import { formatDate } from '#shared/utils/date';
 // nuxt.config.ts
 export default defineNuxtConfig({
   alias: {
-    '#shared': '../shared', // If shared is at project root
+    "#shared": "../shared", // If shared is at project root
   },
   // Or use layers
-  extends: ['./shared'],
+  extends: ["./shared"],
 });
 ```
 
@@ -2026,11 +2044,11 @@ export default defineNuxtConfig({
 
 ```typescript
 // Always use 'import type' for types
-import type { User } from '#shared/types/auth'; // ✅ Correct
-import { User } from '#shared/types/auth'; // ⚠️ Works but less explicit
+import type { User } from "#shared/types/auth"; // ✅ Correct
+import { User } from "#shared/types/auth"; // ⚠️ Works but less explicit
 
 // For mixed imports
-import { userSchema, type User } from '#shared/schemas/user';
+import { userSchema, type User } from "#shared/schemas/user";
 ```
 
 **Avoid inline import():**
@@ -2038,11 +2056,11 @@ import { userSchema, type User } from '#shared/schemas/user';
 ```typescript
 // ❌ WRONG - Inline import in type annotation
 export interface ApiErrorData {
-  errorCode?: import('~/types/embed').EmbedErrorCode; // NO!
+  errorCode?: import("~/types/embed").EmbedErrorCode; // NO!
 }
 
 // ✅ CORRECT - Top-level import type
-import type { EmbedErrorCode } from '~/types/embed';
+import type { EmbedErrorCode } from "~/types/embed";
 
 export interface ApiErrorData {
   errorCode?: EmbedErrorCode;
@@ -2055,14 +2073,14 @@ export interface ApiErrorData {
 // server/api/users.get.ts
 
 // ✅ These work in server context
-import { useDrizzle } from '~~/server/utils/db';
-import type { DatabaseUser } from '~~/server/types/database';
+import { useDrizzle } from "~~/server/utils/db";
+import type { DatabaseUser } from "~~/server/types/database";
 
 // ✅ Shared types work everywhere
-import type { User } from '#shared/types/auth';
+import type { User } from "#shared/types/auth";
 
 // ❌ Don't import app/ in server code
-import { useAuth } from '~/composables/auth'; // NO!
+import { useAuth } from "~/composables/auth"; // NO!
 ```
 
 Reference: [Nuxt Alias](https://nuxt.com/docs/api/nuxt-config#alias)
@@ -2099,7 +2117,7 @@ const user = response as any;
 
 ```typescript
 // ✅ CORRECT - Define proper types
-import type { ApiResponse, User } from '#shared/types/api';
+import type { ApiResponse, User } from "#shared/types/api";
 
 const data: ApiResponse<User> = response;
 
@@ -2125,7 +2143,12 @@ function parseJson(json: string): unknown {
 
 // Then narrow with type guards
 function isUser(value: unknown): value is User {
-  return typeof value === 'object' && value !== null && 'id' in value && 'email' in value;
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    "id" in value &&
+    "email" in value
+  );
 }
 
 const parsed = parseJson(jsonString);
@@ -2138,7 +2161,7 @@ if (isUser(parsed)) {
 **Using Zod for runtime validation:**
 
 ```typescript
-import { z } from 'zod';
+import { z } from "zod";
 
 const userSchema = z.object({
   id: z.string(),
@@ -2160,7 +2183,7 @@ const user = userSchema.parse(unknownData);
 const result: any = externalLib.doSomething();
 
 // ✅ CORRECT - Create type declaration
-declare module 'external-lib' {
+declare module "external-lib" {
   interface Result {
     data: string;
     status: number;
@@ -2227,8 +2250,8 @@ const emit = defineEmits<{
 }>();
 
 // Inconsistent emit calls
-emit('manageSubscription');
-emit('toggleVisibility', id, true);
+emit("manageSubscription");
+emit("toggleVisibility", id, true);
 </script>
 ```
 
@@ -2238,15 +2261,15 @@ emit('toggleVisibility', id, true);
 <script setup lang="ts">
 // ✅ CORRECT - kebab-case with quotes in defineEmits
 const emit = defineEmits<{
-  'manage-subscription': [];
-  'toggle-visibility': [id: string, visible: boolean];
-  'update-value': [value: number];
+  "manage-subscription": [];
+  "toggle-visibility": [id: string, visible: boolean];
+  "update-value": [value: number];
 }>();
 
 // Consistent emit calls
-emit('manage-subscription');
-emit('toggle-visibility', id, true);
-emit('update-value', 42);
+emit("manage-subscription");
+emit("toggle-visibility", id, true);
+emit("update-value", 42);
 </script>
 ```
 
@@ -2288,11 +2311,11 @@ const props = defineProps<{
 
 // v-model emits use 'update:modelValue' pattern
 const emit = defineEmits<{
-  'update:model-value': [value: string]; // kebab-case
+  "update:model-value": [value: string]; // kebab-case
 }>();
 
 function updateValue(newValue: string) {
-  emit('update:model-value', newValue);
+  emit("update:model-value", newValue);
 }
 </script>
 
@@ -2310,7 +2333,9 @@ function updateValue(newValue: string) {
 <!-- ❌ WRONG - Inline arrow with multiple params -->
 <template>
   <LayerTree
-    @toggle-visibility="(layerId, visible) => emit('toggle-layer-visibility', layerId, visible)"
+    @toggle-visibility="
+      (layerId, visible) => emit('toggle-layer-visibility', layerId, visible)
+    "
   />
 </template>
 

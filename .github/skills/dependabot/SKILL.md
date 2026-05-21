@@ -62,11 +62,11 @@ For each ecosystem, identify where manifests live. Use `directories` (plural) wi
 
 ```yaml
 directories:
-  - '/' # root
-  - '/apps/*' # all app subdirs
-  - '/packages/*' # all package subdirs
-  - '/lib-*' # dirs starting with lib-
-  - '**/*' # recursive (all subdirs)
+  - "/" # root
+  - "/apps/*" # all app subdirs
+  - "/packages/*" # all package subdirs
+  - "/lib-*" # dirs starting with lib-
+  - "**/*" # recursive (all subdirs)
 ```
 
 Important: `directory` (singular) does NOT support globs. Use `directories` (plural) for wildcards.
@@ -76,10 +76,10 @@ Important: `directory` (singular) does NOT support globs. Use `directories` (plu
 Every entry needs at minimum:
 
 ```yaml
-- package-ecosystem: 'npm'
-  directory: '/'
+- package-ecosystem: "npm"
+  directory: "/"
   schedule:
-    interval: 'weekly'
+    interval: "weekly"
 ```
 
 ### Step 4: Optimize with Grouping, Labels, and Scheduling
@@ -93,14 +93,14 @@ See sections below for each optimization technique.
 For monorepos with many packages, use glob patterns to avoid listing each directory:
 
 ```yaml
-- package-ecosystem: 'npm'
+- package-ecosystem: "npm"
   directories:
-    - '/'
-    - '/apps/*'
-    - '/packages/*'
-    - '/services/*'
+    - "/"
+    - "/apps/*"
+    - "/packages/*"
+    - "/services/*"
   schedule:
-    interval: 'weekly'
+    interval: "weekly"
 ```
 
 ### Cross-Directory Grouping
@@ -134,11 +134,11 @@ Reduce PR noise by grouping related dependencies into single PRs.
 ```yaml
 groups:
   dev-dependencies:
-    dependency-type: 'development'
-    update-types: ['minor', 'patch']
+    dependency-type: "development"
+    update-types: ["minor", "patch"]
   production-dependencies:
-    dependency-type: 'production'
-    update-types: ['minor', 'patch']
+    dependency-type: "production"
+    update-types: ["minor", "patch"]
 ```
 
 ### By Name Pattern
@@ -146,10 +146,10 @@ groups:
 ```yaml
 groups:
   angular:
-    patterns: ['@angular*']
-    update-types: ['minor', 'patch']
+    patterns: ["@angular*"]
+    update-types: ["minor", "patch"]
   testing:
-    patterns: ['jest*', '@testing-library*', 'ts-jest']
+    patterns: ["jest*", "@testing-library*", "ts-jest"]
 ```
 
 ### For Security Updates
@@ -158,8 +158,8 @@ groups:
 groups:
   security-patches:
     applies-to: security-updates
-    patterns: ['*']
-    update-types: ['patch', 'minor']
+    patterns: ["*"]
+    update-types: ["patch", "minor"]
 ```
 
 Key behaviors:
@@ -178,19 +178,19 @@ version: 2
 multi-ecosystem-groups:
   infrastructure:
     schedule:
-      interval: 'weekly'
-    labels: ['infrastructure', 'dependencies']
+      interval: "weekly"
+    labels: ["infrastructure", "dependencies"]
 
 updates:
-  - package-ecosystem: 'docker'
-    directory: '/'
-    patterns: ['nginx', 'redis']
-    multi-ecosystem-group: 'infrastructure'
+  - package-ecosystem: "docker"
+    directory: "/"
+    patterns: ["nginx", "redis"]
+    multi-ecosystem-group: "infrastructure"
 
-  - package-ecosystem: 'terraform'
-    directory: '/'
-    patterns: ['aws*']
-    multi-ecosystem-group: 'infrastructure'
+  - package-ecosystem: "terraform"
+    directory: "/"
+    patterns: ["aws*"]
+    multi-ecosystem-group: "infrastructure"
 ```
 
 The `patterns` key is required when using `multi-ecosystem-group`.
@@ -201,8 +201,8 @@ The `patterns` key is required when using `multi-ecosystem-group`.
 
 ```yaml
 labels:
-  - 'dependencies'
-  - 'npm'
+  - "dependencies"
+  - "npm"
 ```
 
 Set `labels: []` to disable all labels including defaults. SemVer labels (`major`, `minor`, `patch`) are always applied if present in the repo.
@@ -211,15 +211,15 @@ Set `labels: []` to disable all labels including defaults. SemVer labels (`major
 
 ```yaml
 commit-message:
-  prefix: 'deps'
-  prefix-development: 'deps-dev'
-  include: 'scope' # adds deps/deps-dev scope after prefix
+  prefix: "deps"
+  prefix-development: "deps-dev"
+  include: "scope" # adds deps/deps-dev scope after prefix
 ```
 
 ### Assignees and Milestones
 
 ```yaml
-assignees: ['security-team-lead']
+assignees: ["security-team-lead"]
 milestone: 4 # numeric ID from milestone URL
 ```
 
@@ -227,13 +227,13 @@ milestone: 4 # numeric ID from milestone URL
 
 ```yaml
 pull-request-branch-name:
-  separator: '-' # default is /
+  separator: "-" # default is /
 ```
 
 ### Target Branch
 
 ```yaml
-target-branch: 'develop' # PRs target this instead of default branch
+target-branch: "develop" # PRs target this instead of default branch
 ```
 
 Note: When `target-branch` is set, security updates still target the default branch; all ecosystem config only applies to version updates.
@@ -246,18 +246,18 @@ Supported: `daily`, `weekly`, `monthly`, `quarterly`, `semiannually`, `yearly`, 
 
 ```yaml
 schedule:
-  interval: 'weekly'
-  day: 'monday' # for weekly only
-  time: '09:00' # HH:MM format
-  timezone: 'America/New_York'
+  interval: "weekly"
+  day: "monday" # for weekly only
+  time: "09:00" # HH:MM format
+  timezone: "America/New_York"
 ```
 
 ### Cron Expressions
 
 ```yaml
 schedule:
-  interval: 'cron'
-  cronjob: '0 9 * * 1' # Every Monday at 9 AM
+  interval: "cron"
+  cronjob: "0 9 * * 1" # Every Monday at 9 AM
 ```
 
 ### Cooldown Periods
@@ -270,8 +270,8 @@ cooldown:
   semver-major-days: 30
   semver-minor-days: 7
   semver-patch-days: 3
-  include: ['*']
-  exclude: ['critical-lib']
+  include: ["*"]
+  exclude: ["critical-lib"]
 ```
 
 Cooldown applies to version updates only, not security updates.
@@ -288,8 +288,8 @@ Settings → Advanced Security → Enable Dependabot alerts, security updates, a
 groups:
   security-patches:
     applies-to: security-updates
-    patterns: ['*']
-    update-types: ['patch', 'minor']
+    patterns: ["*"]
+    update-types: ["patch", "minor"]
 ```
 
 ### Disable Version Updates (Security Only)
@@ -333,19 +333,19 @@ For the complete command reference, see `references/pr-commands.md`.
 
 ```yaml
 ignore:
-  - dependency-name: 'lodash'
-  - dependency-name: '@types/node'
-    update-types: ['version-update:semver-patch']
-  - dependency-name: 'express'
-    versions: ['5.x']
+  - dependency-name: "lodash"
+  - dependency-name: "@types/node"
+    update-types: ["version-update:semver-patch"]
+  - dependency-name: "express"
+    versions: ["5.x"]
 ```
 
 ### Allow Only Specific Types
 
 ```yaml
 allow:
-  - dependency-type: 'production'
-  - dependency-name: 'express'
+  - dependency-type: "production"
+  - dependency-name: "express"
 ```
 
 Rule: If a dependency matches both `allow` and `ignore`, it is **ignored**.
@@ -354,8 +354,8 @@ Rule: If a dependency matches both `allow` and `ignore`, it is **ignored**.
 
 ```yaml
 exclude-paths:
-  - 'vendor/**'
-  - 'test/fixtures/**'
+  - "vendor/**"
+  - "test/fixtures/**"
 ```
 
 ## Advanced Options
@@ -375,7 +375,7 @@ Controls how Dependabot edits version constraints:
 ### Rebase Strategy
 
 ```yaml
-rebase-strategy: 'disabled' # stop auto-rebasing
+rebase-strategy: "disabled" # stop auto-rebasing
 ```
 
 Allow rebase over extra commits by including `[dependabot skip]` in commit messages.
@@ -398,8 +398,8 @@ registries:
     token: ${{secrets.NPM_TOKEN}}
 
 updates:
-  - package-ecosystem: 'npm'
-    directory: '/'
+  - package-ecosystem: "npm"
+    directory: "/"
     registries:
       - npm-private
 ```

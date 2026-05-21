@@ -44,17 +44,17 @@ export default defineNuxtConfig({
     // Private keys (server only) - maps from NUXT_*
     oauth: {
       google: {
-        clientId: '', // ← NUXT_OAUTH_GOOGLE_CLIENT_ID
-        clientSecret: '', // ← NUXT_OAUTH_GOOGLE_CLIENT_SECRET
+        clientId: "", // ← NUXT_OAUTH_GOOGLE_CLIENT_ID
+        clientSecret: "", // ← NUXT_OAUTH_GOOGLE_CLIENT_SECRET
       },
     },
     stripe: {
-      secretKey: '', // ← NUXT_STRIPE_SECRET_KEY
+      secretKey: "", // ← NUXT_STRIPE_SECRET_KEY
     },
     // Public keys (exposed to client)
     public: {
-      baseUrl: '', // ← NUXT_PUBLIC_BASE_URL
-      apiVersion: 'v1',
+      baseUrl: "", // ← NUXT_PUBLIC_BASE_URL
+      apiVersion: "v1",
     },
   },
 });
@@ -99,7 +99,7 @@ const apiUrl = config.public.baseUrl;
 
 ```typescript
 // nuxt.config.ts or types/nuxt.d.ts
-declare module 'nuxt/schema' {
+declare module "nuxt/schema" {
   interface RuntimeConfig {
     oauth: {
       google: {

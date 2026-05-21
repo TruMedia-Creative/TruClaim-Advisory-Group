@@ -114,8 +114,8 @@ bundle exec jekyll serve --host 0.0.0.0
 # Site settings
 title: My Blog
 description: A great blog
-baseurl: ''
-url: 'https://example.com'
+baseurl: ""
+url: "https://example.com"
 
 # Build settings
 markdown: kramdown
@@ -139,10 +139,10 @@ collections:
 # Defaults
 defaults:
   - scope:
-      path: ''
-      type: 'posts'
+      path: ""
+      type: "posts"
     values:
-      layout: 'post'
+      layout: "post"
 
 # Exclude from processing
 exclude:
@@ -159,12 +159,12 @@ Every content file needs YAML front matter:
 ```markdown
 ---
 layout: post
-title: 'My First Post'
+title: "My First Post"
 date: 2025-01-28 12:00:00 -0500
 categories: blog tutorial
 tags: [jekyll, markdown]
 author: John Doe
-excerpt: 'A brief introduction...'
+excerpt: "A brief introduction..."
 published: true
 ---
 
@@ -197,8 +197,8 @@ gem 'jekyll-commonmark-ghpages'
 # _config.yml
 markdown: CommonMarkGhPages
 commonmark:
-  options: ['SMART', 'FOOTNOTES']
-  extensions: ['strikethrough', 'autolink', 'table']
+  options: ["SMART", "FOOTNOTES"]
+  extensions: ["strikethrough", "autolink", "table"]
 ```
 
 ## Liquid Templating
@@ -251,7 +251,10 @@ commonmark:
 <html>
   <head>
     <title>{{ page.title }} | {{ site.title }}</title>
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
+    <link
+      rel="stylesheet"
+      href="{{ '/assets/css/style.css' | relative_url }}"
+    />
   </head>
   <body>
     {% include header.html %}

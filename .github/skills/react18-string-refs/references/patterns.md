@@ -289,7 +289,7 @@ class Parent extends React.Component {
 }
 
 // MyInput.js (React 18 - use forwardRef):
-import { forwardRef } from 'react';
+import { forwardRef } from "react";
 const MyInput = forwardRef(function MyInput(props, ref) {
   return <input ref={ref} className="my-input" />;
 });

@@ -51,8 +51,8 @@ Create your base HTML file with an embedded canvas element:
 The canvas element provides a drawing surface. You access it through a 2D rendering context:
 
 ```javascript
-const canvas = document.getElementById('myCanvas');
-const ctx = canvas.getContext('2d');
+const canvas = document.getElementById("myCanvas");
+const ctx = canvas.getContext("2d");
 ```
 
 - `canvas` is a reference to the HTML `<canvas>` element.
@@ -65,7 +65,7 @@ Use `rect()` to define a rectangle and `fill()` to render it:
 ```javascript
 ctx.beginPath();
 ctx.rect(20, 40, 50, 50);
-ctx.fillStyle = 'red';
+ctx.fillStyle = "red";
 ctx.fill();
 ctx.closePath();
 ```
@@ -82,7 +82,7 @@ Use `arc()` to define a circle:
 ```javascript
 ctx.beginPath();
 ctx.arc(240, 160, 20, 0, Math.PI * 2, false);
-ctx.fillStyle = 'green';
+ctx.fillStyle = "green";
 ctx.fill();
 ctx.closePath();
 ```
@@ -100,7 +100,7 @@ Use `stroke()` instead of `fill()` for outlines, and `strokeStyle` for outline c
 ```javascript
 ctx.beginPath();
 ctx.rect(160, 10, 100, 40);
-ctx.strokeStyle = 'rgb(0 0 255 / 50%)';
+ctx.strokeStyle = "rgb(0 0 255 / 50%)";
 ctx.stroke();
 ctx.closePath();
 ```
@@ -139,27 +139,27 @@ ctx.closePath();
 </style>
 
 <script>
-  const canvas = document.getElementById('myCanvas');
-  const ctx = canvas.getContext('2d');
+  const canvas = document.getElementById("myCanvas");
+  const ctx = canvas.getContext("2d");
 
   // Filled red square
   ctx.beginPath();
   ctx.rect(20, 40, 50, 50);
-  ctx.fillStyle = 'red';
+  ctx.fillStyle = "red";
   ctx.fill();
   ctx.closePath();
 
   // Filled green circle
   ctx.beginPath();
   ctx.arc(240, 160, 20, 0, Math.PI * 2, false);
-  ctx.fillStyle = 'green';
+  ctx.fillStyle = "green";
   ctx.fill();
   ctx.closePath();
 
   // Stroked blue rectangle (semi-transparent)
   ctx.beginPath();
   ctx.rect(160, 10, 100, 40);
-  ctx.strokeStyle = 'rgb(0 0 255 / 50%)';
+  ctx.strokeStyle = "rgb(0 0 255 / 50%)";
   ctx.stroke();
   ctx.closePath();
 </script>
@@ -191,7 +191,7 @@ Inside the `draw()` function, draw a ball (circle) at a fixed position:
 ```javascript
 ctx.beginPath();
 ctx.arc(50, 50, 10, 0, Math.PI * 2);
-ctx.fillStyle = '#0095DD';
+ctx.fillStyle = "#0095DD";
 ctx.fill();
 ctx.closePath();
 ```
@@ -244,7 +244,7 @@ For clean, maintainable code, separate the ball-drawing logic:
 function drawBall() {
   ctx.beginPath();
   ctx.arc(x, y, 10, 0, Math.PI * 2);
-  ctx.fillStyle = '#0095DD';
+  ctx.fillStyle = "#0095DD";
   ctx.fill();
   ctx.closePath();
 }
@@ -253,8 +253,8 @@ function drawBall() {
 ### Complete Code for Step 2
 
 ```javascript
-const canvas = document.getElementById('myCanvas');
-const ctx = canvas.getContext('2d');
+const canvas = document.getElementById("myCanvas");
+const ctx = canvas.getContext("2d");
 
 let x = canvas.width / 2;
 let y = canvas.height - 30;
@@ -264,7 +264,7 @@ let dy = -2;
 function drawBall() {
   ctx.beginPath();
   ctx.arc(x, y, 10, 0, Math.PI * 2);
-  ctx.fillStyle = '#0095DD';
+  ctx.fillStyle = "#0095DD";
   ctx.fill();
   ctx.closePath();
 }
@@ -306,7 +306,7 @@ Update `drawBall()` to use this variable:
 function drawBall() {
   ctx.beginPath();
   ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
-  ctx.fillStyle = '#0095DD';
+  ctx.fillStyle = "#0095DD";
   ctx.fill();
   ctx.closePath();
 }
@@ -358,8 +358,8 @@ if (y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
 ### Complete Code for Step 3
 
 ```javascript
-const canvas = document.getElementById('myCanvas');
-const ctx = canvas.getContext('2d');
+const canvas = document.getElementById("myCanvas");
+const ctx = canvas.getContext("2d");
 const ballRadius = 10;
 
 let x = canvas.width / 2;
@@ -370,7 +370,7 @@ let dy = -2;
 function drawBall() {
   ctx.beginPath();
   ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
-  ctx.fillStyle = '#0095DD';
+  ctx.fillStyle = "#0095DD";
   ctx.fill();
   ctx.closePath();
 }
@@ -421,7 +421,7 @@ Create a `drawPaddle()` function. The paddle sits at the very bottom of the canv
 function drawPaddle() {
   ctx.beginPath();
   ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
-  ctx.fillStyle = '#0095DD';
+  ctx.fillStyle = "#0095DD";
   ctx.fill();
   ctx.closePath();
 }
@@ -443,8 +443,8 @@ let leftPressed = false;
 Register handlers for `keydown` (key pressed) and `keyup` (key released):
 
 ```javascript
-document.addEventListener('keydown', keyDownHandler);
-document.addEventListener('keyup', keyUpHandler);
+document.addEventListener("keydown", keyDownHandler);
+document.addEventListener("keyup", keyUpHandler);
 ```
 
 ### Key Handler Functions
@@ -453,17 +453,17 @@ Set the boolean flags based on which key is pressed or released:
 
 ```javascript
 function keyDownHandler(e) {
-  if (e.key === 'Right' || e.key === 'ArrowRight') {
+  if (e.key === "Right" || e.key === "ArrowRight") {
     rightPressed = true;
-  } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
+  } else if (e.key === "Left" || e.key === "ArrowLeft") {
     leftPressed = true;
   }
 }
 
 function keyUpHandler(e) {
-  if (e.key === 'Right' || e.key === 'ArrowRight') {
+  if (e.key === "Right" || e.key === "ArrowRight") {
     rightPressed = false;
-  } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
+  } else if (e.key === "Left" || e.key === "ArrowLeft") {
     leftPressed = false;
   }
 }
@@ -490,8 +490,8 @@ if (rightPressed) {
 ### Complete Code for Step 4
 
 ```javascript
-const canvas = document.getElementById('myCanvas');
-const ctx = canvas.getContext('2d');
+const canvas = document.getElementById("myCanvas");
+const ctx = canvas.getContext("2d");
 const ballRadius = 10;
 
 let x = canvas.width / 2;
@@ -506,21 +506,21 @@ let paddleX = (canvas.width - paddleWidth) / 2;
 let rightPressed = false;
 let leftPressed = false;
 
-document.addEventListener('keydown', keyDownHandler);
-document.addEventListener('keyup', keyUpHandler);
+document.addEventListener("keydown", keyDownHandler);
+document.addEventListener("keyup", keyUpHandler);
 
 function keyDownHandler(e) {
-  if (e.key === 'Right' || e.key === 'ArrowRight') {
+  if (e.key === "Right" || e.key === "ArrowRight") {
     rightPressed = true;
-  } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
+  } else if (e.key === "Left" || e.key === "ArrowLeft") {
     leftPressed = true;
   }
 }
 
 function keyUpHandler(e) {
-  if (e.key === 'Right' || e.key === 'ArrowRight') {
+  if (e.key === "Right" || e.key === "ArrowRight") {
     rightPressed = false;
-  } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
+  } else if (e.key === "Left" || e.key === "ArrowLeft") {
     leftPressed = false;
   }
 }
@@ -528,7 +528,7 @@ function keyUpHandler(e) {
 function drawBall() {
   ctx.beginPath();
   ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
-  ctx.fillStyle = '#0095DD';
+  ctx.fillStyle = "#0095DD";
   ctx.fill();
   ctx.closePath();
 }
@@ -536,7 +536,7 @@ function drawBall() {
 function drawPaddle() {
   ctx.beginPath();
   ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
-  ctx.fillStyle = '#0095DD';
+  ctx.fillStyle = "#0095DD";
   ctx.fill();
   ctx.closePath();
 }
@@ -601,7 +601,7 @@ if (y + dy < ballRadius) {
     dy = -dy;
   } else {
     // Ball missed the paddle -- game over
-    alert('GAME OVER');
+    alert("GAME OVER");
     document.location.reload();
     clearInterval(interval);
   }
@@ -618,8 +618,8 @@ if (y + dy < ballRadius) {
 ### Complete Code for Step 5
 
 ```javascript
-const canvas = document.getElementById('myCanvas');
-const ctx = canvas.getContext('2d');
+const canvas = document.getElementById("myCanvas");
+const ctx = canvas.getContext("2d");
 const ballRadius = 10;
 
 let x = canvas.width / 2;
@@ -635,21 +635,21 @@ let rightPressed = false;
 let leftPressed = false;
 let interval = 0;
 
-document.addEventListener('keydown', keyDownHandler);
-document.addEventListener('keyup', keyUpHandler);
+document.addEventListener("keydown", keyDownHandler);
+document.addEventListener("keyup", keyUpHandler);
 
 function keyDownHandler(e) {
-  if (e.key === 'Right' || e.key === 'ArrowRight') {
+  if (e.key === "Right" || e.key === "ArrowRight") {
     rightPressed = true;
-  } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
+  } else if (e.key === "Left" || e.key === "ArrowLeft") {
     leftPressed = true;
   }
 }
 
 function keyUpHandler(e) {
-  if (e.key === 'Right' || e.key === 'ArrowRight') {
+  if (e.key === "Right" || e.key === "ArrowRight") {
     rightPressed = false;
-  } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
+  } else if (e.key === "Left" || e.key === "ArrowLeft") {
     leftPressed = false;
   }
 }
@@ -657,7 +657,7 @@ function keyUpHandler(e) {
 function drawBall() {
   ctx.beginPath();
   ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
-  ctx.fillStyle = '#0095DD';
+  ctx.fillStyle = "#0095DD";
   ctx.fill();
   ctx.closePath();
 }
@@ -665,7 +665,7 @@ function drawBall() {
 function drawPaddle() {
   ctx.beginPath();
   ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
-  ctx.fillStyle = '#0095DD';
+  ctx.fillStyle = "#0095DD";
   ctx.fill();
   ctx.closePath();
 }
@@ -688,7 +688,7 @@ function draw() {
     if (x > paddleX && x < paddleX + paddleWidth) {
       dy = -dy;
     } else {
-      alert('GAME OVER');
+      alert("GAME OVER");
       document.location.reload();
       clearInterval(interval);
     }
@@ -761,7 +761,7 @@ function drawBricks() {
       bricks[c][r].y = brickY;
       ctx.beginPath();
       ctx.rect(brickX, brickY, brickWidth, brickHeight);
-      ctx.fillStyle = '#0095DD';
+      ctx.fillStyle = "#0095DD";
       ctx.fill();
       ctx.closePath();
     }
@@ -793,8 +793,8 @@ function draw() {
 ### Complete Code for Step 6
 
 ```javascript
-const canvas = document.getElementById('myCanvas');
-const ctx = canvas.getContext('2d');
+const canvas = document.getElementById("myCanvas");
+const ctx = canvas.getContext("2d");
 const ballRadius = 10;
 
 let x = canvas.width / 2;
@@ -826,21 +826,21 @@ for (let c = 0; c < brickColumnCount; c++) {
   }
 }
 
-document.addEventListener('keydown', keyDownHandler);
-document.addEventListener('keyup', keyUpHandler);
+document.addEventListener("keydown", keyDownHandler);
+document.addEventListener("keyup", keyUpHandler);
 
 function keyDownHandler(e) {
-  if (e.key === 'Right' || e.key === 'ArrowRight') {
+  if (e.key === "Right" || e.key === "ArrowRight") {
     rightPressed = true;
-  } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
+  } else if (e.key === "Left" || e.key === "ArrowLeft") {
     leftPressed = true;
   }
 }
 
 function keyUpHandler(e) {
-  if (e.key === 'Right' || e.key === 'ArrowRight') {
+  if (e.key === "Right" || e.key === "ArrowRight") {
     rightPressed = false;
-  } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
+  } else if (e.key === "Left" || e.key === "ArrowLeft") {
     leftPressed = false;
   }
 }
@@ -848,7 +848,7 @@ function keyUpHandler(e) {
 function drawBall() {
   ctx.beginPath();
   ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
-  ctx.fillStyle = '#0095DD';
+  ctx.fillStyle = "#0095DD";
   ctx.fill();
   ctx.closePath();
 }
@@ -856,7 +856,7 @@ function drawBall() {
 function drawPaddle() {
   ctx.beginPath();
   ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
-  ctx.fillStyle = '#0095DD';
+  ctx.fillStyle = "#0095DD";
   ctx.fill();
   ctx.closePath();
 }
@@ -870,7 +870,7 @@ function drawBricks() {
       bricks[c][r].y = brickY;
       ctx.beginPath();
       ctx.rect(brickX, brickY, brickWidth, brickHeight);
-      ctx.fillStyle = '#0095DD';
+      ctx.fillStyle = "#0095DD";
       ctx.fill();
       ctx.closePath();
     }
@@ -892,7 +892,7 @@ function draw() {
     if (x > paddleX && x < paddleX + paddleWidth) {
       dy = -dy;
     } else {
-      alert('GAME OVER');
+      alert("GAME OVER");
       document.location.reload();
       clearInterval(interval);
     }
@@ -941,7 +941,12 @@ function collisionDetection() {
     for (let r = 0; r < brickRowCount; r++) {
       const b = bricks[c][r];
       if (b.status === 1) {
-        if (x > b.x && x < b.x + brickWidth && y > b.y && y < b.y + brickHeight) {
+        if (
+          x > b.x &&
+          x < b.x + brickWidth &&
+          y > b.y &&
+          y < b.y + brickHeight
+        ) {
           dy = -dy;
           b.status = 0;
         }
@@ -978,7 +983,7 @@ function drawBricks() {
         bricks[c][r].y = brickY;
         ctx.beginPath();
         ctx.rect(brickX, brickY, brickWidth, brickHeight);
-        ctx.fillStyle = '#0095DD';
+        ctx.fillStyle = "#0095DD";
         ctx.fill();
         ctx.closePath();
       }
@@ -1020,8 +1025,8 @@ Display the current score on the canvas using text rendering:
 
 ```javascript
 function drawScore() {
-  ctx.font = '16px Arial';
-  ctx.fillStyle = '#0095DD';
+  ctx.font = "16px Arial";
+  ctx.fillStyle = "#0095DD";
   ctx.fillText(`Score: ${score}`, 8, 20);
 }
 ```
@@ -1047,7 +1052,7 @@ After incrementing the score, check if the player has destroyed all bricks:
 ```javascript
 score++;
 if (score === brickRowCount * brickColumnCount) {
-  alert('YOU WIN, CONGRATULATIONS!');
+  alert("YOU WIN, CONGRATULATIONS!");
   document.location.reload();
   clearInterval(interval);
 }
@@ -1063,12 +1068,17 @@ function collisionDetection() {
     for (let r = 0; r < brickRowCount; r++) {
       const b = bricks[c][r];
       if (b.status === 1) {
-        if (x > b.x && x < b.x + brickWidth && y > b.y && y < b.y + brickHeight) {
+        if (
+          x > b.x &&
+          x < b.x + brickWidth &&
+          y > b.y &&
+          y < b.y + brickHeight
+        ) {
           dy = -dy;
           b.status = 0;
           score++;
           if (score === brickRowCount * brickColumnCount) {
-            alert('YOU WIN, CONGRATULATIONS!');
+            alert("YOU WIN, CONGRATULATIONS!");
             document.location.reload();
             clearInterval(interval);
           }
@@ -1114,7 +1124,7 @@ In addition to keyboard controls, we add mouse support so the player can move th
 Register the handler alongside the existing keyboard listeners:
 
 ```javascript
-document.addEventListener('mousemove', mouseMoveHandler);
+document.addEventListener("mousemove", mouseMoveHandler);
 ```
 
 ### The mouseMoveHandler Function
@@ -1141,9 +1151,9 @@ function mouseMoveHandler(e) {
 ### Complete Event Listener Setup (Keyboard + Mouse)
 
 ```javascript
-document.addEventListener('keydown', keyDownHandler);
-document.addEventListener('keyup', keyUpHandler);
-document.addEventListener('mousemove', mouseMoveHandler);
+document.addEventListener("keydown", keyDownHandler);
+document.addEventListener("keyup", keyUpHandler);
+document.addEventListener("mousemove", mouseMoveHandler);
 ```
 
 Both control methods work simultaneously. The player can use arrow keys or mouse -- or switch between them at any time.
@@ -1166,8 +1176,8 @@ Display the remaining lives in the top-right corner:
 
 ```javascript
 function drawLives() {
-  ctx.font = '16px Arial';
-  ctx.fillStyle = '#0095DD';
+  ctx.font = "16px Arial";
+  ctx.fillStyle = "#0095DD";
   ctx.fillText(`Lives: ${lives}`, canvas.width - 65, 20);
 }
 ```
@@ -1185,7 +1195,7 @@ if (y + dy < ballRadius) {
   } else {
     lives--;
     if (!lives) {
-      alert('GAME OVER');
+      alert("GAME OVER");
       document.location.reload();
     } else {
       // Reset ball and paddle positions
@@ -1274,8 +1284,8 @@ Below is the entire game in a single, self-contained HTML file. This is the fina
     <canvas id="myCanvas" width="480" height="320"></canvas>
 
     <script>
-      const canvas = document.getElementById('myCanvas');
-      const ctx = canvas.getContext('2d');
+      const canvas = document.getElementById("myCanvas");
+      const ctx = canvas.getContext("2d");
 
       // --- Ball ---
       const ballRadius = 10;
@@ -1317,22 +1327,22 @@ Below is the entire game in a single, self-contained HTML file. This is the fina
       // =====================
       // Event Listeners
       // =====================
-      document.addEventListener('keydown', keyDownHandler);
-      document.addEventListener('keyup', keyUpHandler);
-      document.addEventListener('mousemove', mouseMoveHandler);
+      document.addEventListener("keydown", keyDownHandler);
+      document.addEventListener("keyup", keyUpHandler);
+      document.addEventListener("mousemove", mouseMoveHandler);
 
       function keyDownHandler(e) {
-        if (e.key === 'Right' || e.key === 'ArrowRight') {
+        if (e.key === "Right" || e.key === "ArrowRight") {
           rightPressed = true;
-        } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
+        } else if (e.key === "Left" || e.key === "ArrowLeft") {
           leftPressed = true;
         }
       }
 
       function keyUpHandler(e) {
-        if (e.key === 'Right' || e.key === 'ArrowRight') {
+        if (e.key === "Right" || e.key === "ArrowRight") {
           rightPressed = false;
-        } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
+        } else if (e.key === "Left" || e.key === "ArrowLeft") {
           leftPressed = false;
         }
       }
@@ -1352,12 +1362,17 @@ Below is the entire game in a single, self-contained HTML file. This is the fina
           for (let r = 0; r < brickRowCount; r++) {
             const b = bricks[c][r];
             if (b.status === 1) {
-              if (x > b.x && x < b.x + brickWidth && y > b.y && y < b.y + brickHeight) {
+              if (
+                x > b.x &&
+                x < b.x + brickWidth &&
+                y > b.y &&
+                y < b.y + brickHeight
+              ) {
                 dy = -dy;
                 b.status = 0;
                 score++;
                 if (score === brickRowCount * brickColumnCount) {
-                  alert('YOU WIN, CONGRATULATIONS!');
+                  alert("YOU WIN, CONGRATULATIONS!");
                   document.location.reload();
                 }
               }
@@ -1372,15 +1387,20 @@ Below is the entire game in a single, self-contained HTML file. This is the fina
       function drawBall() {
         ctx.beginPath();
         ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
-        ctx.fillStyle = '#0095DD';
+        ctx.fillStyle = "#0095DD";
         ctx.fill();
         ctx.closePath();
       }
 
       function drawPaddle() {
         ctx.beginPath();
-        ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
-        ctx.fillStyle = '#0095DD';
+        ctx.rect(
+          paddleX,
+          canvas.height - paddleHeight,
+          paddleWidth,
+          paddleHeight,
+        );
+        ctx.fillStyle = "#0095DD";
         ctx.fill();
         ctx.closePath();
       }
@@ -1395,7 +1415,7 @@ Below is the entire game in a single, self-contained HTML file. This is the fina
               bricks[c][r].y = brickY;
               ctx.beginPath();
               ctx.rect(brickX, brickY, brickWidth, brickHeight);
-              ctx.fillStyle = '#0095DD';
+              ctx.fillStyle = "#0095DD";
               ctx.fill();
               ctx.closePath();
             }
@@ -1404,14 +1424,14 @@ Below is the entire game in a single, self-contained HTML file. This is the fina
       }
 
       function drawScore() {
-        ctx.font = '16px Arial';
-        ctx.fillStyle = '#0095DD';
+        ctx.font = "16px Arial";
+        ctx.fillStyle = "#0095DD";
         ctx.fillText(`Score: ${score}`, 8, 20);
       }
 
       function drawLives() {
-        ctx.font = '16px Arial';
-        ctx.fillStyle = '#0095DD';
+        ctx.font = "16px Arial";
+        ctx.fillStyle = "#0095DD";
         ctx.fillText(`Lives: ${lives}`, canvas.width - 65, 20);
       }
 
@@ -1442,7 +1462,7 @@ Below is the entire game in a single, self-contained HTML file. This is the fina
           } else {
             lives--;
             if (!lives) {
-              alert('GAME OVER');
+              alert("GAME OVER");
               document.location.reload();
             } else {
               x = canvas.width / 2;

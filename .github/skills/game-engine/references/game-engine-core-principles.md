@@ -131,7 +131,7 @@ const player = world.createEntity();
 // Attach components to define what it is
 world.addComponent(player, new Position(100, 200));
 world.addComponent(player, new Velocity(0, 0));
-world.addComponent(player, new Sprite('player.png'));
+world.addComponent(player, new Sprite("player.png"));
 world.addComponent(player, new Health(100));
 world.addComponent(player, new PlayerInput());
 
@@ -139,9 +139,9 @@ world.addComponent(player, new PlayerInput());
 const flyingEnemy = world.createEntity();
 world.addComponent(flyingEnemy, new Position(400, 50));
 world.addComponent(flyingEnemy, new Velocity(0, 0));
-world.addComponent(flyingEnemy, new Sprite('bat.png'));
+world.addComponent(flyingEnemy, new Sprite("bat.png"));
 world.addComponent(flyingEnemy, new Health(30));
-world.addComponent(flyingEnemy, new AIBehavior('patrol_fly'));
+world.addComponent(flyingEnemy, new AIBehavior("patrol_fly"));
 world.addComponent(flyingEnemy, new Flying());
 ```
 
@@ -399,12 +399,12 @@ class InputManager {
 
 // Usage
 const input = new InputManager();
-input.bind('Jump', 'Space');
-input.bind('MoveLeft', 'KeyA');
-input.bind('MoveRight', 'KeyD');
+input.bind("Jump", "Space");
+input.bind("MoveLeft", "KeyA");
+input.bind("MoveRight", "KeyD");
 
 // In game update:
-if (input.isActionActive('Jump')) {
+if (input.isActionActive("Jump")) {
   player.jump();
 }
 ```
@@ -449,17 +449,17 @@ class EventBus {
 // Usage
 const events = new EventBus();
 
-events.on('collision', (data) => {
+events.on("collision", (data) => {
   console.log(`${data.entityA} collided with ${data.entityB}`);
 });
 
-events.on('entityDestroyed', (data) => {
+events.on("entityDestroyed", (data) => {
   spawnExplosion(data.position);
   addScore(data.points);
 });
 
 // Emit from physics system
-events.emit('collision', { entityA: player, entityB: wall });
+events.emit("collision", { entityA: player, entityB: wall });
 ```
 
 **Deferred events:**
@@ -553,13 +553,13 @@ A well-designed engine abstracts platform-specific code behind a uniform interfa
 // Abstract file system interface
 class FileSystem {
   async readFile(path) {
-    throw new Error('Not implemented');
+    throw new Error("Not implemented");
   }
   async writeFile(path, data) {
-    throw new Error('Not implemented');
+    throw new Error("Not implemented");
   }
   async exists(path) {
-    throw new Error('Not implemented');
+    throw new Error("Not implemented");
   }
 }
 
@@ -574,7 +574,7 @@ class WebFileSystem extends FileSystem {
 // Node.js implementation
 class NodeFileSystem extends FileSystem {
   async readFile(path) {
-    const fs = require('fs').promises;
+    const fs = require("fs").promises;
     return fs.readFile(path);
   }
 }
@@ -604,7 +604,7 @@ Engine subsystems must be initialized in dependency order and shut down in rever
 class Engine {
   async initialize() {
     this.logger = new Logger();
-    this.config = new Config('engine.json');
+    this.config = new Config("engine.json");
     this.platform = new Platform();
     await this.platform.createWindow(this.config.window);
 
@@ -616,7 +616,7 @@ class Engine {
     this.events = new EventBus();
     this.scenes = new SceneManager();
 
-    this.logger.info('Engine initialized');
+    this.logger.info("Engine initialized");
   }
 
   shutdown() {
@@ -627,7 +627,7 @@ class Engine {
     this.audio.cleanup();
     this.renderer.cleanup();
     this.platform.cleanup();
-    this.logger.info('Engine shutdown complete');
+    this.logger.info("Engine shutdown complete");
   }
 
   run() {
@@ -671,13 +671,13 @@ Organize data by how it is accessed rather than by object-oriented abstractions.
 ```javascript
 // Array of Structures (cache-unfriendly for position-only iteration)
 const entities = [
-  { position: { x: 0, y: 0 }, sprite: 'hero.png', health: 100 },
-  { position: { x: 5, y: 3 }, sprite: 'bat.png', health: 30 },
+  { position: { x: 0, y: 0 }, sprite: "hero.png", health: 100 },
+  { position: { x: 5, y: 3 }, sprite: "bat.png", health: 30 },
 ];
 
 // Structure of Arrays (cache-friendly for position-only iteration)
 const positions = { x: [0, 5], y: [0, 3] };
-const sprites = ['hero.png', 'bat.png'];
+const sprites = ["hero.png", "bat.png"];
 const healths = [100, 30];
 ```
 

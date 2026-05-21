@@ -13,20 +13,20 @@ Build public-facing pages — landing, blog, changelog, pricing — using the He
 
 ```vue [app.vue]
 <script setup lang="ts">
-import type { NavigationMenuItem } from '@nuxt/ui';
+import type { NavigationMenuItem } from "@nuxt/ui";
 
 const items = computed<NavigationMenuItem[]>(() => [
   {
-    label: 'Features',
-    to: '#features',
+    label: "Features",
+    to: "#features",
   },
   {
-    label: 'Pricing',
-    to: '/pricing',
+    label: "Pricing",
+    to: "/pricing",
   },
   {
-    label: 'Blog',
-    to: '/blog',
+    label: "Blog",
+    to: "/blog",
   },
 ]);
 </script>
@@ -47,7 +47,11 @@ const items = computed<NavigationMenuItem[]>(() => [
       </template>
 
       <template #body>
-        <UNavigationMenu :items="items" orientation="vertical" class="-mx-2.5" />
+        <UNavigationMenu
+          :items="items"
+          orientation="vertical"
+          class="-mx-2.5"
+        />
       </template>
     </UHeader>
 
@@ -57,7 +61,9 @@ const items = computed<NavigationMenuItem[]>(() => [
 
     <UFooter>
       <template #left>
-        <p class="text-muted text-sm">Copyright © {{ new Date().getFullYear() }}</p>
+        <p class="text-muted text-sm">
+          Copyright © {{ new Date().getFullYear() }}
+        </p>
       </template>
       <template #right>
         <UButton
@@ -141,7 +147,11 @@ const items = computed<NavigationMenuItem[]>(() => [
     ]"
   />
 
-  <UPageSection id="pricing" headline="Pricing" title="Simple, transparent pricing">
+  <UPageSection
+    id="pricing"
+    headline="Pricing"
+    title="Simple, transparent pricing"
+  >
     <UPricingPlans
       :plans="[
         {
@@ -198,7 +208,9 @@ const items = computed<NavigationMenuItem[]>(() => [
 
 ```vue [pages/blog/index.vue]
 <script setup lang="ts">
-const { data: posts } = await useAsyncData('posts', () => queryCollection('posts').all());
+const { data: posts } = await useAsyncData("posts", () =>
+  queryCollection("posts").all(),
+);
 </script>
 
 <template>
@@ -207,7 +219,12 @@ const { data: posts } = await useAsyncData('posts', () => queryCollection('posts
     <UPageBody>
       <UContainer>
         <UBlogPosts>
-          <UBlogPost v-for="post in posts" :key="post.path" v-bind="post" :to="post.path" />
+          <UBlogPost
+            v-for="post in posts"
+            :key="post.path"
+            v-bind="post"
+            :to="post.path"
+          />
         </UBlogPosts>
       </UContainer>
     </UPageBody>
@@ -219,7 +236,9 @@ const { data: posts } = await useAsyncData('posts', () => queryCollection('posts
 
 ```vue [pages/changelog.vue]
 <script setup lang="ts">
-const { data: versions } = await useAsyncData('versions', () => queryCollection('changelog').all());
+const { data: versions } = await useAsyncData("versions", () =>
+  queryCollection("changelog").all(),
+);
 </script>
 
 <template>
@@ -228,7 +247,11 @@ const { data: versions } = await useAsyncData('versions', () => queryCollection(
     <UPageBody>
       <UContainer>
         <UChangelogVersions>
-          <UChangelogVersion v-for="version in versions" :key="version.path" v-bind="version" />
+          <UChangelogVersion
+            v-for="version in versions"
+            :key="version.path"
+            v-bind="version"
+          />
         </UChangelogVersions>
       </UContainer>
     </UPageBody>

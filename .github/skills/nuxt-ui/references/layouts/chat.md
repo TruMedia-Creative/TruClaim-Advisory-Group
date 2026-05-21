@@ -30,7 +30,7 @@ pnpm add ai @ai-sdk/gateway @ai-sdk/vue @comark/vue
 
 ```ts [nuxt.config.ts]
 export default defineNuxtConfig({
-  modules: ['@nuxt/ui', '@comark/nuxt'],
+  modules: ["@nuxt/ui", "@comark/nuxt"],
 });
 ```
 
@@ -57,15 +57,15 @@ html.dark .shiki span {
 Using [Vercel AI Gateway](https://vercel.com/ai-gateway) (recommended):
 
 ```ts [server/api/chat.post.ts]
-import { streamText, convertToModelMessages } from 'ai';
-import { gateway } from '@ai-sdk/gateway';
+import { streamText, convertToModelMessages } from "ai";
+import { gateway } from "@ai-sdk/gateway";
 
 export default defineEventHandler(async (event) => {
   const { messages } = await readBody(event);
 
   return streamText({
-    model: gateway('anthropic/claude-sonnet-4.6'),
-    system: 'You are a helpful assistant.',
+    model: gateway("anthropic/claude-sonnet-4.6"),
+    system: "You are a helpful assistant.",
     messages: await convertToModelMessages(messages),
   }).toUIMessageStreamResponse();
 });
@@ -74,15 +74,15 @@ export default defineEventHandler(async (event) => {
 Or with a direct provider (e.g., `pnpm add @ai-sdk/openai`):
 
 ```ts [server/api/chat.post.ts]
-import { streamText, convertToModelMessages } from 'ai';
-import { openai } from '@ai-sdk/openai';
+import { streamText, convertToModelMessages } from "ai";
+import { openai } from "@ai-sdk/openai";
 
 export default defineEventHandler(async (event) => {
   const { messages } = await readBody(event);
 
   return streamText({
-    model: openai('gpt-5-nano'),
-    system: 'You are a helpful assistant.',
+    model: openai("gpt-5-nano"),
+    system: "You are a helpful assistant.",
     messages: await convertToModelMessages(messages),
   }).toUIMessageStreamResponse();
 });
@@ -104,14 +104,14 @@ UDashboardPanel
 
 ```vue [pages/chat/[id].vue]
 <script setup lang="ts">
-import { isReasoningUIPart, isTextUIPart, isToolUIPart, getToolName } from 'ai';
-import { Chat } from '@ai-sdk/vue';
-import { isPartStreaming, isToolStreaming } from '@nuxt/ui/utils/ai';
-import highlight from '@comark/nuxt/plugins/highlight';
+import { isReasoningUIPart, isTextUIPart, isToolUIPart, getToolName } from "ai";
+import { Chat } from "@ai-sdk/vue";
+import { isPartStreaming, isToolStreaming } from "@nuxt/ui/utils/ai";
+import highlight from "@comark/nuxt/plugins/highlight";
 
-definePageMeta({ layout: 'dashboard' });
+definePageMeta({ layout: "dashboard" });
 
-const input = ref('');
+const input = ref("");
 
 const chat = new Chat({
   onError(error) {
@@ -122,7 +122,7 @@ const chat = new Chat({
 function onSubmit() {
   if (!input.value.trim()) return;
   chat.sendMessage({ text: input.value });
-  input.value = '';
+  input.value = "";
 }
 </script>
 
@@ -167,7 +167,10 @@ function onSubmit() {
                   :plugins="[highlight()]"
                   class="*:first:mt-0 *:last:mb-0"
                 />
-                <p v-else-if="message.role === 'user'" class="whitespace-pre-wrap">
+                <p
+                  v-else-if="message.role === 'user'"
+                  class="whitespace-pre-wrap"
+                >
                   {{ part.text }}
                 </p>
               </template>

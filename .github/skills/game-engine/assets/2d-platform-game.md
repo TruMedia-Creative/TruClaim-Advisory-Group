@@ -141,11 +141,11 @@ In `js/main.js`, create the Phaser game object and register a game state:
 // Create a Phaser game instance
 // Parameters: width, height, renderer, DOM element ID
 window.onload = function () {
-  let game = new Phaser.Game(960, 600, Phaser.AUTO, 'game');
+  let game = new Phaser.Game(960, 600, Phaser.AUTO, "game");
 
   // Add and start the play state
-  game.state.add('play', PlayState);
-  game.state.start('play');
+  game.state.add("play", PlayState);
+  game.state.start("play");
 };
 ```
 
@@ -197,12 +197,12 @@ Start by loading and displaying a background image to verify the game loop is wo
 
 ```javascript
 PlayState.preload = function () {
-  this.game.load.image('background', 'images/background.png');
+  this.game.load.image("background", "images/background.png");
 };
 
 PlayState.create = function () {
   // Add the background image at position (0, 0)
-  this.game.add.image(0, 0, 'background');
+  this.game.add.image(0, 0, "background");
 };
 ```
 
@@ -231,18 +231,18 @@ Load the level JSON data and all platform tile images in `preload`:
 
 ```javascript
 PlayState.preload = function () {
-  this.game.load.image('background', 'images/background.png');
+  this.game.load.image("background", "images/background.png");
 
   // Load level data
-  this.game.load.json('level:1', 'data/level01.json');
+  this.game.load.json("level:1", "data/level01.json");
 
   // Load platform images
-  this.game.load.image('ground', 'images/ground.png');
-  this.game.load.image('grass:8x1', 'images/grass_8x1.png');
-  this.game.load.image('grass:6x1', 'images/grass_6x1.png');
-  this.game.load.image('grass:4x1', 'images/grass_4x1.png');
-  this.game.load.image('grass:2x1', 'images/grass_2x1.png');
-  this.game.load.image('grass:1x1', 'images/grass_1x1.png');
+  this.game.load.image("ground", "images/ground.png");
+  this.game.load.image("grass:8x1", "images/grass_8x1.png");
+  this.game.load.image("grass:6x1", "images/grass_6x1.png");
+  this.game.load.image("grass:4x1", "images/grass_4x1.png");
+  this.game.load.image("grass:2x1", "images/grass_2x1.png");
+  this.game.load.image("grass:1x1", "images/grass_1x1.png");
 };
 ```
 
@@ -253,10 +253,10 @@ Create a method to load the level and spawn each platform as a sprite inside a p
 ```javascript
 PlayState.create = function () {
   // Add the background
-  this.game.add.image(0, 0, 'background');
+  this.game.add.image(0, 0, "background");
 
   // Load level data and spawn entities
-  this._loadLevel(this.game.cache.getJSON('level:1'));
+  this._loadLevel(this.game.cache.getJSON("level:1"));
 };
 
 PlayState._loadLevel = function (data) {
@@ -299,7 +299,7 @@ Add the hero image to `preload`. Initially we use a single static image; we will
 
 ```javascript
 // In PlayState.preload:
-this.game.load.image('hero', 'images/hero_stopped.png');
+this.game.load.image("hero", "images/hero_stopped.png");
 ```
 
 ### Spawning the Hero
@@ -317,7 +317,7 @@ PlayState._loadLevel = function (data) {
 
 PlayState._spawnCharacters = function (data) {
   // Create the hero sprite
-  this.hero = this.game.add.sprite(data.hero.x, data.hero.y, 'hero');
+  this.hero = this.game.add.sprite(data.hero.x, data.hero.y, "hero");
 
   // Set the anchor to the bottom-center for easier positioning
   this.hero.anchor.set(0.5, 1);
@@ -408,7 +408,7 @@ Enable physics on the hero sprite in `_spawnCharacters`:
 
 ```javascript
 PlayState._spawnCharacters = function (data) {
-  this.hero = this.game.add.sprite(data.hero.x, data.hero.y, 'hero');
+  this.hero = this.game.add.sprite(data.hero.x, data.hero.y, "hero");
   this.hero.anchor.set(0.5, 1);
 
   // Enable physics body on the hero
@@ -541,11 +541,11 @@ Load a jump sound and play it on successful jumps:
 
 ```javascript
 // In PlayState.preload:
-this.game.load.audio('sfx:jump', 'audio/sfx/jump.wav');
+this.game.load.audio("sfx:jump", "audio/sfx/jump.wav");
 
 // In PlayState.create:
 this.sfx = {
-  jump: this.game.add.audio('sfx:jump'),
+  jump: this.game.add.audio("sfx:jump"),
 };
 
 // In PlayState._jump, after setting velocity:
@@ -573,8 +573,8 @@ Load the coin spritesheet and coin sound effect in `preload`:
 
 ```javascript
 // In PlayState.preload:
-this.game.load.spritesheet('coin', 'images/coin_animated.png', 22, 22);
-this.game.load.audio('sfx:coin', 'audio/sfx/coin.wav');
+this.game.load.spritesheet("coin", "images/coin_animated.png", 22, 22);
+this.game.load.audio("sfx:coin", "audio/sfx/coin.wav");
 ```
 
 - `load.spritesheet(key, path, frameWidth, frameHeight)` loads a spritesheet and slices it into individual frames of 22x22 pixels for animation.
@@ -595,7 +595,7 @@ PlayState._loadLevel = function (data) {
 };
 
 PlayState._spawnCoin = function (coin) {
-  let sprite = this.coins.create(coin.x, coin.y, 'coin');
+  let sprite = this.coins.create(coin.x, coin.y, "coin");
   sprite.anchor.set(0.5, 0.5);
 
   // Add a tween animation to make the coin bob up and down
@@ -603,8 +603,8 @@ PlayState._spawnCoin = function (coin) {
   sprite.body.allowGravity = false;
 
   // Coin bobbing animation with a tween
-  sprite.animations.add('rotate', [0, 1, 2, 1], 6, true); // 6fps, looping
-  sprite.animations.play('rotate');
+  sprite.animations.add("rotate", [0, 1, 2, 1], 6, true); // 6fps, looping
+  sprite.animations.play("rotate");
 };
 ```
 
@@ -619,8 +619,8 @@ Add the coin sound to the sfx object and detect overlap between the hero and coi
 ```javascript
 // In PlayState.create, add to the sfx object:
 this.sfx = {
-  jump: this.game.add.audio('sfx:jump'),
-  coin: this.game.add.audio('sfx:coin'),
+  jump: this.game.add.audio("sfx:jump"),
+  coin: this.game.add.audio("sfx:coin"),
 };
 
 // In PlayState._handleCollisions:
@@ -628,7 +628,13 @@ PlayState._handleCollisions = function () {
   this.game.physics.arcade.collide(this.hero, this.platforms);
 
   // Detect overlap between hero and coins (no physical collision, just overlap)
-  this.game.physics.arcade.overlap(this.hero, this.coins, this._onHeroVsCoin, null, this);
+  this.game.physics.arcade.overlap(
+    this.hero,
+    this.coins,
+    this._onHeroVsCoin,
+    null,
+    this,
+  );
 };
 
 PlayState._onHeroVsCoin = function (hero, coin) {
@@ -669,9 +675,9 @@ Add spider enemies that walk back and forth on platforms. The hero can stomp on 
 
 ```javascript
 // In PlayState.preload:
-this.game.load.spritesheet('spider', 'images/spider.png', 42, 32);
-this.game.load.image('invisible-wall', 'images/invisible_wall.png');
-this.game.load.audio('sfx:stomp', 'audio/sfx/stomp.wav');
+this.game.load.spritesheet("spider", "images/spider.png", 42, 32);
+this.game.load.image("invisible-wall", "images/invisible_wall.png");
+this.game.load.audio("sfx:stomp", "audio/sfx/stomp.wav");
 ```
 
 - The spider spritsheet has frames for a crawling animation.
@@ -713,15 +719,15 @@ PlayState._spawnPlatform = function (platform) {
   sprite.body.immovable = true;
 
   // Spawn invisible walls at the left and right edges of this platform
-  this._spawnEnemyWall(platform.x, platform.y, 'left');
-  this._spawnEnemyWall(platform.x + sprite.width, platform.y, 'right');
+  this._spawnEnemyWall(platform.x, platform.y, "left");
+  this._spawnEnemyWall(platform.x + sprite.width, platform.y, "right");
 };
 
 PlayState._spawnEnemyWall = function (x, y, side) {
-  let sprite = this.enemyWalls.create(x, y, 'invisible-wall');
+  let sprite = this.enemyWalls.create(x, y, "invisible-wall");
 
   // Anchor to the bottom of the wall and adjust position based on side
-  sprite.anchor.set(side === 'left' ? 1 : 0, 1);
+  sprite.anchor.set(side === "left" ? 1 : 0, 1);
 
   this.game.physics.enable(sprite);
   sprite.body.immovable = true;
@@ -737,13 +743,13 @@ PlayState._spawnEnemyWall = function (x, y, side) {
 
 ```javascript
 PlayState._spawnSpider = function (spider) {
-  let sprite = this.spiders.create(spider.x, spider.y, 'spider');
+  let sprite = this.spiders.create(spider.x, spider.y, "spider");
   sprite.anchor.set(0.5, 1);
 
   // Add the crawl animation
-  sprite.animations.add('crawl', [0, 1, 2], 8, true);
-  sprite.animations.add('die', [0, 4, 0, 4, 0, 4, 3, 3, 3, 3, 3, 3], 12);
-  sprite.animations.play('crawl');
+  sprite.animations.add("crawl", [0, 1, 2], 8, true);
+  sprite.animations.add("die", [0, 4, 0, 4, 0, 4, 3, 3, 3, 3, 3, 3], 12);
+  sprite.animations.play("crawl");
 
   // Enable physics
   this.game.physics.enable(sprite);
@@ -770,8 +776,20 @@ PlayState._handleCollisions = function () {
   this.game.physics.arcade.collide(this.spiders, this.platforms);
   this.game.physics.arcade.collide(this.spiders, this.enemyWalls);
 
-  this.game.physics.arcade.overlap(this.hero, this.coins, this._onHeroVsCoin, null, this);
-  this.game.physics.arcade.overlap(this.hero, this.spiders, this._onHeroVsEnemy, null, this);
+  this.game.physics.arcade.overlap(
+    this.hero,
+    this.coins,
+    this._onHeroVsCoin,
+    null,
+    this,
+  );
+  this.game.physics.arcade.overlap(
+    this.hero,
+    this.spiders,
+    this._onHeroVsEnemy,
+    null,
+    this,
+  );
 };
 ```
 
@@ -815,7 +833,7 @@ PlayState._onHeroVsEnemy = function (hero, enemy) {
     enemy.body.enable = false; // Disable enemy physics
 
     // Play die animation then remove the enemy
-    enemy.animations.play('die');
+    enemy.animations.play("die");
     enemy.events.onAnimationComplete.addOnce(function () {
       enemy.kill();
     });
@@ -838,7 +856,7 @@ PlayState._killHero = function () {
     function () {
       this.game.state.restart(true, false, { level: this.level });
     },
-    this
+    this,
   );
 };
 ```
@@ -853,9 +871,9 @@ PlayState._killHero = function () {
 ```javascript
 // In PlayState.create, add to sfx:
 this.sfx = {
-  jump: this.game.add.audio('sfx:jump'),
-  coin: this.game.add.audio('sfx:coin'),
-  stomp: this.game.add.audio('sfx:stomp'),
+  jump: this.game.add.audio("sfx:jump"),
+  coin: this.game.add.audio("sfx:coin"),
+  stomp: this.game.add.audio("sfx:stomp"),
 };
 ```
 
@@ -881,7 +899,7 @@ PlayState._killHero = function () {
     function () {
       this.game.state.restart(true, false, { level: this.level });
     },
-    this
+    this,
   );
 };
 ```
@@ -922,8 +940,8 @@ Display the number of collected coins on screen using a bitmap font.
 
 ```javascript
 // In PlayState.preload:
-this.game.load.image('font:numbers', 'images/numbers.png');
-this.game.load.image('icon:coin', 'images/coin_icon.png');
+this.game.load.image("font:numbers", "images/numbers.png");
+this.game.load.image("icon:coin", "images/coin_icon.png");
 ```
 
 ### Creating the HUD
@@ -932,17 +950,17 @@ Create a fixed HUD (heads-up display) that shows the coin icon and count:
 
 ```javascript
 PlayState._createHud = function () {
-  let coinIcon = this.game.make.image(0, 0, 'icon:coin');
+  let coinIcon = this.game.make.image(0, 0, "icon:coin");
 
   // Create a dynamic text label for the coin count
   this.hud = this.game.add.group();
 
   // Use a retroFont or a regular text object for the score
   let scoreStyle = {
-    font: '30px monospace',
-    fill: '#fff',
+    font: "30px monospace",
+    fill: "#fff",
   };
-  this.coinFont = this.game.add.text(coinIcon.width + 7, 0, 'x0', scoreStyle);
+  this.coinFont = this.game.add.text(coinIcon.width + 7, 0, "x0", scoreStyle);
 
   this.hud.add(coinIcon);
   this.hud.add(this.coinFont);
@@ -957,11 +975,21 @@ Alternatively, using Phaser's `RetroFont` for pixel-art number rendering:
 ```javascript
 PlayState._createHud = function () {
   // Bitmap-based number rendering using RetroFont
-  this.coinFont = this.game.add.retroFont('font:numbers', 20, 26, '0123456789X ', 6);
+  this.coinFont = this.game.add.retroFont(
+    "font:numbers",
+    20,
+    26,
+    "0123456789X ",
+    6,
+  );
 
-  let coinIcon = this.game.make.image(0, 0, 'icon:coin');
+  let coinIcon = this.game.make.image(0, 0, "icon:coin");
 
-  let coinScoreImg = this.game.make.image(coinIcon.x + coinIcon.width + 7, 0, this.coinFont);
+  let coinScoreImg = this.game.make.image(
+    coinIcon.x + coinIcon.width + 7,
+    0,
+    this.coinFont,
+  );
 
   this.hud = this.game.add.group();
   this.hud.add(coinIcon);
@@ -978,9 +1006,9 @@ PlayState._createHud = function () {
 
 ```javascript
 PlayState.create = function () {
-  this.game.add.image(0, 0, 'background');
+  this.game.add.image(0, 0, "background");
 
-  this._loadLevel(this.game.cache.getJSON('level:1'));
+  this._loadLevel(this.game.cache.getJSON("level:1"));
 
   // Create the HUD
   this._createHud();
@@ -998,7 +1026,7 @@ PlayState._onHeroVsCoin = function (hero, coin) {
   this.coinPickupCount++;
 
   // Update the HUD
-  this.coinFont.text = 'x' + this.coinPickupCount;
+  this.coinFont.text = "x" + this.coinPickupCount;
 };
 ```
 
@@ -1015,7 +1043,7 @@ Replace the single image load with a spritesheet in `preload`:
 ```javascript
 // Replace: this.game.load.image('hero', 'images/hero_stopped.png');
 // With:
-this.game.load.spritesheet('hero', 'images/hero.png', 36, 42);
+this.game.load.spritesheet("hero", "images/hero.png", 36, 42);
 ```
 
 - The hero spritesheet is 36 pixels wide and 42 pixels tall per frame.
@@ -1027,15 +1055,15 @@ In `_spawnCharacters`, add animation definitions after creating the hero sprite:
 
 ```javascript
 PlayState._spawnCharacters = function (data) {
-  this.hero = this.game.add.sprite(data.hero.x, data.hero.y, 'hero');
+  this.hero = this.game.add.sprite(data.hero.x, data.hero.y, "hero");
   this.hero.anchor.set(0.5, 1);
   this.game.physics.enable(this.hero);
 
   // Define animations
-  this.hero.animations.add('stop', [0]); // Single frame: idle
-  this.hero.animations.add('run', [1, 2], 8, true); // 2 frames at 8fps, looping
-  this.hero.animations.add('jump', [3]); // Single frame: jumping up
-  this.hero.animations.add('fall', [4]); // Single frame: falling down
+  this.hero.animations.add("stop", [0]); // Single frame: idle
+  this.hero.animations.add("run", [1, 2], 8, true); // 2 frames at 8fps, looping
+  this.hero.animations.add("jump", [3]); // Single frame: jumping up
+  this.hero.animations.add("fall", [4]); // Single frame: falling down
 };
 ```
 
@@ -1049,16 +1077,16 @@ Add a method to determine and play the right animation based on the hero's curre
 
 ```javascript
 PlayState._getAnimationName = function () {
-  let name = 'stop'; // Default: standing still
+  let name = "stop"; // Default: standing still
 
   if (!this.hero.alive) {
-    name = 'stop'; // Use idle frame when dead
+    name = "stop"; // Use idle frame when dead
   } else if (this.hero.body.velocity.y < 0) {
-    name = 'jump'; // Moving upward
+    name = "jump"; // Moving upward
   } else if (this.hero.body.velocity.y > 0 && !this.hero.body.touching.down) {
-    name = 'fall'; // Moving downward and not on ground
+    name = "fall"; // Moving downward and not on ground
   } else if (this.hero.body.velocity.x !== 0 && this.hero.body.touching.down) {
-    name = 'run'; // Moving horizontally on the ground
+    name = "run"; // Moving horizontally on the ground
   }
 
   return name;
@@ -1108,12 +1136,12 @@ Add a door and key mechanic: the hero must collect a key, then reach the door to
 
 ```javascript
 // In PlayState.preload:
-this.game.load.spritesheet('door', 'images/door.png', 42, 66);
-this.game.load.spritesheet('key', 'images/key.png', 20, 22); // Key bobbing animation
-this.game.load.image('icon:key', 'images/key_icon.png');
+this.game.load.spritesheet("door", "images/door.png", 42, 66);
+this.game.load.spritesheet("key", "images/key.png", 20, 22); // Key bobbing animation
+this.game.load.image("icon:key", "images/key_icon.png");
 
-this.game.load.audio('sfx:key', 'audio/sfx/key.wav');
-this.game.load.audio('sfx:door', 'audio/sfx/door.wav');
+this.game.load.audio("sfx:key", "audio/sfx/key.wav");
+this.game.load.audio("sfx:door", "audio/sfx/door.wav");
 ```
 
 ### Spawning the Door and Key
@@ -1145,7 +1173,7 @@ PlayState._loadLevel = function (data) {
 };
 
 PlayState._spawnDoor = function (x, y) {
-  this.door = this.bgDecoration.create(x, y, 'door');
+  this.door = this.bgDecoration.create(x, y, "door");
   this.door.anchor.setTo(0.5, 1);
 
   this.game.physics.enable(this.door);
@@ -1153,7 +1181,7 @@ PlayState._spawnDoor = function (x, y) {
 };
 
 PlayState._spawnKey = function (x, y) {
-  this.key = this.bgDecoration.create(x, y, 'key');
+  this.key = this.bgDecoration.create(x, y, "key");
   this.key.anchor.set(0.5, 0.5);
 
   this.game.physics.enable(this.key);
@@ -1180,11 +1208,11 @@ Add key and door sound effects to the sfx object:
 ```javascript
 // In PlayState.create sfx:
 this.sfx = {
-  jump: this.game.add.audio('sfx:jump'),
-  coin: this.game.add.audio('sfx:coin'),
-  stomp: this.game.add.audio('sfx:stomp'),
-  key: this.game.add.audio('sfx:key'),
-  door: this.game.add.audio('sfx:door'),
+  jump: this.game.add.audio("sfx:jump"),
+  coin: this.game.add.audio("sfx:coin"),
+  stomp: this.game.add.audio("sfx:stomp"),
+  key: this.game.add.audio("sfx:key"),
+  door: this.game.add.audio("sfx:door"),
 };
 ```
 
@@ -1196,9 +1224,27 @@ PlayState._handleCollisions = function () {
   this.game.physics.arcade.collide(this.spiders, this.platforms);
   this.game.physics.arcade.collide(this.spiders, this.enemyWalls);
 
-  this.game.physics.arcade.overlap(this.hero, this.coins, this._onHeroVsCoin, null, this);
-  this.game.physics.arcade.overlap(this.hero, this.spiders, this._onHeroVsEnemy, null, this);
-  this.game.physics.arcade.overlap(this.hero, this.key, this._onHeroVsKey, null, this);
+  this.game.physics.arcade.overlap(
+    this.hero,
+    this.coins,
+    this._onHeroVsCoin,
+    null,
+    this,
+  );
+  this.game.physics.arcade.overlap(
+    this.hero,
+    this.spiders,
+    this._onHeroVsEnemy,
+    null,
+    this,
+  );
+  this.game.physics.arcade.overlap(
+    this.hero,
+    this.key,
+    this._onHeroVsKey,
+    null,
+    this,
+  );
   this.game.physics.arcade.overlap(
     this.hero,
     this.door,
@@ -1207,7 +1253,7 @@ PlayState._handleCollisions = function () {
     function (hero, door) {
       return this.hasKey && hero.body.touching.down;
     },
-    this
+    this,
   );
 };
 ```
@@ -1239,7 +1285,7 @@ PlayState._onHeroVsDoor = function (hero, door) {
 };
 
 PlayState._goToNextLevel = function () {
-  this.camera.fade('#000');
+  this.camera.fade("#000");
   this.camera.onFadeComplete.addOnce(function () {
     this.game.state.restart(true, false, {
       level: this.level + 1,
@@ -1258,7 +1304,7 @@ Update `_createHud` to show whether the hero has collected the key:
 
 ```javascript
 PlayState._createHud = function () {
-  this.keyIcon = this.game.make.image(0, 19, 'icon:key');
+  this.keyIcon = this.game.make.image(0, 19, "icon:key");
   this.keyIcon.anchor.set(0, 0.5);
 
   // ... existing coin HUD code ...
@@ -1319,11 +1365,11 @@ Update `preload` to load the correct level based on `this.level`:
 
 ```javascript
 PlayState.preload = function () {
-  this.game.load.image('background', 'images/background.png');
+  this.game.load.image("background", "images/background.png");
 
   // Load the current level's JSON data
-  this.game.load.json('level:0', 'data/level00.json');
-  this.game.load.json('level:1', 'data/level01.json');
+  this.game.load.json("level:0", "data/level00.json");
+  this.game.load.json("level:1", "data/level01.json");
 
   // ... load all other assets ...
 };
@@ -1334,17 +1380,17 @@ Update `create` to use the correct level data:
 ```javascript
 PlayState.create = function () {
   this.sfx = {
-    jump: this.game.add.audio('sfx:jump'),
-    coin: this.game.add.audio('sfx:coin'),
-    stomp: this.game.add.audio('sfx:stomp'),
-    key: this.game.add.audio('sfx:key'),
-    door: this.game.add.audio('sfx:door'),
+    jump: this.game.add.audio("sfx:jump"),
+    coin: this.game.add.audio("sfx:coin"),
+    stomp: this.game.add.audio("sfx:stomp"),
+    key: this.game.add.audio("sfx:key"),
+    door: this.game.add.audio("sfx:door"),
   };
 
-  this.game.add.image(0, 0, 'background');
+  this.game.add.image(0, 0, "background");
 
   // Load level data based on current level number
-  this._loadLevel(this.game.cache.getJSON('level:' + this.level));
+  this._loadLevel(this.game.cache.getJSON("level:" + this.level));
 
   this._createHud();
 };
@@ -1356,9 +1402,9 @@ Update the initial state start to pass level 0:
 
 ```javascript
 window.onload = function () {
-  let game = new Phaser.Game(960, 600, Phaser.AUTO, 'game');
-  game.state.add('play', PlayState);
-  game.state.start('play', true, false, { level: 0 });
+  let game = new Phaser.Game(960, 600, Phaser.AUTO, "game");
+  game.state.add("play", PlayState);
+  game.state.start("play", true, false, { level: 0 });
 };
 ```
 
@@ -1442,41 +1488,41 @@ PlayState.init = function (data) {
 
 PlayState.preload = function () {
   // Background
-  this.game.load.image('background', 'images/background.png');
+  this.game.load.image("background", "images/background.png");
 
   // Level data
-  this.game.load.json('level:0', 'data/level00.json');
-  this.game.load.json('level:1', 'data/level01.json');
+  this.game.load.json("level:0", "data/level00.json");
+  this.game.load.json("level:1", "data/level01.json");
 
   // Platform tiles
-  this.game.load.image('ground', 'images/ground.png');
-  this.game.load.image('grass:8x1', 'images/grass_8x1.png');
-  this.game.load.image('grass:6x1', 'images/grass_6x1.png');
-  this.game.load.image('grass:4x1', 'images/grass_4x1.png');
-  this.game.load.image('grass:2x1', 'images/grass_2x1.png');
-  this.game.load.image('grass:1x1', 'images/grass_1x1.png');
+  this.game.load.image("ground", "images/ground.png");
+  this.game.load.image("grass:8x1", "images/grass_8x1.png");
+  this.game.load.image("grass:6x1", "images/grass_6x1.png");
+  this.game.load.image("grass:4x1", "images/grass_4x1.png");
+  this.game.load.image("grass:2x1", "images/grass_2x1.png");
+  this.game.load.image("grass:1x1", "images/grass_1x1.png");
 
   // Characters
-  this.game.load.spritesheet('hero', 'images/hero.png', 36, 42);
-  this.game.load.spritesheet('spider', 'images/spider.png', 42, 32);
-  this.game.load.image('invisible-wall', 'images/invisible_wall.png');
+  this.game.load.spritesheet("hero", "images/hero.png", 36, 42);
+  this.game.load.spritesheet("spider", "images/spider.png", 42, 32);
+  this.game.load.image("invisible-wall", "images/invisible_wall.png");
 
   // Collectibles
-  this.game.load.spritesheet('coin', 'images/coin_animated.png', 22, 22);
-  this.game.load.spritesheet('key', 'images/key.png', 20, 22);
-  this.game.load.spritesheet('door', 'images/door.png', 42, 66);
+  this.game.load.spritesheet("coin", "images/coin_animated.png", 22, 22);
+  this.game.load.spritesheet("key", "images/key.png", 20, 22);
+  this.game.load.spritesheet("door", "images/door.png", 42, 66);
 
   // HUD
-  this.game.load.image('icon:coin', 'images/coin_icon.png');
-  this.game.load.image('icon:key', 'images/key_icon.png');
-  this.game.load.image('font:numbers', 'images/numbers.png');
+  this.game.load.image("icon:coin", "images/coin_icon.png");
+  this.game.load.image("icon:key", "images/key_icon.png");
+  this.game.load.image("font:numbers", "images/numbers.png");
 
   // Audio
-  this.game.load.audio('sfx:jump', 'audio/sfx/jump.wav');
-  this.game.load.audio('sfx:coin', 'audio/sfx/coin.wav');
-  this.game.load.audio('sfx:stomp', 'audio/sfx/stomp.wav');
-  this.game.load.audio('sfx:key', 'audio/sfx/key.wav');
-  this.game.load.audio('sfx:door', 'audio/sfx/door.wav');
+  this.game.load.audio("sfx:jump", "audio/sfx/jump.wav");
+  this.game.load.audio("sfx:coin", "audio/sfx/coin.wav");
+  this.game.load.audio("sfx:stomp", "audio/sfx/stomp.wav");
+  this.game.load.audio("sfx:key", "audio/sfx/key.wav");
+  this.game.load.audio("sfx:door", "audio/sfx/door.wav");
 };
 
 // -----------------------------------------------------------------------------
@@ -1486,18 +1532,18 @@ PlayState.preload = function () {
 PlayState.create = function () {
   // Sound effects
   this.sfx = {
-    jump: this.game.add.audio('sfx:jump'),
-    coin: this.game.add.audio('sfx:coin'),
-    stomp: this.game.add.audio('sfx:stomp'),
-    key: this.game.add.audio('sfx:key'),
-    door: this.game.add.audio('sfx:door'),
+    jump: this.game.add.audio("sfx:jump"),
+    coin: this.game.add.audio("sfx:coin"),
+    stomp: this.game.add.audio("sfx:stomp"),
+    key: this.game.add.audio("sfx:key"),
+    door: this.game.add.audio("sfx:door"),
   };
 
   // Background
-  this.game.add.image(0, 0, 'background');
+  this.game.add.image(0, 0, "background");
 
   // Load level
-  this._loadLevel(this.game.cache.getJSON('level:' + this.level));
+  this._loadLevel(this.game.cache.getJSON("level:" + this.level));
 
   // HUD
   this._createHud();
@@ -1572,62 +1618,62 @@ PlayState._spawnPlatform = function (platform) {
   sprite.body.immovable = true;
 
   // Add invisible walls at both edges for enemy AI
-  this._spawnEnemyWall(platform.x, platform.y, 'left');
-  this._spawnEnemyWall(platform.x + sprite.width, platform.y, 'right');
+  this._spawnEnemyWall(platform.x, platform.y, "left");
+  this._spawnEnemyWall(platform.x + sprite.width, platform.y, "right");
 };
 
 PlayState._spawnEnemyWall = function (x, y, side) {
-  let sprite = this.enemyWalls.create(x, y, 'invisible-wall');
-  sprite.anchor.set(side === 'left' ? 1 : 0, 1);
+  let sprite = this.enemyWalls.create(x, y, "invisible-wall");
+  sprite.anchor.set(side === "left" ? 1 : 0, 1);
   this.game.physics.enable(sprite);
   sprite.body.immovable = true;
   sprite.body.allowGravity = false;
 };
 
 PlayState._spawnCharacters = function (data) {
-  this.hero = this.game.add.sprite(data.hero.x, data.hero.y, 'hero');
+  this.hero = this.game.add.sprite(data.hero.x, data.hero.y, "hero");
   this.hero.anchor.set(0.5, 1);
   this.game.physics.enable(this.hero);
   this.hero.body.collideWorldBounds = true;
 
   // Hero animations
-  this.hero.animations.add('stop', [0]);
-  this.hero.animations.add('run', [1, 2], 8, true);
-  this.hero.animations.add('jump', [3]);
-  this.hero.animations.add('fall', [4]);
+  this.hero.animations.add("stop", [0]);
+  this.hero.animations.add("run", [1, 2], 8, true);
+  this.hero.animations.add("jump", [3]);
+  this.hero.animations.add("fall", [4]);
 };
 
 PlayState._spawnCoin = function (coin) {
-  let sprite = this.coins.create(coin.x, coin.y, 'coin');
+  let sprite = this.coins.create(coin.x, coin.y, "coin");
   sprite.anchor.set(0.5, 0.5);
   this.game.physics.enable(sprite);
   sprite.body.allowGravity = false;
 
-  sprite.animations.add('rotate', [0, 1, 2, 1], 6, true);
-  sprite.animations.play('rotate');
+  sprite.animations.add("rotate", [0, 1, 2, 1], 6, true);
+  sprite.animations.play("rotate");
 };
 
 PlayState._spawnSpider = function (spider) {
-  let sprite = this.spiders.create(spider.x, spider.y, 'spider');
+  let sprite = this.spiders.create(spider.x, spider.y, "spider");
   sprite.anchor.set(0.5, 1);
   this.game.physics.enable(sprite);
 
-  sprite.animations.add('crawl', [0, 1, 2], 8, true);
-  sprite.animations.add('die', [0, 4, 0, 4, 0, 4, 3, 3, 3, 3, 3, 3], 12);
-  sprite.animations.play('crawl');
+  sprite.animations.add("crawl", [0, 1, 2], 8, true);
+  sprite.animations.add("die", [0, 4, 0, 4, 0, 4, 3, 3, 3, 3, 3, 3], 12);
+  sprite.animations.play("crawl");
 
   sprite.body.velocity.x = Spider.SPEED;
 };
 
 PlayState._spawnDoor = function (x, y) {
-  this.door = this.bgDecoration.create(x, y, 'door');
+  this.door = this.bgDecoration.create(x, y, "door");
   this.door.anchor.setTo(0.5, 1);
   this.game.physics.enable(this.door);
   this.door.body.allowGravity = false;
 };
 
 PlayState._spawnKey = function (x, y) {
-  this.key = this.bgDecoration.create(x, y, 'key');
+  this.key = this.bgDecoration.create(x, y, "key");
   this.key.anchor.set(0.5, 0.5);
   this.game.physics.enable(this.key);
   this.key.body.allowGravity = false;
@@ -1684,9 +1730,27 @@ PlayState._handleCollisions = function () {
   this.game.physics.arcade.collide(this.spiders, this.enemyWalls);
 
   // Overlap detection (no physical push)
-  this.game.physics.arcade.overlap(this.hero, this.coins, this._onHeroVsCoin, null, this);
-  this.game.physics.arcade.overlap(this.hero, this.spiders, this._onHeroVsEnemy, null, this);
-  this.game.physics.arcade.overlap(this.hero, this.key, this._onHeroVsKey, null, this);
+  this.game.physics.arcade.overlap(
+    this.hero,
+    this.coins,
+    this._onHeroVsCoin,
+    null,
+    this,
+  );
+  this.game.physics.arcade.overlap(
+    this.hero,
+    this.spiders,
+    this._onHeroVsEnemy,
+    null,
+    this,
+  );
+  this.game.physics.arcade.overlap(
+    this.hero,
+    this.key,
+    this._onHeroVsKey,
+    null,
+    this,
+  );
   this.game.physics.arcade.overlap(
     this.hero,
     this.door,
@@ -1694,7 +1758,7 @@ PlayState._handleCollisions = function () {
     function (hero, door) {
       return this.hasKey && hero.body.touching.down;
     },
-    this
+    this,
   );
 };
 
@@ -1706,7 +1770,7 @@ PlayState._onHeroVsCoin = function (hero, coin) {
   this.sfx.coin.play();
   coin.kill();
   this.coinPickupCount++;
-  this.coinFont.text = 'x' + this.coinPickupCount;
+  this.coinFont.text = "x" + this.coinPickupCount;
 };
 
 PlayState._onHeroVsEnemy = function (hero, enemy) {
@@ -1714,7 +1778,7 @@ PlayState._onHeroVsEnemy = function (hero, enemy) {
     // Stomp: hero is falling onto the enemy
     enemy.body.velocity.x = 0;
     enemy.body.enable = false;
-    enemy.animations.play('die');
+    enemy.animations.play("die");
     enemy.events.onAnimationComplete.addOnce(function () {
       enemy.kill();
     });
@@ -1759,12 +1823,12 @@ PlayState._killHero = function () {
     function () {
       this.game.state.restart(true, false, { level: this.level });
     },
-    this
+    this,
   );
 };
 
 PlayState._goToNextLevel = function () {
-  this.camera.fade('#000');
+  this.camera.fade("#000");
   this.camera.onFadeComplete.addOnce(function () {
     this.game.state.restart(true, false, {
       level: this.level + 1,
@@ -1777,16 +1841,16 @@ PlayState._goToNextLevel = function () {
 // -----------------------------------------------------------------------------
 
 PlayState._getAnimationName = function () {
-  let name = 'stop';
+  let name = "stop";
 
   if (!this.hero.alive) {
-    name = 'stop';
+    name = "stop";
   } else if (this.hero.body.velocity.y < 0) {
-    name = 'jump';
+    name = "jump";
   } else if (this.hero.body.velocity.y > 0 && !this.hero.body.touching.down) {
-    name = 'fall';
+    name = "fall";
   } else if (this.hero.body.velocity.x !== 0 && this.hero.body.touching.down) {
-    name = 'run';
+    name = "run";
   }
 
   return name;
@@ -1797,13 +1861,18 @@ PlayState._getAnimationName = function () {
 // -----------------------------------------------------------------------------
 
 PlayState._createHud = function () {
-  this.keyIcon = this.game.make.image(0, 19, 'icon:key');
+  this.keyIcon = this.game.make.image(0, 19, "icon:key");
   this.keyIcon.anchor.set(0, 0.5);
 
-  let coinIcon = this.game.make.image(this.keyIcon.width + 7, 0, 'icon:coin');
+  let coinIcon = this.game.make.image(this.keyIcon.width + 7, 0, "icon:coin");
 
-  let scoreStyle = { font: '24px monospace', fill: '#fff' };
-  this.coinFont = this.game.add.text(coinIcon.x + coinIcon.width + 7, 0, 'x0', scoreStyle);
+  let scoreStyle = { font: "24px monospace", fill: "#fff" };
+  this.coinFont = this.game.add.text(
+    coinIcon.x + coinIcon.width + 7,
+    0,
+    "x0",
+    scoreStyle,
+  );
 
   this.hud = this.game.add.group();
   this.hud.add(this.keyIcon);
@@ -1818,9 +1887,9 @@ PlayState._createHud = function () {
 // =============================================================================
 
 window.onload = function () {
-  let game = new Phaser.Game(960, 600, Phaser.AUTO, 'game');
-  game.state.add('play', PlayState);
-  game.state.start('play', true, false, { level: 0 });
+  let game = new Phaser.Game(960, 600, Phaser.AUTO, "game");
+  game.state.add("play", PlayState);
+  game.state.start("play", true, false, { level: 0 });
 };
 ```
 

@@ -13,7 +13,7 @@ Deep watchers traverse entire object trees on every change. For large objects, t
 
 ```vue
 <script setup>
-import { reactive, watch } from 'vue';
+import { reactive, watch } from "vue";
 
 const state = reactive({
   users: [], // Could be 1000+ users
@@ -29,10 +29,10 @@ const state = reactive({
 watch(
   () => state,
   (newState) => {
-    console.log('State changed');
+    console.log("State changed");
     saveToLocalStorage(newState);
   },
-  { deep: true }
+  { deep: true },
 );
 </script>
 ```
@@ -41,11 +41,11 @@ watch(
 
 ```vue
 <script setup>
-import { reactive, watch } from 'vue';
+import { reactive, watch } from "vue";
 
 const state = reactive({
   users: [],
-  settings: { theme: 'dark', language: 'en' },
+  settings: { theme: "dark", language: "en" },
   cache: {},
 });
 
@@ -54,7 +54,7 @@ watch(
   () => state.settings.theme,
   (newTheme) => {
     document.body.className = newTheme;
-  }
+  },
 );
 
 // GOOD: Watch multiple specific properties
@@ -62,7 +62,7 @@ watch(
   () => [state.settings.theme, state.settings.language],
   ([theme, language]) => {
     updateUIPreferences(theme, language);
-  }
+  },
 );
 </script>
 ```
@@ -71,14 +71,14 @@ watch(
 
 ```vue
 <script setup>
-import { reactive, watch } from 'vue';
+import { reactive, watch } from "vue";
 
 const user = reactive({
-  name: 'John',
-  email: 'john@example.com',
+  name: "John",
+  email: "john@example.com",
   profile: {
-    avatar: 'url',
-    bio: 'text',
+    avatar: "url",
+    bio: "text",
   },
 });
 
@@ -88,7 +88,7 @@ watch(
   (newProfile) => {
     // Only triggers when profile is replaced entirely
     saveProfile(newProfile);
-  }
+  },
 );
 
 // If you need deep but only for profile
@@ -97,7 +97,7 @@ watch(
   (newProfile) => {
     saveProfile(newProfile);
   },
-  { deep: true } // Deep only on profile, not entire user
+  { deep: true }, // Deep only on profile, not entire user
 );
 </script>
 ```
@@ -106,12 +106,12 @@ watch(
 
 ```vue
 <script setup>
-import { reactive, watchEffect } from 'vue';
+import { reactive, watchEffect } from "vue";
 
 const settings = reactive({
-  theme: 'dark',
+  theme: "dark",
   fontSize: 14,
-  language: 'en',
+  language: "en",
 });
 
 // Automatically tracks only accessed properties
@@ -128,7 +128,7 @@ watchEffect(() => {
 
 ```vue
 <script setup>
-import { reactive, computed, watch } from 'vue';
+import { reactive, computed, watch } from "vue";
 
 const items = reactive([
   /* large array */

@@ -37,8 +37,8 @@ function test() {
 <blockquote class="markdown-alert markdown-alert-tip">
   <p><strong>Tip</strong></p>
   <p>
-    To preserve your formatting within a list, make sure to indent non-fenced code blocks by eight
-    spaces.
+    To preserve your formatting within a list, make sure to indent non-fenced
+    code blocks by eight spaces.
   </p>
 </blockquote>
 ```

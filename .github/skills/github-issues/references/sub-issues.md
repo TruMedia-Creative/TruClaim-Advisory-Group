@@ -102,7 +102,9 @@ Use `after_id` or `before_id` to position the sub-issue relative to another.
 
 ```graphql
 mutation {
-  addSubIssue(input: { issueId: "PARENT_NODE_ID", subIssueId: "CHILD_NODE_ID" }) {
+  addSubIssue(
+    input: { issueId: "PARENT_NODE_ID", subIssueId: "CHILD_NODE_ID" }
+  ) {
     issue {
       id
     }
@@ -140,7 +142,9 @@ mutation {
 
 ```graphql
 mutation {
-  removeSubIssue(input: { issueId: "PARENT_NODE_ID", subIssueId: "CHILD_NODE_ID" }) {
+  removeSubIssue(
+    input: { issueId: "PARENT_NODE_ID", subIssueId: "CHILD_NODE_ID" }
+  ) {
     issue {
       id
     }

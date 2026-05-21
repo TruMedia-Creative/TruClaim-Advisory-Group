@@ -9,7 +9,7 @@ Nuxt UI automatically registers `@nuxt/icon`, `@nuxt/fonts`, and `@nuxtjs/color-
 ```ts
 // nuxt.config.ts
 export default defineNuxtConfig({
-  modules: ['@nuxt/ui'],
+  modules: ["@nuxt/ui"],
   icon: {
     /* @nuxt/icon options */
   },
@@ -31,7 +31,7 @@ When using `@nuxt/content`, it **must** come after `@nuxt/ui` in the `modules` a
 ```ts
 // nuxt.config.ts
 export default defineNuxtConfig({
-  modules: ['@nuxt/ui', '@nuxt/content'],
+  modules: ["@nuxt/ui", "@nuxt/content"],
 });
 ```
 
@@ -39,8 +39,8 @@ Add `@source` in your CSS so Tailwind generates classes used in markdown/MDC:
 
 ```css
 /* app/assets/css/main.css */
-@import 'tailwindcss';
-@import '@nuxt/ui';
+@import "tailwindcss";
+@import "@nuxt/ui";
 
 @source "../../../content/**/*";
 ```
@@ -48,11 +48,11 @@ Add `@source` in your CSS so Tailwind generates classes used in markdown/MDC:
 Use `mapContentNavigation` to transform content navigation for components like `UBreadcrumb`:
 
 ```ts
-import { mapContentNavigation } from '@nuxt/ui/utils/content';
-import { findPageBreadcrumb } from '@nuxt/content/utils';
+import { mapContentNavigation } from "@nuxt/ui/utils/content";
+import { findPageBreadcrumb } from "@nuxt/content/utils";
 
 const breadcrumb = computed(() =>
-  mapContentNavigation(findPageBreadcrumb(navigation.value, page.value?.path))
+  mapContentNavigation(findPageBreadcrumb(navigation.value, page.value?.path)),
 );
 ```
 
@@ -109,8 +109,8 @@ export default defineNuxtConfig({
   icon: {
     customCollections: [
       {
-        prefix: 'custom',
-        dir: './app/assets/icons',
+        prefix: "custom",
+        dir: "./app/assets/icons",
       },
     ],
   },
@@ -126,13 +126,13 @@ Components like `Modal`, `Select`, `Accordion`, etc. use default icons from `app
 export default defineAppConfig({
   ui: {
     icons: {
-      loading: 'i-lucide-refresh-cw',
-      close: 'i-lucide-x',
-      check: 'i-lucide-check',
-      chevronDown: 'i-lucide-chevron-down',
-      chevronRight: 'i-lucide-chevron-right',
-      arrowLeft: 'i-lucide-arrow-left',
-      arrowRight: 'i-lucide-arrow-right',
+      loading: "i-lucide-refresh-cw",
+      close: "i-lucide-x",
+      check: "i-lucide-check",
+      chevronDown: "i-lucide-chevron-down",
+      chevronRight: "i-lucide-chevron-right",
+      arrowLeft: "i-lucide-arrow-left",
+      arrowRight: "i-lucide-arrow-right",
     },
   },
 });
@@ -162,8 +162,8 @@ Many components accept an `items` prop. Two patterns:
 
 ```ts
 const items = [
-  { label: 'Edit', icon: 'i-lucide-pencil' },
-  { label: 'Delete', icon: 'i-lucide-trash', color: 'error' },
+  { label: "Edit", icon: "i-lucide-pencil" },
+  { label: "Delete", icon: "i-lucide-trash", color: "error" },
 ];
 ```
 
@@ -172,10 +172,10 @@ const items = [
 ```ts
 const items = [
   [
-    { label: 'Edit', icon: 'i-lucide-pencil' },
-    { label: 'Duplicate', icon: 'i-lucide-copy' },
+    { label: "Edit", icon: "i-lucide-pencil" },
+    { label: "Duplicate", icon: "i-lucide-copy" },
   ],
-  [{ label: 'Delete', icon: 'i-lucide-trash', color: 'error' }],
+  [{ label: "Delete", icon: "i-lucide-trash", color: "error" }],
 ];
 ```
 
@@ -189,15 +189,15 @@ Components supporting nested arrays: `UDropdownMenu`, `UContextMenu`, `UCommandP
 const toast = useToast();
 
 toast.add({
-  title: 'Success',
-  description: 'Item saved',
-  color: 'success',
-  icon: 'i-lucide-check-circle',
+  title: "Success",
+  description: "Item saved",
+  color: "success",
+  icon: "i-lucide-check-circle",
   duration: 5000,
-  actions: [{ label: 'Undo', onClick: () => {} }],
+  actions: [{ label: "Undo", onClick: () => {} }],
 });
 
-toast.remove('toast-id');
+toast.remove("toast-id");
 toast.clear();
 ```
 
@@ -208,7 +208,7 @@ Programmatic modals, slideovers, drawers — no template `v-model` needed. See [
 ```ts
 const overlay = useOverlay();
 const modal = overlay.create(MyComponent);
-const instance = modal.open({ title: 'Confirm?' });
+const instance = modal.open({ title: "Confirm?" });
 if (await instance.result) {
   /* confirmed */
 }
@@ -235,8 +235,8 @@ Wire up keyboard shortcuts from menu items:
 
 ```ts
 const items = [
-  { label: 'New file', kbds: ['meta', 'n'], onSelect: () => newFile() },
-  { label: 'Save', kbds: ['meta', 's'], onSelect: () => save() },
+  { label: "New file", kbds: ["meta", "n"], onSelect: () => newFile() },
+  { label: "Save", kbds: ["meta", "s"], onSelect: () => save() },
 ];
 
 defineShortcuts(extractShortcuts(items));
@@ -250,7 +250,7 @@ Nuxt UI supports 50+ locales. Set the locale on `UApp` — all components inheri
 
 ```vue
 <script setup lang="ts">
-import { fr } from '@nuxt/ui/locale';
+import { fr } from "@nuxt/ui/locale";
 </script>
 
 <template>
@@ -265,12 +265,12 @@ import { fr } from '@nuxt/ui/locale';
 `extendLocale` is auto-imported. Override specific messages or the `code` (affects date/time formatting in Calendar, InputDate, InputTime):
 
 ```ts
-import { en } from '@nuxt/ui/locale';
+import { en } from "@nuxt/ui/locale";
 
 const locale = extendLocale(en, {
-  code: 'en-AU',
+  code: "en-AU",
   messages: {
-    commandPalette: { placeholder: 'Search a component...' },
+    commandPalette: { placeholder: "Search a component..." },
   },
 });
 ```
@@ -278,12 +278,12 @@ const locale = extendLocale(en, {
 #### Custom locale from scratch
 
 ```ts
-import type { Messages } from '@nuxt/ui';
+import type { Messages } from "@nuxt/ui";
 
 const locale = defineLocale<Messages>({
-  name: 'My locale',
-  code: 'en',
-  dir: 'ltr',
+  name: "My locale",
+  code: "en",
+  dir: "ltr",
   messages: {
     // all component message keys
   },
@@ -295,12 +295,12 @@ const locale = defineLocale<Messages>({
 ```ts
 // nuxt.config.ts
 export default defineNuxtConfig({
-  modules: ['@nuxt/ui', '@nuxtjs/i18n'],
+  modules: ["@nuxt/ui", "@nuxtjs/i18n"],
   i18n: {
     locales: [
-      { code: 'en', name: 'English' },
-      { code: 'fr', name: 'Français' },
-      { code: 'ar', name: 'العربية' },
+      { code: "en", name: "English" },
+      { code: "fr", name: "Français" },
+      { code: "ar", name: "العربية" },
     ],
   },
 });
@@ -308,7 +308,7 @@ export default defineNuxtConfig({
 
 ```vue
 <script setup lang="ts">
-import * as locales from '@nuxt/ui/locale';
+import * as locales from "@nuxt/ui/locale";
 
 const { locale } = useI18n();
 
@@ -346,9 +346,9 @@ For custom color mode UI, use `useColorMode` with `ClientOnly` to avoid hydratio
 const colorMode = useColorMode();
 
 const isDark = computed({
-  get: () => colorMode.value === 'dark',
+  get: () => colorMode.value === "dark",
   set: (v) => {
-    colorMode.preference = v ? 'dark' : 'light';
+    colorMode.preference = v ? "dark" : "light";
   },
 });
 </script>

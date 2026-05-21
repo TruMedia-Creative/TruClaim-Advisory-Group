@@ -238,10 +238,10 @@ Place at `.github/secret_scanning.yml` to auto-close alerts for specific paths:
 
 ```yaml
 paths-ignore:
-  - 'docs/**' # Documentation with example secrets
-  - 'test/fixtures/**' # Test fixture data
-  - '**/*.example' # Example configuration files
-  - 'samples/credentials' # Sample credential files
+  - "docs/**" # Documentation with example secrets
+  - "test/fixtures/**" # Test fixture data
+  - "**/*.example" # Example configuration files
+  - "samples/credentials" # Sample credential files
 ```
 
 **Limits:**

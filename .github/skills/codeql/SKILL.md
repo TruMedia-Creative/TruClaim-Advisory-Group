@@ -59,7 +59,7 @@ on:
   pull_request:
     branches: [main]
   schedule:
-    - cron: '30 6 * * 1' # Weekly Monday 6:30 UTC
+    - cron: "30 6 * * 1" # Weekly Monday 6:30 UTC
 ```
 
 - `push` — scans on every push to specified branches; results appear in Security tab
@@ -73,8 +73,8 @@ To skip scans for documentation-only PRs:
 on:
   pull_request:
     paths-ignore:
-      - '**/*.md'
-      - '**/*.txt'
+      - "**/*.md"
+      - "**/*.txt"
 ```
 
 > `paths-ignore` controls whether the workflow runs, not which files are analyzed.
@@ -135,7 +135,7 @@ steps:
   - name: Perform CodeQL Analysis
     uses: github/codeql-action/analyze@v4
     with:
-      category: '/language:${{ matrix.language }}'
+      category: "/language:${{ matrix.language }}"
 ```
 
 **Query suite options:**
@@ -153,7 +153,7 @@ steps:
 For monorepos with multiple components, use the `category` parameter to separate SARIF results:
 
 ```yaml
-category: '/language:${{ matrix.language }}/component:frontend'
+category: "/language:${{ matrix.language }}/component:frontend"
 ```
 
 To restrict analysis to specific directories, use a CodeQL configuration file (`.github/codeql/codeql-config.yml`):
@@ -164,7 +164,7 @@ paths:
   - services/
 paths-ignore:
   - node_modules/
-  - '**/test/**'
+  - "**/test/**"
 ```
 
 Reference it in the workflow:
@@ -322,7 +322,7 @@ paths:
   - apps/
   - services/
 paths-ignore:
-  - '**/test/**'
+  - "**/test/**"
   - node_modules/
 queries:
   - uses: security-extended

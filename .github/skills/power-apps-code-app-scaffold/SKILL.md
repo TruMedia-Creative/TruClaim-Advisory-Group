@@ -1,6 +1,6 @@
 ---
 name: power-apps-code-app-scaffold
-description: 'Scaffold a complete Power Apps Code App project with PAC CLI setup, SDK integration, and connector configuration'
+description: "Scaffold a complete Power Apps Code App project with PAC CLI setup, SDK integration, and connector configuration"
 ---
 
 # Power Apps Code Apps Project Scaffolding
@@ -129,7 +129,7 @@ Include working examples for Office 365 Users:
 ```typescript
 // Example: Get current user profile
 const profile = await Office365UsersService.MyProfile_V2(
-  'id,displayName,jobTitle,userPrincipalName'
+  "id,displayName,jobTitle,userPrincipalName",
 );
 
 // Example: Get user photo

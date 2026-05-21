@@ -20,11 +20,11 @@ The core touch events available in the browser are:
 **Registering touch event listeners:**
 
 ```javascript
-const canvas = document.querySelector('canvas');
-canvas.addEventListener('touchstart', handleStart);
-canvas.addEventListener('touchmove', handleMove);
-canvas.addEventListener('touchend', handleEnd);
-canvas.addEventListener('touchcancel', handleCancel);
+const canvas = document.querySelector("canvas");
+canvas.addEventListener("touchstart", handleStart);
+canvas.addEventListener("touchmove", handleMove);
+canvas.addEventListener("touchend", handleEnd);
+canvas.addEventListener("touchcancel", handleCancel);
 ```
 
 **Touch event properties:**
@@ -38,8 +38,8 @@ canvas.addEventListener('touchcancel', handleCancel);
 **Pure JavaScript touch handler:**
 
 ```javascript
-document.addEventListener('touchstart', touchHandler);
-document.addEventListener('touchmove', touchHandler);
+document.addEventListener("touchstart", touchHandler);
+document.addEventListener("touchmove", touchHandler);
 
 function touchHandler(e) {
   if (e.touches) {
@@ -73,7 +73,7 @@ this.game.input.onHold.add(itemHeld, this);
 **Draggable sprite for ship movement:**
 
 ```javascript
-const player = this.game.add.sprite(30, 30, 'ship');
+const player = this.game.add.sprite(30, 30, "ship");
 player.inputEnabled = true;
 player.input.enableDrag();
 player.events.onDragStart.add(onDragStart, this);
@@ -90,9 +90,9 @@ function onDragStart(sprite, pointer) {
 this.buttonShoot = this.add.button(
   this.world.width * 0.5,
   0,
-  'button-alpha', // transparent image
+  "button-alpha", // transparent image
   null,
-  this
+  this,
 );
 this.buttonShoot.onInputDown.add(this.goShootPressed, this);
 this.buttonShoot.onInputUp.add(this.goShootReleased, this);
@@ -102,8 +102,8 @@ this.buttonShoot.onInputUp.add(this.goShootReleased, this);
 
 ```javascript
 this.gamepad = this.game.plugins.add(Phaser.Plugin.VirtualGamepad);
-this.joystick = this.gamepad.addJoystick(100, 420, 1.2, 'gamepad');
-this.button = this.gamepad.addButton(400, 420, 1.0, 'gamepad');
+this.joystick = this.gamepad.addJoystick(100, 420, 1.2, "gamepad");
+this.button = this.gamepad.addButton(400, 420, 1.0, "gamepad");
 ```
 
 ### Best Practices
@@ -126,8 +126,8 @@ Desktop keyboard and mouse controls provide precise input for web games and are 
 **Keyboard events:**
 
 ```javascript
-document.addEventListener('keydown', keyDownHandler);
-document.addEventListener('keyup', keyUpHandler);
+document.addEventListener("keydown", keyDownHandler);
+document.addEventListener("keyup", keyUpHandler);
 ```
 
 - `event.code` returns readable key identifiers such as `"ArrowLeft"`, `"ArrowRight"`, `"ArrowUp"`, `"ArrowDown"`.
@@ -165,17 +165,17 @@ let upPressed = false;
 let downPressed = false;
 
 function keyDownHandler(event) {
-  if (event.code === 'ArrowRight') rightPressed = true;
-  else if (event.code === 'ArrowLeft') leftPressed = true;
-  if (event.code === 'ArrowDown') downPressed = true;
-  else if (event.code === 'ArrowUp') upPressed = true;
+  if (event.code === "ArrowRight") rightPressed = true;
+  else if (event.code === "ArrowLeft") leftPressed = true;
+  if (event.code === "ArrowDown") downPressed = true;
+  else if (event.code === "ArrowUp") upPressed = true;
 }
 
 function keyUpHandler(event) {
-  if (event.code === 'ArrowRight') rightPressed = false;
-  else if (event.code === 'ArrowLeft') leftPressed = false;
-  if (event.code === 'ArrowDown') downPressed = false;
-  else if (event.code === 'ArrowUp') upPressed = false;
+  if (event.code === "ArrowRight") rightPressed = false;
+  else if (event.code === "ArrowLeft") leftPressed = false;
+  if (event.code === "ArrowDown") downPressed = false;
+  else if (event.code === "ArrowUp") upPressed = false;
 }
 ```
 
@@ -232,11 +232,11 @@ if (this.keyFire1.isDown || this.keyFire2.isDown) {
 
 ```javascript
 if (this.game.device.desktop) {
-  moveText = 'Arrow keys or WASD to move';
-  shootText = 'X or Space to shoot';
+  moveText = "Arrow keys or WASD to move";
+  shootText = "X or Space to shoot";
 } else {
-  moveText = 'Tap and hold to move';
-  shootText = 'Tap to shoot';
+  moveText = "Tap and hold to move";
+  shootText = "Tap to shoot";
 }
 ```
 
@@ -258,8 +258,8 @@ The Gamepad API enables web games to detect and respond to gamepad and controlle
 **Core events:**
 
 ```javascript
-window.addEventListener('gamepadconnected', gamepadHandler);
-window.addEventListener('gamepaddisconnected', gamepadHandler);
+window.addEventListener("gamepadconnected", gamepadHandler);
+window.addEventListener("gamepaddisconnected", gamepadHandler);
 ```
 
 **Gamepad object properties:**
@@ -298,7 +298,7 @@ function gamepadHandler(e) {
   console.log(`Gamepad: ${controller.id}`);
 }
 
-window.addEventListener('gamepadconnected', gamepadHandler);
+window.addEventListener("gamepadconnected", gamepadHandler);
 ```
 
 **Polling button states each frame:**
@@ -333,7 +333,7 @@ function draw() {
   if (gamepadButtonPressedHandler(14))
     playerX -= 5; // D-Pad Left
   else if (gamepadButtonPressedHandler(15)) playerX += 5; // D-Pad Right
-  if (gamepadButtonPressedHandler(0)) alert('BOOM!'); // A Button
+  if (gamepadButtonPressedHandler(0)) alert("BOOM!"); // A Button
 
   ctx.drawImage(img, playerX, playerY);
   requestAnimationFrame(draw);
@@ -386,22 +386,22 @@ const GamepadAPI = {
 
   buttons: {
     layout: [
-      'A',
-      'B',
-      'X',
-      'Y',
-      'LB',
-      'RB',
-      'LT',
-      'RT',
-      'Back',
-      'Start',
-      'LS',
-      'RS',
-      'DPad-Up',
-      'DPad-Down',
-      'DPad-Left',
-      'DPad-Right',
+      "A",
+      "B",
+      "X",
+      "Y",
+      "LB",
+      "RB",
+      "LT",
+      "RT",
+      "Back",
+      "Start",
+      "LS",
+      "RS",
+      "DPad-Up",
+      "DPad-Down",
+      "DPad-Left",
+      "DPad-Right",
     ],
     cache: [],
     status: [],
@@ -422,8 +422,8 @@ const GamepadAPI = {
   },
 };
 
-window.addEventListener('gamepadconnected', GamepadAPI.connect);
-window.addEventListener('gamepaddisconnected', GamepadAPI.disconnect);
+window.addEventListener("gamepadconnected", GamepadAPI.connect);
+window.addEventListener("gamepaddisconnected", GamepadAPI.disconnect);
 ```
 
 **Analog stick movement with deadzone threshold:**
@@ -444,15 +444,15 @@ if (GamepadAPI.axes.status) {
 ```javascript
 if (this.game.device.desktop) {
   if (GamepadAPI.active) {
-    moveText = 'DPad or left Stick to move';
-    shootText = 'A to shoot, Y for controls';
+    moveText = "DPad or left Stick to move";
+    shootText = "A to shoot, Y for controls";
   } else {
-    moveText = 'Arrow keys or WASD to move';
-    shootText = 'X or Space to shoot';
+    moveText = "Arrow keys or WASD to move";
+    shootText = "X or Space to shoot";
   }
 } else {
-  moveText = 'Tap and hold to move';
-  shootText = 'Tap to shoot';
+  moveText = "Tap and hold to move";
+  shootText = "Tap to shoot";
 }
 ```
 
@@ -489,12 +489,12 @@ if (this.cursors.right.isDown) {
 }
 
 // Discover manufacturer-specific remote key codes
-window.addEventListener('keydown', (event) => {
+window.addEventListener("keydown", (event) => {
   console.log(event.keyCode);
 });
 
 // Handle custom remote buttons (codes vary by manufacturer)
-window.addEventListener('keydown', (event) => {
+window.addEventListener("keydown", (event) => {
   switch (event.keyCode) {
     case 8: // Pause (Panasonic example)
       break;
@@ -603,18 +603,18 @@ doppler.init((bandwidth) => {
 **Code Example (custom setup with Cylon.js):**
 
 ```javascript
-const Cylon = require('cylon');
+const Cylon = require("cylon");
 
 Cylon.robot({
   connections: {
-    arduino: { adaptor: 'firmata', port: '/dev/ttyACM0' },
+    arduino: { adaptor: "firmata", port: "/dev/ttyACM0" },
   },
   devices: {
-    makey: { driver: 'makey-button', pin: 2 },
+    makey: { driver: "makey-button", pin: 2 },
   },
   work(my) {
-    my.makey.on('push', () => {
-      console.log('Button pushed!');
+    my.makey.on("push", () => {
+      console.log("Button pushed!");
       // Trigger game action
     });
   },

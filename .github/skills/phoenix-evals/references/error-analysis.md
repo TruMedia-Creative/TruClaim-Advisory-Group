@@ -33,19 +33,24 @@ sample = pd.concat([
 ### Span-level sampling (TypeScript)
 
 ```typescript
-import { getSpans } from '@arizeai/phoenix-client/spans';
+import { getSpans } from "@arizeai/phoenix-client/spans";
 
 const { spans: errors } = await getSpans({
-  project: { projectName: 'my-app' },
-  statusCode: 'ERROR',
+  project: { projectName: "my-app" },
+  statusCode: "ERROR",
   limit: 30,
 });
 const { spans: allSpans } = await getSpans({
-  project: { projectName: 'my-app' },
+  project: { projectName: "my-app" },
   limit: 70,
 });
-const sample = [...errors, ...allSpans.sort(() => Math.random() - 0.5).slice(0, 40)];
-const unique = [...new Map(sample.map((s) => [s.context.span_id, s])).values()].slice(0, 100);
+const sample = [
+  ...errors,
+  ...allSpans.sort(() => Math.random() - 0.5).slice(0, 40),
+];
+const unique = [
+  ...new Map(sample.map((s) => [s.context.span_id, s])).values(),
+].slice(0, 100);
 ```
 
 ### Trace-level sampling (Python)
@@ -69,10 +74,10 @@ traces = client.traces.get_traces(
 ### Trace-level sampling (TypeScript)
 
 ```typescript
-import { getTraces } from '@arizeai/phoenix-client/traces';
+import { getTraces } from "@arizeai/phoenix-client/traces";
 
 const { traces } = await getTraces({
-  project: { projectName: 'my-app' },
+  project: { projectName: "my-app" },
   startTime: new Date(Date.now() - 24 * 60 * 60 * 1000),
   includeSpans: true,
   limit: 100,
@@ -91,12 +96,12 @@ client.spans.add_span_note(
 ## Add Notes (TypeScript)
 
 ```typescript
-import { addSpanNote } from '@arizeai/phoenix-client/spans';
+import { addSpanNote } from "@arizeai/phoenix-client/spans";
 
 await addSpanNote({
   spanNote: {
-    spanId: 'abc123',
-    note: 'wrong timezone - said 3pm EST but user is PST',
+    spanId: "abc123",
+    note: "wrong timezone - said 3pm EST but user is PST",
   },
 });
 ```
@@ -152,16 +157,18 @@ annotations_df = client.spans.get_span_annotations_dataframe(
 ### TypeScript
 
 ```typescript
-import { getSpanAnnotations } from '@arizeai/phoenix-client/spans';
+import { getSpanAnnotations } from "@arizeai/phoenix-client/spans";
 
 const { annotations } = await getSpanAnnotations({
-  project: { projectName: 'my-app' },
-  spanIds: ['span-id-1', 'span-id-2'],
-  includeAnnotationNames: ['quality', 'correctness'],
+  project: { projectName: "my-app" },
+  spanIds: ["span-id-1", "span-id-2"],
+  includeAnnotationNames: ["quality", "correctness"],
 });
 
 for (const ann of annotations) {
-  console.log(`${ann.span_id}: ${ann.name} = ${ann.result?.label} (${ann.result?.score})`);
+  console.log(
+    `${ann.span_id}: ${ann.name} = ${ann.result?.label} (${ann.result?.score})`,
+  );
 }
 ```
 

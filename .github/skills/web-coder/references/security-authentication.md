@@ -118,7 +118,7 @@ Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
 
 ```javascript
 // Login
-app.post('/login', (req, res) => {
+app.post("/login", (req, res) => {
   const { username, password } = req.body;
 
   // Verify credentials
@@ -126,18 +126,18 @@ app.post('/login', (req, res) => {
     req.session.userId = user.id;
     res.json({ success: true });
   } else {
-    res.status(401).json({ error: 'Invalid credentials' });
+    res.status(401).json({ error: "Invalid credentials" });
   }
 });
 
 // Protected route
-app.get('/profile', requireAuth, (req, res) => {
+app.get("/profile", requireAuth, (req, res) => {
   const user = getUserById(req.session.userId);
   res.json(user);
 });
 
 // Logout
-app.post('/logout', (req, res) => {
+app.post("/logout", (req, res) => {
   req.session.destroy();
   res.json({ success: true });
 });
@@ -150,27 +150,29 @@ app.post('/logout', (req, res) => {
 
 ```javascript
 // Login
-app.post('/login', (req, res) => {
+app.post("/login", (req, res) => {
   const { username, password } = req.body;
 
   if (verifyCredentials(username, password)) {
-    const token = jwt.sign({ userId: user.id, role: user.role }, SECRET_KEY, { expiresIn: '1h' });
+    const token = jwt.sign({ userId: user.id, role: user.role }, SECRET_KEY, {
+      expiresIn: "1h",
+    });
     res.json({ token });
   } else {
-    res.status(401).json({ error: 'Invalid credentials' });
+    res.status(401).json({ error: "Invalid credentials" });
   }
 });
 
 // Protected route
-app.get('/profile', (req, res) => {
-  const token = req.headers.authorization?.split(' ')[1];
+app.get("/profile", (req, res) => {
+  const token = req.headers.authorization?.split(" ")[1];
 
   try {
     const decoded = jwt.verify(token, SECRET_KEY);
     const user = getUserById(decoded.userId);
     res.json(user);
   } catch (error) {
-    res.status(401).json({ error: 'Invalid token' });
+    res.status(401).json({ error: "Invalid token" });
   }
 });
 ```
@@ -208,7 +210,7 @@ Requires multiple verification factors:
 ### Password Security
 
 ```javascript
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 
 // Hash password
 async function hashPassword(password) {
@@ -258,18 +260,18 @@ element.textContent = userInput;
 function escapeHTML(str) {
   return str.replace(/[&<>"']/g, (match) => {
     const map = {
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      '"': '&quot;',
-      "'": '&#39;',
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;",
     };
     return map[match];
   });
 }
 
 // ✅ Use DOMPurify for rich content
-import DOMPurify from 'dompurify';
+import DOMPurify from "dompurify";
 element.innerHTML = DOMPurify.sanitize(userInput);
 ```
 
@@ -309,7 +311,7 @@ Injecting malicious SQL code.
 const query = `SELECT * FROM users WHERE username = '${username}'`;
 
 // ✅ Parameterized queries
-const query = 'SELECT * FROM users WHERE username = ?';
+const query = "SELECT * FROM users WHERE username = ?";
 db.execute(query, [username]);
 
 // ✅ ORM/Query builder
@@ -350,25 +352,26 @@ Content-Security-Policy: frame-ancestors 'self'
 
 ```javascript
 // Validate file type
-const allowedTypes = ['image/jpeg', 'image/png'];
+const allowedTypes = ["image/jpeg", "image/png"];
 if (!allowedTypes.includes(file.mimetype)) {
-  return res.status(400).json({ error: 'Invalid file type' });
+  return res.status(400).json({ error: "Invalid file type" });
 }
 
 // Check file size
 const maxSize = 5 * 1024 * 1024; // 5MB
 if (file.size > maxSize) {
-  return res.status(400).json({ error: 'File too large' });
+  return res.status(400).json({ error: "File too large" });
 }
 
 // Sanitize filename
-const sanitizedName = file.name.replace(/[^a-z0-9.-]/gi, '_');
+const sanitizedName = file.name.replace(/[^a-z0-9.-]/gi, "_");
 
 // Store outside web root
-const uploadPath = '/secure/uploads/' + sanitizedName;
+const uploadPath = "/secure/uploads/" + sanitizedName;
 
 // Use random filenames
-const filename = crypto.randomBytes(16).toString('hex') + path.extname(file.name);
+const filename =
+  crypto.randomBytes(16).toString("hex") + path.extname(file.name);
 ```
 
 ## Cryptography
@@ -383,23 +386,23 @@ const filename = crypto.randomBytes(16).toString('hex') + path.extname(file.name
 Same key for encryption and decryption.
 
 ```javascript
-const crypto = require('crypto');
+const crypto = require("crypto");
 
 function encrypt(text, key) {
   const iv = crypto.randomBytes(16);
-  const cipher = crypto.createCipheriv('aes-256-cbc', key, iv);
-  let encrypted = cipher.update(text, 'utf8', 'hex');
-  encrypted += cipher.final('hex');
-  return iv.toString('hex') + ':' + encrypted;
+  const cipher = crypto.createCipheriv("aes-256-cbc", key, iv);
+  let encrypted = cipher.update(text, "utf8", "hex");
+  encrypted += cipher.final("hex");
+  return iv.toString("hex") + ":" + encrypted;
 }
 
 function decrypt(text, key) {
-  const parts = text.split(':');
-  const iv = Buffer.from(parts[0], 'hex');
+  const parts = text.split(":");
+  const iv = Buffer.from(parts[0], "hex");
   const encrypted = parts[1];
-  const decipher = crypto.createDecipheriv('aes-256-cbc', key, iv);
-  let decrypted = decipher.update(encrypted, 'hex', 'utf8');
-  decrypted += decipher.final('utf8');
+  const decipher = crypto.createDecipheriv("aes-256-cbc", key, iv);
+  let decrypted = decipher.update(encrypted, "hex", "utf8");
+  decrypted += decipher.final("utf8");
   return decrypted;
 }
 ```
@@ -417,13 +420,13 @@ Different keys for encryption (public) and decryption (private).
 ### Hash Functions
 
 ```javascript
-const crypto = require('crypto');
+const crypto = require("crypto");
 
 // SHA-256
-const hash = crypto.createHash('sha256').update(data).digest('hex');
+const hash = crypto.createHash("sha256").update(data).digest("hex");
 
 // HMAC (keyed hash)
-const hmac = crypto.createHmac('sha256', secretKey).update(data).digest('hex');
+const hmac = crypto.createHmac("sha256", secretKey).update(data).digest("hex");
 ```
 
 ### Digital Signatures
@@ -431,19 +434,19 @@ const hmac = crypto.createHmac('sha256', secretKey).update(data).digest('hex');
 Verify authenticity and integrity.
 
 ```javascript
-const { privateKey, publicKey } = crypto.generateKeyPairSync('rsa', {
+const { privateKey, publicKey } = crypto.generateKeyPairSync("rsa", {
   modulusLength: 2048,
 });
 
 // Sign
-const sign = crypto.createSign('SHA256');
+const sign = crypto.createSign("SHA256");
 sign.update(data);
-const signature = sign.sign(privateKey, 'hex');
+const signature = sign.sign(privateKey, "hex");
 
 // Verify
-const verify = crypto.createVerify('SHA256');
+const verify = crypto.createVerify("SHA256");
 verify.update(data);
-const isValid = verify.verify(publicKey, signature, 'hex');
+const isValid = verify.verify(publicKey, signature, "hex");
 ```
 
 ## Secure Coding Practices
@@ -460,7 +463,7 @@ function isValidEmail(email) {
 // Validate and sanitize
 function sanitizeInput(input) {
   // Remove dangerous characters
-  return input.replace(/[<>\"']/g, '');
+  return input.replace(/[<>\"']/g, "");
 }
 
 // Whitelist approach
@@ -482,33 +485,33 @@ Encode data based on context:
 
 ```javascript
 // ❌ Don't store sensitive data in localStorage
-localStorage.setItem('token', token); // XSS can access
+localStorage.setItem("token", token); // XSS can access
 
 // ✅ Use HttpOnly cookies
-res.cookie('token', token, {
+res.cookie("token", token, {
   httpOnly: true,
   secure: true,
-  sameSite: 'strict',
+  sameSite: "strict",
   maxAge: 3600000,
 });
 
 // ✅ For sensitive client-side data, encrypt first
 const encrypted = encrypt(sensitiveData, encryptionKey);
-sessionStorage.setItem('data', encrypted);
+sessionStorage.setItem("data", encrypted);
 ```
 
 ### Rate Limiting
 
 ```javascript
-const rateLimit = require('express-rate-limit');
+const rateLimit = require("express-rate-limit");
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // Limit each IP to 100 requests per windowMs
-  message: 'Too many requests, please try again later',
+  message: "Too many requests, please try again later",
 });
 
-app.use('/api/', limiter);
+app.use("/api/", limiter);
 
 // Stricter for auth endpoints
 const authLimiter = rateLimit({
@@ -517,7 +520,7 @@ const authLimiter = rateLimit({
   skipSuccessfulRequests: true,
 });
 
-app.use('/api/login', authLimiter);
+app.use("/api/login", authLimiter);
 ```
 
 ### Error Handling

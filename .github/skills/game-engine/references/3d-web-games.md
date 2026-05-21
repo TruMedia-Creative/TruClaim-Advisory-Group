@@ -216,7 +216,7 @@ Babylon.js is a full-featured 3D engine with a built-in math library, physics su
 #### Engine, Scene, and Render Loop
 
 ```javascript
-const canvas = document.getElementById('render-canvas');
+const canvas = document.getElementById("render-canvas");
 const engine = new BABYLON.Engine(canvas);
 
 const scene = new BABYLON.Scene(engine);
@@ -231,23 +231,31 @@ engine.runRenderLoop(renderLoop);
 #### Camera and Lighting
 
 ```javascript
-const camera = new BABYLON.FreeCamera('camera', new BABYLON.Vector3(0, 0, -10), scene);
-const light = new BABYLON.PointLight('light', new BABYLON.Vector3(10, 10, 0), scene);
+const camera = new BABYLON.FreeCamera(
+  "camera",
+  new BABYLON.Vector3(0, 0, -10),
+  scene,
+);
+const light = new BABYLON.PointLight(
+  "light",
+  new BABYLON.Vector3(10, 10, 0),
+  scene,
+);
 ```
 
 #### Creating Meshes
 
 ```javascript
-const box = BABYLON.Mesh.CreateBox('box', 2, scene); // name, size, scene
-const torus = BABYLON.Mesh.CreateTorus('torus', 2, 0.5, 15, scene); // name, diameter, thickness, tessellation, scene
-const cylinder = BABYLON.Mesh.CreateCylinder('cylinder', 2, 2, 2, 12, 1, scene);
+const box = BABYLON.Mesh.CreateBox("box", 2, scene); // name, size, scene
+const torus = BABYLON.Mesh.CreateTorus("torus", 2, 0.5, 15, scene); // name, diameter, thickness, tessellation, scene
+const cylinder = BABYLON.Mesh.CreateCylinder("cylinder", 2, 2, 2, 12, 1, scene);
 // name, height, topDiameter, bottomDiameter, tessellation, heightSubdivisions, scene
 ```
 
 #### Materials
 
 ```javascript
-const boxMaterial = new BABYLON.StandardMaterial('material', scene);
+const boxMaterial = new BABYLON.StandardMaterial("material", scene);
 boxMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
 box.material = boxMaterial;
 ```
@@ -333,22 +341,32 @@ The `<a-scene>` element is the root container. A-Frame auto-includes a default c
 #### Creating Entities with JavaScript
 
 ```javascript
-const scene = document.querySelector('a-scene');
-const cylinder = document.createElement('a-cylinder');
-cylinder.setAttribute('color', '#FF9500');
-cylinder.setAttribute('height', '2');
-cylinder.setAttribute('radius', '0.75');
-cylinder.setAttribute('position', '3 1 0');
+const scene = document.querySelector("a-scene");
+const cylinder = document.createElement("a-cylinder");
+cylinder.setAttribute("color", "#FF9500");
+cylinder.setAttribute("height", "2");
+cylinder.setAttribute("radius", "0.75");
+cylinder.setAttribute("position", "3 1 0");
 scene.appendChild(cylinder);
 ```
 
 #### Camera and Lighting
 
 ```html
-<a-camera position="0 1 4" cursor-visible="true" cursor-color="#0095DD" cursor-opacity="0.5">
+<a-camera
+  position="0 1 4"
+  cursor-visible="true"
+  cursor-color="#0095DD"
+  cursor-opacity="0.5"
+>
 </a-camera>
 
-<a-light type="directional" color="white" intensity="0.5" position="-1 1 2"></a-light>
+<a-light
+  type="directional"
+  color="white"
+  intensity="0.5"
+  position="-1 1 2"
+></a-light>
 <a-light type="ambient" color="white"></a-light>
 ```
 
@@ -378,7 +396,7 @@ let t = 0;
 function render() {
   t += 0.01;
   requestAnimationFrame(render);
-  cylinder.setAttribute('position', `3 ${Math.sin(t * 2) + 1} 0`);
+  cylinder.setAttribute("position", `3 ${Math.sin(t * 2) + 1} 0`);
 }
 render();
 ```
@@ -483,8 +501,8 @@ Apply them with `ShaderMaterial`:
 
 ```javascript
 const shaderMaterial = new THREE.ShaderMaterial({
-  vertexShader: document.getElementById('vertexShader').textContent,
-  fragmentShader: document.getElementById('fragmentShader').textContent,
+  vertexShader: document.getElementById("vertexShader").textContent,
+  fragmentShader: document.getElementById("fragmentShader").textContent,
 });
 
 const cube = new THREE.Mesh(boxGeometry, shaderMaterial);
@@ -566,7 +584,9 @@ Check whether the distance from the point to the sphere center is less than the 
 ```javascript
 function isPointInsideSphere(point, sphere) {
   const distance = Math.sqrt(
-    (point.x - sphere.x) ** 2 + (point.y - sphere.y) ** 2 + (point.z - sphere.z) ** 2
+    (point.x - sphere.x) ** 2 +
+      (point.y - sphere.y) ** 2 +
+      (point.z - sphere.z) ** 2,
   );
   return distance < sphere.radius;
 }
@@ -576,7 +596,9 @@ function isPointInsideSphere(point, sphere) {
 
 ```javascript
 const distanceSqr =
-  (point.x - sphere.x) ** 2 + (point.y - sphere.y) ** 2 + (point.z - sphere.z) ** 2;
+  (point.x - sphere.x) ** 2 +
+  (point.y - sphere.y) ** 2 +
+  (point.z - sphere.z) ** 2;
 return distanceSqr < sphere.radius * sphere.radius;
 ```
 
@@ -587,7 +609,9 @@ Check whether the distance between centers is less than the sum of radii:
 ```javascript
 function intersect(sphere, other) {
   const distance = Math.sqrt(
-    (sphere.x - other.x) ** 2 + (sphere.y - other.y) ** 2 + (sphere.z - other.z) ** 2
+    (sphere.x - other.x) ** 2 +
+      (sphere.y - other.y) ** 2 +
+      (sphere.z - other.z) ** 2,
   );
   return distance < sphere.radius + other.radius;
 }
@@ -603,7 +627,9 @@ function intersect(sphere, box) {
   const y = Math.max(box.minY, Math.min(sphere.y, box.maxY));
   const z = Math.max(box.minZ, Math.min(sphere.z, box.maxZ));
 
-  const distance = Math.sqrt((x - sphere.x) ** 2 + (y - sphere.y) ** 2 + (z - sphere.z) ** 2);
+  const distance = Math.sqrt(
+    (x - sphere.x) ** 2 + (y - sphere.y) ** 2 + (z - sphere.z) ** 2,
+  );
 
   return distance < sphere.radius;
 }
@@ -621,7 +647,10 @@ const knotBBox = new THREE.Box3(new THREE.Vector3(), new THREE.Vector3());
 knotBBox.setFromObject(knot);
 
 // Sphere from geometry
-const knotBSphere = new THREE.Sphere(knot.position, knot.geometry.boundingSphere.radius);
+const knotBSphere = new THREE.Sphere(
+  knot.position,
+  knot.geometry.boundingSphere.radius,
+);
 ```
 
 **Important**: `setFromObject()` accounts for position, rotation, scale, and child meshes. The geometry's `boundingBox` property does not.

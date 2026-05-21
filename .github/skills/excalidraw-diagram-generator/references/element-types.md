@@ -353,7 +353,7 @@ const width = text.length * fontSize * 0.6;
 const height = fontSize * 1.2;
 
 // Multi-line
-const lines = text.split('\n').length;
+const lines = text.split("\n").length;
 const height = fontSize * 1.2 * lines;
 ```
 

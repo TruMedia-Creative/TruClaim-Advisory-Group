@@ -161,16 +161,16 @@ Split code into smaller chunks loaded on demand:
 
 ```javascript
 // Dynamic import
-button.addEventListener('click', async () => {
-  const module = await import('./heavy-module.js');
+button.addEventListener("click", async () => {
+  const module = await import("./heavy-module.js");
   module.run();
 });
 
 // React lazy loading
-const HeavyComponent = React.lazy(() => import('./HeavyComponent'));
+const HeavyComponent = React.lazy(() => import("./HeavyComponent"));
 
 // Webpack code splitting
-import(/* webpackChunkName: "lodash" */ 'lodash').then(({ default: _ }) => {
+import(/* webpackChunkName: "lodash" */ "lodash").then(({ default: _ }) => {
   // Use lodash
 });
 ```
@@ -181,7 +181,7 @@ Remove unused code during bundling:
 
 ```javascript
 // Only imports what's used
-import { debounce } from 'lodash-es';
+import { debounce } from "lodash-es";
 
 // ESM exports enable tree shaking
 export { function1, function2 };
@@ -226,27 +226,27 @@ Advanced caching control:
 
 ```javascript
 // Cache-first strategy
-self.addEventListener('fetch', (event) => {
+self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(event.request).then((response) => {
       return response || fetch(event.request);
-    })
+    }),
   );
 });
 
 // Network-first strategy
-self.addEventListener('fetch', (event) => {
+self.addEventListener("fetch", (event) => {
   event.respondWith(
     fetch(event.request).catch(() => {
       return caches.match(event.request);
-    })
+    }),
   );
 });
 
 // Stale-while-revalidate
-self.addEventListener('fetch', (event) => {
+self.addEventListener("fetch", (event) => {
   event.respondWith(
-    caches.open('dynamic').then((cache) => {
+    caches.open("dynamic").then((cache) => {
       return cache.match(event.request).then((response) => {
         const fetchPromise = fetch(event.request).then((networkResponse) => {
           cache.put(event.request, networkResponse.clone());
@@ -254,7 +254,7 @@ self.addEventListener('fetch', (event) => {
         });
         return response || fetchPromise;
       });
-    })
+    }),
   );
 });
 ```
@@ -306,7 +306,7 @@ const observer = new IntersectionObserver((entries) => {
   });
 });
 
-document.querySelectorAll('img[data-src]').forEach((img) => {
+document.querySelectorAll("img[data-src]").forEach((img) => {
   observer.observe(img);
 });
 ```
@@ -409,11 +409,11 @@ Offload heavy computation:
 
 ```javascript
 // main.js
-const worker = new Worker('worker.js');
+const worker = new Worker("worker.js");
 worker.postMessage({ data: largeDataset });
 
 worker.onmessage = (event) => {
-  console.log('Result:', event.data);
+  console.log("Result:", event.data);
 };
 
 // worker.js
@@ -429,38 +429,38 @@ self.onmessage = (event) => {
 
 ```javascript
 // Navigation timing
-const navTiming = performance.getEntriesByType('navigation')[0];
-console.log('DOM loaded:', navTiming.domContentLoadedEventEnd);
-console.log('Page loaded:', navTiming.loadEventEnd);
+const navTiming = performance.getEntriesByType("navigation")[0];
+console.log("DOM loaded:", navTiming.domContentLoadedEventEnd);
+console.log("Page loaded:", navTiming.loadEventEnd);
 
 // Resource timing
-const resources = performance.getEntriesByType('resource');
+const resources = performance.getEntriesByType("resource");
 resources.forEach((resource) => {
   console.log(resource.name, resource.duration);
 });
 
 // Mark and measure custom timings
-performance.mark('start-task');
+performance.mark("start-task");
 // Do work
-performance.mark('end-task');
-performance.measure('task-duration', 'start-task', 'end-task');
+performance.mark("end-task");
+performance.measure("task-duration", "start-task", "end-task");
 
-const measure = performance.getEntriesByName('task-duration')[0];
-console.log('Task took:', measure.duration, 'ms');
+const measure = performance.getEntriesByName("task-duration")[0];
+console.log("Task took:", measure.duration, "ms");
 
 // Observer for performance entries
 const observer = new PerformanceObserver((list) => {
   for (const entry of list.getEntries()) {
-    console.log('Performance entry:', entry);
+    console.log("Performance entry:", entry);
   }
 });
-observer.observe({ entryTypes: ['measure', 'mark', 'resource'] });
+observer.observe({ entryTypes: ["measure", "mark", "resource"] });
 ```
 
 ### Web Vitals Library
 
 ```javascript
-import { getLCP, getFID, getCLS } from 'web-vitals';
+import { getLCP, getFID, getCLS } from "web-vitals";
 
 getLCP(console.log);
 getFID(console.log);

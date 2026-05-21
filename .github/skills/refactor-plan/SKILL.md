@@ -1,6 +1,6 @@
 ---
 name: refactor-plan
-description: 'Plan a multi-file refactor with proper sequencing and rollback steps'
+description: "Plan a multi-file refactor with proper sequencing and rollback steps"
 ---
 
 # Refactor Plan

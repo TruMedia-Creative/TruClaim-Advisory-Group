@@ -1,6 +1,6 @@
 ---
 name: github-copilot-starter
-description: 'Set up complete GitHub Copilot configuration for a new project based on technology stack'
+description: "Set up complete GitHub Copilot configuration for a new project based on technology stack"
 ---
 
 You are a GitHub Copilot setup specialist. Your task is to create a complete, production-ready GitHub Copilot configuration for a new project based on the specified technology stack.
@@ -256,8 +256,8 @@ Use this structure for all files:
 
 ```md
 ---
-applyTo: '**/*.{lang-ext}'
-description: 'Development standards for {Language}'
+applyTo: "**/*.{lang-ext}"
+description: "Development standards for {Language}"
 ---
 
 # {Language} coding standards
@@ -301,7 +301,8 @@ Ask for {required inputs} if not provided.
 ```md
 ---
 description: Generate an implementation plan for new features or refactoring existing code.
-tools: ['codebase', 'web/fetch', 'findTestFiles', 'githubRepo', 'search', 'usages']
+tools:
+  ["codebase", "web/fetch", "findTestFiles", "githubRepo", "search", "usages"]
 model: Claude Sonnet 4
 ---
 
@@ -363,7 +364,7 @@ Before completing, verify:
 The `copilot-setup-steps.yml` workflow MUST follow this exact format and KEEP IT SIMPLE:
 
 ```yaml
-name: 'Copilot Setup Steps'
+name: "Copilot Setup Steps"
 on:
   workflow_dispatch:
   push:
@@ -392,8 +393,8 @@ jobs:
 - name: Set up Node.js
   uses: actions/setup-node@v4
   with:
-    node-version: '20'
-    cache: 'npm'
+    node-version: "20"
+    cache: "npm"
 - name: Install dependencies
   run: npm ci
 - name: Run linter
@@ -408,7 +409,7 @@ jobs:
 - name: Set up Python
   uses: actions/setup-python@v4
   with:
-    python-version: '3.11'
+    python-version: "3.11"
 - name: Install dependencies
   run: pip install -r requirements.txt
 - name: Run linter
@@ -423,8 +424,8 @@ jobs:
 - name: Set up JDK
   uses: actions/setup-java@v4
   with:
-    java-version: '17'
-    distribution: 'temurin'
+    java-version: "17"
+    distribution: "temurin"
 - name: Build with Maven
   run: mvn compile
 - name: Run tests

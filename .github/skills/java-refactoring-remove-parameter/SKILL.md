@@ -1,6 +1,6 @@
 ---
 name: java-refactoring-remove-parameter
-description: 'Refactoring using Remove Parameter in Java Language'
+description: "Refactoring using Remove Parameter in Java Language"
 ---
 
 # Refactoring Java Methods with Remove Parameter

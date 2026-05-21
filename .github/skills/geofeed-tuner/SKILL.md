@@ -11,7 +11,7 @@ description: >
 license: Apache-2.0
 metadata:
   author: Sid Mathur <support@getfastah.com>
-  version: '0.0.9'
+  version: "0.0.9"
 compatibility: Requires Python 3
 ---
 
@@ -585,7 +585,11 @@ Build request batches:
     "regionCode": "IN-KA",
     "cityName": "Bangalore"
   },
-  { "rowKey": "6ba7b811-9dad-11d1-80b4-00c04fd430c8", "countryCode": "IN", "regionCode": "IN-KA" }
+  {
+    "rowKey": "6ba7b811-9dad-11d1-80b4-00c04fd430c8",
+    "countryCode": "IN",
+    "regionCode": "IN-KA"
+  }
 ]
 ```
 

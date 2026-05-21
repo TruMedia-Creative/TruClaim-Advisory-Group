@@ -65,7 +65,10 @@ function handleClick(e: MouseEvent) {
 ```vue
 <!-- IconButton.vue -->
 <template>
-  <button :class="['btn', `btn-${variant}`, `btn-${size}`]" @click="$emit('click', $event)">
+  <button
+    :class="['btn', `btn-${variant}`, `btn-${size}`]"
+    @click="$emit('click', $event)"
+  >
     <slot />
   </button>
 </template>
@@ -107,7 +110,7 @@ withDefaults(defineProps<{
 
 ```typescript
 // For components with very dynamic rendering logic
-import { h } from 'vue';
+import { h } from "vue";
 
 export default function DynamicHeading(props: { level: number }, { slots }) {
   return h(`h${props.level}`, slots.default?.());
@@ -118,7 +121,7 @@ export default function DynamicHeading(props: { level: number }, { slots }) {
 
 ```tsx
 // DynamicList.tsx
-import { defineComponent } from 'vue';
+import { defineComponent } from "vue";
 
 export default defineComponent({
   props: {

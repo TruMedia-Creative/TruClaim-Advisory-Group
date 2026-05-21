@@ -1,6 +1,6 @@
 ---
 name: arize-experiment
-description: 'INVOKE THIS SKILL when creating, running, or analyzing Arize experiments. Covers experiment CRUD, exporting runs, comparing results, and evaluation workflows using the ax CLI.'
+description: "INVOKE THIS SKILL when creating, running, or analyzing Arize experiments. Covers experiment CRUD, exporting runs, comparing results, and evaluation workflows using the ax CLI."
 ---
 
 # Arize Experiment Skill
@@ -116,7 +116,10 @@ Output is a JSON array of run objects:
     "output": "The answer is 4.",
     "evaluations": {
       "correctness": { "label": "correct", "score": 1.0 },
-      "relevance": { "score": 0.95, "explanation": "Directly answers the question" }
+      "relevance": {
+        "score": 0.95,
+        "explanation": "Directly answers the question"
+      }
     },
     "metadata": { "model": "gpt-4o", "latency_ms": 1234 }
   }

@@ -31,7 +31,7 @@ const user = response as any;
 
 ```typescript
 // ✅ CORRECT - Define proper types
-import type { ApiResponse, User } from '#shared/types/api';
+import type { ApiResponse, User } from "#shared/types/api";
 
 const data: ApiResponse<User> = response;
 
@@ -57,7 +57,12 @@ function parseJson(json: string): unknown {
 
 // Then narrow with type guards
 function isUser(value: unknown): value is User {
-  return typeof value === 'object' && value !== null && 'id' in value && 'email' in value;
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    "id" in value &&
+    "email" in value
+  );
 }
 
 const parsed = parseJson(jsonString);
@@ -70,7 +75,7 @@ if (isUser(parsed)) {
 **Using Zod for runtime validation:**
 
 ```typescript
-import { z } from 'zod';
+import { z } from "zod";
 
 const userSchema = z.object({
   id: z.string(),
@@ -92,7 +97,7 @@ const user = userSchema.parse(unknownData);
 const result: any = externalLib.doSomething();
 
 // ✅ CORRECT - Create type declaration
-declare module 'external-lib' {
+declare module "external-lib" {
   interface Result {
     data: string;
     status: number;

@@ -1,6 +1,6 @@
 ---
 name: react18-dep-compatibility
-description: 'React 18.3.1 and React 19 dependency compatibility matrix.'
+description: "React 18.3.1 and React 19 dependency compatibility matrix."
 ---
 
 # React Dependency Compatibility Matrix

@@ -215,13 +215,13 @@ func new --name message --template "HTTP trigger"
 2. **Example function** (`api/src/functions/message.js`):
 
 ```javascript
-const { app } = require('@azure/functions');
+const { app } = require("@azure/functions");
 
-app.http('message', {
-  methods: ['GET', 'POST'],
-  authLevel: 'anonymous',
+app.http("message", {
+  methods: ["GET", "POST"],
+  authLevel: "anonymous",
   handler: async (request) => {
-    const name = request.query.get('name') || 'World';
+    const name = request.query.get("name") || "World";
     return { jsonBody: { message: `Hello, ${name}!` } };
   },
 });

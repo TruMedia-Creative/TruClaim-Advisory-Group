@@ -1,6 +1,6 @@
 ---
 name: playwright-automation-fill-in-form
-description: 'Automate filling in a form using Playwright MCP'
+description: "Automate filling in a form using Playwright MCP"
 ---
 
 # Automating Filling in a Form with Playwright MCP

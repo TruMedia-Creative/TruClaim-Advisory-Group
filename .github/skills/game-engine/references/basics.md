@@ -267,7 +267,7 @@ Drawback: `setInterval` continues running even when the tab is not visible, wast
 
 ```javascript
 // Heavy game logic runs in a background thread
-const updateWorker = new Worker('game-update-worker.js');
+const updateWorker = new Worker("game-update-worker.js");
 
 requestAnimationFrame(function render(tFrame) {
   requestAnimationFrame(render);

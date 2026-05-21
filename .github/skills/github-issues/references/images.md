@@ -77,10 +77,11 @@ The most reliable way to get permanent image URLs is through the GitHub web UI:
 Use `puppeteer-core` with local Chrome to screenshot HTML mockups:
 
 ```javascript
-const puppeteer = require('puppeteer-core');
+const puppeteer = require("puppeteer-core");
 
 const browser = await puppeteer.launch({
-  executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+  executablePath:
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
   defaultViewport: { width: 900, height: 600, deviceScaleFactor: 2 },
 });
 
@@ -88,7 +89,7 @@ const page = await browser.newPage();
 await page.setContent(htmlString);
 
 // Screenshot specific elements
-const elements = await page.$$('.section');
+const elements = await page.$$(".section");
 for (let i = 0; i < elements.length; i++) {
   await elements[i].screenshot({ path: `mockup-${i + 1}.png` });
 }

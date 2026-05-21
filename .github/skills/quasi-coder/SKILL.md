@@ -1,6 +1,6 @@
 ---
 name: quasi-coder
-description: 'Expert 10x engineer skill for interpreting and implementing code from shorthand, quasi-code, and natural language descriptions. Use when collaborators provide incomplete code snippets, pseudo-code, or descriptions with potential typos or incorrect terminology. Excels at translating non-technical or semi-technical descriptions into production-quality code.'
+description: "Expert 10x engineer skill for interpreting and implementing code from shorthand, quasi-code, and natural language descriptions. Use when collaborators provide incomplete code snippets, pseudo-code, or descriptions with potential typos or incorrect terminology. Excels at translating non-technical or semi-technical descriptions into production-quality code."
 ---
 
 # Quasi-Coder Skill
@@ -182,10 +182,10 @@ These resources are relevant for immediate work but may not apply to future impl
 ```javascript
 // Collaborator provides: "Use our logging utility from utils/logger.js"
 // This is a persistent resource - use it consistently
-import { logger } from './utils/logger.js';
+import { logger } from "./utils/logger.js";
 
 function processData(data) {
-  logger.info('Processing data batch', { count: data.length });
+  logger.info("Processing data batch", { count: data.length });
   // Implementation continues...
 }
 ```
@@ -195,7 +195,7 @@ function processData(data) {
 ```javascript
 // Collaborator provides: "For this migration, use this data mapping from migration-map.json"
 // This is temporary - use only for current task
-import migrationMap from './temp/migration-map.json';
+import migrationMap from "./temp/migration-map.json";
 
 function migrateUserData(oldData) {
   // Use temporary mapping for one-time migration
@@ -234,18 +234,18 @@ closeMarker        "${language:comment} end-shorthand"
 Formal specification of shorthand variables:
 
 ```javascript
-openPrompt = ['quasi-coder', 'quasi-code', 'shorthand'];
+openPrompt = ["quasi-coder", "quasi-code", "shorthand"];
 // Triggers that indicate quasi-coder should be used
 
-language: comment = 'Single or multi-line comment of programming language';
+language: comment = "Single or multi-line comment of programming language";
 // Comment syntax appropriate for the file type
 
-openMarker = '${language:comment} start-shorthand';
+openMarker = "${language:comment} start-shorthand";
 // Example: // start-shorthand (JavaScript)
 // Example: # start-shorthand (Python)
 // Example: <!-- start-shorthand --> (HTML)
 
-closeMarker = '${language:comment} end-shorthand';
+closeMarker = "${language:comment} end-shorthand";
 // Example: // end-shorthand (JavaScript)
 // Example: # end-shorthand (Python)
 // Example: <!-- end-shorthand --> (HTML)

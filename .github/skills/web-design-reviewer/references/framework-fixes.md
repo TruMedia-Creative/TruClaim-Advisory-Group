@@ -148,8 +148,8 @@ module.exports = {
   theme: {
     extend: {
       spacing: {
-        18: '4.5rem',
-        22: '5.5rem',
+        18: "4.5rem",
+        22: "5.5rem",
       },
     },
   },
@@ -176,7 +176,7 @@ module.exports = {
   /* Improve contrast */
 }
 <p className="text-gray-700 bg-white">
-  {' '}
+  {" "}
   {/* Changed from text-gray-500 */}
   Readable text
 </p>;
@@ -267,14 +267,14 @@ const Card = styled.div`
 // theme.js
 export const theme = {
   colors: {
-    primary: '#2563eb',
-    text: '#1f2937',
-    textLight: '#4b5563', // Improved contrast
+    primary: "#2563eb",
+    text: "#1f2937",
+    textLight: "#4b5563", // Improved contrast
   },
   spacing: {
-    sm: '0.5rem',
-    md: '1rem',
-    lg: '1.5rem',
+    sm: "0.5rem",
+    md: "1rem",
+    lg: "1.5rem",
   },
 };
 
@@ -471,12 +471,12 @@ textarea:focus-visible {
 
 ```javascript
 // Run in console to detect overflow elements
-document.querySelectorAll('*').forEach((el) => {
+document.querySelectorAll("*").forEach((el) => {
   if (el.scrollWidth > el.clientWidth) {
-    console.log('Horizontal overflow:', el);
+    console.log("Horizontal overflow:", el);
   }
   if (el.scrollHeight > el.clientHeight) {
-    console.log('Vertical overflow:', el);
+    console.log("Vertical overflow:", el);
   }
 });
 ```

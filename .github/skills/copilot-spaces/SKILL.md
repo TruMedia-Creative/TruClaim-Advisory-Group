@@ -134,8 +134,14 @@ gh api users/{username}/copilot-spaces \
 ```json
 {
   "resources_attributes": [
-    { "resource_type": "free_text", "metadata": { "name": "Notes", "text": "Content here" } },
-    { "resource_type": "github_issue", "metadata": { "repository_id": 12345, "number": 42 } },
+    {
+      "resource_type": "free_text",
+      "metadata": { "name": "Notes", "text": "Content here" }
+    },
+    {
+      "resource_type": "github_issue",
+      "metadata": { "repository_id": 12345, "number": 42 }
+    },
     {
       "resource_type": "github_file",
       "metadata": { "repository_id": 12345, "file_path": "docs/guide.md" }

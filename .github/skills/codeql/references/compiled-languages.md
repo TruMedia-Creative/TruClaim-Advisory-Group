@@ -244,7 +244,7 @@ steps:
   - name: Perform CodeQL Analysis
     uses: github/codeql-action/analyze@v4
     with:
-      category: '/language:${{ matrix.language }}'
+      category: "/language:${{ matrix.language }}"
 ```
 
 ### OS-Specific Runners

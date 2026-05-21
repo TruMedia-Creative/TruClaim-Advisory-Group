@@ -18,7 +18,7 @@ Components that use browser-only APIs (window, document, localStorage, etc.) mus
 const width = ref(window.innerWidth);
 
 // localStorage doesn't exist on server!
-const saved = localStorage.getItem('settings');
+const saved = localStorage.getItem("settings");
 </script>
 ```
 
@@ -78,7 +78,7 @@ const savedSettings = (ref < Settings) | (null > null);
 onMounted(() => {
   // This only runs on client
   width.value = window.innerWidth;
-  savedSettings.value = JSON.parse(localStorage.getItem('settings') || '{}');
+  savedSettings.value = JSON.parse(localStorage.getItem("settings") || "{}");
 });
 
 // Or use import.meta.client
@@ -92,12 +92,12 @@ if (import.meta.client) {
 
 ```vue
 <script setup>
-import { useWindowSize, useLocalStorage, useMediaQuery } from '@vueuse/core';
+import { useWindowSize, useLocalStorage, useMediaQuery } from "@vueuse/core";
 
 // These are SSR-safe!
 const { width, height } = useWindowSize();
-const settings = useLocalStorage('settings', { theme: 'light' });
-const isMobile = useMediaQuery('(max-width: 768px)');
+const settings = useLocalStorage("settings", { theme: "light" });
+const isMobile = useMediaQuery("(max-width: 768px)");
 </script>
 ```
 
@@ -118,7 +118,9 @@ const isMobile = useMediaQuery('(max-width: 768px)');
 ```vue
 <script setup>
 // Lazy load heavy client-only component
-const HeavyChart = defineAsyncComponent(() => import('~/components/HeavyChart.client.vue'));
+const HeavyChart = defineAsyncComponent(
+  () => import("~/components/HeavyChart.client.vue"),
+);
 </script>
 
 <template>

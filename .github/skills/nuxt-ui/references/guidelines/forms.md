@@ -6,16 +6,16 @@ Nuxt UI forms use `UForm` + `UFormField` + Standard Schema validation (Zod, Vali
 
 ```vue
 <script setup lang="ts">
-import * as z from 'zod';
-import type { FormSubmitEvent } from '@nuxt/ui';
+import * as z from "zod";
+import type { FormSubmitEvent } from "@nuxt/ui";
 
 const schema = z.object({
-  email: z.email('Invalid email'),
-  password: z.string().min(8, 'Min 8 characters'),
+  email: z.email("Invalid email"),
+  password: z.string().min(8, "Min 8 characters"),
 });
 
 type Schema = z.output<typeof schema>;
-const state = reactive<Partial<Schema>>({ email: '', password: '' });
+const state = reactive<Partial<Schema>>({ email: "", password: "" });
 
 function onSubmit(event: FormSubmitEvent<Schema>) {
   // UForm validates before emitting @submit — access validated data via event.data
@@ -25,11 +25,19 @@ function onSubmit(event: FormSubmitEvent<Schema>) {
 <template>
   <UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
     <UFormField name="email" label="Email" required>
-      <UInput v-model="state.email" type="email" placeholder="you@example.com" />
+      <UInput
+        v-model="state.email"
+        type="email"
+        placeholder="you@example.com"
+      />
     </UFormField>
 
     <UFormField name="password" label="Password" required>
-      <UInput v-model="state.password" type="password" placeholder="Min 8 characters" />
+      <UInput
+        v-model="state.password"
+        type="password"
+        placeholder="Min 8 characters"
+      />
     </UFormField>
 
     <UButton type="submit" label="Sign in" />
@@ -143,7 +151,11 @@ function onSubmit(event: FormSubmitEvent<Schema>) {
 ### Textarea
 
 ```vue
-<UFormField name="bio" label="Bio" description="Brief description for your profile.">
+<UFormField
+  name="bio"
+  label="Bio"
+  description="Brief description for your profile."
+>
   <UTextarea v-model="state.bio" :rows="3" autoresize :maxrows="6" />
 </UFormField>
 ```
@@ -178,7 +190,7 @@ function onSubmit(event: FormSubmitEvent<Schema>) {
 
 ```vue
 <script setup lang="ts">
-const form = useTemplateRef('form');
+const form = useTemplateRef("form");
 
 async function validateAndSubmit() {
   const result = await form.value?.validate();
@@ -188,11 +200,11 @@ async function validateAndSubmit() {
 }
 
 async function validateEmail() {
-  await form.value?.validate({ name: 'email' });
+  await form.value?.validate({ name: "email" });
 }
 
 function setServerError() {
-  form.value?.setErrors([{ name: 'email', message: 'Email already taken' }]);
+  form.value?.setErrors([{ name: "email", message: "Email already taken" }]);
 }
 
 function resetErrors() {

@@ -84,7 +84,9 @@ class SortedList extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.items !== this.props.items) {
       this.setState({
-        sortedItems: [...nextProps.items].sort((a, b) => a.name.localeCompare(b.name)),
+        sortedItems: [...nextProps.items].sort((a, b) =>
+          a.name.localeCompare(b.name),
+        ),
       });
     }
   }
@@ -99,7 +101,9 @@ class SortedList extends React.Component {
   static getDerivedStateFromProps(props, state) {
     if (props.items !== state.prevItems) {
       return {
-        sortedItems: [...props.items].sort((a, b) => a.name.localeCompare(b.name)),
+        sortedItems: [...props.items].sort((a, b) =>
+          a.name.localeCompare(b.name),
+        ),
         prevItems: props.items, // ← always store the prop you're comparing
       };
     }
@@ -109,7 +113,9 @@ class SortedList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sortedItems: [...props.items].sort((a, b) => a.name.localeCompare(b.name)),
+      sortedItems: [...props.items].sort((a, b) =>
+        a.name.localeCompare(b.name),
+      ),
       prevItems: props.items, // ← initialize in constructor too
     };
   }

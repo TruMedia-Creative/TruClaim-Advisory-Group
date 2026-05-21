@@ -82,17 +82,17 @@ Update with **every** new feature that introduces a processing activity.
 ### Minimum fields per processing activity
 
 ```yaml
-- name: 'User account management'
-  purpose: 'Create and manage user accounts for service access'
-  legalBasis: 'Contract (Art. 6(1)(b))'
-  dataSubjects: ['Registered users']
-  personalDataCategories: ['Name', 'Email', 'Password hash', 'IP address']
-  recipients: ['Internal engineering team', 'Brevo (email delivery)']
-  retentionPeriod: 'Account lifetime + 12 months'
+- name: "User account management"
+  purpose: "Create and manage user accounts for service access"
+  legalBasis: "Contract (Art. 6(1)(b))"
+  dataSubjects: ["Registered users"]
+  personalDataCategories: ["Name", "Email", "Password hash", "IP address"]
+  recipients: ["Internal engineering team", "Brevo (email delivery)"]
+  retentionPeriod: "Account lifetime + 12 months"
   transfers:
     outside_eea: true
-    safeguard: 'Brevo — Standard Contractual Clauses (SCCs)'
-  securityMeasures: ['TLS 1.3', 'AES-256 at rest', 'bcrypt password hashing']
+    safeguard: "Brevo — Standard Contractual Clauses (SCCs)"
+  securityMeasures: ["TLS 1.3", "AES-256 at rest", "bcrypt password hashing"]
   dpia_required: false
 ```
 

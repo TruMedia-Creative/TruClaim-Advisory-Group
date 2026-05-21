@@ -925,10 +925,10 @@ function createUserWithUniqueEmail(userData) {
     container.getSelfLink(),
     query,
     function (err, documents) {
-      if (err) throw new Error('Error querying documents: ' + err.message);
+      if (err) throw new Error("Error querying documents: " + err.message);
 
       if (documents.length > 0) {
-        throw new Error('Email already exists');
+        throw new Error("Email already exists");
       }
 
       // Email is unique, create the user
@@ -936,16 +936,17 @@ function createUserWithUniqueEmail(userData) {
         container.getSelfLink(),
         userData,
         function (err, document) {
-          if (err) throw new Error('Error creating document: ' + err.message);
+          if (err) throw new Error("Error creating document: " + err.message);
           context.getResponse().setBody(document);
-        }
+        },
       );
 
-      if (!isAccepted) throw new Error('The query was not accepted by the server.');
-    }
+      if (!isAccepted)
+        throw new Error("The query was not accepted by the server.");
+    },
   );
 
-  if (!isAccepted) throw new Error('The query was not accepted by the server.');
+  if (!isAccepted) throw new Error("The query was not accepted by the server.");
 }
 ```
 
@@ -1006,10 +1007,10 @@ Implementation: Add a shard suffix using hash-based or time-based calculation:
 
 ```javascript
 // Hash-based sharding
-partitionKey = originalKey + '_' + (hash(identifier) % shardCount);
+partitionKey = originalKey + "_" + (hash(identifier) % shardCount);
 
 // Time-based sharding
-partitionKey = originalKey + '_' + (currentHour % shardCount);
+partitionKey = originalKey + "_" + (currentHour % shardCount);
 ```
 
 Query Impact: Sharded data requires querying all shards and merging results in your application, trading query complexity for write scalability.

@@ -4,7 +4,7 @@ description: Nuxt 3/4 performance optimization and architecture guidelines for b
 license: MIT
 metadata:
   author: vinayakkulkarni
-  version: '1.0.0'
+  version: "1.0.0"
 ---
 
 # Nuxt Best Practices

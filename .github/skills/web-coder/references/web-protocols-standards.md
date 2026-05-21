@@ -160,7 +160,7 @@ Coordinates DNS and IP addresses.
 
 ```javascript
 // Check feature support
-if ('serviceWorker' in navigator) {
+if ("serviceWorker" in navigator) {
   // Use service workers
 }
 
@@ -168,7 +168,7 @@ if (window.IntersectionObserver) {
   // Use Intersection Observer
 }
 
-if (CSS.supports('display', 'grid')) {
+if (CSS.supports("display", "grid")) {
   // Use CSS Grid
 }
 ```

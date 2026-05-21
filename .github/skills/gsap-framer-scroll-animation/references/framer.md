@@ -36,10 +36,16 @@ npm install framer-motion   # still works — same API
 
 ```js
 // Recommended (Motion v12+)
-import { motion, useScroll, useTransform, useSpring, useMotionValueEvent } from 'motion/react';
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useSpring,
+  useMotionValueEvent,
+} from "motion/react";
 
 // Legacy — still valid
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform } from "framer-motion";
 ```
 
 **Motion v12 new features (2025):**
@@ -59,7 +65,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 <motion.div
   initial={{ opacity: 0, y: 50 }}
   whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true, margin: '-80px' }}
+  viewport={{ once: true, margin: "-80px" }}
   transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
 >
   Content
@@ -98,7 +104,7 @@ const {
 
   // Define when tracking starts and ends
   // Format: ["target position container position", "target position container position"]
-  offset: ['start end', 'end start'],
+  offset: ["start end", "end start"],
   // Common offset pairs:
   // ['start end', 'end start']    = track while element is anywhere in view
   // ['start end', 'end end']      = track from element entering to bottom of page
@@ -129,20 +135,26 @@ const y = useTransform(scrollYProgress, [0, 1], [0, -200]);
 const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
 // Non-numeric values (colors, strings)
-const color = useTransform(scrollYProgress, [0, 0.5, 1], ['#6366f1', '#ec4899', '#f97316']);
+const color = useTransform(
+  scrollYProgress,
+  [0, 0.5, 1],
+  ["#6366f1", "#ec4899", "#f97316"],
+);
 
 // CSS string values
 const clipPath = useTransform(
   scrollYProgress,
   [0, 1],
-  ['inset(0% 100% 0% 0%)', 'inset(0% 0% 0% 0%)']
+  ["inset(0% 100% 0% 0%)", "inset(0% 0% 0% 0%)"],
 );
 
 // Disable clamping (allow values outside output range)
 const y = useTransform(scrollYProgress, [0, 1], [0, -200], { clamp: false });
 
 // Transform from multiple inputs
-const combined = useTransform([scrollX, scrollY], ([x, y]) => Math.sqrt(x * x + y * y));
+const combined = useTransform([scrollX, scrollY], ([x, y]) =>
+  Math.sqrt(x * x + y * y),
+);
 ```
 
 **Rule:** `useTransform` output is a `MotionValue`. It must go into the `style` prop of a `motion.*` element. Plain `<div style={{ y }}>` will NOT work — must be `<motion.div style={{ y }}>`.
@@ -182,8 +194,8 @@ stiffness 100, damping 30. Grows left to right.
 ```
 
 ```tsx
-'use client';
-import { useScroll, useSpring, motion } from 'motion/react';
+"use client";
+import { useScroll, useSpring, motion } from "motion/react";
 
 export function ScrollProgressBar() {
   const { scrollYProgress } = useScroll();
@@ -216,8 +228,8 @@ TypeScript. 'use client'.
 ```
 
 ```tsx
-'use client';
-import { motion } from 'motion/react';
+"use client";
+import { motion } from "motion/react";
 
 interface ScrollRevealProps {
   children: React.ReactNode;
@@ -238,7 +250,7 @@ export function ScrollReveal({
     <motion.div
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once, margin: '-80px' }}
+      viewport={{ once, margin: "-80px" }}
       transition={{ duration, delay, ease: [0.21, 0.47, 0.32, 0.98] }}
       className={className}
     >
@@ -265,18 +277,18 @@ Fade out at top and bottom using opacity useTransform [0, 0.3, 0.7, 1] → [0,1,
 ```
 
 ```tsx
-'use client';
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'motion/react';
+"use client";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "motion/react";
 
 export function ParallaxSection() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ['start end', 'end start'],
+    offset: ["start end", "end start"],
   });
 
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const textY = useTransform(scrollYProgress, [0, 1], [50, -50]);
   const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
 
@@ -287,9 +299,16 @@ export function ParallaxSection() {
     >
       <motion.div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: 'url(/hero-bg.jpg)', y: backgroundY, scale: 1.2 }}
+        style={{
+          backgroundImage: "url(/hero-bg.jpg)",
+          y: backgroundY,
+          scale: 1.2,
+        }}
       />
-      <motion.div style={{ y: textY, opacity }} className="relative z-10 text-center text-white">
+      <motion.div
+        style={{ y: textY, opacity }}
+        className="relative z-10 text-center text-white"
+      >
         <h2 className="text-6xl font-bold">Parallax Title</h2>
         <p className="text-xl mt-4">Scrolls at a different speed</p>
       </motion.div>
@@ -311,25 +330,25 @@ useScroll tracks outer container, useTransform maps scrollYProgress to x '0%' �
 ```
 
 ```tsx
-'use client';
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'motion/react';
+"use client";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "motion/react";
 
 const cards = [
-  { id: 1, title: 'Card One', color: 'bg-indigo-500' },
-  { id: 2, title: 'Card Two', color: 'bg-pink-500' },
-  { id: 3, title: 'Card Three', color: 'bg-amber-500' },
-  { id: 4, title: 'Card Four', color: 'bg-teal-500' },
+  { id: 1, title: "Card One", color: "bg-indigo-500" },
+  { id: 2, title: "Card Two", color: "bg-pink-500" },
+  { id: 3, title: "Card Three", color: "bg-amber-500" },
+  { id: 4, title: "Card Four", color: "bg-teal-500" },
 ];
 
 export function HorizontalScroll() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start start', 'end end'],
+    offset: ["start start", "end end"],
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ['0%', '-75%']);
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
 
   return (
     <div ref={containerRef} className="relative h-[300vh]">
@@ -367,21 +386,21 @@ Also scale from 1.15 to 1.
 ```
 
 ```tsx
-'use client';
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'motion/react';
+"use client";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "motion/react";
 
 export function ImageReveal({ src, alt }: { src: string; alt: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ['start end', 'center center'],
+    offset: ["start end", "center center"],
   });
 
   const clipPath = useTransform(
     scrollYProgress,
     [0, 1],
-    ['inset(0% 100% 0% 0%)', 'inset(0% 0% 0% 0%)']
+    ["inset(0% 100% 0% 0%)", "inset(0% 0% 0% 0%)"],
   );
   const scale = useTransform(scrollYProgress, [0, 1], [1.15, 1]);
 
@@ -412,9 +431,9 @@ Animate y, backgroundColor, boxShadow with motion.nav.
 ```
 
 ```tsx
-'use client';
-import { useRef, useState } from 'react';
-import { motion, useScroll, useMotionValueEvent } from 'motion/react';
+"use client";
+import { useRef, useState } from "react";
+import { motion, useScroll, useMotionValueEvent } from "motion/react";
 
 export function Navbar() {
   const { scrollY } = useScroll();
@@ -422,10 +441,12 @@ export function Navbar() {
   const [hidden, setHidden] = useState(false);
   const prevRef = useRef(0);
 
-  useMotionValueEvent(scrollY, 'change', (latest) => {
+  useMotionValueEvent(scrollY, "change", (latest) => {
     const nextScrolled = latest > 80;
     const nextHidden = latest > prevRef.current && latest > 200;
-    setScrolled((current) => (current === nextScrolled ? current : nextScrolled));
+    setScrolled((current) =>
+      current === nextScrolled ? current : nextScrolled,
+    );
     setHidden((current) => (current === nextHidden ? current : nextHidden));
     prevRef.current = latest;
   });
@@ -434,10 +455,12 @@ export function Navbar() {
     <motion.nav
       animate={{
         y: hidden ? -80 : 0,
-        backgroundColor: scrolled ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0)',
-        boxShadow: scrolled ? '0 1px 24px rgba(0,0,0,0.08)' : 'none',
+        backgroundColor: scrolled
+          ? "rgba(255,255,255,0.95)"
+          : "rgba(255,255,255,0)",
+        boxShadow: scrolled ? "0 1px 24px rgba(0,0,0,0.08)" : "none",
       }}
-      transition={{ duration: 0.3, ease: 'easeInOut' }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
       className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm"
     >
       {/* nav links */}
@@ -460,8 +483,8 @@ Trigger with whileInView on the container. Once.
 ```
 
 ```tsx
-'use client';
-import { motion } from 'motion/react';
+"use client";
+import { motion } from "motion/react";
 
 const containerVariants = {
   hidden: {},
@@ -480,13 +503,17 @@ const cardVariants = {
   },
 };
 
-export function CardGrid({ cards }: { cards: { id: number; title: string }[] }) {
+export function CardGrid({
+  cards,
+}: {
+  cards: { id: number; title: string }[];
+}) {
   return (
     <motion.div
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: '-50px' }}
+      viewport={{ once: true, margin: "-50px" }}
       className="grid grid-cols-3 gap-6"
     >
       {cards.map((card) => (
@@ -516,15 +543,15 @@ Target ref with offset ['start end', 'end start']. Wrap in perspective container
 ```
 
 ```tsx
-'use client';
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'motion/react';
+"use client";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "motion/react";
 
 export function TiltCard({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ['start end', 'end start'],
+    offset: ["start end", "end start"],
   });
 
   const rotateX = useTransform(scrollYProgress, [0, 0.5, 1], [15, 0, -15]);
@@ -532,7 +559,7 @@ export function TiltCard({ children }: { children: React.ReactNode }) {
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   return (
-    <div ref={ref} style={{ perspective: '1000px' }}>
+    <div ref={ref} style={{ perspective: "1000px" }}>
       <motion.div
         style={{ rotateX, scale, opacity }}
         className="bg-white rounded-2xl p-8 shadow-lg"
@@ -557,7 +584,7 @@ const parent = {
     transition: {
       staggerChildren: 0.1, // Delay between each child
       delayChildren: 0.2, // Initial delay before first child
-      when: 'beforeChildren', // Parent animates before children
+      when: "beforeChildren", // Parent animates before children
     },
   },
 };
@@ -576,21 +603,21 @@ const child = {
 ## Motion Value Events
 
 ```tsx
-import { useScroll, useMotionValueEvent } from 'motion/react';
+import { useScroll, useMotionValueEvent } from "motion/react";
 
 const { scrollY } = useScroll();
 
 // Fires on every change — use for imperative side effects
-useMotionValueEvent(scrollY, 'change', (latest) => {
-  console.log('scroll position:', latest);
+useMotionValueEvent(scrollY, "change", (latest) => {
+  console.log("scroll position:", latest);
 });
 
 // Detect scroll direction
-const [direction, setDirection] = useState<'up' | 'down'>('down');
+const [direction, setDirection] = useState<"up" | "down">("down");
 
-useMotionValueEvent(scrollY, 'change', (current) => {
+useMotionValueEvent(scrollY, "change", (current) => {
   const diff = current - scrollY.getPrevious()!;
-  setDirection(diff > 0 ? 'down' : 'up');
+  setDirection(diff > 0 ? "down" : "up");
 });
 ```
 
@@ -605,13 +632,13 @@ useMotionValueEvent(scrollY, 'change', (current) => {
 
 ```tsx
 // Every file using motion hooks must be a Client Component
-'use client';
+"use client";
 
 // For page-level scroll tracking in App Router, use useScroll in a layout
 // that's already a client component — don't try to use it in Server Components
 
 // If you need SSR-safe scroll animations, gate with:
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 const [mounted, setMounted] = useState(false);
 useEffect(() => setMounted(true), []);
 if (!mounted) return null; // or a skeleton
@@ -628,7 +655,7 @@ if (!mounted) return null; // or a skeleton
 ## Accessibility
 
 ```tsx
-import { useReducedMotion } from 'motion/react';
+import { useReducedMotion } from "motion/react";
 
 export function AnimatedCard() {
   const prefersReducedMotion = useReducedMotion();
@@ -652,7 +679,7 @@ const prefersReducedMotion = useReducedMotion();
 const y = useTransform(
   scrollYProgress,
   [0, 1],
-  prefersReducedMotion ? [0, 0] : [100, -100] // no movement if reduced motion
+  prefersReducedMotion ? [0, 0] : [100, -100], // no movement if reduced motion
 );
 ```
 

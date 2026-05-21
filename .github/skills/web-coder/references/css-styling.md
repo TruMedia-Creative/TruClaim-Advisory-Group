@@ -235,9 +235,9 @@ Two-dimensional layout system (rows and columns):
 
   /* Named areas */
   grid-template-areas:
-    'header header header'
-    'sidebar main main'
-    'footer footer footer';
+    "header header header"
+    "sidebar main main"
+    "footer footer footer";
 
   /* Gap between cells */
   gap: 1rem; /* Row and column gap */
@@ -389,7 +389,7 @@ Apply styles based on device characteristics:
 /* High-DPI screens */
 @media (min-resolution: 192dpi) {
   .logo {
-    background-image: url('logo@2x.png');
+    background-image: url("logo@2x.png");
   }
 }
 
@@ -449,7 +449,7 @@ img {
 ```css
 .text {
   /* Font family */
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Helvetica Neue", Arial, sans-serif;
 
   /* Font size */
   font-size: 16px; /* Base size */

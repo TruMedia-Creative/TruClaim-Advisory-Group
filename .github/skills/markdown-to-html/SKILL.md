@@ -357,8 +357,8 @@ marked -i input.md -o output.html -c config.json
 ⚠️ **Marked does NOT sanitize output HTML.** For untrusted input, use a sanitizer:
 
 ```javascript
-import { marked } from 'marked';
-import DOMPurify from 'dompurify';
+import { marked } from "marked";
+import DOMPurify from "dompurify";
 
 const unsafeHtml = marked.parse(untrustedMarkdown);
 const safeHtml = DOMPurify.sanitize(unsafeHtml);

@@ -5,19 +5,19 @@ Creating and managing evaluation datasets.
 ## Creating Datasets
 
 ```typescript
-import { createClient } from '@arizeai/phoenix-client';
-import { createDataset } from '@arizeai/phoenix-client/datasets';
+import { createClient } from "@arizeai/phoenix-client";
+import { createDataset } from "@arizeai/phoenix-client/datasets";
 
 const client = createClient();
 
 const { datasetId } = await createDataset({
   client,
-  name: 'qa-test-v1',
+  name: "qa-test-v1",
   examples: [
     {
-      input: { question: 'What is 2+2?' },
-      output: { answer: '4' },
-      metadata: { category: 'math' },
+      input: { question: "What is 2+2?" },
+      output: { answer: "4" },
+      metadata: { category: "math" },
     },
   ],
 });
@@ -36,29 +36,29 @@ interface DatasetExample {
 ## From Production Traces
 
 ```typescript
-import { getSpans } from '@arizeai/phoenix-client/spans';
+import { getSpans } from "@arizeai/phoenix-client/spans";
 
 const { spans } = await getSpans({
-  project: { projectName: 'my-app' },
+  project: { projectName: "my-app" },
   parentId: null, // root spans only
   limit: 100,
 });
 
 const examples = spans.map((span) => ({
-  input: { query: span.attributes?.['input.value'] },
-  output: { response: span.attributes?.['output.value'] },
+  input: { query: span.attributes?.["input.value"] },
+  output: { response: span.attributes?.["output.value"] },
   metadata: { spanId: span.context.span_id },
 }));
 
-await createDataset({ client, name: 'production-sample', examples });
+await createDataset({ client, name: "production-sample", examples });
 ```
 
 ## Retrieving Datasets
 
 ```typescript
-import { getDataset, listDatasets } from '@arizeai/phoenix-client/datasets';
+import { getDataset, listDatasets } from "@arizeai/phoenix-client/datasets";
 
-const dataset = await getDataset({ client, datasetId: '...' });
+const dataset = await getDataset({ client, datasetId: "..." });
 const all = await listDatasets({ client });
 ```
 

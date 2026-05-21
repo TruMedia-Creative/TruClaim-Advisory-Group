@@ -31,7 +31,7 @@ db.raw(`... ${req.params.id}`)
 **Safe patterns (parameterized):**
 
 ```js
-db.query('SELECT * FROM users WHERE id = ?', [userId]);
+db.query("SELECT * FROM users WHERE id = ?", [userId]);
 User.findOne({ where: { id: userId } }); // ORM safe
 ```
 
@@ -70,8 +70,8 @@ User.findOne({ where: { id: userId } }); // ORM safe
 ```js
 exec(userInput);
 execSync(`ping ${host}`);
-spawn('sh', ['-c', userInput]);
-child_process.exec('ls ' + dir);
+spawn("sh", ["-c", userInput]);
+child_process.exec("ls " + dir);
 ```
 
 **What to look for (Python):**
@@ -134,15 +134,18 @@ http.get(params.webhook);
 
 ```js
 // VULNERABLE: no ownership check
-app.get('/api/documents/:id', async (req, res) => {
+app.get("/api/documents/:id", async (req, res) => {
   const doc = await Document.findById(req.params.id);
   res.json(doc);
 });
 
 // SAFE: verify ownership
-app.get('/api/documents/:id', async (req, res) => {
-  const doc = await Document.findOne({ _id: req.params.id, owner: req.user.id });
-  if (!doc) return res.status(403).json({ error: 'Forbidden' });
+app.get("/api/documents/:id", async (req, res) => {
+  const doc = await Document.findOne({
+    _id: req.params.id,
+    owner: req.user.id,
+  });
+  if (!doc) return res.status(403).json({ error: "Forbidden" });
   res.json(doc);
 });
 ```
@@ -162,7 +165,7 @@ app.get('/api/documents/:id', async (req, res) => {
 **Detection:**
 
 ```js
-jwt.verify(token, secret, { algorithms: ['HS256'] }); // Check algorithms array
+jwt.verify(token, secret, { algorithms: ["HS256"] }); // Check algorithms array
 jwt.decode(token); // WARNING: decode does NOT verify signature
 ```
 
@@ -209,7 +212,7 @@ are likely secrets even if the variable name doesn't say so.
 ### In Logs / Error Messages
 
 ```js
-console.log('User password:', password);
+console.log("User password:", password);
 logger.info({ user, token }); // token shouldn't be logged
 res.status(500).json({ error: err.stack }); // stack traces expose internals
 ```
@@ -288,7 +291,7 @@ if (balance >= amount) {
 // SAFE: use atomic DB transaction or optimistic locking
 await db.transaction(async (trx) => {
   const user = await User.query(trx).forUpdate().findById(userId);
-  if (user.balance < amount) throw new Error('Insufficient funds');
+  if (user.balance < amount) throw new Error("Insufficient funds");
   await user.$query(trx).patch({ balance: user.balance - amount });
 });
 ```

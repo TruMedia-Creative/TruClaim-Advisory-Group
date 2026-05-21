@@ -54,15 +54,15 @@ dotnet add package GitHub.Copilot.SDK
 ### TypeScript
 
 ```typescript
-import { CopilotClient, approveAll } from '@github/copilot-sdk';
+import { CopilotClient, approveAll } from "@github/copilot-sdk";
 
 const client = new CopilotClient();
 const session = await client.createSession({
   onPermissionRequest: approveAll,
-  model: 'gpt-4.1',
+  model: "gpt-4.1",
 });
 
-const response = await session.sendAndWait({ prompt: 'What is 2 + 2?' });
+const response = await session.sendAndWait({ prompt: "What is 2 + 2?" });
 console.log(response?.data.content);
 
 await client.stop();
@@ -155,25 +155,25 @@ Enable real-time output for better UX:
 ### TypeScript
 
 ```typescript
-import { CopilotClient, approveAll, SessionEvent } from '@github/copilot-sdk';
+import { CopilotClient, approveAll, SessionEvent } from "@github/copilot-sdk";
 
 const client = new CopilotClient();
 const session = await client.createSession({
   onPermissionRequest: approveAll,
-  model: 'gpt-4.1',
+  model: "gpt-4.1",
   streaming: true,
 });
 
 session.on((event: SessionEvent) => {
-  if (event.type === 'assistant.message_delta') {
+  if (event.type === "assistant.message_delta") {
     process.stdout.write(event.data.deltaContent);
   }
-  if (event.type === 'session.idle') {
+  if (event.type === "session.idle") {
     console.log(); // New line when done
   }
 });
 
-await session.sendAndWait({ prompt: 'Tell me a short joke' });
+await session.sendAndWait({ prompt: "Tell me a short joke" });
 
 await client.stop();
 process.exit(0);
@@ -264,21 +264,26 @@ Define tools that Copilot can invoke during reasoning. When you define a tool, y
 ### TypeScript (JSON Schema)
 
 ```typescript
-import { CopilotClient, approveAll, defineTool, SessionEvent } from '@github/copilot-sdk';
+import {
+  CopilotClient,
+  approveAll,
+  defineTool,
+  SessionEvent,
+} from "@github/copilot-sdk";
 
-const getWeather = defineTool('get_weather', {
-  description: 'Get the current weather for a city',
+const getWeather = defineTool("get_weather", {
+  description: "Get the current weather for a city",
   parameters: {
-    type: 'object',
+    type: "object",
     properties: {
-      city: { type: 'string', description: 'The city name' },
+      city: { type: "string", description: "The city name" },
     },
-    required: ['city'],
+    required: ["city"],
   },
   handler: async (args: { city: string }) => {
     const { city } = args;
     // In a real app, call a weather API here
-    const conditions = ['sunny', 'cloudy', 'rainy', 'partly cloudy'];
+    const conditions = ["sunny", "cloudy", "rainy", "partly cloudy"];
     const temp = Math.floor(Math.random() * 30) + 50;
     const condition = conditions[Math.floor(Math.random() * conditions.length)];
     return { city, temperature: `${temp}°F`, condition };
@@ -288,13 +293,13 @@ const getWeather = defineTool('get_weather', {
 const client = new CopilotClient();
 const session = await client.createSession({
   onPermissionRequest: approveAll,
-  model: 'gpt-4.1',
+  model: "gpt-4.1",
   streaming: true,
   tools: [getWeather],
 });
 
 session.on((event: SessionEvent) => {
-  if (event.type === 'assistant.message_delta') {
+  if (event.type === "assistant.message_delta") {
     process.stdout.write(event.data.deltaContent);
   }
 });
@@ -438,20 +443,25 @@ Build a complete interactive assistant:
 ### TypeScript
 
 ```typescript
-import { CopilotClient, approveAll, defineTool, SessionEvent } from '@github/copilot-sdk';
-import * as readline from 'readline';
+import {
+  CopilotClient,
+  approveAll,
+  defineTool,
+  SessionEvent,
+} from "@github/copilot-sdk";
+import * as readline from "readline";
 
-const getWeather = defineTool('get_weather', {
-  description: 'Get the current weather for a city',
+const getWeather = defineTool("get_weather", {
+  description: "Get the current weather for a city",
   parameters: {
-    type: 'object',
+    type: "object",
     properties: {
-      city: { type: 'string', description: 'The city name' },
+      city: { type: "string", description: "The city name" },
     },
-    required: ['city'],
+    required: ["city"],
   },
   handler: async ({ city }) => {
-    const conditions = ['sunny', 'cloudy', 'rainy', 'partly cloudy'];
+    const conditions = ["sunny", "cloudy", "rainy", "partly cloudy"];
     const temp = Math.floor(Math.random() * 30) + 50;
     const condition = conditions[Math.floor(Math.random() * conditions.length)];
     return { city, temperature: `${temp}°F`, condition };
@@ -461,13 +471,13 @@ const getWeather = defineTool('get_weather', {
 const client = new CopilotClient();
 const session = await client.createSession({
   onPermissionRequest: approveAll,
-  model: 'gpt-4.1',
+  model: "gpt-4.1",
   streaming: true,
   tools: [getWeather],
 });
 
 session.on((event: SessionEvent) => {
-  if (event.type === 'assistant.message_delta') {
+  if (event.type === "assistant.message_delta") {
     process.stdout.write(event.data.deltaContent);
   }
 });
@@ -481,16 +491,16 @@ console.log("Weather Assistant (type 'exit' to quit)");
 console.log("Try: 'What's the weather in Paris?'\n");
 
 const prompt = () => {
-  rl.question('You: ', async (input) => {
-    if (input.toLowerCase() === 'exit') {
+  rl.question("You: ", async (input) => {
+    if (input.toLowerCase() === "exit") {
       await client.stop();
       rl.close();
       return;
     }
 
-    process.stdout.write('Assistant: ');
+    process.stdout.write("Assistant: ");
     await session.sendAndWait({ prompt: input });
-    console.log('\n');
+    console.log("\n");
     prompt();
   });
 };
@@ -567,11 +577,11 @@ Connect to MCP (Model Context Protocol) servers for pre-built tools. Connect to 
 ```typescript
 const session = await client.createSession({
   onPermissionRequest: approveAll,
-  model: 'gpt-4.1',
+  model: "gpt-4.1",
   mcpServers: {
     github: {
-      type: 'http',
-      url: 'https://api.githubcopilot.com/mcp/',
+      type: "http",
+      url: "https://api.githubcopilot.com/mcp/",
     },
   },
 });
@@ -634,14 +644,14 @@ Define specialized AI personas for specific tasks:
 ```typescript
 const session = await client.createSession({
   onPermissionRequest: approveAll,
-  model: 'gpt-4.1',
+  model: "gpt-4.1",
   customAgents: [
     {
-      name: 'pr-reviewer',
-      displayName: 'PR Reviewer',
-      description: 'Reviews pull requests for best practices',
+      name: "pr-reviewer",
+      displayName: "PR Reviewer",
+      description: "Reviews pull requests for best practices",
       prompt:
-        'You are an expert code reviewer. Focus on security, performance, and maintainability.',
+        "You are an expert code reviewer. Focus on security, performance, and maintainability.",
     },
   ],
 });
@@ -671,9 +681,10 @@ Customize the AI's behavior and personality:
 ```typescript
 const session = await client.createSession({
   onPermissionRequest: approveAll,
-  model: 'gpt-4.1',
+  model: "gpt-4.1",
   systemMessage: {
-    content: 'You are a helpful assistant for our engineering team. Always be concise.',
+    content:
+      "You are a helpful assistant for our engineering team. Always be concise.",
   },
 });
 ```
@@ -706,12 +717,12 @@ copilot --server --port 4321
 
 ```typescript
 const client = new CopilotClient({
-  cliUrl: 'localhost:4321',
+  cliUrl: "localhost:4321",
 });
 
 const session = await client.createSession({
   onPermissionRequest: approveAll,
-  model: 'gpt-4.1',
+  model: "gpt-4.1",
 });
 ```
 
@@ -813,25 +824,25 @@ Save and resume conversations across restarts:
 ```typescript
 const session = await client.createSession({
   onPermissionRequest: approveAll,
-  sessionId: 'user-123-conversation',
-  model: 'gpt-4.1',
+  sessionId: "user-123-conversation",
+  model: "gpt-4.1",
 });
 ```
 
 ### Resume Session
 
 ```typescript
-const session = await client.resumeSession('user-123-conversation', {
+const session = await client.resumeSession("user-123-conversation", {
   onPermissionRequest: approveAll,
 });
-await session.send({ prompt: 'What did we discuss earlier?' });
+await session.send({ prompt: "What did we discuss earlier?" });
 ```
 
 ### List and Delete Sessions
 
 ```typescript
 const sessions = await client.listSessions();
-await client.deleteSession('old-session-id');
+await client.deleteSession("old-session-id");
 ```
 
 ## Error Handling
@@ -841,19 +852,19 @@ try {
   const client = new CopilotClient();
   const session = await client.createSession({
     onPermissionRequest: approveAll,
-    model: 'gpt-4.1',
+    model: "gpt-4.1",
   });
   const response = await session.sendAndWait(
-    { prompt: 'Hello!' },
-    30000 // timeout in ms
+    { prompt: "Hello!" },
+    30000, // timeout in ms
   );
 } catch (error) {
-  if (error.code === 'ENOENT') {
-    console.error('Copilot CLI not installed');
-  } else if (error.code === 'ECONNREFUSED') {
-    console.error('Cannot connect to Copilot server');
+  if (error.code === "ENOENT") {
+    console.error("Copilot CLI not installed");
+  } else if (error.code === "ECONNREFUSED") {
+    console.error("Cannot connect to Copilot server");
   } else {
-    console.error('Error:', error.message);
+    console.error("Error:", error.message);
   }
 } finally {
   await client.stop();
@@ -863,8 +874,8 @@ try {
 ## Graceful Shutdown
 
 ```typescript
-process.on('SIGINT', async () => {
-  console.log('Shutting down...');
+process.on("SIGINT", async () => {
+  console.log("Shutting down...");
   await client.stop();
   process.exit(0);
 });
@@ -877,10 +888,10 @@ process.on('SIGINT', async () => {
 ```typescript
 const session = await client.createSession({
   onPermissionRequest: approveAll,
-  model: 'gpt-4.1',
+  model: "gpt-4.1",
 });
 
-await session.sendAndWait({ prompt: 'My name is Alice' });
+await session.sendAndWait({ prompt: "My name is Alice" });
 await session.sendAndWait({ prompt: "What's my name?" });
 // Response: "Your name is Alice"
 ```
@@ -889,12 +900,12 @@ await session.sendAndWait({ prompt: "What's my name?" });
 
 ```typescript
 await session.send({
-  prompt: 'Analyze this file',
+  prompt: "Analyze this file",
   attachments: [
     {
-      type: 'file',
-      path: './data.csv',
-      displayName: 'Sales Data',
+      type: "file",
+      path: "./data.csv",
+      displayName: "Sales Data",
     },
   ],
 });
@@ -908,7 +919,7 @@ const timeoutId = setTimeout(() => {
 }, 60000);
 
 session.on((event) => {
-  if (event.type === 'session.idle') {
+  if (event.type === "session.idle") {
     clearTimeout(timeoutId);
   }
 });

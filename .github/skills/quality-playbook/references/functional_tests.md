@@ -106,8 +106,8 @@ void testConfigValidation(@TempDir Path tempDir) {
 
 ```typescript
 // TypeScript
-test('config validation', () => {
-  const config = { pipeline: { name: 'Test', steps: [] } };
+test("config validation", () => {
+  const config = { pipeline: { name: "Test", steps: [] } };
 });
 ```
 
@@ -192,8 +192,8 @@ class SpecRequirements extends FlatSpec with Matchers {
 
 ```typescript
 // TypeScript (Jest)
-describe('Spec Requirements', () => {
-  test('[Req: formal — Design Doc §N] X should produce Y', () => {
+describe("Spec Requirements", () => {
+  test("[Req: formal — Design Doc §N] X should produce Y", () => {
     const result = process(fixture);
     expect(result.property).toBe(expectedValue);
   });
@@ -265,9 +265,9 @@ Seq(variantA, variantB, variantC).foreach { variant =>
 
 ```typescript
 // TypeScript (Jest)
-test.each([variantA, variantB, variantC])('feature works for %s', (variant) => {
+test.each([variantA, variantB, variantC])("feature works for %s", (variant) => {
   const output = process(variant.input);
-  expect(output).toHaveProperty('expectedProperty');
+  expect(output).toHaveProperty("expectedProperty");
 });
 ```
 
@@ -356,14 +356,14 @@ void testBadValueNotInOutput() {
 
 ```typescript
 // TypeScript — WRONG: tests the validation mechanism
-test('bad value rejected', () => {
-  fixture.field = 'invalid'; // Zod schema rejects this!
+test("bad value rejected", () => {
+  fixture.field = "invalid"; // Zod schema rejects this!
   expect(() => process(fixture)).toThrow(ZodError);
   // Tells you nothing about output
 });
 
 // TypeScript — RIGHT: tests the requirement
-test('bad value not in output', () => {
+test("bad value not in output", () => {
   fixture.field = undefined; // Schema accepts undefined for optional
   const output = process(fixture);
   expect(output).not.toContain(badProperty); // Bad data absent
@@ -474,8 +474,8 @@ class FitnessScenariosTest {
 
 ```typescript
 // TypeScript (Jest)
-describe('Fitness Scenarios', () => {
-  test('[Req: formal — QUALITY.md Scenario 1] [Name]', () => {
+describe("Fitness Scenarios", () => {
+  test("[Req: formal — QUALITY.md Scenario 1] [Name]", () => {
     const result = process(fixture);
     expect(conditionThatPreventsFailure(result)).toBe(true);
   });
@@ -511,8 +511,8 @@ One test per defensive pattern from Step 5:
 
 ```typescript
 // TypeScript (Jest)
-describe('Boundaries and Edge Cases', () => {
-  test('[Req: inferred — from functionName() guard] guards against X', () => {
+describe("Boundaries and Edge Cases", () => {
+  test("[Req: inferred — from functionName() guard] guards against X", () => {
     const input = { ...validFixture, field: null };
     const result = process(input);
     expect(result).not.toContainBadOutput();

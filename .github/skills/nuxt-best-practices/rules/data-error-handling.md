@@ -14,7 +14,7 @@ Data fetching can fail or take time. Always handle `error` and `status`/`pending
 ```vue
 <script setup>
 // BAD: No handling of errors or loading states
-const { data: users } = await useFetch('/api/users');
+const { data: users } = await useFetch("/api/users");
 </script>
 
 <template>
@@ -34,7 +34,7 @@ const {
   status,
   error,
   refresh,
-} = await useFetch('/api/users', {
+} = await useFetch("/api/users", {
   default: () => [],
 });
 </script>
@@ -97,7 +97,7 @@ const {
 ```vue
 <script setup>
 // Lazy fetch - doesn't block navigation
-const { data: stats, status } = useLazyFetch('/api/stats');
+const { data: stats, status } = useLazyFetch("/api/stats");
 </script>
 
 <template>
@@ -118,13 +118,16 @@ const { data: stats, status } = useLazyFetch('/api/stats');
 
 ```typescript
 // composables/useFetchWithNotification.ts
-export function useFetchWithNotification<T>(url: string, options?: UseFetchOptions<T>) {
+export function useFetchWithNotification<T>(
+  url: string,
+  options?: UseFetchOptions<T>,
+) {
   const toast = useToast();
 
   const result = useFetch(url, {
     ...options,
     onResponseError: ({ response }) => {
-      toast.error(response._data?.message || 'Request failed');
+      toast.error(response._data?.message || "Request failed");
       options?.onResponseError?.({ response });
     },
   });

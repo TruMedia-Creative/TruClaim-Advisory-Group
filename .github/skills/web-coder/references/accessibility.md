@@ -89,19 +89,19 @@ Web accessibility ensures content is usable by everyone, including people with d
 ### Keyboard Events
 
 ```javascript
-element.addEventListener('keydown', (e) => {
+element.addEventListener("keydown", (e) => {
   switch (e.key) {
-    case 'Enter':
-    case ' ': // Space
+    case "Enter":
+    case " ": // Space
       // Activate
       break;
-    case 'Escape':
+    case "Escape":
       // Close/cancel
       break;
-    case 'ArrowUp':
-    case 'ArrowDown':
-    case 'ArrowLeft':
-    case 'ArrowRight':
+    case "ArrowUp":
+    case "ArrowDown":
+    case "ArrowLeft":
+    case "ArrowRight":
       // Navigate
       break;
   }
@@ -142,7 +142,12 @@ element.addEventListener('keydown', (e) => {
   <input type="text" id="name" name="name" required aria-required="true" />
 
   <!-- Error messages -->
-  <input type="email" id="email" aria-invalid="true" aria-describedby="email-error" />
+  <input
+    type="email"
+    id="email"
+    aria-invalid="true"
+    aria-describedby="email-error"
+  />
   <span id="email-error" role="alert"> Please enter a valid email </span>
 
   <!-- Fieldset for groups -->
@@ -207,7 +212,7 @@ element.addEventListener('keydown', (e) => {
   color: red;
   /* ✅ Also use icon or text */
   &::before {
-    content: '⚠ ';
+    content: "⚠ ";
   }
 }
 ```
@@ -275,11 +280,11 @@ element.addEventListener('keydown', (e) => {
 // Focus management in modal
 function openModal() {
   modal.showModal();
-  modal.querySelector('button').focus();
+  modal.querySelector("button").focus();
 
   // Trap focus
-  modal.addEventListener('keydown', (e) => {
-    if (e.key === 'Tab') {
+  modal.addEventListener("keydown", (e) => {
+    if (e.key === "Tab") {
       trapFocus(e, modal);
     }
   });

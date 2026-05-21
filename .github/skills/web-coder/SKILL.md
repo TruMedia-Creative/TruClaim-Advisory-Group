@@ -1,6 +1,6 @@
 ---
 name: web-coder
-description: 'Expert 10x engineer with comprehensive knowledge of web development, internet protocols, and web standards. Use when working with HTML, CSS, JavaScript, web APIs, HTTP/HTTPS, web security, performance optimization, accessibility, or any web/internet concepts. Specializes in translating web terminology accurately and implementing modern web standards across frontend and backend development.'
+description: "Expert 10x engineer with comprehensive knowledge of web development, internet protocols, and web standards. Use when working with HTML, CSS, JavaScript, web APIs, HTTP/HTTPS, web security, performance optimization, accessibility, or any web/internet concepts. Specializes in translating web terminology accurately and implementing modern web standards across frontend and backend development."
 ---
 
 # Web Coder Skill
@@ -306,9 +306,9 @@ form {
 
 ```javascript
 // Enhanced interactivity
-form.addEventListener('submit', async (e) => {
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  await fetch('/api/submit', {
+  await fetch("/api/submit", {
     /* ... */
   });
 });
@@ -354,7 +354,9 @@ Keyboard navigation, ARIA, semantic HTML:
       <a href="/" role="menuitem">Home</a>
     </li>
     <li role="none">
-      <button role="menuitem" aria-expanded="false" aria-haspopup="true">Products</button>
+      <button role="menuitem" aria-expanded="false" aria-haspopup="true">
+        Products
+      </button>
     </li>
   </ul>
 </nav>
@@ -366,7 +368,12 @@ Lazy loading, code splitting, and efficient loading:
 
 ```html
 <!-- Lazy load images -->
-<img src="placeholder.jpg" data-src="high-res.jpg" loading="lazy" alt="Description" />
+<img
+  src="placeholder.jpg"
+  data-src="high-res.jpg"
+  loading="lazy"
+  alt="Description"
+/>
 
 <!-- Preload critical resources -->
 <link rel="preload" href="critical.css" as="style" />
@@ -402,7 +409,7 @@ Implement Real User Monitoring (RUM):
 // Measure Core Web Vitals
 const observer = new PerformanceObserver((list) => {
   for (const entry of list.getEntries()) {
-    console.log('Performance metric:', {
+    console.log("Performance metric:", {
       name: entry.name,
       value: entry.value,
       rating: entry.rating,
@@ -410,7 +417,9 @@ const observer = new PerformanceObserver((list) => {
   }
 });
 
-observer.observe({ entryTypes: ['largest-contentful-paint', 'first-input', 'layout-shift'] });
+observer.observe({
+  entryTypes: ["largest-contentful-paint", "first-input", "layout-shift"],
+});
 ```
 
 ### 2. Advanced Accessibility
@@ -425,22 +434,22 @@ class AccessibleTabs {
     this.panels = Array.from(element.querySelectorAll('[role="tabpanel"]'));
 
     this.tabs.forEach((tab, index) => {
-      tab.addEventListener('click', () => this.selectTab(index));
-      tab.addEventListener('keydown', (e) => this.handleKeydown(e, index));
+      tab.addEventListener("click", () => this.selectTab(index));
+      tab.addEventListener("keydown", (e) => this.handleKeydown(e, index));
     });
   }
 
   selectTab(index) {
     // Deselect all tabs
     this.tabs.forEach((tab) => {
-      tab.setAttribute('aria-selected', 'false');
-      tab.setAttribute('tabindex', '-1');
+      tab.setAttribute("aria-selected", "false");
+      tab.setAttribute("tabindex", "-1");
     });
     this.panels.forEach((panel) => (panel.hidden = true));
 
     // Select target tab
-    this.tabs[index].setAttribute('aria-selected', 'true');
-    this.tabs[index].setAttribute('tabindex', '0');
+    this.tabs[index].setAttribute("aria-selected", "true");
+    this.tabs[index].setAttribute("tabindex", "0");
     this.tabs[index].focus();
     this.panels[index].hidden = false;
   }
@@ -449,10 +458,11 @@ class AccessibleTabs {
     const { key } = event;
     let newIndex = index;
 
-    if (key === 'ArrowRight') newIndex = (index + 1) % this.tabs.length;
-    if (key === 'ArrowLeft') newIndex = (index - 1 + this.tabs.length) % this.tabs.length;
-    if (key === 'Home') newIndex = 0;
-    if (key === 'End') newIndex = this.tabs.length - 1;
+    if (key === "ArrowRight") newIndex = (index + 1) % this.tabs.length;
+    if (key === "ArrowLeft")
+      newIndex = (index - 1 + this.tabs.length) % this.tabs.length;
+    if (key === "Home") newIndex = 0;
+    if (key === "End") newIndex = this.tabs.length - 1;
 
     if (newIndex !== index) {
       event.preventDefault();
@@ -509,20 +519,23 @@ Implement comprehensive security headers:
 app.use((req, res, next) => {
   // Content Security Policy
   res.setHeader(
-    'Content-Security-Policy',
-    "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'"
+    "Content-Security-Policy",
+    "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",
   );
 
   // Strict Transport Security
-  res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
+  res.setHeader(
+    "Strict-Transport-Security",
+    "max-age=31536000; includeSubDomains; preload",
+  );
 
   // XSS Protection
-  res.setHeader('X-Content-Type-Options', 'nosniff');
-  res.setHeader('X-Frame-Options', 'DENY');
-  res.setHeader('X-XSS-Protection', '1; mode=block');
+  res.setHeader("X-Content-Type-Options", "nosniff");
+  res.setHeader("X-Frame-Options", "DENY");
+  res.setHeader("X-XSS-Protection", "1; mode=block");
 
   // Referrer Policy
-  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
 
   next();
 });

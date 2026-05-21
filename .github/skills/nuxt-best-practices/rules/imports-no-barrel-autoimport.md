@@ -23,8 +23,8 @@ Nuxt auto-imports from specific directories. The rules for barrel exports (`inde
 ```typescript
 // ❌ WRONG - server/utils/admin/index.ts
 // server/utils/ is scanned RECURSIVELY - barrel causes duplicates!
-export { getAIUsageMetrics } from './ai-usage';
-export { getUserAnalytics } from './user-analytics';
+export { getAIUsageMetrics } from "./ai-usage";
+export { getUserAnalytics } from "./user-analytics";
 // Warning: "Duplicate import: getAIUsageMetrics"
 ```
 
@@ -45,9 +45,9 @@ Per [official Nuxt docs](https://nuxt.com/docs/guide/directory-structure/composa
 ```typescript
 // ✅ CORRECT - composables/index.ts (at ROOT)
 // Required to enable auto-import of nested composables
-export { useAuth, useSession } from './auth/use-auth';
-export { useTokens } from './tokens/use-tokens';
-export { useBilling } from './billing/use-billing';
+export { useAuth, useSession } from "./auth/use-auth";
+export { useTokens } from "./tokens/use-tokens";
+export { useBilling } from "./billing/use-billing";
 ```
 
 ```typescript
@@ -62,8 +62,8 @@ export function useAuth() {
 ```typescript
 // ❌ WRONG - composables/auth/index.ts
 // This creates circular dependencies and duplicates
-export * from './use-auth';
-export * from './use-session';
+export * from "./use-auth";
+export * from "./use-session";
 
 // ✅ CORRECT - Export directly from root composables/index.ts instead
 ```

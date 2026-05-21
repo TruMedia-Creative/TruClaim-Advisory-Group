@@ -17,38 +17,44 @@ Use a separate dataset name so validation experiments don't mix with task experi
 Store human ground truth in `metadata.groundTruthLabel`. Aim for ~50/50 balance:
 
 ```typescript
-import type { Example } from '@arizeai/phoenix-client/types/datasets';
+import type { Example } from "@arizeai/phoenix-client/types/datasets";
 
 const goldenExamples: Example[] = [
   {
-    input: { q: 'Capital of France?' },
-    output: { answer: 'Paris' },
-    metadata: { groundTruthLabel: 'correct' },
+    input: { q: "Capital of France?" },
+    output: { answer: "Paris" },
+    metadata: { groundTruthLabel: "correct" },
   },
   {
-    input: { q: 'Capital of France?' },
-    output: { answer: 'Lyon' },
-    metadata: { groundTruthLabel: 'incorrect' },
+    input: { q: "Capital of France?" },
+    output: { answer: "Lyon" },
+    metadata: { groundTruthLabel: "incorrect" },
   },
   {
-    input: { q: 'Capital of France?' },
-    output: { answer: 'Major city...' },
-    metadata: { groundTruthLabel: 'incorrect' },
+    input: { q: "Capital of France?" },
+    output: { answer: "Major city..." },
+    metadata: { groundTruthLabel: "incorrect" },
   },
 ];
 
-const VALIDATOR_DATASET = 'my-app-qa-evaluator-validation'; // separate from task dataset
-const POSITIVE_LABEL = 'correct';
-const NEGATIVE_LABEL = 'incorrect';
+const VALIDATOR_DATASET = "my-app-qa-evaluator-validation"; // separate from task dataset
+const POSITIVE_LABEL = "correct";
+const NEGATIVE_LABEL = "incorrect";
 ```
 
 ## Validation Experiment
 
 ```typescript
-import { createClient } from '@arizeai/phoenix-client';
-import { createOrGetDataset, getDatasetExamples } from '@arizeai/phoenix-client/datasets';
-import { asExperimentEvaluator, runExperiment } from '@arizeai/phoenix-client/experiments';
-import { myEvaluator } from './myEvaluator.js';
+import { createClient } from "@arizeai/phoenix-client";
+import {
+  createOrGetDataset,
+  getDatasetExamples,
+} from "@arizeai/phoenix-client/datasets";
+import {
+  asExperimentEvaluator,
+  runExperiment,
+} from "@arizeai/phoenix-client/experiments";
+import { myEvaluator } from "./myEvaluator.js";
 
 const client = createClient();
 
@@ -57,8 +63,13 @@ const { datasetId } = await createOrGetDataset({
   name: VALIDATOR_DATASET,
   examples: goldenExamples,
 });
-const { examples } = await getDatasetExamples({ client, dataset: { datasetId } });
-const groundTruth = new Map(examples.map((ex) => [ex.id, ex.metadata?.groundTruthLabel as string]));
+const { examples } = await getDatasetExamples({
+  client,
+  dataset: { datasetId },
+});
+const groundTruth = new Map(
+  examples.map((ex) => [ex.id, ex.metadata?.groundTruthLabel as string]),
+);
 
 // Task: invoke the evaluator under test
 const task = async (example: (typeof examples)[number]) => {
@@ -67,16 +78,16 @@ const task = async (example: (typeof examples)[number]) => {
     output: example.output,
     metadata: example.metadata,
   });
-  return result.label ?? 'unknown';
+  return result.label ?? "unknown";
 };
 
 // Evaluator: exact-match against human ground truth
 const exactMatch = asExperimentEvaluator({
-  name: 'exact-match',
-  kind: 'CODE',
+  name: "exact-match",
+  kind: "CODE",
   evaluate: ({ output, metadata }) => {
     const expected = metadata?.groundTruthLabel as string;
-    const predicted = typeof output === 'string' ? output : 'unknown';
+    const predicted = typeof output === "string" ? output : "unknown";
     return {
       score: predicted === expected ? 1 : 0,
       label: predicted,
@@ -97,8 +108,8 @@ const experiment = await runExperiment({
 const runs = Object.values(experiment.runs);
 const predicted = new Map(
   (experiment.evaluationRuns ?? [])
-    .filter((e) => e.name === 'exact-match')
-    .map((e) => [e.experimentRunId, e.result?.label ?? null])
+    .filter((e) => e.name === "exact-match")
+    .map((e) => [e.experimentRunId, e.result?.label ?? null]),
 );
 
 let tp = 0,
@@ -119,7 +130,7 @@ const total = tp + fp + tn + fn;
 const tpr = tp + fn > 0 ? (tp / (tp + fn)) * 100 : 0;
 const tnr = tn + fp > 0 ? (tn / (tn + fp)) * 100 : 0;
 console.log(
-  `TPR: ${tpr.toFixed(1)}%  TNR: ${tnr.toFixed(1)}%  Accuracy: ${(((tp + tn) / total) * 100).toFixed(1)}%`
+  `TPR: ${tpr.toFixed(1)}%  TNR: ${tnr.toFixed(1)}%  Accuracy: ${(((tp + tn) / total) * 100).toFixed(1)}%`,
 );
 ```
 

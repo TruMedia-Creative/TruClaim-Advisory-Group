@@ -31,20 +31,20 @@ Lightweight data interchange format.
 const data = JSON.parse('{"name":"John","age":30}');
 
 // Stringify object
-const json = JSON.stringify({ name: 'John', age: 30 });
+const json = JSON.stringify({ name: "John", age: 30 });
 
 // Pretty print (indentation)
 const json = JSON.stringify(data, null, 2);
 
 // Custom serialization
 const json = JSON.stringify(obj, (key, value) => {
-  if (key === 'password') return undefined; // Exclude
+  if (key === "password") return undefined; // Exclude
   return value;
 });
 
 // toJSON method
 const obj = {
-  name: 'John',
+  name: "John",
   date: new Date(),
   toJSON() {
     return {
@@ -100,12 +100,12 @@ Markup language for encoding documents.
 ```javascript
 // Parse XML string
 const parser = new DOMParser();
-const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
+const xmlDoc = parser.parseFromString(xmlString, "text/xml");
 
 // Query elements
-const users = xmlDoc.querySelectorAll('user');
+const users = xmlDoc.querySelectorAll("user");
 users.forEach((user) => {
-  const name = user.querySelector('name').textContent;
+  const name = user.querySelector("name").textContent;
   console.log(name);
 });
 
@@ -137,11 +137,11 @@ Universal character encoding (recommended for web).
 **Use**: JavaScript internally uses UTF-16
 
 ```javascript
-'A'.charCodeAt(0); // 65
+"A".charCodeAt(0); // 65
 String.fromCharCode(65); // 'A'
 
 // Emoji (requires surrogate pair in UTF-16)
-'😀'.length; // 2 (in JavaScript)
+"😀".length; // 2 (in JavaScript)
 ```
 
 ### ASCII
@@ -158,11 +158,11 @@ String.fromCharCode(65); // 'A'
 
 ```javascript
 // Code points
-'A'.codePointAt(0); // 65
+"A".codePointAt(0); // 65
 String.fromCodePoint(0x1f600); // '😀'
 
 // Iterate code points
-for (const char of 'Hello 😀') {
+for (const char of "Hello 😀") {
   console.log(char);
 }
 ```
@@ -173,20 +173,20 @@ Binary-to-text encoding scheme.
 
 ```javascript
 // Encode
-const encoded = btoa('Hello World'); // "SGVsbG8gV29ybGQ="
+const encoded = btoa("Hello World"); // "SGVsbG8gV29ybGQ="
 
 // Decode
-const decoded = atob('SGVsbG8gV29ybGQ='); // "Hello World"
+const decoded = atob("SGVsbG8gV29ybGQ="); // "Hello World"
 
 // Handle Unicode (requires extra step)
-const encoded = btoa(unescape(encodeURIComponent('Hello 世界')));
+const encoded = btoa(unescape(encodeURIComponent("Hello 世界")));
 const decoded = decodeURIComponent(escape(atob(encoded)));
 
 // Modern approach
 const encoder = new TextEncoder();
 const decoder = new TextDecoder();
 
-const bytes = encoder.encode('Hello 世界');
+const bytes = encoder.encode("Hello 世界");
 const decoded = decoder.decode(bytes);
 ```
 
@@ -202,15 +202,15 @@ Encode special characters in URLs.
 
 ```javascript
 // encodeURIComponent (encode everything except: A-Z a-z 0-9 - _ . ! ~ * ' ( ))
-const encoded = encodeURIComponent('Hello World!'); // "Hello%20World%21"
+const encoded = encodeURIComponent("Hello World!"); // "Hello%20World%21"
 const decoded = decodeURIComponent(encoded); // "Hello World!"
 
 // encodeURI (encode less - for full URLs)
-const url = encodeURI('http://example.com/search?q=hello world');
+const url = encodeURI("http://example.com/search?q=hello world");
 
 // Modern URL API
-const url = new URL('http://example.com/search');
-url.searchParams.set('q', 'hello world');
+const url = new URL("http://example.com/search");
+url.searchParams.set("q", "hello world");
 console.log(url.toString()); // Automatically encoded
 ```
 
@@ -258,7 +258,7 @@ Converting data structures to/from storable format.
 
 ```javascript
 // Serialize
-const obj = { name: 'John', date: new Date() };
+const obj = { name: "John", date: new Date() };
 const json = JSON.stringify(obj);
 
 // Deserialize
@@ -324,11 +324,11 @@ Embed data directly in URLs.
 
 ```javascript
 // Create data URL from canvas
-const canvas = document.querySelector('canvas');
-const dataURL = canvas.toDataURL('image/png');
+const canvas = document.querySelector("canvas");
+const dataURL = canvas.toDataURL("image/png");
 
 // Create data URL from blob
-const blob = new Blob(['Hello'], { type: 'text/plain' });
+const blob = new Blob(["Hello"], { type: "text/plain" });
 const reader = new FileReader();
 reader.onload = () => {
   const dataURL = reader.result;
@@ -342,9 +342,9 @@ reader.readAsDataURL(blob);
 // String escapes
 'It\'s a string'; // Single quote
 "He said \"Hello\""; // Double quote
-'Line 1\nLine 2'; // Newline
-'Column1\tColumn2'; // Tab
-'Path\\to\\file'; // Backslash
+"Line 1\nLine 2"; // Newline
+"Column1\tColumn2"; // Tab
+"Path\\to\\file"; // Backslash
 ```
 
 ## Data Structures
@@ -364,8 +364,8 @@ arr.pop(); // Remove from end
 Key-value pairs:
 
 ```javascript
-const obj = { key: 'value' };
-obj.newKey = 'new value';
+const obj = { key: "value" };
+obj.newKey = "new value";
 delete obj.key;
 ```
 
@@ -375,11 +375,11 @@ Keyed collections (any type as key):
 
 ```javascript
 const map = new Map();
-map.set('key', 'value');
-map.set(obj, 'value');
-map.get('key');
-map.has('key');
-map.delete('key');
+map.set("key", "value");
+map.set(obj, "value");
+map.get("key");
+map.has("key");
+map.delete("key");
 ```
 
 ### Set

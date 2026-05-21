@@ -12,11 +12,11 @@ Destructuring a reactive object breaks the reactivity connection. The destructur
 **Incorrect (loses reactivity):**
 
 ```typescript
-import { reactive } from 'vue';
+import { reactive } from "vue";
 
 const state = reactive({
   count: 0,
-  name: 'Vue',
+  name: "Vue",
 });
 
 // BAD: These are now plain values, not reactive!
@@ -28,11 +28,11 @@ count++; // Just increments a local variable
 
 ```vue
 <script setup>
-import { reactive } from 'vue';
+import { reactive } from "vue";
 
 const user = reactive({
-  firstName: 'John',
-  lastName: 'Doe',
+  firstName: "John",
+  lastName: "Doe",
 });
 
 // BAD: Destructured in setup - loses reactivity
@@ -48,25 +48,25 @@ const { firstName, lastName } = user;
 **Correct (maintain reactivity):**
 
 ```typescript
-import { reactive } from 'vue';
+import { reactive } from "vue";
 
 const state = reactive({
   count: 0,
-  name: 'Vue',
+  name: "Vue",
 });
 
 // Access properties directly
 state.count++;
-state.name = 'Vue 3';
+state.name = "Vue 3";
 ```
 
 ```vue
 <script setup>
-import { reactive } from 'vue';
+import { reactive } from "vue";
 
 const user = reactive({
-  firstName: 'John',
-  lastName: 'Doe',
+  firstName: "John",
+  lastName: "Doe",
 });
 </script>
 
@@ -79,11 +79,11 @@ const user = reactive({
 **If you need to destructure, use toRefs():**
 
 ```typescript
-import { reactive, toRefs } from 'vue';
+import { reactive, toRefs } from "vue";
 
 const state = reactive({
   count: 0,
-  name: 'Vue',
+  name: "Vue",
 });
 
 // toRefs() converts each property to a ref

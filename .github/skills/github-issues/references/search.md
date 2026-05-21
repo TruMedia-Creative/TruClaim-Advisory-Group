@@ -189,7 +189,11 @@ Use `type: ISSUE_ADVANCED` instead of `type: ISSUE`:
 
 ```graphql
 {
-  search(query: "org:github field.priority:P0 type:Epic is:open", type: ISSUE_ADVANCED, first: 10) {
+  search(
+    query: "org:github field.priority:P0 type:Epic is:open"
+    type: ISSUE_ADVANCED
+    first: 10
+  ) {
     issueCount
     nodes {
       ... on Issue {

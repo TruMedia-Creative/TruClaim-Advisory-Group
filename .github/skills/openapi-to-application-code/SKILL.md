@@ -1,6 +1,6 @@
 ---
 name: openapi-to-application-code
-description: 'Generate a complete, production-ready application from an OpenAPI specification'
+description: "Generate a complete, production-ready application from an OpenAPI specification"
 ---
 
 # Generate Application from OpenAPI Spec

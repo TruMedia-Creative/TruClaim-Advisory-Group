@@ -14,7 +14,7 @@ Transform and filter data in useFetch options rather than in templates or comput
 ```vue
 <script setup>
 // BAD: Full response sent to client, transformed on every render
-const { data: response } = await useFetch('/api/users');
+const { data: response } = await useFetch("/api/users");
 
 // Computed runs on every access
 const users = computed(
@@ -22,8 +22,8 @@ const users = computed(
     response.value?.data?.users?.map((u) => ({
       id: u.id,
       displayName: `${u.firstName} ${u.lastName}`,
-      avatar: u.profile?.avatar || '/default.png',
-    })) ?? []
+      avatar: u.profile?.avatar || "/default.png",
+    })) ?? [],
 );
 </script>
 
@@ -70,8 +70,8 @@ const { data: users } = await useFetch<User[]>('/api/users', {
 ```vue
 <script setup>
 // Only these fields are sent to the client
-const { data: users } = await useFetch('/api/users', {
-  pick: ['id', 'name', 'email'],
+const { data: users } = await useFetch("/api/users", {
+  pick: ["id", "name", "email"],
 });
 
 // For nested picking with transform
@@ -115,13 +115,13 @@ const { data } = await useFetch<PaginatedUsers>('/api/users', {
 
 ```vue
 <script setup>
-const { data, error } = await useFetch('/api/data', {
+const { data, error } = await useFetch("/api/data", {
   transform: (response) => response.data,
   onResponseError: ({ response }) => {
     // Normalize error format
     throw createError({
       statusCode: response.status,
-      message: response._data?.message || 'Unknown error',
+      message: response._data?.message || "Unknown error",
     });
   },
 });

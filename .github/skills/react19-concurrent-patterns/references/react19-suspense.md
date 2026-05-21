@@ -24,7 +24,7 @@ React 18 Suspense only supported **code splitting** (lazy components). React 19 
 
 ```jsx
 // React 18  Suspense for lazy imports only:
-const LazyComponent = React.lazy(() => import('./Component'));
+const LazyComponent = React.lazy(() => import("./Component"));
 
 function App() {
   return (
@@ -87,7 +87,7 @@ function App() {
 ```jsx
 // Raw promise (not recommended in production):
 function DataComponent() {
-  const data = use(fetch('/api/data').then((r) => r.json()));
+  const data = use(fetch("/api/data").then((r) => r.json()));
   return <pre>{JSON.stringify(data, null, 2)}</pre>;
 }
 
@@ -109,7 +109,10 @@ function App() {
 ```jsx
 function DataComponent({ id }) {
   // Only create promise once per id:
-  const dataPromise = useMemo(() => fetch(`/api/data/${id}`).then((r) => r.json()), [id]);
+  const dataPromise = useMemo(
+    () => fetch(`/api/data/${id}`).then((r) => r.json()),
+    [id],
+  );
 
   const data = use(dataPromise);
   return <pre>{JSON.stringify(data, null, 2)}</pre>;
@@ -135,12 +138,12 @@ Modern data libraries support Suspense directly. React Query 5+ example:
 
 ```jsx
 // React Query 5+ with Suspense:
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from "@tanstack/react-query";
 
 function UserProfile({ userId }) {
   // useSuspenseQuery throws promise if suspended
   const { data: user } = useSuspenseQuery({
-    queryKey: ['user', userId],
+    queryKey: ["user", userId],
     queryFn: () => fetchUser(userId),
   });
 

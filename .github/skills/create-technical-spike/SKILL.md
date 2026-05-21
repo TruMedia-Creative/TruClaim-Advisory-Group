@@ -1,6 +1,6 @@
 ---
 name: create-technical-spike
-description: 'Create time-boxed technical spike documents for researching and resolving critical development decisions before implementation.'
+description: "Create time-boxed technical spike documents for researching and resolving critical development decisions before implementation."
 ---
 
 # Create Technical Spike Document
@@ -13,15 +13,15 @@ Create individual files in `${input:FolderPath|docs/spikes}` directory. Name eac
 
 ```md
 ---
-title: '${input:SpikeTitle}'
-category: '${input:Category|Technical}'
-status: '🔴 Not Started'
-priority: '${input:Priority|High}'
-timebox: '${input:Timebox|1 week}'
+title: "${input:SpikeTitle}"
+category: "${input:Category|Technical}"
+status: "🔴 Not Started"
+priority: "${input:Priority|High}"
+timebox: "${input:Timebox|1 week}"
 created: [YYYY-MM-DD]
 updated: [YYYY-MM-DD]
-owner: '${input:Owner}'
-tags: ['technical-spike', '${input:Category|technical}', 'research']
+owner: "${input:Owner}"
+tags: ["technical-spike", "${input:Category|technical}", "research"]
 ---
 
 # ${input:SpikeTitle}

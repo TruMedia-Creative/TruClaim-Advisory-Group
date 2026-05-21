@@ -38,19 +38,19 @@ export default defineEventHandler(async (event) => {
 
 ```typescript
 // shared/schemas/user.ts
-import { z } from 'zod';
+import { z } from "zod";
 
 export const userQuerySchema = z.object({
   page: z.coerce.number().min(1).default(1),
   limit: z.coerce.number().min(1).max(100).default(20),
   search: z.string().optional(),
-  status: z.enum(['active', 'inactive']).optional(),
+  status: z.enum(["active", "inactive"]).optional(),
 });
 
 export const createUserSchema = z.object({
   name: z.string().min(1).max(100),
   email: z.string().email(),
-  role: z.enum(['user', 'admin']).default('user'),
+  role: z.enum(["user", "admin"]).default("user"),
 });
 
 export type UserQuery = z.infer<typeof userQuerySchema>;
@@ -59,7 +59,7 @@ export type CreateUserInput = z.infer<typeof createUserSchema>;
 
 ```typescript
 // ✅ CORRECT - server/api/users.get.ts
-import { userQuerySchema } from '#shared/schemas/user';
+import { userQuerySchema } from "#shared/schemas/user";
 
 export default defineEventHandler(async (event) => {
   // Validates and returns typed object
@@ -71,7 +71,7 @@ export default defineEventHandler(async (event) => {
 });
 
 // ✅ CORRECT - server/api/users.post.ts
-import { createUserSchema } from '#shared/schemas/user';
+import { createUserSchema } from "#shared/schemas/user";
 
 export default defineEventHandler(async (event) => {
   // Validates body against schema
@@ -85,7 +85,7 @@ export default defineEventHandler(async (event) => {
 **Using safeParse for custom error handling:**
 
 ```typescript
-import { createUserSchema } from '#shared/schemas/user';
+import { createUserSchema } from "#shared/schemas/user";
 
 export default defineEventHandler(async (event) => {
   const rawBody = await readBody(event);
@@ -94,7 +94,7 @@ export default defineEventHandler(async (event) => {
   if (!result.success) {
     throw createError({
       statusCode: 400,
-      message: 'Validation failed',
+      message: "Validation failed",
       data: {
         errors: result.error.flatten().fieldErrors,
       },
@@ -109,7 +109,7 @@ export default defineEventHandler(async (event) => {
 
 ```typescript
 // server/api/users/[id].get.ts
-import { z } from 'zod';
+import { z } from "zod";
 
 const paramsSchema = z.object({
   id: z.string().uuid(),

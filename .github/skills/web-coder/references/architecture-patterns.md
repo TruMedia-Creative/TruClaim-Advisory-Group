@@ -31,7 +31,7 @@ Web app that loads single HTML page and dynamically updates content.
 
 ```javascript
 // React Router example
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
@@ -80,11 +80,11 @@ Web app with native app capabilities.
 
 ```javascript
 // Service Worker registration
-if ('serviceWorker' in navigator) {
+if ("serviceWorker" in navigator) {
   navigator.serviceWorker
-    .register('/sw.js')
-    .then((reg) => console.log('SW registered', reg))
-    .catch((err) => console.error('SW error', err));
+    .register("/sw.js")
+    .then((reg) => console.log("SW registered", reg))
+    .catch((err) => console.error("SW error", err));
 }
 ```
 
@@ -207,7 +207,7 @@ JavaScript renders content in browser.
 <div id="root"></div>
 <script>
   // React renders app here
-  ReactDOM.render(<App />, document.getElementById('root'));
+  ReactDOM.render(<App />, document.getElementById("root"));
 </script>
 ```
 
@@ -217,7 +217,7 @@ Attach JavaScript to server-rendered HTML.
 
 ```javascript
 // React hydration
-ReactDOM.hydrate(<App />, document.getElementById('root'));
+ReactDOM.hydrate(<App />, document.getElementById("root"));
 ```
 
 ### Partial Hydration
@@ -309,10 +309,10 @@ Application-wide state.
 
 ```javascript
 // Redux example
-import { createSlice, configureStore } from '@reduxjs/toolkit';
+import { createSlice, configureStore } from "@reduxjs/toolkit";
 
 const counterSlice = createSlice({
-  name: 'counter',
+  name: "counter",
   initialState: { value: 0 },
   reducers: {
     increment: (state) => {
@@ -332,7 +332,7 @@ Share state without prop drilling.
 
 ```javascript
 // React Context
-const ThemeContext = React.createContext('light');
+const ThemeContext = React.createContext("light");
 
 function App() {
   return (
@@ -390,7 +390,7 @@ mutation {
 
 ```javascript
 // Apollo Client
-import { useQuery, gql } from '@apollo/client';
+import { useQuery, gql } from "@apollo/client";
 
 const GET_USER = gql`
   query GetUser($id: ID!) {
@@ -424,7 +424,7 @@ const appRouter = router({
 });
 
 // Client (fully typed!)
-const user = await trpc.getUser.query('1');
+const user = await trpc.getUser.query("1");
 ```
 
 ## Microservices Architecture
@@ -475,7 +475,7 @@ Run code without managing servers.
 ```javascript
 // Vercel serverless function
 export default function handler(req, res) {
-  res.status(200).json({ message: 'Hello from serverless!' });
+  res.status(200).json({ message: "Hello from serverless!" });
 }
 ```
 
@@ -522,7 +522,7 @@ Prefer composing objects over class hierarchies.
 // Composition
 function withLogging(Component) {
   return function LoggedComponent(props) {
-    console.log('Rendering', Component.name);
+    console.log("Rendering", Component.name);
     return <Component {...props} />;
   };
 }
@@ -538,14 +538,14 @@ Modern JavaScript modules.
 
 ```javascript
 // export
-export const name = 'John';
+export const name = "John";
 export function greet() {}
 export default App;
 
 // import
-import App from './App.js';
-import { name, greet } from './utils.js';
-import * as utils from './utils.js';
+import App from "./App.js";
+import { name, greet } from "./utils.js";
+import * as utils from "./utils.js";
 ```
 
 ### CommonJS
@@ -554,11 +554,11 @@ Node.js module system.
 
 ```javascript
 // export
-module.exports = { name: 'John' };
+module.exports = { name: "John" };
 exports.greet = function () {};
 
 // import
-const { name } = require('./utils');
+const { name } = require("./utils");
 ```
 
 ## Build Optimization
@@ -569,7 +569,7 @@ Split code into smaller chunks.
 
 ```javascript
 // React lazy loading
-const OtherComponent = React.lazy(() => import('./OtherComponent'));
+const OtherComponent = React.lazy(() => import("./OtherComponent"));
 
 function App() {
   return (
@@ -586,7 +586,7 @@ Remove unused code.
 
 ```javascript
 // Only imports 'map', not entire lodash
-import { map } from 'lodash-es';
+import { map } from "lodash-es";
 ```
 
 ### Bundle Splitting

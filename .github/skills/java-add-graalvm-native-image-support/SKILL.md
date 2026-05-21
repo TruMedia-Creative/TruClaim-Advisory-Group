@@ -1,6 +1,6 @@
 ---
 name: java-add-graalvm-native-image-support
-description: 'GraalVM Native Image expert that adds native image support to Java applications, builds the project, analyzes build errors, applies fixes, and iterates until successful compilation using Oracle best practices.'
+description: "GraalVM Native Image expert that adds native image support to Java applications, builds the project, analyzes build errors, applies fixes, and iterates until successful compilation using Oracle best practices."
 ---
 
 # GraalVM Native Image Agent
@@ -195,7 +195,9 @@ For JNI-related errors, create `src/main/resources/META-INF/native-image/jni-con
 [
   {
     "name": "com.example.NativeClass",
-    "methods": [{ "name": "nativeMethod", "parameterTypes": ["java.lang.String"] }]
+    "methods": [
+      { "name": "nativeMethod", "parameterTypes": ["java.lang.String"] }
+    ]
   }
 ]
 ```

@@ -37,7 +37,7 @@ export const globalUser = ref<User | null>(null); // Leaks between requests!
 export function useCounter() {
   // useState creates request-scoped state on server
   // and hydrates correctly on client
-  const count = useState<number>('counter', () => 0);
+  const count = useState<number>("counter", () => 0);
 
   function increment() {
     count.value++;
@@ -50,10 +50,10 @@ export function useCounter() {
 ```typescript
 // ✅ CORRECT - Shared user state
 export function useUser() {
-  const user = useState<User | null>('user', () => null);
+  const user = useState<User | null>("user", () => null);
 
   async function fetchUser() {
-    const { data } = await useFetch('/api/me');
+    const { data } = await useFetch("/api/me");
     user.value = data.value;
   }
 
@@ -75,15 +75,17 @@ export function useUser() {
 ```typescript
 export function useCart() {
   // Key must be unique across the app
-  const items = useState<CartItem[]>('cart-items', () => []);
-  const total = computed(() => items.value.reduce((sum, item) => sum + item.price, 0));
+  const items = useState<CartItem[]>("cart-items", () => []);
+  const total = computed(() =>
+    items.value.reduce((sum, item) => sum + item.price, 0),
+  );
 
   return { items, total };
 }
 
 export function useTheme() {
   // Different key for different state
-  const theme = useState<'light' | 'dark'>('app-theme', () => 'light');
+  const theme = useState<"light" | "dark">("app-theme", () => "light");
 
   return { theme };
 }
@@ -93,13 +95,13 @@ export function useTheme() {
 
 ```typescript
 export function useAuth() {
-  const user = useState<User | null>('auth-user', () => null);
+  const user = useState<User | null>("auth-user", () => null);
 
   async function logout() {
-    await $fetch('/api/logout', { method: 'POST' });
+    await $fetch("/api/logout", { method: "POST" });
     user.value = null;
     // Or clear all state
-    clearNuxtState('auth-user');
+    clearNuxtState("auth-user");
   }
 
   return { user, logout };
@@ -110,14 +112,14 @@ export function useAuth() {
 
 ```typescript
 // stores/user.ts
-export const useUserStore = defineStore('user', () => {
+export const useUserStore = defineStore("user", () => {
   // Pinia handles SSR automatically in Nuxt
   const user = ref<User | null>(null);
   const isLoggedIn = computed(() => !!user.value);
 
   async function login(credentials: Credentials) {
-    user.value = await $fetch('/api/login', {
-      method: 'POST',
+    user.value = await $fetch("/api/login", {
+      method: "POST",
       body: credentials,
     });
   }

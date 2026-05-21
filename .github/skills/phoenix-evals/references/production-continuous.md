@@ -68,12 +68,12 @@ client.spans.log_span_annotations_dataframe(dataframe=annotations_df)
 ### TypeScript
 
 ```typescript
-import { getSpans } from '@arizeai/phoenix-client/spans';
-import { logSpanAnnotations } from '@arizeai/phoenix-client/spans';
+import { getSpans } from "@arizeai/phoenix-client/spans";
+import { logSpanAnnotations } from "@arizeai/phoenix-client/spans";
 
 // 1. Sample recent spans
 const { spans } = await getSpans({
-  project: { projectName: 'my-app' },
+  project: { projectName: "my-app" },
   startTime: new Date(Date.now() - 60 * 60 * 1000),
   parentId: null, // root spans only
   limit: 100,
@@ -84,17 +84,17 @@ const results = await Promise.all(
   spans.map(async (span) => ({
     spanId: span.context.span_id,
     ...(await runEvaluators(span, [qualityEval, safetyEval])),
-  }))
+  })),
 );
 
 // 3. Upload results as annotations
 await logSpanAnnotations({
   spanAnnotations: results.map((r) => ({
     spanId: r.spanId,
-    name: 'quality',
+    name: "quality",
     score: r.qualityScore,
     label: r.qualityLabel,
-    annotatorKind: 'LLM' as const,
+    annotatorKind: "LLM" as const,
   })),
 });
 ```
@@ -114,10 +114,10 @@ traces = client.traces.get_traces(
 
 ```typescript
 // TypeScript: identify slow traces
-import { getTraces } from '@arizeai/phoenix-client/traces';
+import { getTraces } from "@arizeai/phoenix-client/traces";
 
 const { traces } = await getTraces({
-  project: { projectName: 'my-app' },
+  project: { projectName: "my-app" },
   startTime: new Date(Date.now() - 60 * 60 * 1000),
   limit: 50,
 });

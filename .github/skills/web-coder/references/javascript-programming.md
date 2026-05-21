@@ -32,8 +32,8 @@ The standardized specification that JavaScript implements.
 
 ```javascript
 // String
-let name = 'John';
-let greeting = 'Hello';
+let name = "John";
+let greeting = "Hello";
 let template = `Hello, ${name}!`; // Template literal
 
 // Number
@@ -57,13 +57,13 @@ console.log(undefined_var); // undefined
 let empty = null;
 
 // Symbol (unique identifier)
-let sym = Symbol('description');
+let sym = Symbol("description");
 ```
 
 ### Type Checking
 
 ```javascript
-typeof 'hello'; // "string"
+typeof "hello"; // "string"
 typeof 42; // "number"
 typeof true; // "boolean"
 typeof undefined; // "undefined"
@@ -84,19 +84,19 @@ value === null; // true if null
 
 ```javascript
 // Implicit coercion
-'5' + 2; // "52" (string concatenation)
-'5' - 2; // 3 (numeric subtraction)
-'5' * '2'; // 10 (numeric multiplication)
-!!'value'; // true (boolean conversion)
+"5" + 2; // "52" (string concatenation)
+"5" - 2; // 3 (numeric subtraction)
+"5" * "2"; // 10 (numeric multiplication)
+!!"value"; // true (boolean conversion)
 
 // Explicit conversion
 String(123); // "123"
-Number('123'); // 123
-Number('abc'); // NaN
+Number("123"); // 123
+Number("abc"); // NaN
 Boolean(0); // false
 Boolean(1); // true
-parseInt('123px'); // 123
-parseFloat('3.14'); // 3.14
+parseInt("123px"); // 123
+parseFloat("3.14"); // 3.14
 ```
 
 ### Truthy and Falsy Values
@@ -122,7 +122,7 @@ parseFloat('3.14'); // 3.14
 
 ```javascript
 // var (function-scoped, hoisted - avoid in modern code)
-var oldStyle = 'avoid this';
+var oldStyle = "avoid this";
 
 // let (block-scoped, can be reassigned)
 let count = 0;
@@ -133,8 +133,8 @@ const MAX = 100;
 MAX = 200; // ✗ TypeError
 
 // const with objects/arrays (content can change)
-const person = { name: 'John' };
-person.name = 'Jane'; // ✓ works (mutating object)
+const person = { name: "John" };
+person.name = "Jane"; // ✓ works (mutating object)
 person = {}; // ✗ TypeError (reassigning variable)
 ```
 
@@ -196,7 +196,7 @@ const fn = function () {
 function execute(callback) {
   return callback();
 }
-execute(() => console.log('Hello'));
+execute(() => console.log("Hello"));
 
 // Return from function
 function createMultiplier(factor) {
@@ -260,17 +260,17 @@ const sum = numbers.reduce((acc, num) => acc + num, 0);
 ```javascript
 (function () {
   // Code here runs immediately
-  console.log('IIFE executed');
+  console.log("IIFE executed");
 })();
 
 // With parameters
 (function (name) {
   console.log(`Hello, ${name}`);
-})('World');
+})("World");
 
 // Arrow function IIFE
 (() => {
-  console.log('Arrow IIFE');
+  console.log("Arrow IIFE");
 })();
 ```
 
@@ -281,7 +281,7 @@ const sum = numbers.reduce((acc, num) => acc + num, 0);
 ```javascript
 // Object literal
 const person = {
-  name: 'John',
+  name: "John",
   age: 30,
   greet() {
     return `Hello, I'm ${this.name}`;
@@ -294,12 +294,12 @@ function Person(name, age) {
   this.age = age;
 }
 
-const john = new Person('John', 30);
+const john = new Person("John", 30);
 
 // Object.create
 const proto = {
   greet() {
-    return 'Hello';
+    return "Hello";
   },
 };
 const obj = Object.create(proto);
@@ -308,14 +308,14 @@ const obj = Object.create(proto);
 ### Accessing Properties
 
 ```javascript
-const obj = { name: 'John', age: 30 };
+const obj = { name: "John", age: 30 };
 
 // Dot notation
 obj.name; // "John"
 
 // Bracket notation
-obj['age']; // 30
-const key = 'name';
+obj["age"]; // 30
+const key = "name";
 obj[key]; // "John"
 
 // Optional chaining (ES2020)
@@ -326,7 +326,7 @@ obj.getName?.(); // undefined (no error if getName doesn't exist)
 ### Object Methods
 
 ```javascript
-const person = { name: 'John', age: 30, city: 'NYC' };
+const person = { name: "John", age: 30, city: "NYC" };
 
 // Get keys
 Object.keys(person); // ["name", "age", "city"]
@@ -338,10 +338,10 @@ Object.values(person); // ["John", 30, "NYC"]
 Object.entries(person); // [["name", "John"], ["age", 30], ["city", "NYC"]]
 
 // Assign (merge objects)
-const extended = Object.assign({}, person, { country: 'USA' });
+const extended = Object.assign({}, person, { country: "USA" });
 
 // Spread operator (modern alternative)
-const merged = { ...person, country: 'USA' };
+const merged = { ...person, country: "USA" };
 
 // Freeze (make immutable)
 Object.freeze(person);
@@ -355,17 +355,17 @@ Object.seal(person);
 
 ```javascript
 // Object destructuring
-const person = { name: 'John', age: 30, city: 'NYC' };
+const person = { name: "John", age: 30, city: "NYC" };
 const { name, age } = person;
 
 // With different variable names
 const { name: personName, age: personAge } = person;
 
 // With defaults
-const { name, country = 'USA' } = person;
+const { name, country = "USA" } = person;
 
 // Nested destructuring
-const user = { profile: { email: 'john@example.com' } };
+const user = { profile: { email: "john@example.com" } };
 const {
   profile: { email },
 } = user;
@@ -386,7 +386,7 @@ const [a, , c] = numbers;
 // Create arrays
 const arr = [1, 2, 3];
 const empty = [];
-const mixed = [1, 'two', { three: 3 }, [4]];
+const mixed = [1, "two", { three: 3 }, [4]];
 
 // Access elements
 arr[0]; // 1
@@ -398,7 +398,7 @@ arr.push(4); // Add to end
 arr.pop(); // Remove from end
 arr.unshift(0); // Add to beginning
 arr.shift(); // Remove from beginning
-arr.splice(1, 2, 'a', 'b'); // Remove 2 elements at index 1, insert 'a', 'b'
+arr.splice(1, 2, "a", "b"); // Remove 2 elements at index 1, insert 'a', 'b'
 
 // Iteration
 arr.forEach((item) => console.log(item));
@@ -473,11 +473,11 @@ switch (value) {
 }
 
 // Nullish coalescing (ES2020)
-const value = null ?? 'default'; // "default"
-const value = 0 ?? 'default'; // 0 (0 is not nullish)
+const value = null ?? "default"; // "default"
+const value = 0 ?? "default"; // 0 (0 is not nullish)
 
 // Logical OR for defaults (pre-ES2020)
-const value = falsy || 'default';
+const value = falsy || "default";
 
 // Optional chaining
 const city = user?.address?.city;
@@ -529,7 +529,7 @@ for (let i = 0; i < 10; i++) {
 ```javascript
 function fetchData(callback) {
   setTimeout(() => {
-    callback('Data received');
+    callback("Data received");
   }, 1000);
 }
 
@@ -544,9 +544,9 @@ const promise = new Promise((resolve, reject) => {
   setTimeout(() => {
     const success = true;
     if (success) {
-      resolve('Success!');
+      resolve("Success!");
     } else {
-      reject('Error!');
+      reject("Error!");
     }
   }, 1000);
 });
@@ -555,7 +555,7 @@ const promise = new Promise((resolve, reject) => {
 promise
   .then((result) => console.log(result))
   .catch((error) => console.error(error))
-  .finally(() => console.log('Done'));
+  .finally(() => console.log("Done"));
 
 // Promise utilities
 Promise.all([promise1, promise2]); // Wait for all
@@ -570,11 +570,11 @@ Promise.any([promise1, promise2]); // First to succeed (ES2021)
 // Async function
 async function fetchData() {
   try {
-    const response = await fetch('https://api.example.com/data');
+    const response = await fetch("https://api.example.com/data");
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error('Error:', error);
+    console.error("Error:", error);
   }
 }
 
@@ -612,7 +612,7 @@ class Person {
 
   // Static method
   static species() {
-    return 'Homo sapiens';
+    return "Homo sapiens";
   }
 }
 
@@ -630,11 +630,11 @@ class Employee extends Person {
 }
 
 // Usage
-const john = new Person('John', 30);
+const john = new Person("John", 30);
 john.greet(); // "Hello, I'm John"
 Person.species(); // "Homo sapiens"
 
-const jane = new Employee('Jane', 25, 'Developer');
+const jane = new Employee("Jane", 25, "Developer");
 jane.greet(); // "Hello, I'm Jane, I'm a Developer"
 ```
 
@@ -653,9 +653,9 @@ export default class Calculator {
 }
 
 // Import
-import Calculator, { PI, add } from './math.js';
-import * as math from './math.js';
-import { add as sum } from './math.js'; // Rename
+import Calculator, { PI, add } from "./math.js";
+import * as math from "./math.js";
+import { add as sum } from "./math.js"; // Rename
 ```
 
 ### CommonJS (Node.js)
@@ -669,7 +669,7 @@ module.exports = {
 };
 
 // Import
-const math = require('./math');
+const math = require("./math");
 ```
 
 ## Error Handling
@@ -678,23 +678,23 @@ const math = require('./math');
 // Try/catch
 try {
   // Code that might throw
-  throw new Error('Something went wrong');
+  throw new Error("Something went wrong");
 } catch (error) {
   console.error(error.message);
 } finally {
   // Always runs
-  console.log('Cleanup');
+  console.log("Cleanup");
 }
 
 // Custom errors
 class ValidationError extends Error {
   constructor(message) {
     super(message);
-    this.name = 'ValidationError';
+    this.name = "ValidationError";
   }
 }
 
-throw new ValidationError('Invalid input');
+throw new ValidationError("Invalid input");
 ```
 
 ## Best Practices

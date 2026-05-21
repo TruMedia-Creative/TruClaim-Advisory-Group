@@ -49,15 +49,15 @@ client.spans.add_span_annotation(
 ## Add Annotation (TypeScript)
 
 ```typescript
-import { addSpanAnnotation } from '@arizeai/phoenix-client/spans';
+import { addSpanAnnotation } from "@arizeai/phoenix-client/spans";
 
 await addSpanAnnotation({
   spanAnnotation: {
-    spanId: 'abc123',
-    name: 'failure_category',
-    label: 'hallucination',
+    spanId: "abc123",
+    name: "failure_category",
+    label: "hallucination",
     explanation: "invented a feature that doesn't exist",
-    annotatorKind: 'HUMAN',
+    annotatorKind: "HUMAN",
   },
 });
 ```

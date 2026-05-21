@@ -1,6 +1,6 @@
 ---
 name: context-map
-description: 'Generate a map of all files relevant to a task before making changes'
+description: "Generate a map of all files relevant to a task before making changes"
 ---
 
 # Context Map

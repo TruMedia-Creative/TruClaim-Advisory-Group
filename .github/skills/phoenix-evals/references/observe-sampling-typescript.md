@@ -9,26 +9,26 @@ How to efficiently sample production traces for review.
 Use server-side filters to fetch only what you need:
 
 ```typescript
-import { getSpans } from '@arizeai/phoenix-client/spans';
+import { getSpans } from "@arizeai/phoenix-client/spans";
 
 // Server-side filter — only ERROR spans are returned
 const { spans: errors } = await getSpans({
-  project: { projectName: 'my-project' },
-  statusCode: 'ERROR',
+  project: { projectName: "my-project" },
+  statusCode: "ERROR",
   limit: 100,
 });
 
 // Fetch only LLM spans
 const { spans: llmSpans } = await getSpans({
-  project: { projectName: 'my-project' },
-  spanKind: 'LLM',
+  project: { projectName: "my-project" },
+  spanKind: "LLM",
   limit: 100,
 });
 
 // Filter by span name
 const { spans: chatSpans } = await getSpans({
-  project: { projectName: 'my-project' },
-  name: 'chat_completion',
+  project: { projectName: "my-project" },
+  name: "chat_completion",
   limit: 100,
 });
 ```
@@ -37,7 +37,7 @@ const { spans: chatSpans } = await getSpans({
 
 ```typescript
 const { spans } = await getSpans({
-  project: { projectName: 'my-project' },
+  project: { projectName: "my-project" },
   limit: 200,
 });
 const latency = (s: (typeof spans)[number]) =>
@@ -50,7 +50,11 @@ const slowResponses = sorted.slice(0, 50);
 
 ```typescript
 // Sample equally from each category
-function stratifiedSample<T>(items: T[], groupBy: (item: T) => string, perGroup: number): T[] {
+function stratifiedSample<T>(
+  items: T[],
+  groupBy: (item: T) => string,
+  perGroup: number,
+): T[] {
   const groups = new Map<string, T[]>();
   for (const item of items) {
     const key = groupBy(item);
@@ -61,30 +65,32 @@ function stratifiedSample<T>(items: T[], groupBy: (item: T) => string, perGroup:
 }
 
 const { spans } = await getSpans({
-  project: { projectName: 'my-project' },
+  project: { projectName: "my-project" },
   limit: 500,
 });
 const byQueryType = stratifiedSample(
   spans,
-  (s) => s.attributes?.['metadata.query_type'] ?? 'unknown',
-  20
+  (s) => s.attributes?.["metadata.query_type"] ?? "unknown",
+  20,
 );
 ```
 
 ### 4. Metric-Guided
 
 ```typescript
-import { getSpanAnnotations } from '@arizeai/phoenix-client/spans';
+import { getSpanAnnotations } from "@arizeai/phoenix-client/spans";
 
 // Fetch annotations for your spans, then filter by label
 const { annotations } = await getSpanAnnotations({
-  project: { projectName: 'my-project' },
+  project: { projectName: "my-project" },
   spanIds: spans.map((s) => s.context.span_id),
-  includeAnnotationNames: ['hallucination'],
+  includeAnnotationNames: ["hallucination"],
 });
 
 const flaggedSpanIds = new Set(
-  annotations.filter((a) => a.result?.label === 'hallucinated').map((a) => a.span_id)
+  annotations
+    .filter((a) => a.result?.label === "hallucinated")
+    .map((a) => a.span_id),
 );
 const flagged = spans.filter((s) => flaggedSpanIds.has(s.context.span_id));
 ```
@@ -94,25 +100,25 @@ const flagged = spans.filter((s) => flaggedSpanIds.has(s.context.span_id));
 When you need whole requests (all spans in a trace), use `getTraces`:
 
 ```typescript
-import { getTraces } from '@arizeai/phoenix-client/traces';
+import { getTraces } from "@arizeai/phoenix-client/traces";
 
 // Recent traces with full span trees
 const { traces } = await getTraces({
-  project: { projectName: 'my-project' },
+  project: { projectName: "my-project" },
   limit: 100,
   includeSpans: true,
 });
 
 // Filter by session (e.g., multi-turn conversations)
 const { traces: sessionTraces } = await getTraces({
-  project: { projectName: 'my-project' },
-  sessionId: 'user-session-abc',
+  project: { projectName: "my-project" },
+  sessionId: "user-session-abc",
   includeSpans: true,
 });
 
 // Time-windowed sampling
 const { traces: recentTraces } = await getTraces({
-  project: { projectName: 'my-project' },
+  project: { projectName: "my-project" },
   startTime: new Date(Date.now() - 60 * 60 * 1000), // last hour
   limit: 50,
   includeSpans: true,
@@ -124,18 +130,20 @@ const { traces: recentTraces } = await getTraces({
 ```typescript
 // Combine server-side filters into a review queue
 const { spans: errorSpans } = await getSpans({
-  project: { projectName: 'my-project' },
-  statusCode: 'ERROR',
+  project: { projectName: "my-project" },
+  statusCode: "ERROR",
   limit: 30,
 });
 const { spans: allSpans } = await getSpans({
-  project: { projectName: 'my-project' },
+  project: { projectName: "my-project" },
   limit: 100,
 });
 const random = allSpans.sort(() => Math.random() - 0.5).slice(0, 30);
 
 const combined = [...errorSpans, ...random];
-const unique = [...new Map(combined.map((s) => [s.context.span_id, s])).values()];
+const unique = [
+  ...new Map(combined.map((s) => [s.context.span_id, s])).values(),
+];
 const reviewQueue = unique.slice(0, 100);
 ```
 

@@ -125,8 +125,8 @@ Any Markdown within the `<details>` block will be collapsed until the reader cli
 
 ```html
 <p>
-  Any Markdown within the <code>&lt;details&gt;</code> block will be collapsed until the reader
-  clicks
+  Any Markdown within the <code>&lt;details&gt;</code> block will be collapsed
+  until the reader clicks
   <svg
     version="1.1"
     width="16"

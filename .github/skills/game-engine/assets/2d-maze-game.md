@@ -68,13 +68,13 @@ project/
   <body>
     <script>
       (() => {
-        const game = new Phaser.Game(320, 480, Phaser.CANVAS, 'game');
-        game.state.add('Boot', Ball.Boot);
-        game.state.add('Preloader', Ball.Preloader);
-        game.state.add('MainMenu', Ball.MainMenu);
-        game.state.add('Howto', Ball.Howto);
-        game.state.add('Game', Ball.Game);
-        game.state.start('Boot');
+        const game = new Phaser.Game(320, 480, Phaser.CANVAS, "game");
+        game.state.add("Boot", Ball.Boot);
+        game.state.add("Preloader", Ball.Preloader);
+        game.state.add("MainMenu", Ball.MainMenu);
+        game.state.add("Howto", Ball.Howto);
+        game.state.add("Game", Ball.Game);
+        game.state.start("Boot");
       })();
     </script>
   </body>
@@ -107,14 +107,14 @@ const Ball = {
 Ball.Boot = function (game) {};
 Ball.Boot.prototype = {
   preload() {
-    this.load.image('preloaderBg', 'img/loading-bg.png');
-    this.load.image('preloaderBar', 'img/loading-bar.png');
+    this.load.image("preloaderBg", "img/loading-bg.png");
+    this.load.image("preloaderBar", "img/loading-bar.png");
   },
   create() {
     this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     this.game.scale.pageAlignHorizontally = true;
     this.game.scale.pageAlignVertically = true;
-    this.game.state.start('Preloader');
+    this.game.state.start("Preloader");
   },
 };
 ```
@@ -130,24 +130,28 @@ Ball.Preloader.prototype = {
     this.preloadBg = this.add.sprite(
       (Ball._WIDTH - 297) * 0.5,
       (Ball._HEIGHT - 145) * 0.5,
-      'preloaderBg'
+      "preloaderBg",
     );
     this.preloadBar = this.add.sprite(
       (Ball._WIDTH - 158) * 0.5,
       (Ball._HEIGHT - 50) * 0.5,
-      'preloaderBar'
+      "preloaderBar",
     );
     this.load.setPreloadSprite(this.preloadBar);
 
-    this.load.image('ball', 'img/ball.png');
-    this.load.image('hole', 'img/hole.png');
-    this.load.image('element-w', 'img/element-horizontal.png');
-    this.load.image('element-h', 'img/element-vertical.png');
-    this.load.spritesheet('button-start', 'img/button-start.png', 146, 51);
-    this.load.audio('audio-bounce', ['audio/bounce.ogg', 'audio/bounce.mp3', 'audio/bounce.m4a']);
+    this.load.image("ball", "img/ball.png");
+    this.load.image("hole", "img/hole.png");
+    this.load.image("element-w", "img/element-horizontal.png");
+    this.load.image("element-h", "img/element-vertical.png");
+    this.load.spritesheet("button-start", "img/button-start.png", 146, 51);
+    this.load.audio("audio-bounce", [
+      "audio/bounce.ogg",
+      "audio/bounce.mp3",
+      "audio/bounce.m4a",
+    ]);
   },
   create() {
-    this.game.state.start('MainMenu');
+    this.game.state.start("MainMenu");
   },
 };
 ```
@@ -160,25 +164,25 @@ Displays the title screen with a start button.
 Ball.MainMenu = function (game) {};
 Ball.MainMenu.prototype = {
   create() {
-    this.add.sprite(0, 0, 'screen-mainmenu');
-    this.gameTitle = this.add.sprite(Ball._WIDTH * 0.5, 40, 'title');
+    this.add.sprite(0, 0, "screen-mainmenu");
+    this.gameTitle = this.add.sprite(Ball._WIDTH * 0.5, 40, "title");
     this.gameTitle.anchor.set(0.5, 0);
 
     this.startButton = this.add.button(
       Ball._WIDTH * 0.5,
       200,
-      'button-start',
+      "button-start",
       this.startGame,
       this,
       2,
       0,
-      1 // hover, out, down frames
+      1, // hover, out, down frames
     );
     this.startButton.anchor.set(0.5, 0);
     this.startButton.input.useHandCursor = true;
   },
   startGame() {
-    this.game.state.start('Howto');
+    this.game.state.start("Howto");
   },
 };
 ```
@@ -191,10 +195,16 @@ A single-click instruction screen before gameplay begins.
 Ball.Howto = function (game) {};
 Ball.Howto.prototype = {
   create() {
-    this.buttonContinue = this.add.button(0, 0, 'screen-howtoplay', this.startGame, this);
+    this.buttonContinue = this.add.button(
+      0,
+      0,
+      "screen-howtoplay",
+      this.startGame,
+      this,
+    );
   },
   startGame() {
-    this.game.state.start('Game');
+    this.game.state.start("Game");
   },
 };
 ```
@@ -214,7 +224,7 @@ The Device Orientation API provides real-time data about the physical tilt of a 
 
 ```javascript
 // In the Game state's create() method
-window.addEventListener('deviceorientation', this.handleOrientation);
+window.addEventListener("deviceorientation", this.handleOrientation);
 ```
 
 ### Handling Orientation Events
@@ -263,7 +273,7 @@ Ball.Game.prototype = {
 
 ```javascript
 // In create()
-this.ball = this.add.sprite(this.ballStartPos.x, this.ballStartPos.y, 'ball');
+this.ball = this.add.sprite(this.ballStartPos.x, this.ballStartPos.y, "ball");
 this.ball.anchor.set(0.5);
 this.physics.enable(this.ball, Phaser.Physics.ARCADE);
 this.ball.body.setSize(18, 18);
@@ -296,7 +306,7 @@ if (this.keys.up.isDown) {
 ### Hole (Goal) Setup
 
 ```javascript
-this.hole = this.add.sprite(Ball._WIDTH * 0.5, 90, 'hole');
+this.hole = this.add.sprite(Ball._WIDTH * 0.5, 90, "hole");
 this.physics.enable(this.hole, Phaser.Physics.ARCADE);
 this.hole.anchor.set(0.5);
 this.hole.body.setSize(2, 2);
@@ -314,11 +324,11 @@ Each level is an array of wall segment objects with position and type:
 
 ```javascript
 this.levelData = [
-  [{ x: 96, y: 224, t: 'w' }], // Level 1
+  [{ x: 96, y: 224, t: "w" }], // Level 1
   [
-    { x: 72, y: 320, t: 'w' },
-    { x: 200, y: 320, t: 'h' },
-    { x: 72, y: 150, t: 'w' },
+    { x: 72, y: 320, t: "w" },
+    { x: 200, y: 320, t: "h" },
+    { x: 72, y: 150, t: "w" },
   ], // Level 2
   // ... more levels
 ];
@@ -367,8 +377,20 @@ showLevel(level) {
 
 ```javascript
 // In update()
-this.physics.arcade.collide(this.ball, this.borderGroup, this.wallCollision, null, this);
-this.physics.arcade.collide(this.ball, this.levels[this.level - 1], this.wallCollision, null, this);
+this.physics.arcade.collide(
+  this.ball,
+  this.borderGroup,
+  this.wallCollision,
+  null,
+  this,
+);
+this.physics.arcade.collide(
+  this.ball,
+  this.levels[this.level - 1],
+  this.wallCollision,
+  null,
+  this,
+);
 ```
 
 `collide` causes the ball to bounce off walls and triggers the callback.
@@ -413,7 +435,7 @@ manageAudio() {
 ## Vibration API
 
 ```javascript
-if ('vibrate' in window.navigator) {
+if ("vibrate" in window.navigator) {
   window.navigator.vibrate(100); // 100ms vibration pulse
 }
 ```

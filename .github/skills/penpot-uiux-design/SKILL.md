@@ -132,7 +132,7 @@ allShapes.forEach((s) => {
 
 // Find existing text styles (font sizes, weights)
 const textStyles = allShapes
-  .filter((s) => s.type === 'text')
+  .filter((s) => s.type === "text")
   .map((s) => ({ fontSize: s.fontSize, fontWeight: s.fontWeight }));
 
 // Find existing components
@@ -167,7 +167,7 @@ return { colors: [...colors], textStyles, componentCount: components.length };
 
 ```javascript
 // Find all existing boards and calculate next position
-const boards = penpotUtils.findShapes((s) => s.type === 'board', penpot.root);
+const boards = penpotUtils.findShapes((s) => s.type === "board", penpot.root);
 let nextX = 0;
 const gap = 100; // Space between boards
 

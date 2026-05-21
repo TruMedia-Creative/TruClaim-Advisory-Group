@@ -19,8 +19,8 @@
         height: 100%;
         overflow: hidden;
         font-family:
-          -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
-          sans-serif;
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+          Cantarell, sans-serif;
         background: #f5f5f5;
         user-select: none;
         -webkit-user-select: none;
@@ -334,7 +334,7 @@
       }
 
       .sticky-note .note-resize::after {
-        content: '';
+        content: "";
         position: absolute;
         bottom: 3px;
         right: 3px;
@@ -653,7 +653,11 @@
     <div id="toolbar">
       <!-- Drawing tools -->
       <div class="toolbar-group">
-        <button class="tool-btn active" data-tool="select" title="Select / Move (V)">
+        <button
+          class="tool-btn active"
+          data-tool="select"
+          title="Select / Move (V)"
+        >
           <span class="icon">
             <svg
               width="20"
@@ -782,7 +786,12 @@
           </span>
           <span class="label">Text</span>
         </button>
-        <button class="tool-btn" data-tool="note" id="note-tool-btn" title="Sticky Note (N)">
+        <button
+          class="tool-btn"
+          data-tool="note"
+          id="note-tool-btn"
+          title="Sticky Note (N)"
+        >
           <span class="icon">
             <svg
               width="20"
@@ -942,25 +951,35 @@
         <div class="steps">
           <div class="step">
             <div class="step-num">1</div>
-            <div>Draw, sketch, or add sticky notes &mdash; whatever helps you think</div>
+            <div>
+              Draw, sketch, or add sticky notes &mdash; whatever helps you think
+            </div>
           </div>
           <div class="step">
             <div class="step-num">2</div>
             <div>
-              When you're ready, click <strong>"Share with Copilot"</strong> (the green button)
+              When you're ready, click
+              <strong>"Share with Copilot"</strong> (the green button)
             </div>
           </div>
           <div class="step">
             <div class="step-num">3</div>
-            <div>Go back to your terminal and say <strong>"check the napkin"</strong></div>
+            <div>
+              Go back to your terminal and say
+              <strong>"check the napkin"</strong>
+            </div>
           </div>
           <div class="step">
             <div class="step-num">4</div>
             <div>Copilot will look at your whiteboard and respond</div>
           </div>
         </div>
-        <p style="font-size: 14px; color: #888; margin-bottom: 20px">That's it. Let's go!</p>
-        <button class="cta-btn" id="onboarding-dismiss">Got it &mdash; start drawing</button>
+        <p style="font-size: 14px; color: #888; margin-bottom: 20px">
+          That's it. Let's go!
+        </p>
+        <button class="cta-btn" id="onboarding-dismiss">
+          Got it &mdash; start drawing
+        </button>
       </div>
     </div>
 
@@ -993,8 +1012,12 @@
       <div class="shortcut-row"><span>Sticky Note</span><kbd>N</kbd></div>
       <div class="shortcut-row"><span>Eraser</span><kbd>E</kbd></div>
       <div class="shortcut-row"><span>Undo</span><kbd>Ctrl/Cmd+Z</kbd></div>
-      <div class="shortcut-row"><span>Redo</span><kbd>Ctrl/Cmd+Shift+Z</kbd></div>
-      <div class="shortcut-row"><span>Pan canvas</span><kbd>Space+Drag</kbd></div>
+      <div class="shortcut-row">
+        <span>Redo</span><kbd>Ctrl/Cmd+Shift+Z</kbd>
+      </div>
+      <div class="shortcut-row">
+        <span>Pan canvas</span><kbd>Space+Drag</kbd>
+      </div>
     </div>
 
     <!-- ── Zoom indicator ──────────────────────────────────────────── -->
@@ -1020,26 +1043,26 @@
       // ═══════════════════════════════════════════════════════════════════
 
       (function () {
-        'use strict';
+        "use strict";
 
         // ── DOM references ───────────────────────────────────────────────
-        const container = document.getElementById('canvas-container');
-        const canvas = document.getElementById('drawing-canvas');
-        const ctx = canvas.getContext('2d');
-        const toolbar = document.getElementById('toolbar');
-        const toastEl = document.getElementById('toast');
-        const onboarding = document.getElementById('onboarding-overlay');
-        const shareOverlay = document.getElementById('share-overlay');
-        const noteColorPicker = document.getElementById('note-color-picker');
+        const container = document.getElementById("canvas-container");
+        const canvas = document.getElementById("drawing-canvas");
+        const ctx = canvas.getContext("2d");
+        const toolbar = document.getElementById("toolbar");
+        const toastEl = document.getElementById("toast");
+        const onboarding = document.getElementById("onboarding-overlay");
+        const shareOverlay = document.getElementById("share-overlay");
+        const noteColorPicker = document.getElementById("note-color-picker");
 
         // ── State ────────────────────────────────────────────────────────
         const CANVAS_W = 3840;
         const CANVAS_H = 2160;
 
-        let currentTool = 'select';
-        let currentColor = '#222222';
+        let currentTool = "select";
+        let currentColor = "#222222";
         let currentStroke = 2;
-        let noteColor = 'yellow';
+        let noteColor = "yellow";
 
         // View transform
         let viewX = 0,
@@ -1071,7 +1094,7 @@
         // Unique ID counter
         let idCounter = Date.now();
         function uid() {
-          return 'n' + idCounter++;
+          return "n" + idCounter++;
         }
 
         // ── Utility ──────────────────────────────────────────────────────
@@ -1085,22 +1108,27 @@
 
         function showToast(msg, duration) {
           toastEl.textContent = msg;
-          toastEl.classList.add('show');
+          toastEl.classList.add("show");
           clearTimeout(showToast._t);
-          showToast._t = setTimeout(() => toastEl.classList.remove('show'), duration || 2500);
+          showToast._t = setTimeout(
+            () => toastEl.classList.remove("show"),
+            duration || 2500,
+          );
         }
 
         // ── Onboarding ───────────────────────────────────────────────────
         function initOnboarding() {
-          if (localStorage.getItem('napkin_onboarded')) {
-            onboarding.classList.add('hidden');
+          if (localStorage.getItem("napkin_onboarded")) {
+            onboarding.classList.add("hidden");
           }
-          document.getElementById('onboarding-dismiss').addEventListener('click', () => {
-            onboarding.classList.add('hidden');
-            localStorage.setItem('napkin_onboarded', '1');
-          });
-          document.getElementById('help-btn').addEventListener('click', () => {
-            onboarding.classList.remove('hidden');
+          document
+            .getElementById("onboarding-dismiss")
+            .addEventListener("click", () => {
+              onboarding.classList.add("hidden");
+              localStorage.setItem("napkin_onboarded", "1");
+            });
+          document.getElementById("help-btn").addEventListener("click", () => {
+            onboarding.classList.remove("hidden");
           });
         }
 
@@ -1122,43 +1150,44 @@
         }
 
         function updateCanvasTransform() {
-          canvas.style.left = viewX + 'px';
-          canvas.style.top = viewY + 'px';
-          canvas.style.width = CANVAS_W * viewScale + 'px';
-          canvas.style.height = CANVAS_H * viewScale + 'px';
-          document.getElementById('zoom-level').textContent = Math.round(viewScale * 100) + '%';
+          canvas.style.left = viewX + "px";
+          canvas.style.top = viewY + "px";
+          canvas.style.width = CANVAS_W * viewScale + "px";
+          canvas.style.height = CANVAS_H * viewScale + "px";
+          document.getElementById("zoom-level").textContent =
+            Math.round(viewScale * 100) + "%";
 
           // Reposition sticky notes and text labels
           repositionOverlays();
         }
 
         function repositionOverlays() {
-          document.querySelectorAll('.sticky-note').forEach((el) => {
+          document.querySelectorAll(".sticky-note").forEach((el) => {
             const note = stickyNotes.find((n) => n.id === el.dataset.noteId);
             if (!note) return;
-            el.style.left = viewX + note.x * viewScale + 'px';
-            el.style.top = viewY + note.y * viewScale + 'px';
-            el.style.width = note.w * viewScale + 'px';
-            el.style.height = note.h * viewScale + 'px';
-            el.style.fontSize = 14 * viewScale + 'px';
+            el.style.left = viewX + note.x * viewScale + "px";
+            el.style.top = viewY + note.y * viewScale + "px";
+            el.style.width = note.w * viewScale + "px";
+            el.style.height = note.h * viewScale + "px";
+            el.style.fontSize = 14 * viewScale + "px";
           });
-          document.querySelectorAll('.canvas-text-label').forEach((el) => {
+          document.querySelectorAll(".canvas-text-label").forEach((el) => {
             const lbl = textLabels.find((l) => l.id === el.dataset.labelId);
             if (!lbl) return;
-            el.style.left = viewX + lbl.x * viewScale + 'px';
-            el.style.top = viewY + lbl.y * viewScale + 'px';
-            el.style.fontSize = lbl.fontSize * viewScale + 'px';
+            el.style.left = viewX + lbl.x * viewScale + "px";
+            el.style.top = viewY + lbl.y * viewScale + "px";
+            el.style.fontSize = lbl.fontSize * viewScale + "px";
           });
         }
 
         // ── Render canvas objects ────────────────────────────────────────
         function render() {
           ctx.clearRect(0, 0, CANVAS_W, CANVAS_H);
-          ctx.fillStyle = '#ffffff';
+          ctx.fillStyle = "#ffffff";
           ctx.fillRect(0, 0, CANVAS_W, CANVAS_H);
 
           // Draw grid (very subtle)
-          ctx.strokeStyle = '#f0f0f0';
+          ctx.strokeStyle = "#f0f0f0";
           ctx.lineWidth = 1;
           for (let x = 0; x < CANVAS_W; x += 40) {
             ctx.beginPath();
@@ -1183,11 +1212,11 @@
         }
 
         function drawObject(c, obj) {
-          c.lineCap = 'round';
-          c.lineJoin = 'round';
+          c.lineCap = "round";
+          c.lineJoin = "round";
 
           switch (obj.type) {
-            case 'pen': {
+            case "pen": {
               if (obj.points.length < 2) return;
               c.strokeStyle = obj.color;
               c.lineWidth = obj.stroke;
@@ -1199,7 +1228,7 @@
               c.stroke();
               break;
             }
-            case 'line': {
+            case "line": {
               c.strokeStyle = obj.color;
               c.lineWidth = obj.stroke;
               c.beginPath();
@@ -1208,7 +1237,7 @@
               c.stroke();
               break;
             }
-            case 'arrow': {
+            case "arrow": {
               c.strokeStyle = obj.color;
               c.lineWidth = obj.stroke;
               c.fillStyle = obj.color;
@@ -1223,17 +1252,17 @@
               c.moveTo(obj.x2, obj.y2);
               c.lineTo(
                 obj.x2 - headLen * Math.cos(angle - 0.4),
-                obj.y2 - headLen * Math.sin(angle - 0.4)
+                obj.y2 - headLen * Math.sin(angle - 0.4),
               );
               c.lineTo(
                 obj.x2 - headLen * Math.cos(angle + 0.4),
-                obj.y2 - headLen * Math.sin(angle + 0.4)
+                obj.y2 - headLen * Math.sin(angle + 0.4),
               );
               c.closePath();
               c.fill();
               break;
             }
-            case 'rect': {
+            case "rect": {
               c.strokeStyle = obj.color;
               c.lineWidth = obj.stroke;
               c.beginPath();
@@ -1241,13 +1270,21 @@
               c.stroke();
               break;
             }
-            case 'ellipse': {
+            case "ellipse": {
               c.strokeStyle = obj.color;
               c.lineWidth = obj.stroke;
               c.beginPath();
               const cx = obj.x + obj.w / 2;
               const cy = obj.y + obj.h / 2;
-              c.ellipse(cx, cy, Math.abs(obj.w / 2), Math.abs(obj.h / 2), 0, 0, Math.PI * 2);
+              c.ellipse(
+                cx,
+                cy,
+                Math.abs(obj.w / 2),
+                Math.abs(obj.h / 2),
+                0,
+                0,
+                Math.PI * 2,
+              );
               c.stroke();
               break;
             }
@@ -1283,7 +1320,10 @@
           // Compute total path length
           let pathLen = 0;
           for (let i = 1; i < points.length; i++) {
-            pathLen += Math.hypot(points[i].x - points[i - 1].x, points[i].y - points[i - 1].y);
+            pathLen += Math.hypot(
+              points[i].x - points[i - 1].x,
+              points[i].y - points[i - 1].y,
+            );
           }
 
           // Skip tiny shapes
@@ -1311,7 +1351,12 @@
             const distToRight = Math.abs(p.x - maxX);
             const distToTop = Math.abs(p.y - minY);
             const distToBottom = Math.abs(p.y - maxY);
-            rectError += Math.min(distToLeft, distToRight, distToTop, distToBottom);
+            rectError += Math.min(
+              distToLeft,
+              distToRight,
+              distToTop,
+              distToBottom,
+            );
           });
 
           ellipseError /= points.length;
@@ -1322,11 +1367,11 @@
           const normRect = (rectError / Math.max(bw, bh)) * 4;
 
           if (normEllipse < 0.35 && normEllipse < normRect) {
-            return { type: 'ellipse', x: minX, y: minY, w: bw, h: bh };
+            return { type: "ellipse", x: minX, y: minY, w: bw, h: bh };
           }
 
           if (normRect < 0.25) {
-            return { type: 'rect', x: minX, y: minY, w: bw, h: bh };
+            return { type: "rect", x: minX, y: minY, w: bw, h: bh };
           }
 
           return null;
@@ -1334,7 +1379,7 @@
 
         // ── roundRect fallback for older browsers ──────────────────────
         function safeRoundRect(ctx, x, y, w, h, radii) {
-          if (typeof ctx.roundRect === 'function') {
+          if (typeof ctx.roundRect === "function") {
             ctx.roundRect(x, y, w, h, radii);
             return;
           }
@@ -1364,19 +1409,23 @@
 
           drawingObjects = drawingObjects.filter((obj) => {
             switch (obj.type) {
-              case 'pen':
-                return !obj.points.some((p) => (p.x - cx) ** 2 + (p.y - cy) ** 2 < r2);
-              case 'line':
-              case 'arrow':
-                return distToSegment(cx, cy, obj.x1, obj.y1, obj.x2, obj.y2) > radius;
-              case 'rect':
+              case "pen":
+                return !obj.points.some(
+                  (p) => (p.x - cx) ** 2 + (p.y - cy) ** 2 < r2,
+                );
+              case "line":
+              case "arrow":
+                return (
+                  distToSegment(cx, cy, obj.x1, obj.y1, obj.x2, obj.y2) > radius
+                );
+              case "rect":
                 return !(
                   cx > obj.x - radius &&
                   cx < obj.x + obj.w + radius &&
                   cy > obj.y - radius &&
                   cy < obj.y + obj.h + radius
                 );
-              case 'ellipse': {
+              case "ellipse": {
                 const ecx = obj.x + obj.w / 2;
                 const ecy = obj.y + obj.h / 2;
                 const dx = (cx - ecx) / (Math.abs(obj.w) / 2 + radius);
@@ -1450,59 +1499,65 @@
           scheduleAutoSave();
         }
 
-        document.getElementById('undo-btn').addEventListener('click', undo);
-        document.getElementById('redo-btn').addEventListener('click', redo);
+        document.getElementById("undo-btn").addEventListener("click", undo);
+        document.getElementById("redo-btn").addEventListener("click", redo);
 
         // ── Tool selection ───────────────────────────────────────────────
         function setTool(tool) {
           currentTool = tool;
-          document.querySelectorAll('.tool-btn[data-tool]').forEach((btn) => {
-            btn.classList.toggle('active', btn.dataset.tool === tool);
+          document.querySelectorAll(".tool-btn[data-tool]").forEach((btn) => {
+            btn.classList.toggle("active", btn.dataset.tool === tool);
           });
           container.style.cursor =
-            tool === 'select' ? 'default' : tool === 'eraser' ? 'cell' : 'crosshair';
-          noteColorPicker.classList.remove('show');
+            tool === "select"
+              ? "default"
+              : tool === "eraser"
+                ? "cell"
+                : "crosshair";
+          noteColorPicker.classList.remove("show");
         }
 
-        toolbar.addEventListener('click', (e) => {
-          const btn = e.target.closest('.tool-btn[data-tool]');
+        toolbar.addEventListener("click", (e) => {
+          const btn = e.target.closest(".tool-btn[data-tool]");
           if (!btn) return;
           const tool = btn.dataset.tool;
 
-          if (tool === 'note') {
-            noteColorPicker.classList.toggle('show');
+          if (tool === "note") {
+            noteColorPicker.classList.toggle("show");
             const rect = btn.getBoundingClientRect();
-            noteColorPicker.style.left = rect.left + 'px';
+            noteColorPicker.style.left = rect.left + "px";
           } else {
             setTool(tool);
           }
         });
 
         // Note color picker
-        noteColorPicker.addEventListener('click', (e) => {
-          const opt = e.target.closest('.note-color-opt');
+        noteColorPicker.addEventListener("click", (e) => {
+          const opt = e.target.closest(".note-color-opt");
           if (!opt) return;
           noteColor = opt.dataset.noteColor;
-          noteColorPicker.classList.remove('show');
-          setTool('note');
+          noteColorPicker.classList.remove("show");
+          setTool("note");
         });
 
         // Color swatches
-        document.querySelectorAll('.color-swatch').forEach((s) => {
-          s.addEventListener('click', () => {
+        document.querySelectorAll(".color-swatch").forEach((s) => {
+          s.addEventListener("click", () => {
             document
-              .querySelectorAll('.color-swatch')
-              .forEach((el) => el.classList.remove('active'));
-            s.classList.add('active');
+              .querySelectorAll(".color-swatch")
+              .forEach((el) => el.classList.remove("active"));
+            s.classList.add("active");
             currentColor = s.dataset.color;
           });
         });
 
         // Stroke buttons
-        document.querySelectorAll('.stroke-btn').forEach((s) => {
-          s.addEventListener('click', () => {
-            document.querySelectorAll('.stroke-btn').forEach((el) => el.classList.remove('active'));
-            s.classList.add('active');
+        document.querySelectorAll(".stroke-btn").forEach((s) => {
+          s.addEventListener("click", () => {
+            document
+              .querySelectorAll(".stroke-btn")
+              .forEach((el) => el.classList.remove("active"));
+            s.classList.add("active");
             currentStroke = parseInt(s.dataset.stroke, 10);
           });
         });
@@ -1510,14 +1565,14 @@
         // ── Mouse / pointer events on canvas ─────────────────────────────
         let drawStartX, drawStartY;
 
-        container.addEventListener('pointerdown', (e) => {
+        container.addEventListener("pointerdown", (e) => {
           if (
-            e.target.closest('#toolbar') ||
-            e.target.closest('.sticky-note') ||
-            e.target.closest('.canvas-text-label') ||
-            e.target.closest('.overlay-backdrop') ||
-            e.target.closest('.shortcuts-panel') ||
-            e.target.closest('.zoom-indicator')
+            e.target.closest("#toolbar") ||
+            e.target.closest(".sticky-note") ||
+            e.target.closest(".canvas-text-label") ||
+            e.target.closest(".overlay-backdrop") ||
+            e.target.closest(".shortcuts-panel") ||
+            e.target.closest(".zoom-indicator")
           )
             return;
 
@@ -1530,7 +1585,7 @@
             panStartY = e.clientY;
             panViewStartX = viewX;
             panViewStartY = viewY;
-            container.classList.add('panning');
+            container.classList.add("panning");
             e.preventDefault();
             return;
           }
@@ -1538,12 +1593,12 @@
           if (e.button !== 0) return;
 
           switch (currentTool) {
-            case 'pen':
-            case 'eraser': {
+            case "pen":
+            case "eraser": {
               isDrawing = true;
-              if (currentTool === 'pen') {
+              if (currentTool === "pen") {
                 currentPath = {
-                  type: 'pen',
+                  type: "pen",
                   points: [pt],
                   color: currentColor,
                   stroke: currentStroke,
@@ -1559,14 +1614,14 @@
               }
               break;
             }
-            case 'line':
-            case 'arrow':
-            case 'rect':
-            case 'ellipse': {
+            case "line":
+            case "arrow":
+            case "rect":
+            case "ellipse": {
               isDrawing = true;
               drawStartX = pt.x;
               drawStartY = pt.y;
-              if (currentTool === 'line' || currentTool === 'arrow') {
+              if (currentTool === "line" || currentTool === "arrow") {
                 currentPath = {
                   type: currentTool,
                   x1: pt.x,
@@ -1589,23 +1644,23 @@
               }
               break;
             }
-            case 'text': {
+            case "text": {
               createTextLabel(pt.x, pt.y);
               break;
             }
-            case 'note': {
+            case "note": {
               createStickyNote(pt.x, pt.y);
-              setTool('select');
+              setTool("select");
               break;
             }
-            case 'select': {
+            case "select": {
               // In select mode, clicking empty canvas does nothing special
               break;
             }
           }
         });
 
-        container.addEventListener('pointermove', (e) => {
+        container.addEventListener("pointermove", (e) => {
           if (isPanning) {
             viewX = panViewStartX + (e.clientX - panStartX);
             viewY = panViewStartY + (e.clientY - panStartY);
@@ -1617,19 +1672,19 @@
           const pt = screenToCanvas(e.clientX, e.clientY);
 
           switch (currentTool) {
-            case 'pen': {
+            case "pen": {
               if (currentPath) {
                 currentPath.points.push(pt);
                 render();
               }
               break;
             }
-            case 'eraser': {
+            case "eraser": {
               eraseAt(pt.x, pt.y, 16);
               break;
             }
-            case 'line':
-            case 'arrow': {
+            case "line":
+            case "arrow": {
               if (currentPath) {
                 currentPath.x2 = pt.x;
                 currentPath.y2 = pt.y;
@@ -1637,8 +1692,8 @@
               }
               break;
             }
-            case 'rect':
-            case 'ellipse': {
+            case "rect":
+            case "ellipse": {
               if (currentPath) {
                 currentPath.x = Math.min(drawStartX, pt.x);
                 currentPath.y = Math.min(drawStartY, pt.y);
@@ -1654,14 +1709,14 @@
         function finishDrawing() {
           if (isPanning) {
             isPanning = false;
-            container.classList.remove('panning');
+            container.classList.remove("panning");
             return;
           }
 
           if (!isDrawing) return;
           isDrawing = false;
 
-          if (currentTool === 'eraser') {
+          if (currentTool === "eraser") {
             if (!eraserDidErase) {
               // Nothing was erased — pop the pre-erase state we saved on pointerdown
               undoStack.pop();
@@ -1672,7 +1727,7 @@
           if (!currentPath) return;
 
           // Shape recognition for pen tool
-          if (currentPath.type === 'pen') {
+          if (currentPath.type === "pen") {
             const recognized = recognizeShape(currentPath.points);
             if (recognized) {
               currentPath = {
@@ -1684,12 +1739,12 @@
           }
 
           // Don't save degenerate shapes
-          if (currentPath.type === 'pen' && currentPath.points.length < 2) {
+          if (currentPath.type === "pen" && currentPath.points.length < 2) {
             currentPath = null;
             return;
           }
           if (
-            (currentPath.type === 'rect' || currentPath.type === 'ellipse') &&
+            (currentPath.type === "rect" || currentPath.type === "ellipse") &&
             Math.abs(currentPath.w) < 3 &&
             Math.abs(currentPath.h) < 3
           ) {
@@ -1698,8 +1753,11 @@
             return;
           }
           if (
-            (currentPath.type === 'line' || currentPath.type === 'arrow') &&
-            Math.hypot(currentPath.x2 - currentPath.x1, currentPath.y2 - currentPath.y1) < 3
+            (currentPath.type === "line" || currentPath.type === "arrow") &&
+            Math.hypot(
+              currentPath.x2 - currentPath.x1,
+              currentPath.y2 - currentPath.y1,
+            ) < 3
           ) {
             currentPath = null;
             render();
@@ -1713,18 +1771,18 @@
           scheduleAutoSave();
         }
 
-        container.addEventListener('pointerup', finishDrawing);
-        container.addEventListener('pointerleave', finishDrawing);
+        container.addEventListener("pointerup", finishDrawing);
+        container.addEventListener("pointerleave", finishDrawing);
 
         // ── Zoom ─────────────────────────────────────────────────────────
         container.addEventListener(
-          'wheel',
+          "wheel",
           (e) => {
             e.preventDefault();
             const delta = e.deltaY > 0 ? 0.92 : 1.08;
             zoomAt(e.clientX, e.clientY, delta);
           },
-          { passive: false }
+          { passive: false },
         );
 
         function zoomAt(sx, sy, factor) {
@@ -1741,15 +1799,19 @@
           updateCanvasTransform();
         }
 
-        document.getElementById('zoom-in-btn').addEventListener('click', () => {
+        document.getElementById("zoom-in-btn").addEventListener("click", () => {
           const rect = container.getBoundingClientRect();
           zoomAt(rect.left + rect.width / 2, rect.top + rect.height / 2, 1.2);
         });
-        document.getElementById('zoom-out-btn').addEventListener('click', () => {
-          const rect = container.getBoundingClientRect();
-          zoomAt(rect.left + rect.width / 2, rect.top + rect.height / 2, 0.8);
-        });
-        document.getElementById('fit-btn').addEventListener('click', fitToContent);
+        document
+          .getElementById("zoom-out-btn")
+          .addEventListener("click", () => {
+            const rect = container.getBoundingClientRect();
+            zoomAt(rect.left + rect.width / 2, rect.top + rect.height / 2, 0.8);
+          });
+        document
+          .getElementById("fit-btn")
+          .addEventListener("click", fitToContent);
 
         function fitToContent() {
           // Find bounding box of all content
@@ -1762,7 +1824,7 @@
           drawingObjects.forEach((obj) => {
             hasContent = true;
             switch (obj.type) {
-              case 'pen':
+              case "pen":
                 obj.points.forEach((p) => {
                   minX = Math.min(minX, p.x);
                   minY = Math.min(minY, p.y);
@@ -1770,15 +1832,15 @@
                   maxY = Math.max(maxY, p.y);
                 });
                 break;
-              case 'line':
-              case 'arrow':
+              case "line":
+              case "arrow":
                 minX = Math.min(minX, obj.x1, obj.x2);
                 minY = Math.min(minY, obj.y1, obj.y2);
                 maxX = Math.max(maxX, obj.x1, obj.x2);
                 maxY = Math.max(maxY, obj.y1, obj.y2);
                 break;
-              case 'rect':
-              case 'ellipse':
+              case "rect":
+              case "ellipse":
                 minX = Math.min(minX, obj.x);
                 minY = Math.min(minY, obj.y);
                 maxX = Math.max(maxX, obj.x + obj.w);
@@ -1820,85 +1882,88 @@
         }
 
         // ── Keyboard ─────────────────────────────────────────────────────
-        document.addEventListener('keydown', (e) => {
+        document.addEventListener("keydown", (e) => {
           // Don't capture when typing in inputs
           if (
             e.target.isContentEditable ||
-            e.target.tagName === 'INPUT' ||
-            e.target.tagName === 'TEXTAREA'
+            e.target.tagName === "INPUT" ||
+            e.target.tagName === "TEXTAREA"
           ) {
-            if (e.key === 'Escape') e.target.blur();
+            if (e.key === "Escape") e.target.blur();
             return;
           }
 
-          if (e.key === ' ') {
+          if (e.key === " ") {
             e.preventDefault();
             spaceHeld = true;
-            container.classList.add('panning');
+            container.classList.add("panning");
           }
 
           // Ctrl/Cmd shortcuts
           if (e.metaKey || e.ctrlKey) {
-            if (e.key === 'z' && !e.shiftKey) {
+            if (e.key === "z" && !e.shiftKey) {
               e.preventDefault();
               undo();
             }
-            if (e.key === 'z' && e.shiftKey) {
+            if (e.key === "z" && e.shiftKey) {
               e.preventDefault();
               redo();
             }
-            if (e.key === 'Z') {
+            if (e.key === "Z") {
               e.preventDefault();
               redo();
             }
             return;
           }
 
-          if (e.key === 'Delete' || e.key === 'Backspace') {
+          if (e.key === "Delete" || e.key === "Backspace") {
             // No specific selection handling in v1 beyond sticky notes
             return;
           }
 
           const keyMap = {
-            v: 'select',
-            p: 'pen',
-            r: 'rect',
-            c: 'ellipse',
-            a: 'arrow',
-            l: 'line',
-            t: 'text',
-            n: 'note',
-            e: 'eraser',
+            v: "select",
+            p: "pen",
+            r: "rect",
+            c: "ellipse",
+            a: "arrow",
+            l: "line",
+            t: "text",
+            n: "note",
+            e: "eraser",
           };
           if (keyMap[e.key]) {
-            if (e.key === 'n') {
-              noteColorPicker.classList.toggle('show');
-              const btn = document.getElementById('note-tool-btn');
+            if (e.key === "n") {
+              noteColorPicker.classList.toggle("show");
+              const btn = document.getElementById("note-tool-btn");
               const rect = btn.getBoundingClientRect();
-              noteColorPicker.style.left = rect.left + 'px';
+              noteColorPicker.style.left = rect.left + "px";
             } else {
               setTool(keyMap[e.key]);
             }
           }
         });
 
-        document.addEventListener('keyup', (e) => {
-          if (e.key === ' ') {
+        document.addEventListener("keyup", (e) => {
+          if (e.key === " ") {
             spaceHeld = false;
-            if (!isPanning) container.classList.remove('panning');
+            if (!isPanning) container.classList.remove("panning");
           }
         });
 
         // Shortcuts panel
-        document.getElementById('close-shortcuts').addEventListener('click', () => {
-          document.getElementById('shortcuts-panel').classList.remove('show');
-        });
+        document
+          .getElementById("close-shortcuts")
+          .addEventListener("click", () => {
+            document.getElementById("shortcuts-panel").classList.remove("show");
+          });
 
         // Show shortcuts with ? key when not typing
-        document.addEventListener('keydown', (e) => {
-          if (e.target.isContentEditable || e.target.tagName === 'INPUT') return;
-          if (e.key === '?') {
-            document.getElementById('shortcuts-panel').classList.toggle('show');
+        document.addEventListener("keydown", (e) => {
+          if (e.target.isContentEditable || e.target.tagName === "INPUT")
+            return;
+          if (e.key === "?") {
+            document.getElementById("shortcuts-panel").classList.toggle("show");
           }
         });
 
@@ -1906,7 +1971,7 @@
         function createStickyNote(x, y) {
           const note = {
             id: uid(),
-            text: '',
+            text: "",
             x: x,
             y: y,
             w: 200,
@@ -1920,22 +1985,22 @@
         }
 
         function renderStickyNote(note, focusAfter) {
-          const el = document.createElement('div');
-          el.className = 'sticky-note sticky-' + note.color;
+          const el = document.createElement("div");
+          el.className = "sticky-note sticky-" + note.color;
           el.dataset.noteId = note.id;
-          el.style.left = viewX + note.x * viewScale + 'px';
-          el.style.top = viewY + note.y * viewScale + 'px';
-          el.style.width = note.w * viewScale + 'px';
-          el.style.height = note.h * viewScale + 'px';
-          el.style.fontSize = 14 * viewScale + 'px';
+          el.style.left = viewX + note.x * viewScale + "px";
+          el.style.top = viewY + note.y * viewScale + "px";
+          el.style.width = note.w * viewScale + "px";
+          el.style.height = note.h * viewScale + "px";
+          el.style.fontSize = 14 * viewScale + "px";
 
-          const header = document.createElement('div');
-          header.className = 'note-header';
+          const header = document.createElement("div");
+          header.className = "note-header";
 
-          const del = document.createElement('button');
-          del.className = 'note-delete';
-          del.textContent = '\u00d7';
-          del.addEventListener('click', () => {
+          const del = document.createElement("button");
+          del.className = "note-delete";
+          del.textContent = "\u00d7";
+          del.addEventListener("click", () => {
             saveState();
             stickyNotes = stickyNotes.filter((n) => n.id !== note.id);
             el.remove();
@@ -1943,21 +2008,21 @@
           });
           header.appendChild(del);
 
-          const body = document.createElement('div');
-          body.className = 'note-body';
-          body.contentEditable = 'true';
+          const body = document.createElement("div");
+          body.className = "note-body";
+          body.contentEditable = "true";
           body.textContent = note.text;
-          body.addEventListener('input', () => {
+          body.addEventListener("input", () => {
             note.text = body.textContent;
             scheduleAutoSave();
           });
-          body.addEventListener('blur', () => {
+          body.addEventListener("blur", () => {
             note.text = body.textContent;
             scheduleAutoSave();
           });
 
-          const resize = document.createElement('div');
-          resize.className = 'note-resize';
+          const resize = document.createElement("div");
+          resize.className = "note-resize";
 
           el.appendChild(header);
           el.appendChild(body);
@@ -1968,7 +2033,7 @@
           let dragOffX,
             dragOffY,
             isDragging = false;
-          header.addEventListener('pointerdown', (e) => {
+          header.addEventListener("pointerdown", (e) => {
             isDragging = true;
             const rect = el.getBoundingClientRect();
             dragOffX = e.clientX - rect.left;
@@ -1976,17 +2041,17 @@
             e.preventDefault();
             header.setPointerCapture(e.pointerId);
           });
-          header.addEventListener('pointermove', (e) => {
+          header.addEventListener("pointermove", (e) => {
             if (!isDragging) return;
             const cRect = container.getBoundingClientRect();
             const newLeft = e.clientX - cRect.left - dragOffX;
             const newTop = e.clientY - cRect.top - dragOffY;
             note.x = (newLeft - viewX) / viewScale;
             note.y = (newTop - viewY) / viewScale;
-            el.style.left = newLeft + 'px';
-            el.style.top = newTop + 'px';
+            el.style.left = newLeft + "px";
+            el.style.top = newTop + "px";
           });
-          header.addEventListener('pointerup', () => {
+          header.addEventListener("pointerup", () => {
             if (isDragging) scheduleAutoSave();
             isDragging = false;
           });
@@ -1997,7 +2062,7 @@
             resizeStartH,
             resizeStartMx,
             resizeStartMy;
-          resize.addEventListener('pointerdown', (e) => {
+          resize.addEventListener("pointerdown", (e) => {
             isResizing = true;
             resizeStartW = note.w;
             resizeStartH = note.h;
@@ -2007,16 +2072,16 @@
             e.stopPropagation();
             resize.setPointerCapture(e.pointerId);
           });
-          resize.addEventListener('pointermove', (e) => {
+          resize.addEventListener("pointermove", (e) => {
             if (!isResizing) return;
             const dw = (e.clientX - resizeStartMx) / viewScale;
             const dh = (e.clientY - resizeStartMy) / viewScale;
             note.w = Math.max(120, resizeStartW + dw);
             note.h = Math.max(80, resizeStartH + dh);
-            el.style.width = note.w * viewScale + 'px';
-            el.style.height = note.h * viewScale + 'px';
+            el.style.width = note.w * viewScale + "px";
+            el.style.height = note.h * viewScale + "px";
           });
-          resize.addEventListener('pointerup', () => {
+          resize.addEventListener("pointerup", () => {
             if (isResizing) scheduleAutoSave();
             isResizing = false;
           });
@@ -2030,7 +2095,7 @@
         function createTextLabel(x, y) {
           const lbl = {
             id: uid(),
-            text: '',
+            text: "",
             x: x,
             y: y,
             fontSize: 16,
@@ -2038,25 +2103,25 @@
           saveState();
           textLabels.push(lbl);
           renderTextLabel(lbl, true);
-          setTool('select');
+          setTool("select");
           scheduleAutoSave();
         }
 
         function renderTextLabel(lbl, focusAfter) {
-          const el = document.createElement('div');
-          el.className = 'canvas-text-label';
+          const el = document.createElement("div");
+          el.className = "canvas-text-label";
           el.dataset.labelId = lbl.id;
-          el.contentEditable = 'true';
-          el.style.left = viewX + lbl.x * viewScale + 'px';
-          el.style.top = viewY + lbl.y * viewScale + 'px';
-          el.style.fontSize = lbl.fontSize * viewScale + 'px';
+          el.contentEditable = "true";
+          el.style.left = viewX + lbl.x * viewScale + "px";
+          el.style.top = viewY + lbl.y * viewScale + "px";
+          el.style.fontSize = lbl.fontSize * viewScale + "px";
           el.textContent = lbl.text;
 
-          el.addEventListener('input', () => {
+          el.addEventListener("input", () => {
             lbl.text = el.textContent;
             scheduleAutoSave();
           });
-          el.addEventListener('blur', () => {
+          el.addEventListener("blur", () => {
             lbl.text = el.textContent;
             if (!lbl.text.trim()) {
               textLabels = textLabels.filter((l) => l.id !== lbl.id);
@@ -2073,8 +2138,12 @@
 
         // ── Rebuild overlays from data (for undo/redo) ───────────────────
         function rebuildOverlays() {
-          document.querySelectorAll('.sticky-note').forEach((el) => el.remove());
-          document.querySelectorAll('.canvas-text-label').forEach((el) => el.remove());
+          document
+            .querySelectorAll(".sticky-note")
+            .forEach((el) => el.remove());
+          document
+            .querySelectorAll(".canvas-text-label")
+            .forEach((el) => el.remove());
           stickyNotes.forEach((n) => renderStickyNote(n, false));
           textLabels.forEach((l) => renderTextLabel(l, false));
         }
@@ -2094,7 +2163,7 @@
               notes: stickyNotes,
               labels: textLabels,
             };
-            localStorage.setItem('napkin_state', JSON.stringify(state));
+            localStorage.setItem("napkin_state", JSON.stringify(state));
           } catch (e) {
             // localStorage might be full; silently ignore
           }
@@ -2105,7 +2174,7 @@
 
         function loadState() {
           try {
-            const raw = localStorage.getItem('napkin_state');
+            const raw = localStorage.getItem("napkin_state");
             if (!raw) return;
             const state = JSON.parse(raw);
             if (state.objects) drawingObjects = state.objects;
@@ -2119,141 +2188,147 @@
         }
 
         // ── Share with Copilot ───────────────────────────────────────────
-        document.getElementById('share-btn').addEventListener('click', async () => {
-          try {
-            // Create an offscreen canvas for export
-            const exportCanvas = document.createElement('canvas');
-            exportCanvas.width = CANVAS_W;
-            exportCanvas.height = CANVAS_H;
-            const ectx = exportCanvas.getContext('2d');
-
-            // White background
-            ectx.fillStyle = '#fff';
-            ectx.fillRect(0, 0, CANVAS_W, CANVAS_H);
-
-            // Draw all drawing objects
-            drawingObjects.forEach((obj) => drawObject(ectx, obj));
-
-            // Draw sticky notes onto export canvas
-            stickyNotes.forEach((note) => {
-              const colors = {
-                yellow: { bg: '#fff9c4', header: '#fff176' },
-                pink: { bg: '#fce4ec', header: '#f48fb1' },
-                blue: { bg: '#e3f2fd', header: '#90caf9' },
-                green: { bg: '#e8f5e9', header: '#a5d6a7' },
-              };
-              const c = colors[note.color] || colors.yellow;
-
-              // Shadow
-              ectx.shadowColor = 'rgba(0,0,0,0.12)';
-              ectx.shadowBlur = 12;
-              ectx.shadowOffsetX = 2;
-              ectx.shadowOffsetY = 3;
-
-              // Body
-              ectx.fillStyle = c.bg;
-              ectx.beginPath();
-              safeRoundRect(ectx, note.x, note.y, note.w, note.h, 4);
-              ectx.fill();
-
-              // Reset shadow
-              ectx.shadowColor = 'transparent';
-              ectx.shadowBlur = 0;
-              ectx.shadowOffsetX = 0;
-              ectx.shadowOffsetY = 0;
-
-              // Header
-              ectx.fillStyle = c.header;
-              ectx.beginPath();
-              safeRoundRect(ectx, note.x, note.y, note.w, 24, [4, 4, 0, 0]);
-              ectx.fill();
-
-              // Text
-              if (note.text) {
-                ectx.fillStyle = '#333';
-                ectx.font =
-                  '14px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-                const lines = wrapText(ectx, note.text, note.w - 24);
-                lines.forEach((line, i) => {
-                  ectx.fillText(line, note.x + 12, note.y + 44 + i * 20);
-                });
-              }
-            });
-
-            // Draw text labels
-            textLabels.forEach((lbl) => {
-              if (!lbl.text) return;
-              ectx.fillStyle = '#333';
-              ectx.font =
-                lbl.fontSize +
-                'px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-              ectx.fillText(lbl.text, lbl.x, lbl.y + lbl.fontSize);
-            });
-
-            // Export PNG
-            const dataUrl = exportCanvas.toDataURL('image/png');
-            const link = document.createElement('a');
-            link.download = 'napkin-snapshot.png';
-            link.href = dataUrl;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-
-            // Build JSON
-            const json = {
-              version: 1,
-              timestamp: new Date().toISOString(),
-              notes: stickyNotes.map((n) => ({
-                id: n.id,
-                text: n.text,
-                x: n.x,
-                y: n.y,
-                color: n.color,
-                width: n.w,
-                height: n.h,
-              })),
-              textLabels: textLabels.map((l) => ({
-                id: l.id,
-                text: l.text,
-                x: l.x,
-                y: l.y,
-                fontSize: l.fontSize,
-              })),
-              canvasSize: { width: CANVAS_W, height: CANVAS_H },
-            };
-
-            // Copy JSON to clipboard
+        document
+          .getElementById("share-btn")
+          .addEventListener("click", async () => {
             try {
-              await navigator.clipboard.writeText(JSON.stringify(json, null, 2));
-            } catch (clipErr) {
-              // Fallback for file:// protocol or older browsers
-              const ta = document.createElement('textarea');
-              ta.value = JSON.stringify(json, null, 2);
-              ta.style.position = 'fixed';
-              ta.style.left = '-9999px';
-              document.body.appendChild(ta);
-              ta.select();
-              document.execCommand('copy');
-              document.body.removeChild(ta);
+              // Create an offscreen canvas for export
+              const exportCanvas = document.createElement("canvas");
+              exportCanvas.width = CANVAS_W;
+              exportCanvas.height = CANVAS_H;
+              const ectx = exportCanvas.getContext("2d");
+
+              // White background
+              ectx.fillStyle = "#fff";
+              ectx.fillRect(0, 0, CANVAS_W, CANVAS_H);
+
+              // Draw all drawing objects
+              drawingObjects.forEach((obj) => drawObject(ectx, obj));
+
+              // Draw sticky notes onto export canvas
+              stickyNotes.forEach((note) => {
+                const colors = {
+                  yellow: { bg: "#fff9c4", header: "#fff176" },
+                  pink: { bg: "#fce4ec", header: "#f48fb1" },
+                  blue: { bg: "#e3f2fd", header: "#90caf9" },
+                  green: { bg: "#e8f5e9", header: "#a5d6a7" },
+                };
+                const c = colors[note.color] || colors.yellow;
+
+                // Shadow
+                ectx.shadowColor = "rgba(0,0,0,0.12)";
+                ectx.shadowBlur = 12;
+                ectx.shadowOffsetX = 2;
+                ectx.shadowOffsetY = 3;
+
+                // Body
+                ectx.fillStyle = c.bg;
+                ectx.beginPath();
+                safeRoundRect(ectx, note.x, note.y, note.w, note.h, 4);
+                ectx.fill();
+
+                // Reset shadow
+                ectx.shadowColor = "transparent";
+                ectx.shadowBlur = 0;
+                ectx.shadowOffsetX = 0;
+                ectx.shadowOffsetY = 0;
+
+                // Header
+                ectx.fillStyle = c.header;
+                ectx.beginPath();
+                safeRoundRect(ectx, note.x, note.y, note.w, 24, [4, 4, 0, 0]);
+                ectx.fill();
+
+                // Text
+                if (note.text) {
+                  ectx.fillStyle = "#333";
+                  ectx.font =
+                    '14px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+                  const lines = wrapText(ectx, note.text, note.w - 24);
+                  lines.forEach((line, i) => {
+                    ectx.fillText(line, note.x + 12, note.y + 44 + i * 20);
+                  });
+                }
+              });
+
+              // Draw text labels
+              textLabels.forEach((lbl) => {
+                if (!lbl.text) return;
+                ectx.fillStyle = "#333";
+                ectx.font =
+                  lbl.fontSize +
+                  'px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+                ectx.fillText(lbl.text, lbl.x, lbl.y + lbl.fontSize);
+              });
+
+              // Export PNG
+              const dataUrl = exportCanvas.toDataURL("image/png");
+              const link = document.createElement("a");
+              link.download = "napkin-snapshot.png";
+              link.href = dataUrl;
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+
+              // Build JSON
+              const json = {
+                version: 1,
+                timestamp: new Date().toISOString(),
+                notes: stickyNotes.map((n) => ({
+                  id: n.id,
+                  text: n.text,
+                  x: n.x,
+                  y: n.y,
+                  color: n.color,
+                  width: n.w,
+                  height: n.h,
+                })),
+                textLabels: textLabels.map((l) => ({
+                  id: l.id,
+                  text: l.text,
+                  x: l.x,
+                  y: l.y,
+                  fontSize: l.fontSize,
+                })),
+                canvasSize: { width: CANVAS_W, height: CANVAS_H },
+              };
+
+              // Copy JSON to clipboard
+              try {
+                await navigator.clipboard.writeText(
+                  JSON.stringify(json, null, 2),
+                );
+              } catch (clipErr) {
+                // Fallback for file:// protocol or older browsers
+                const ta = document.createElement("textarea");
+                ta.value = JSON.stringify(json, null, 2);
+                ta.style.position = "fixed";
+                ta.style.left = "-9999px";
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand("copy");
+                document.body.removeChild(ta);
+              }
+
+              // Show confirmation
+              shareOverlay.classList.remove("hidden");
+            } catch (err) {
+              showToast("Export failed: " + err.message, 4000);
             }
+          });
 
-            // Show confirmation
-            shareOverlay.classList.remove('hidden');
-          } catch (err) {
-            showToast('Export failed: ' + err.message, 4000);
-          }
-        });
-
-        document.getElementById('share-overlay-close').addEventListener('click', () => {
-          shareOverlay.classList.add('hidden');
-        });
+        document
+          .getElementById("share-overlay-close")
+          .addEventListener("click", () => {
+            shareOverlay.classList.add("hidden");
+          });
 
         function wrapText(c, text, maxWidth) {
           const words = text.split(/\s+/);
           const lines = [];
-          let currentLine = '';
+          let currentLine = "";
           words.forEach((word) => {
-            const test = currentLine ? currentLine + ' ' + word : word;
+            const test = currentLine ? currentLine + " " + word : word;
             if (c.measureText(test).width > maxWidth && currentLine) {
               lines.push(currentLine);
               currentLine = word;
@@ -2271,7 +2346,7 @@
           lastPinchCY = 0;
 
         container.addEventListener(
-          'touchstart',
+          "touchstart",
           (e) => {
             if (e.touches.length === 2) {
               const dx = e.touches[0].clientX - e.touches[1].clientX;
@@ -2281,11 +2356,11 @@
               lastPinchCY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
             }
           },
-          { passive: true }
+          { passive: true },
         );
 
         container.addEventListener(
-          'touchmove',
+          "touchmove",
           (e) => {
             if (e.touches.length === 2) {
               e.preventDefault();
@@ -2308,36 +2383,39 @@
               lastPinchCY = cy;
             }
           },
-          { passive: false }
+          { passive: false },
         );
 
         container.addEventListener(
-          'touchend',
+          "touchend",
           () => {
             lastPinchDist = 0;
           },
-          { passive: true }
+          { passive: true },
         );
 
         // ── Close overlays on escape ─────────────────────────────────────
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape') {
-            onboarding.classList.add('hidden');
-            shareOverlay.classList.add('hidden');
-            noteColorPicker.classList.remove('show');
-            document.getElementById('shortcuts-panel').classList.remove('show');
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") {
+            onboarding.classList.add("hidden");
+            shareOverlay.classList.add("hidden");
+            noteColorPicker.classList.remove("show");
+            document.getElementById("shortcuts-panel").classList.remove("show");
           }
         });
 
         // Close note color picker on outside click
-        document.addEventListener('pointerdown', (e) => {
-          if (!e.target.closest('#note-color-picker') && !e.target.closest('#note-tool-btn')) {
-            noteColorPicker.classList.remove('show');
+        document.addEventListener("pointerdown", (e) => {
+          if (
+            !e.target.closest("#note-color-picker") &&
+            !e.target.closest("#note-tool-btn")
+          ) {
+            noteColorPicker.classList.remove("show");
           }
         });
 
         // ── Window resize ────────────────────────────────────────────────
-        window.addEventListener('resize', () => {
+        window.addEventListener("resize", () => {
           updateCanvasTransform();
         });
 

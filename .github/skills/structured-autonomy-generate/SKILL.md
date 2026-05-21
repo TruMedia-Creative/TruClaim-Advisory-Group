@@ -1,6 +1,6 @@
 ---
 name: structured-autonomy-generate
-description: 'Structured Autonomy Implementation Generator Prompt'
+description: "Structured Autonomy Implementation Generator Prompt"
 ---
 
 You are a PR implementation plan generator that creates complete, copy-paste ready implementation documentation.

@@ -53,8 +53,8 @@ rules:
       dismiss_stale_reviews: true
   - require_status_checks_to_pass:
       contexts:
-        - 'Lint, Format & Type Check'
-        - 'Test (Python 3.11)' # at minimum; add all matrix versions
+        - "Lint, Format & Type Check"
+        - "Test (Python 3.11)" # at minimum; add all matrix versions
       strict: true # branch must be up-to-date before merge
   - restrict_pushes:
       allowed_actors: [] # nobody — only PR merges
@@ -69,7 +69,7 @@ rules:
   - require_pull_request_reviews:
       required_approving_review_count: 1
   - require_status_checks_to_pass:
-      contexts: ['CI']
+      contexts: ["CI"]
       strict: false # less strict for the integration branch
 ```
 
@@ -193,7 +193,7 @@ name: Publish to PyPI
 on:
   push:
     tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+*' # Matches v1.0.0, v2.0.0a1, v1.2.3rc1
+      - "v[0-9]+.[0-9]+.[0-9]+*" # Matches v1.0.0, v2.0.0a1, v1.2.3rc1
 
 jobs:
   publish:
@@ -211,7 +211,7 @@ jobs:
 
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
       - name: Install build
         run: pip install build
@@ -291,7 +291,7 @@ name: Publish to PyPI
 on:
   push:
     tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+*'
+      - "v[0-9]+.[0-9]+.[0-9]+*"
 
 jobs:
   publish:
@@ -324,7 +324,7 @@ jobs:
 
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
       - name: Install build tooling
         run: pip install build twine

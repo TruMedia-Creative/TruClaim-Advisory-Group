@@ -405,23 +405,23 @@ Full-duplex communication over single TCP connection.
 
 ```javascript
 // Client
-const ws = new WebSocket('wss://example.com/socket');
+const ws = new WebSocket("wss://example.com/socket");
 
 ws.onopen = () => {
-  console.log('Connected');
-  ws.send('Hello server!');
+  console.log("Connected");
+  ws.send("Hello server!");
 };
 
 ws.onmessage = (event) => {
-  console.log('Received:', event.data);
+  console.log("Received:", event.data);
 };
 
 ws.onerror = (error) => {
-  console.error('Error:', error);
+  console.error("Error:", error);
 };
 
 ws.onclose = () => {
-  console.log('Disconnected');
+  console.log("Disconnected");
 };
 
 // Close connection
@@ -436,18 +436,18 @@ Server pushes updates to client over HTTP.
 
 ```javascript
 // Client
-const eventSource = new EventSource('/events');
+const eventSource = new EventSource("/events");
 
 eventSource.onmessage = (event) => {
-  console.log('New message:', event.data);
+  console.log("New message:", event.data);
 };
 
-eventSource.addEventListener('custom-event', (event) => {
-  console.log('Custom event:', event.data);
+eventSource.addEventListener("custom-event", (event) => {
+  console.log("Custom event:", event.data);
 });
 
 eventSource.onerror = (error) => {
-  console.error('Error:', error);
+  console.error("Error:", error);
 };
 
 // Close connection

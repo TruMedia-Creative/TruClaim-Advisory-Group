@@ -38,7 +38,7 @@ export function useBilling() { ... }
 ```typescript
 // ❌ WRONG - server/utils/auth.ts
 // NO! Shared types go in shared/types/
-export type OAuthProviderId = 'google' | 'github';
+export type OAuthProviderId = "google" | "github";
 ```
 
 **Correct (dedicated type directories):**
@@ -65,15 +65,15 @@ project/
 
 ```typescript
 // Frontend types (from app/types/)
-import type { OAuthProviderUIConfig } from '~/types/auth';
-import type { TierInfo } from '~/types/billing';
+import type { OAuthProviderUIConfig } from "~/types/auth";
+import type { TierInfo } from "~/types/billing";
 
 // Shared types (from shared/types/)
-import type { User, Session } from '#shared/types/auth';
-import type { ApiToken } from '#shared/types/token';
+import type { User, Session } from "#shared/types/auth";
+import type { ApiToken } from "#shared/types/token";
 
 // Server types (from server/types/)
-import type { InternalConfig } from '~~/server/types/internal';
+import type { InternalConfig } from "~~/server/types/internal";
 ```
 
 **Type location decision table:**

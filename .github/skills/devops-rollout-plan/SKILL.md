@@ -1,6 +1,6 @@
 ---
 name: devops-rollout-plan
-description: 'Generate comprehensive rollout plans with preflight checks, step-by-step deployment, verification signals, rollback procedures, and communication plans for infrastructure and application changes'
+description: "Generate comprehensive rollout plans with preflight checks, step-by-step deployment, verification signals, rollback procedures, and communication plans for infrastructure and application changes"
 ---
 
 # DevOps Rollout Plan Generator

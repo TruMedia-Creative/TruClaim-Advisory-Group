@@ -207,10 +207,10 @@ Content here...
 
 ```markdown
 ---
-title: 'My First Post'
+title: "My First Post"
 date: 2025-01-28T12:00:00-05:00
 draft: false
-tags: ['hugo', 'tutorial']
+tags: ["hugo", "tutorial"]
 ---
 
 Content here...

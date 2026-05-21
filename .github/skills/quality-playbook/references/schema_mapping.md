@@ -8,14 +8,14 @@ Consider this common mistake:
 
 ```typescript
 // TypeScript — WRONG: tests the validation mechanism, not the requirement
-test('bad value rejected', () => {
-  fixture.field = 'invalid'; // Zod schema rejects this before processing!
+test("bad value rejected", () => {
+  fixture.field = "invalid"; // Zod schema rejects this before processing!
   expect(() => process(fixture)).toThrow(ZodError);
   // Tells you nothing about the output
 });
 
 // TypeScript — RIGHT: tests the requirement using a schema-valid mutation
-test('bad value not in output', () => {
+test("bad value not in output", () => {
   fixture.field = undefined; // Schema accepts undefined for optional fields
   const output = process(fixture);
   expect(output).not.toContain(badProperty); // Bad data absent

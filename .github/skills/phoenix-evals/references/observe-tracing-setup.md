@@ -13,9 +13,9 @@ register(project_name="my-app", auto_instrument=True)
 
 ```typescript
 // TypeScript
-import { registerPhoenix } from '@arizeai/phoenix-otel';
+import { registerPhoenix } from "@arizeai/phoenix-otel";
 
-registerPhoenix({ projectName: 'my-app', autoInstrument: true });
+registerPhoenix({ projectName: "my-app", autoInstrument: true });
 ```
 
 ## Essential Attributes
@@ -61,10 +61,10 @@ dataset = client.datasets.create_dataset(
 ### Spans (TypeScript)
 
 ```typescript
-import { getSpans } from '@arizeai/phoenix-client/spans';
+import { getSpans } from "@arizeai/phoenix-client/spans";
 
 const { spans } = await getSpans({
-  project: { projectName: 'my-app' },
+  project: { projectName: "my-app" },
   parentId: null, // root spans only
   limit: 100,
 });
@@ -89,10 +89,10 @@ traces = client.traces.get_traces(
 ### Traces (TypeScript)
 
 ```typescript
-import { getTraces } from '@arizeai/phoenix-client/traces';
+import { getTraces } from "@arizeai/phoenix-client/traces";
 
 const { traces } = await getTraces({
-  project: { projectName: 'my-app' },
+  project: { projectName: "my-app" },
   startTime: new Date(Date.now() - 24 * 60 * 60 * 1000),
   includeSpans: true,
   limit: 100,
@@ -120,16 +120,16 @@ client.spans.log_span_annotations_dataframe(dataframe=annotations_df)
 ### TypeScript
 
 ```typescript
-import { logSpanAnnotations } from '@arizeai/phoenix-client/spans';
+import { logSpanAnnotations } from "@arizeai/phoenix-client/spans";
 
 await logSpanAnnotations({
   spanAnnotations: [
     {
-      spanId: 'abc123',
-      name: 'quality',
-      label: 'good',
+      spanId: "abc123",
+      name: "quality",
+      label: "good",
       score: 0.95,
-      annotatorKind: 'LLM',
+      annotatorKind: "LLM",
     },
   ],
 });

@@ -100,7 +100,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
       - name: Install dev dependencies
         run: pip install -e ".[dev]"
       - name: ruff lint
@@ -120,7 +120,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.10', '3.11', '3.12', '3.13']
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
 
     steps:
       - uses: actions/checkout@v4
@@ -149,7 +149,7 @@ jobs:
     services:
       redis:
         image: redis:7-alpine
-        ports: ['6379:6379']
+        ports: ["6379:6379"]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -157,7 +157,7 @@ jobs:
 
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
       - name: Install with Redis extra
         run: pip install -e ".[dev,redis]"
@@ -184,7 +184,7 @@ name: Publish to PyPI
 on:
   push:
     tags:
-      - 'v*.*.*'
+      - "v*.*.*"
 
 jobs:
   build:
@@ -197,7 +197,7 @@ jobs:
 
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
       - name: Install build tools
         run: pip install build twine

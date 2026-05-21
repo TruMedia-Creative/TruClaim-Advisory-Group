@@ -8,9 +8,9 @@ Define axes of variation, then generate combinations:
 
 ```typescript
 const dimensions = {
-  issueType: ['billing', 'technical', 'shipping'],
-  customerMood: ['frustrated', 'neutral', 'happy'],
-  complexity: ['simple', 'moderate', 'complex'],
+  issueType: ["billing", "technical", "shipping"],
+  customerMood: ["frustrated", "neutral", "happy"],
+  complexity: ["simple", "moderate", "complex"],
 };
 ```
 
@@ -20,20 +20,20 @@ const dimensions = {
 2. **Convert to natural queries** (separate LLM call per tuple)
 
 ```typescript
-import { generateText } from 'ai';
-import { openai } from '@ai-sdk/openai';
+import { generateText } from "ai";
+import { openai } from "@ai-sdk/openai";
 
 // Step 1: Create tuples
 type Tuple = [string, string, string];
 const tuples: Tuple[] = [
-  ['billing', 'frustrated', 'complex'],
-  ['shipping', 'neutral', 'simple'],
+  ["billing", "frustrated", "complex"],
+  ["shipping", "neutral", "simple"],
 ];
 
 // Step 2: Convert to natural query
 async function tupleToQuery(t: Tuple): Promise<string> {
   const { text } = await generateText({
-    model: openai('gpt-4o'),
+    model: openai("gpt-4o"),
     prompt: `Generate a realistic customer message:
     Issue: ${t[0]}, Mood: ${t[1]}, Complexity: ${t[2]}
     
@@ -50,8 +50,8 @@ Dimensions should target known failures from error analysis:
 ```typescript
 // From error analysis findings
 const dimensions = {
-  timezone: ['EST', 'PST', 'UTC', 'ambiguous'], // Known failure
-  dateFormat: ['ISO', 'US', 'EU', 'relative'], // Known failure
+  timezone: ["EST", "PST", "UTC", "ambiguous"], // Known failure
+  dateFormat: ["ISO", "US", "EU", "relative"], // Known failure
 };
 ```
 

@@ -1,6 +1,6 @@
 ---
 name: suggest-awesome-github-copilot-skills
-description: 'Suggest relevant GitHub Copilot skills from the awesome-copilot repository based on current repository context and chat history, avoiding duplicates with existing skills in this repository, and identifying outdated skills that need updates.'
+description: "Suggest relevant GitHub Copilot skills from the awesome-copilot repository based on current repository context and chat history, avoiding duplicates with existing skills in this repository, and identifying outdated skills that need updates."
 ---
 
 # Suggest Awesome GitHub Copilot Skills
@@ -96,8 +96,8 @@ Skills in awesome-copilot use this front matter format in `SKILL.md`:
 
 ```markdown
 ---
-name: 'skill-name'
-description: 'Brief description of what this skill provides and when to use it'
+name: "skill-name"
+description: "Brief description of what this skill provides and when to use it"
 ---
 ```
 

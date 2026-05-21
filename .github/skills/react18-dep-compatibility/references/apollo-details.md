@@ -33,10 +33,10 @@ wrapper.update();
 
 // React 18 pattern - use waitFor or findBy:
 await waitFor(() => {
-  expect(screen.getByText('Alice')).toBeInTheDocument();
+  expect(screen.getByText("Alice")).toBeInTheDocument();
 });
 // OR:
-expect(await screen.findByText('Alice')).toBeInTheDocument();
+expect(await screen.findByText("Alice")).toBeInTheDocument();
 ```
 
 ## Upgrading Apollo

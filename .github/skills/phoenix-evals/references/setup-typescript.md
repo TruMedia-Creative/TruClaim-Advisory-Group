@@ -32,10 +32,10 @@ npm install @anthropic-ai/sdk      # Anthropic direct
 ## Quick Verify
 
 ```typescript
-import { createClient } from '@arizeai/phoenix-client';
-import { createClassificationEvaluator } from '@arizeai/phoenix-evals';
-import { registerPhoenix } from '@arizeai/phoenix-otel';
+import { createClient } from "@arizeai/phoenix-client";
+import { createClassificationEvaluator } from "@arizeai/phoenix-evals";
+import { registerPhoenix } from "@arizeai/phoenix-otel";
 
 // All imports should work
-console.log('Phoenix TypeScript setup complete');
+console.log("Phoenix TypeScript setup complete");
 ```

@@ -101,7 +101,7 @@ void testDefensivePatternName() {
 
 ```typescript
 // TypeScript (Jest)
-test('[Req: inferred — from functionName() guard] guards against X', () => {
+test("[Req: inferred — from functionName() guard] guards against X", () => {
   const input = { ...fixture, field: null }; // Trigger defensive code path
   const result = process(input);
   expect(result).toBeDefined(); // Assert graceful handling

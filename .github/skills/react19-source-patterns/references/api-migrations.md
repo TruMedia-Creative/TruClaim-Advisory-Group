@@ -16,12 +16,12 @@ React 19 requires `createRoot()` or `hydrateRoot()` for all apps. If the React 1
 
 ```jsx
 // Before (React 18 or earlier):
-import ReactDOM from 'react-dom';
-ReactDOM.render(<App />, document.getElementById('root'));
+import ReactDOM from "react-dom";
+ReactDOM.render(<App />, document.getElementById("root"));
 
 // After (React 19):
-import { createRoot } from 'react-dom/client';
-const root = createRoot(document.getElementById('root'));
+import { createRoot } from "react-dom/client";
+const root = createRoot(document.getElementById("root"));
 root.render(<App />);
 ```
 
@@ -29,19 +29,19 @@ root.render(<App />);
 
 ```jsx
 // Before (React 18 server-rendered app):
-import ReactDOM from 'react-dom';
-ReactDOM.hydrate(<App />, document.getElementById('root'));
+import ReactDOM from "react-dom";
+ReactDOM.hydrate(<App />, document.getElementById("root"));
 
 // After (React 19):
-import { hydrateRoot } from 'react-dom/client';
-hydrateRoot(document.getElementById('root'), <App />);
+import { hydrateRoot } from "react-dom/client";
+hydrateRoot(document.getElementById("root"), <App />);
 ```
 
 ### Pattern 3: unmountComponentAtNode() Removed
 
 ```jsx
 // Before (React 18):
-import ReactDOM from 'react-dom';
+import ReactDOM from "react-dom";
 ReactDOM.unmountComponentAtNode(container);
 
 // After (React 19):
@@ -60,7 +60,7 @@ root.unmount();
 
 ```jsx
 // Before (React 18):
-import { findDOMNode } from 'react-dom';
+import { findDOMNode } from "react-dom";
 const domNode = findDOMNode(componentRef);
 
 // After (React 19):
@@ -71,7 +71,7 @@ const domNode = componentRef.current; // refs point directly to DOM
 
 ```jsx
 // Before (React 18):
-import { findDOMNode } from 'react-dom';
+import { findDOMNode } from "react-dom";
 class MyComponent extends React.Component {
   render() {
     return <div ref={(ref) => (this.node = ref)}>Content</div>;
@@ -106,7 +106,7 @@ class MyComponent extends React.Component {
 
 ```jsx
 // Before (React 18):
-import { forwardRef } from 'react';
+import { forwardRef } from "react";
 
 const Input = forwardRef((props, ref) => <input ref={ref} {...props} />);
 
@@ -131,7 +131,7 @@ function App() {
 
 ```jsx
 // Before (React 18):
-import { forwardRef, useImperativeHandle } from 'react';
+import { forwardRef, useImperativeHandle } from "react";
 
 const TextInput = forwardRef((props, ref) => {
   const inputRef = useRef();
@@ -139,7 +139,7 @@ const TextInput = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     focus: () => inputRef.current.focus(),
     clear: () => {
-      inputRef.current.value = '';
+      inputRef.current.value = "";
     },
   }));
 
@@ -163,7 +163,7 @@ function TextInput({ ref, ...props }) {
   useImperativeHandle(ref, () => ({
     focus: () => inputRef.current.focus(),
     clear: () => {
-      inputRef.current.value = '';
+      inputRef.current.value = "";
     },
   }));
 
@@ -191,19 +191,19 @@ function App() {
 
 ```jsx
 // Before (React 18):
-function Button({ label = 'Click', disabled = false }) {
+function Button({ label = "Click", disabled = false }) {
   return <button disabled={disabled}>{label}</button>;
 }
 
 // WORKS BUT is removed in React 19:
 Button.defaultProps = {
-  label: 'Click',
+  label: "Click",
   disabled: false,
 };
 
 // After (React 19):
 // ES6 default params are now the ONLY way:
-function Button({ label = 'Click', disabled = false }) {
+function Button({ label = "Click", disabled = false }) {
   return <button disabled={disabled}>{label}</button>;
 }
 
@@ -216,7 +216,7 @@ function Button({ label = 'Click', disabled = false }) {
 // Before (React 18):
 class Button extends React.Component {
   static defaultProps = {
-    label: 'Click',
+    label: "Click",
     disabled: false,
   };
 
@@ -230,7 +230,7 @@ class Button extends React.Component {
 class Button extends React.Component {
   constructor(props) {
     super(props);
-    this.label = props.label || 'Click';
+    this.label = props.label || "Click";
     this.disabled = props.disabled || false;
   }
 
@@ -240,7 +240,7 @@ class Button extends React.Component {
 }
 
 // Or simplify to function component with ES6 defaults:
-function Button({ label = 'Click', disabled = false }) {
+function Button({ label = "Click", disabled = false }) {
   return <button disabled={disabled}>{label}</button>;
 }
 ```
@@ -330,7 +330,7 @@ class App extends React.Component {
   };
 
   getChildContext() {
-    return { theme: 'dark' };
+    return { theme: "dark" };
   }
 
   render() {
@@ -454,7 +454,7 @@ class Component extends React.Component {
 
 ```jsx
 // Before (React 18):
-import React from 'react'; // Needed for JSX transform
+import React from "react"; // Needed for JSX transform
 
 function Component() {
   return <div>Text</div>;
@@ -467,10 +467,10 @@ function Component() {
 }
 
 // BUT keep it if you use React.* APIs:
-import React from 'react';
+import React from "react";
 
 function Component() {
-  return <div>{React.useState ? 'yes' : 'no'}</div>;
+  return <div>{React.useState ? "yes" : "no"}</div>;
 }
 ```
 

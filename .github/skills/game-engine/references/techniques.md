@@ -33,8 +33,8 @@ When a script is loaded asynchronously, the browser can compile it on a backgrou
 **JavaScript dynamic creation (defaults to async):**
 
 ```javascript
-const script = document.createElement('script');
-script.src = 'file.js';
+const script = document.createElement("script");
+script.src = "file.js";
 document.body.appendChild(script);
 ```
 
@@ -51,7 +51,7 @@ document.body.appendChild(script);
 
 ```javascript
 const blob = new Blob([codeString]);
-const script = document.createElement('script');
+const script = document.createElement("script");
 const url = URL.createObjectURL(blob);
 script.onload = script.onerror = () => URL.revokeObjectURL(url);
 script.src = url;
@@ -233,19 +233,19 @@ Combines multiple audio clips into a single file, playing specific sections by t
 **JavaScript:**
 
 ```javascript
-const myAudio = document.getElementById('myAudio');
-const buttons = document.getElementsByTagName('button');
+const myAudio = document.getElementById("myAudio");
+const buttons = document.getElementsByTagName("button");
 let stopTime = 0;
 
 for (const button of buttons) {
-  button.addEventListener('click', () => {
+  button.addEventListener("click", () => {
     myAudio.currentTime = button.dataset.start;
     stopTime = Number(button.dataset.stop);
     myAudio.play();
   });
 }
 
-myAudio.addEventListener('timeupdate', () => {
+myAudio.addEventListener("timeupdate", () => {
   if (myAudio.currentTime > stopTime) {
     myAudio.pause();
   }
@@ -255,8 +255,8 @@ myAudio.addEventListener('timeupdate', () => {
 **Priming audio for mobile (trigger on first user interaction):**
 
 ```javascript
-const myAudio = document.createElement('audio');
-myAudio.src = 'my-sprite.mp3';
+const myAudio = document.createElement("audio");
+myAudio.src = "my-sprite.mp3";
 myAudio.play();
 myAudio.pause();
 ```
@@ -302,8 +302,8 @@ function playTrack(audioBuffer) {
 **Handle autoplay policy in playback handlers:**
 
 ```javascript
-playButton.addEventListener('click', () => {
-  if (audioCtx.state === 'suspended') {
+playButton.addEventListener("click", () => {
+  if (audioCtx.state === "suspended") {
     audioCtx.resume();
   }
 
@@ -400,8 +400,10 @@ class CircleEntity extends BaseEntity {
   radius = 10;
 
   isCollidingWith(other) {
-    const dx = this.position.x + this.radius - (other.position.x + other.radius);
-    const dy = this.position.y + this.radius - (other.position.y + other.radius);
+    const dx =
+      this.position.x + this.radius - (other.position.x + other.radius);
+    const dy =
+      this.position.y + this.radius - (other.position.y + other.radius);
     const distance = Math.sqrt(dx * dx + dy * dy);
     return distance < this.radius + other.radius;
   }
@@ -460,21 +462,21 @@ const collider = {
   staticEntities: [],
   checkCollision() {
     const isColliding = this.staticEntities.some((staticEntity) =>
-      this.moveableEntity.isCollidingWith(staticEntity)
+      this.moveableEntity.isCollidingWith(staticEntity),
     );
     this.moveableEntity.setCollisionState(isColliding);
   },
 };
 
-const container = document.getElementById('container');
+const container = document.getElementById("container");
 
 class BaseEntity {
   ref;
   position;
   constructor(position) {
     this.position = position;
-    this.ref = document.createElement('div');
-    this.ref.classList.add('entity');
+    this.ref = document.createElement("div");
+    this.ref.classList.add("entity");
     this.ref.style.left = `${this.position.x}px`;
     this.ref.style.top = `${this.position.y}px`;
     container.appendChild(this.ref);
@@ -489,30 +491,30 @@ class BaseEntity {
     this.ref.style.top = `${this.position.y}px`;
   }
   setCollisionState(isColliding) {
-    if (isColliding && !this.ref.classList.contains('collision-state')) {
-      this.ref.classList.add('collision-state');
+    if (isColliding && !this.ref.classList.contains("collision-state")) {
+      this.ref.classList.add("collision-state");
     } else if (!isColliding) {
-      this.ref.classList.remove('collision-state');
+      this.ref.classList.remove("collision-state");
     }
   }
   isCollidingWith(other) {
-    throw new Error('isCollidingWith must be implemented in subclasses');
+    throw new Error("isCollidingWith must be implemented in subclasses");
   }
 }
 
-document.addEventListener('keydown', (e) => {
+document.addEventListener("keydown", (e) => {
   e.preventDefault();
   switch (e.key) {
-    case 'ArrowLeft':
+    case "ArrowLeft":
       collider.moveableEntity.shiftPosition(-5, 0);
       break;
-    case 'ArrowUp':
+    case "ArrowUp":
       collider.moveableEntity.shiftPosition(0, -5);
       break;
-    case 'ArrowRight':
+    case "ArrowRight":
       collider.moveableEntity.shiftPosition(5, 0);
       break;
-    case 'ArrowDown':
+    case "ArrowDown":
       collider.moveableEntity.shiftPosition(0, 5);
       break;
   }
@@ -676,21 +678,21 @@ const gamepadAPI = {
 ```javascript
 const gamepadAPI = {
   buttons: [
-    'DPad-Up',
-    'DPad-Down',
-    'DPad-Left',
-    'DPad-Right',
-    'Start',
-    'Back',
-    'Axis-Left',
-    'Axis-Right',
-    'LB',
-    'RB',
-    'Power',
-    'A',
-    'B',
-    'X',
-    'Y',
+    "DPad-Up",
+    "DPad-Down",
+    "DPad-Left",
+    "DPad-Right",
+    "Start",
+    "Back",
+    "Axis-Left",
+    "Axis-Right",
+    "LB",
+    "RB",
+    "Power",
+    "A",
+    "B",
+    "X",
+    "Y",
   ],
 };
 ```
@@ -698,8 +700,8 @@ const gamepadAPI = {
 **Event listeners:**
 
 ```javascript
-window.addEventListener('gamepadconnected', gamepadAPI.connect);
-window.addEventListener('gamepaddisconnected', gamepadAPI.disconnect);
+window.addEventListener("gamepadconnected", gamepadAPI.connect);
+window.addEventListener("gamepaddisconnected", gamepadAPI.disconnect);
 ```
 
 **Connection and disconnection handlers:**
@@ -786,10 +788,10 @@ Parameters:
 
 ```javascript
 if (gamepadAPI.turbo) {
-  if (gamepadAPI.buttonPressed('A', 'hold')) {
+  if (gamepadAPI.buttonPressed("A", "hold")) {
     this.turbo_fire();
   }
-  if (gamepadAPI.buttonPressed('B')) {
+  if (gamepadAPI.buttonPressed("B")) {
     this.managePause();
   }
 }
@@ -840,7 +842,10 @@ The CSS `image-rendering` property controls how browsers scale images. Setting i
 ### Technique 1: Scaling `<img>` Elements with CSS
 
 ```html
-<img src="character.png" alt="pixel art character, upscaled with CSS, appearing crisp" />
+<img
+  src="character.png"
+  alt="pixel art character, upscaled with CSS, appearing crisp"
+/>
 ```
 
 ```css
@@ -868,13 +873,13 @@ canvas {
 ```
 
 ```javascript
-const ctx = document.getElementById('game').getContext('2d');
+const ctx = document.getElementById("game").getContext("2d");
 
 const image = new Image();
 image.onload = () => {
   ctx.drawImage(image, 0, 0);
 };
-image.src = 'cat.png';
+image.src = "cat.png";
 ```
 
 ### Technique 3: Arbitrary Canvas Scaling with Correction
@@ -882,7 +887,7 @@ image.src = 'cat.png';
 For non-integer scale factors, image pixels must align to canvas pixels at integer multiples:
 
 ```javascript
-const ctx = document.getElementById('game').getContext('2d');
+const ctx = document.getElementById("game").getContext("2d");
 ctx.scale(0.8, 0.8);
 
 const image = new Image();
@@ -890,7 +895,7 @@ image.onload = () => {
   // Correct formula: dWidth = sWidth / xScale * n (where n is an integer)
   ctx.drawImage(image, 0, 0, 128, 128, 0, 0, 128 / 0.8, 128 / 0.8);
 };
-image.src = 'cat.png';
+image.src = "cat.png";
 ```
 
 When using `drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)`:

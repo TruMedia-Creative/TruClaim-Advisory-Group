@@ -9,19 +9,19 @@ version: 2 # Required, always 2
 
 registries: # Optional: private registry access
   REGISTRY_NAME:
-    type: '...'
-    url: '...'
+    type: "..."
+    url: "..."
 
 multi-ecosystem-groups: # Optional: cross-ecosystem grouping
   GROUP_NAME:
     schedule:
-      interval: '...'
+      interval: "..."
 
 updates: # Required: list of ecosystem configurations
-  - package-ecosystem: '...' # Required
-    directory: '/' # Required (or directories)
+  - package-ecosystem: "..." # Required
+    directory: "/" # Required (or directories)
     schedule: # Required
-      interval: '...'
+      interval: "..."
 ```
 
 ## Required Keys
@@ -76,13 +76,13 @@ Location of package manifests relative to repo root.
 
 ```yaml
 # Single directory
-directory: '/'
+directory: "/"
 
 # Multiple directories with globs
 directories:
-  - '/'
-  - '/apps/*'
-  - '/packages/*'
+  - "/"
+  - "/apps/*"
+  - "/packages/*"
 ```
 
 For GitHub Actions, use `/` — Dependabot automatically searches `.github/workflows/`.
@@ -101,10 +101,10 @@ How often to check for updates.
 
 ```yaml
 schedule:
-  interval: 'weekly'
-  day: 'tuesday'
-  time: '09:00'
-  timezone: 'Europe/London'
+  interval: "weekly"
+  day: "tuesday"
+  time: "09:00"
+  timezone: "Europe/London"
 ```
 
 ## Grouping Options
@@ -126,11 +126,11 @@ Group dependencies into fewer PRs.
 ```yaml
 groups:
   dev-deps:
-    dependency-type: 'development'
-    update-types: ['minor', 'patch']
+    dependency-type: "development"
+    update-types: ["minor", "patch"]
   angular:
-    patterns: ['@angular*']
-    exclude-patterns: ['@angular/cdk']
+    patterns: ["@angular*"]
+    exclude-patterns: ["@angular/cdk"]
   monorepo:
     group-by: dependency-name
 ```
@@ -143,9 +143,9 @@ Group updates across different ecosystems into one PR.
 multi-ecosystem-groups:
   GROUP_NAME:
     schedule:
-      interval: 'weekly'
-    labels: ['infrastructure']
-    assignees: ['@platform-team']
+      interval: "weekly"
+    labels: ["infrastructure"]
+    assignees: ["@platform-team"]
 ```
 
 Assign ecosystems with `multi-ecosystem-group: "GROUP_NAME"` in each `updates` entry. The `patterns` key is required in each ecosystem entry when using this feature.
@@ -163,8 +163,8 @@ Explicitly define which dependencies to maintain.
 
 ```yaml
 allow:
-  - dependency-type: 'production'
-  - dependency-name: 'express'
+  - dependency-type: "production"
+  - dependency-name: "express"
 ```
 
 ### `ignore`
@@ -179,11 +179,11 @@ Exclude dependencies or versions from updates.
 
 ```yaml
 ignore:
-  - dependency-name: 'lodash'
-  - dependency-name: '@types/node'
-    update-types: ['version-update:semver-patch']
-  - dependency-name: 'express'
-    versions: ['5.x']
+  - dependency-name: "lodash"
+  - dependency-name: "@types/node"
+    update-types: ["version-update:semver-patch"]
+  - dependency-name: "express"
+    versions: ["5.x"]
 ```
 
 Rule: if a dependency matches both `allow` and `ignore`, it is **ignored**.
@@ -194,9 +194,9 @@ Ignore specific directories or files during manifest scanning.
 
 ```yaml
 exclude-paths:
-  - 'vendor/**'
-  - 'test/fixtures/**'
-  - '*.lock'
+  - "vendor/**"
+  - "test/fixtures/**"
+  - "*.lock"
 ```
 
 Supports glob patterns: `*` (single segment), `**` (recursive), specific file paths.
@@ -207,8 +207,8 @@ Supports glob patterns: `*` (single segment), `**` (recursive), specific file pa
 
 ```yaml
 labels:
-  - 'dependencies'
-  - 'npm'
+  - "dependencies"
+  - "npm"
 ```
 
 Set `labels: []` to disable all labels. SemVer labels are always applied if they exist in the repo.
@@ -217,8 +217,8 @@ Set `labels: []` to disable all labels. SemVer labels are always applied if they
 
 ```yaml
 assignees:
-  - 'user1'
-  - 'user2'
+  - "user1"
+  - "user2"
 ```
 
 Assignees must have write access (or read access for org repos).
@@ -233,22 +233,22 @@ milestone: 4 # numeric ID from milestone URL
 
 ```yaml
 commit-message:
-  prefix: 'deps' # up to 50 chars; colon auto-added if ends with letter/number
-  prefix-development: 'deps-dev' # separate prefix for dev dependencies
-  include: 'scope' # adds deps/deps-dev after prefix
+  prefix: "deps" # up to 50 chars; colon auto-added if ends with letter/number
+  prefix-development: "deps-dev" # separate prefix for dev dependencies
+  include: "scope" # adds deps/deps-dev after prefix
 ```
 
 ### `pull-request-branch-name`
 
 ```yaml
 pull-request-branch-name:
-  separator: '-' # options: "-", "_", "/"
+  separator: "-" # options: "-", "_", "/"
 ```
 
 ### `target-branch`
 
 ```yaml
-target-branch: 'develop'
+target-branch: "develop"
 ```
 
 When set, version update config only applies to version updates. Security updates always target the default branch.
@@ -274,8 +274,8 @@ cooldown:
   semver-major-days: 30
   semver-minor-days: 7
   semver-patch-days: 3
-  include: ['*']
-  exclude: ['critical-security-lib']
+  include: ["*"]
+  exclude: ["critical-security-lib"]
 ```
 
 ### `open-pull-requests-limit`
@@ -303,7 +303,7 @@ Supported by: `bundler`, `cargo`, `composer`, `mix`, `npm`, `pip`, `pub`, `uv`.
 ### `rebase-strategy`
 
 ```yaml
-rebase-strategy: 'disabled'
+rebase-strategy: "disabled"
 ```
 
 Default behavior: Dependabot auto-rebases PRs on conflicts. Rebasing stops 30 days after PR opens.
@@ -325,7 +325,7 @@ Go modules auto-detect vendored dependencies.
 Supported by: `bundler`, `mix`, `pip`.
 
 ```yaml
-insecure-external-code-execution: 'allow'
+insecure-external-code-execution: "allow"
 ```
 
 Allows Dependabot to execute code in manifests during updates. Required for some ecosystems that run code during resolution.
@@ -344,8 +344,8 @@ registries:
   maven-central:
     type: maven-repository
     url: https://repo.maven.apache.org/maven2
-    username: ''
-    password: ''
+    username: ""
+    password: ""
 
   docker-ghcr:
     type: docker-registry
@@ -363,12 +363,12 @@ registries:
 
 ```yaml
 updates:
-  - package-ecosystem: 'npm'
-    directory: '/'
+  - package-ecosystem: "npm"
+    directory: "/"
     registries:
       - npm-private
     schedule:
-      interval: 'weekly'
+      interval: "weekly"
 ```
 
 Use `registries: "*"` to allow access to all defined registries.

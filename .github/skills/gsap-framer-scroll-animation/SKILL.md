@@ -12,8 +12,8 @@ description: >-
   Also triggers for Copilot prompt patterns for GSAP or Framer Motion code generation.
   Pairs with the premium-frontend-ui skill for creative philosophy and design-level polish.
 metadata:
-  author: 'Utkarsh Patrikar'
-  author_url: 'https://github.com/utkarsh232005'
+  author: "Utkarsh Patrikar"
+  author_url: "https://github.com/utkarsh232005"
 ---
 
 # GSAP & Framer Motion — Scroll Animations Skill
@@ -50,8 +50,8 @@ npm install gsap
 ```
 
 ```js
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger); // MUST call before any ScrollTrigger usage
 ```
 
@@ -63,7 +63,7 @@ npm install motion   # new package name since mid-2025
 ```
 
 ```js
-import { motion, useScroll, useTransform, useSpring } from 'motion/react';
+import { motion, useScroll, useTransform, useSpring } from "motion/react";
 // legacy: import { motion } from 'framer-motion'  — also valid
 ```
 
@@ -82,12 +82,12 @@ Quick reference — full recipes with Copilot prompts are in the reference files
 ### 1. Fade-in on enter (GSAP)
 
 ```js
-gsap.from('.card', {
+gsap.from(".card", {
   opacity: 0,
   y: 50,
   stagger: 0.15,
   duration: 0.8,
-  scrollTrigger: { trigger: '.card', start: 'top 85%' },
+  scrollTrigger: { trigger: ".card", start: "top 85%" },
 });
 ```
 
@@ -97,7 +97,7 @@ gsap.from('.card', {
 <motion.div
   initial={{ opacity: 0, y: 40 }}
   whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true, margin: '-80px' }}
+  viewport={{ once: true, margin: "-80px" }}
   transition={{ duration: 0.6 }}
 />
 ```
@@ -105,18 +105,26 @@ gsap.from('.card', {
 ### 3. Scrub / scroll-linked (GSAP)
 
 ```js
-gsap.to('.hero-img', {
+gsap.to(".hero-img", {
   scale: 1.3,
   opacity: 0,
-  ease: 'none',
-  scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".hero",
+    start: "top top",
+    end: "bottom top",
+    scrub: true,
+  },
 });
 ```
 
 ### 4. Scroll-linked (Framer Motion)
 
 ```jsx
-const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
+const { scrollYProgress } = useScroll({
+  target: ref,
+  offset: ["start end", "end start"],
+});
 const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
 return <motion.div style={{ y }} />;
 ```
@@ -125,9 +133,15 @@ return <motion.div style={{ y }} />;
 
 ```js
 const tl = gsap.timeline({
-  scrollTrigger: { trigger: '.section', pin: true, scrub: 1, start: 'top top', end: '+=200%' },
+  scrollTrigger: {
+    trigger: ".section",
+    pin: true,
+    scrub: 1,
+    start: "top top",
+    end: "+=200%",
+  },
 });
-tl.from('.title', { opacity: 0, y: 60 }).from('.img', { scale: 0.85 });
+tl.from(".title", { opacity: 0, y: 60 }).from(".img", { scale: 0.85 });
 ```
 
 ## Critical Rules (Apply Always)

@@ -1,6 +1,6 @@
 ---
 name: react19-test-patterns
-description: 'Provides before/after patterns for migrating test files to React 19 compatibility, including act() imports, Simulate removal, and StrictMode call count changes.'
+description: "Provides before/after patterns for migrating test files to React 19 compatibility, including act() imports, Simulate removal, and StrictMode call count changes."
 ---
 
 # React 19 Test Migration Patterns
@@ -24,21 +24,21 @@ Fix test files in this order; each layer depends on the previous:
 
 ```jsx
 // Before  REMOVED in React 19:
-import { act } from 'react-dom/test-utils';
+import { act } from "react-dom/test-utils";
 
 // After:
-import { act } from 'react';
+import { act } from "react";
 ```
 
 If mixed with other test-utils imports:
 
 ```jsx
 // Before:
-import { act, Simulate, renderIntoDocument } from 'react-dom/test-utils';
+import { act, Simulate, renderIntoDocument } from "react-dom/test-utils";
 
 // After  split the imports:
-import { act } from 'react';
-import { fireEvent, render } from '@testing-library/react'; // replaces Simulate + renderIntoDocument
+import { act } from "react";
+import { fireEvent, render } from "@testing-library/react"; // replaces Simulate + renderIntoDocument
 ```
 
 ---
@@ -47,18 +47,18 @@ import { fireEvent, render } from '@testing-library/react'; // replaces Simulate
 
 ```jsx
 // Before  Simulate REMOVED in React 19:
-import { Simulate } from 'react-dom/test-utils';
+import { Simulate } from "react-dom/test-utils";
 Simulate.click(element);
-Simulate.change(input, { target: { value: 'hello' } });
+Simulate.change(input, { target: { value: "hello" } });
 Simulate.submit(form);
-Simulate.keyDown(element, { key: 'Enter', keyCode: 13 });
+Simulate.keyDown(element, { key: "Enter", keyCode: 13 });
 
 // After:
-import { fireEvent } from '@testing-library/react';
+import { fireEvent } from "@testing-library/react";
 fireEvent.click(element);
-fireEvent.change(input, { target: { value: 'hello' } });
+fireEvent.change(input, { target: { value: "hello" } });
 fireEvent.submit(form);
-fireEvent.keyDown(element, { key: 'Enter', keyCode: 13 });
+fireEvent.keyDown(element, { key: "Enter", keyCode: 13 });
 ```
 
 ---

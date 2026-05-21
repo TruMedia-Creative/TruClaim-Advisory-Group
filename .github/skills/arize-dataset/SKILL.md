@@ -1,6 +1,6 @@
 ---
 name: arize-dataset
-description: 'INVOKE THIS SKILL when creating, managing, or querying Arize datasets and examples. Covers dataset CRUD, appending examples, exporting data, and file-based dataset creation using the ax CLI.'
+description: "INVOKE THIS SKILL when creating, managing, or querying Arize datasets and examples. Covers dataset CRUD, appending examples, exporting data, and file-based dataset creation using the ax CLI."
 ---
 
 # Arize Dataset Skill

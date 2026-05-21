@@ -76,29 +76,29 @@ ErrorDocument 404 /404.html
 **Express.js**:
 
 ```javascript
-const express = require('express');
+const express = require("express");
 const app = express();
 
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static("public"));
 
-app.get('/api/users', (req, res) => {
+app.get("/api/users", (req, res) => {
   res.json({ users: [] });
 });
 
 app.listen(3000, () => {
-  console.log('Server running on port 3000');
+  console.log("Server running on port 3000");
 });
 ```
 
 **Built-in HTTP Server**:
 
 ```javascript
-const http = require('http');
+const http = require("http");
 
 const server = http.createServer((req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/html' });
-  res.end('<h1>Hello World</h1>');
+  res.writeHead(200, { "Content-Type": "text/html" });
+  res.end("<h1>Hello World</h1>");
 });
 
 server.listen(3000);
@@ -193,12 +193,12 @@ docker run -p 3000:3000 my-app
 **Docker Compose**:
 
 ```yaml
-version: '3'
+version: "3"
 services:
   web:
     build: .
     ports:
-      - '3000:3000'
+      - "3000:3000"
     environment:
       - DATABASE_URL=postgres://db:5432
   db:
@@ -383,16 +383,16 @@ Cache-Control: public, max-age=31536000, immutable
 **Redis**:
 
 ```javascript
-const redis = require('redis');
+const redis = require("redis");
 const client = redis.createClient();
 
 // Cache data
-await client.set('user:1', JSON.stringify(user), {
+await client.set("user:1", JSON.stringify(user), {
   EX: 3600, // Expire after 1 hour
 });
 
 // Retrieve cached data
-const cached = await client.get('user:1');
+const cached = await client.get("user:1");
 ```
 
 ### CDN Caching
@@ -412,7 +412,7 @@ NODE_ENV=production
 
 ```javascript
 // Access in Node.js
-require('dotenv').config();
+require("dotenv").config();
 const dbUrl = process.env.DATABASE_URL;
 ```
 

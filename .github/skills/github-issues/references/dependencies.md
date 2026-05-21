@@ -63,7 +63,10 @@ DELETE /repos/{owner}/{repo}/issues/{issue_number}/dependencies/blocked_by/{issu
 ```graphql
 mutation {
   addBlockedBy(
-    input: { issueId: "BLOCKED_ISSUE_NODE_ID", blockingIssueId: "BLOCKING_ISSUE_NODE_ID" }
+    input: {
+      issueId: "BLOCKED_ISSUE_NODE_ID"
+      blockingIssueId: "BLOCKING_ISSUE_NODE_ID"
+    }
   ) {
     blockingIssue {
       number
@@ -78,7 +81,10 @@ mutation {
 ```graphql
 mutation {
   removeBlockedBy(
-    input: { issueId: "BLOCKED_ISSUE_NODE_ID", blockingIssueId: "BLOCKING_ISSUE_NODE_ID" }
+    input: {
+      issueId: "BLOCKED_ISSUE_NODE_ID"
+      blockingIssueId: "BLOCKING_ISSUE_NODE_ID"
+    }
   ) {
     blockingIssue {
       number

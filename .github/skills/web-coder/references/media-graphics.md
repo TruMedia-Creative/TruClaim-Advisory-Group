@@ -126,38 +126,38 @@ XML-based vector graphics.
 ```
 
 ```javascript
-const canvas = document.getElementById('myCanvas');
-const ctx = canvas.getContext('2d');
+const canvas = document.getElementById("myCanvas");
+const ctx = canvas.getContext("2d");
 
 // Draw rectangle
-ctx.fillStyle = 'red';
+ctx.fillStyle = "red";
 ctx.fillRect(10, 10, 100, 50);
 
 // Draw circle
 ctx.beginPath();
 ctx.arc(200, 150, 50, 0, Math.PI * 2);
-ctx.fillStyle = 'blue';
+ctx.fillStyle = "blue";
 ctx.fill();
 
 // Draw line
 ctx.beginPath();
 ctx.moveTo(50, 200);
 ctx.lineTo(350, 250);
-ctx.strokeStyle = 'green';
+ctx.strokeStyle = "green";
 ctx.lineWidth = 3;
 ctx.stroke();
 
 // Draw text
-ctx.font = '30px Arial';
-ctx.fillStyle = 'black';
-ctx.fillText('Hello Canvas', 50, 100);
+ctx.font = "30px Arial";
+ctx.fillStyle = "black";
+ctx.fillText("Hello Canvas", 50, 100);
 
 // Draw image
 const img = new Image();
 img.onload = () => {
   ctx.drawImage(img, 0, 0);
 };
-img.src = 'image.jpg';
+img.src = "image.jpg";
 ```
 
 ### Canvas Methods
@@ -181,13 +181,13 @@ ctx.restore(); // Restore state
 
 // Compositing
 ctx.globalAlpha = 0.5;
-ctx.globalCompositeOperation = 'source-over';
+ctx.globalCompositeOperation = "source-over";
 
 // Export
-const dataURL = canvas.toDataURL('image/png');
+const dataURL = canvas.toDataURL("image/png");
 canvas.toBlob((blob) => {
   // Use blob
-}, 'image/png');
+}, "image/png");
 ```
 
 ## WebGL
@@ -209,10 +209,15 @@ canvas.toBlob((blob) => {
 
 ```javascript
 // Three.js example
-import * as THREE from 'three';
+import * as THREE from "three";
 
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(
+  75,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  1000,
+);
 const renderer = new THREE.WebGLRenderer();
 
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -266,7 +271,7 @@ animate();
 ### JavaScript Control
 
 ```javascript
-const video = document.querySelector('video');
+const video = document.querySelector("video");
 
 // Playback
 video.play();
@@ -281,10 +286,10 @@ video.volume = 0.5; // 0.0 to 1.0
 video.playbackRate = 1.5; // Speed
 
 // Events
-video.addEventListener('play', () => {});
-video.addEventListener('pause', () => {});
-video.addEventListener('ended', () => {});
-video.addEventListener('timeupdate', () => {});
+video.addEventListener("play", () => {});
+video.addEventListener("pause", () => {});
+video.addEventListener("ended", () => {});
+video.addEventListener("timeupdate", () => {});
 ```
 
 ## Audio
@@ -313,7 +318,7 @@ Advanced audio processing:
 const audioContext = new AudioContext();
 
 // Load audio
-fetch('audio.mp3')
+fetch("audio.mp3")
   .then((response) => response.arrayBuffer())
   .then((arrayBuffer) => audioContext.decodeAudioData(arrayBuffer))
   .then((audioBuffer) => {
@@ -350,7 +355,11 @@ fetch('audio.mp3')
 />
 
 <!-- Pixel density -->
-<img src="image.jpg" srcset="image.jpg 1x, image@2x.jpg 2x, image@3x.jpg 3x" alt="High DPI image" />
+<img
+  src="image.jpg"
+  srcset="image.jpg 1x, image@2x.jpg 2x, image@3x.jpg 3x"
+  alt="High DPI image"
+/>
 ```
 
 ### Picture Element
@@ -415,7 +424,7 @@ Art direction and format switching:
 ```
 
 ```javascript
-const images = document.querySelectorAll('.lazy');
+const images = document.querySelectorAll(".lazy");
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
@@ -433,7 +442,12 @@ images.forEach((img) => observer.observe(img));
 
 ```html
 <!-- Low quality placeholder -->
-<img src="image-tiny.jpg" data-src="image-full.jpg" class="blur" alt="Progressive image" />
+<img
+  src="image-tiny.jpg"
+  data-src="image-full.jpg"
+  class="blur"
+  alt="Progressive image"
+/>
 ```
 
 ## Favicon

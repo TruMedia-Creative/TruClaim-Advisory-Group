@@ -36,20 +36,20 @@ Document
 
 ```javascript
 // By ID
-const element = document.getElementById('myId');
+const element = document.getElementById("myId");
 
 // By class name (returns HTMLCollection)
-const elements = document.getElementsByClassName('myClass');
+const elements = document.getElementsByClassName("myClass");
 
 // By tag name (returns HTMLCollection)
-const divs = document.getElementsByTagName('div');
+const divs = document.getElementsByTagName("div");
 
 // Query selector (first match)
-const first = document.querySelector('.myClass');
-const advanced = document.querySelector('div.container > p:first-child');
+const first = document.querySelector(".myClass");
+const advanced = document.querySelector("div.container > p:first-child");
 
 // Query selector all (returns NodeList)
-const all = document.querySelectorAll('.myClass');
+const all = document.querySelectorAll(".myClass");
 
 // Special selectors
 document.body; // Body element
@@ -60,7 +60,7 @@ document.documentElement; // <html> element
 ### Traversing the DOM
 
 ```javascript
-const element = document.querySelector('#myElement');
+const element = document.querySelector("#myElement");
 
 // Parent
 element.parentElement;
@@ -77,7 +77,7 @@ element.nextElementSibling;
 element.previousElementSibling;
 
 // Closest ancestor matching selector
-element.closest('.container');
+element.closest(".container");
 
 // Check if element contains another
 parent.contains(child); // true/false
@@ -87,32 +87,32 @@ parent.contains(child); // true/false
 
 ```javascript
 // Create element
-const div = document.createElement('div');
-const text = document.createTextNode('Hello');
+const div = document.createElement("div");
+const text = document.createTextNode("Hello");
 const fragment = document.createDocumentFragment();
 
 // Set content
-div.textContent = 'Plain text'; // Safe (escaped)
-div.innerHTML = '<strong>HTML</strong>'; // Can be unsafe with user input
+div.textContent = "Plain text"; // Safe (escaped)
+div.innerHTML = "<strong>HTML</strong>"; // Can be unsafe with user input
 
 // Set attributes
-div.setAttribute('id', 'myDiv');
-div.setAttribute('class', 'container');
-div.id = 'myDiv'; // Direct property
-div.className = 'container';
-div.classList.add('active');
-div.classList.remove('inactive');
-div.classList.toggle('visible');
-div.classList.contains('active'); // true/false
+div.setAttribute("id", "myDiv");
+div.setAttribute("class", "container");
+div.id = "myDiv"; // Direct property
+div.className = "container";
+div.classList.add("active");
+div.classList.remove("inactive");
+div.classList.toggle("visible");
+div.classList.contains("active"); // true/false
 
 // Set styles
-div.style.color = 'red';
-div.style.backgroundColor = 'blue';
-div.style.cssText = 'color: red; background: blue;';
+div.style.color = "red";
+div.style.backgroundColor = "blue";
+div.style.cssText = "color: red; background: blue;";
 
 // Data attributes
-div.dataset.userId = '123'; // Sets data-user-id="123"
-div.getAttribute('data-user-id'); // "123"
+div.dataset.userId = "123"; // Sets data-user-id="123"
+div.getAttribute("data-user-id"); // "123"
 
 // Insert into DOM
 parent.appendChild(div); // Add as last child
@@ -164,22 +164,22 @@ element.checkVisibility(); // Modern API
 
 ```javascript
 // addEventListener (modern, recommended)
-element.addEventListener('click', handleClick);
-element.addEventListener('click', handleClick, { once: true }); // Remove after first trigger
+element.addEventListener("click", handleClick);
+element.addEventListener("click", handleClick, { once: true }); // Remove after first trigger
 
 function handleClick(event) {
-  console.log('Clicked!', event);
+  console.log("Clicked!", event);
 }
 
 // Event options
-element.addEventListener('scroll', handleScroll, {
+element.addEventListener("scroll", handleScroll, {
   passive: true, // Won't call preventDefault()
   capture: false, // Bubble phase (default)
   once: true, // Remove after one call
 });
 
 // Remove event listener
-element.removeEventListener('click', handleClick);
+element.removeEventListener("click", handleClick);
 ```
 
 ### Common Events
@@ -199,7 +199,7 @@ element.removeEventListener('click', handleClick);
 ### Event Object
 
 ```javascript
-element.addEventListener('click', (event) => {
+element.addEventListener("click", (event) => {
   // Target elements
   event.target; // Element that triggered event
   event.currentTarget; // Element with listener attached
@@ -231,9 +231,9 @@ Handle events on parent instead of individual children:
 
 ```javascript
 // Instead of adding listener to each button
-document.querySelector('.container').addEventListener('click', (event) => {
-  if (event.target.matches('button')) {
-    console.log('Button clicked:', event.target);
+document.querySelector(".container").addEventListener("click", (event) => {
+  if (event.target.matches("button")) {
+    console.log("Button clicked:", event.target);
   }
 });
 ```
@@ -246,15 +246,15 @@ Persistent storage (no expiration):
 
 ```javascript
 // Set item
-localStorage.setItem('key', 'value');
-localStorage.setItem('user', JSON.stringify({ name: 'John' }));
+localStorage.setItem("key", "value");
+localStorage.setItem("user", JSON.stringify({ name: "John" }));
 
 // Get item
-const value = localStorage.getItem('key');
-const user = JSON.parse(localStorage.getItem('user'));
+const value = localStorage.getItem("key");
+const user = JSON.parse(localStorage.getItem("user"));
 
 // Remove item
-localStorage.removeItem('key');
+localStorage.removeItem("key");
 
 // Clear all
 localStorage.clear();
@@ -279,9 +279,9 @@ Storage cleared when tab closes:
 
 ```javascript
 // Same API as localStorage
-sessionStorage.setItem('key', 'value');
-sessionStorage.getItem('key');
-sessionStorage.removeItem('key');
+sessionStorage.setItem("key", "value");
+sessionStorage.getItem("key");
+sessionStorage.removeItem("key");
 sessionStorage.clear();
 ```
 
@@ -293,7 +293,7 @@ Modern API for HTTP requests:
 
 ```javascript
 // Basic GET request
-fetch('https://api.example.com/data')
+fetch("https://api.example.com/data")
   .then((response) => response.json())
   .then((data) => console.log(data))
   .catch((error) => console.error(error));
@@ -301,7 +301,7 @@ fetch('https://api.example.com/data')
 // Async/await
 async function fetchData() {
   try {
-    const response = await fetch('https://api.example.com/data');
+    const response = await fetch("https://api.example.com/data");
 
     // Check if successful
     if (!response.ok) {
@@ -311,34 +311,34 @@ async function fetchData() {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error('Fetch error:', error);
+    console.error("Fetch error:", error);
   }
 }
 
 // POST request with JSON
-fetch('https://api.example.com/users', {
-  method: 'POST',
+fetch("https://api.example.com/users", {
+  method: "POST",
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
-  body: JSON.stringify({ name: 'John', age: 30 }),
+  body: JSON.stringify({ name: "John", age: 30 }),
 })
   .then((response) => response.json())
   .then((data) => console.log(data));
 
 // With various options
 fetch(url, {
-  method: 'GET', // GET, POST, PUT, DELETE, etc.
+  method: "GET", // GET, POST, PUT, DELETE, etc.
   headers: {
-    Authorization: 'Bearer token',
-    'Content-Type': 'application/json',
+    Authorization: "Bearer token",
+    "Content-Type": "application/json",
   },
   body: JSON.stringify(data), // For POST/PUT
-  mode: 'cors', // cors, no-cors, same-origin
-  credentials: 'include', // include, same-origin, omit
-  cache: 'no-cache', // default, no-cache, reload, force-cache
-  redirect: 'follow', // follow, error, manual
-  referrerPolicy: 'no-referrer', // no-referrer, origin, etc.
+  mode: "cors", // cors, no-cors, same-origin
+  credentials: "include", // include, same-origin, omit
+  cache: "no-cache", // default, no-cache, reload, force-cache
+  redirect: "follow", // follow, error, manual
+  referrerPolicy: "no-referrer", // no-referrer, origin, etc.
 });
 
 // Response methods
@@ -354,17 +354,17 @@ const formData = await response.formData(); // FormData
 ### Console API
 
 ```javascript
-console.log('Message'); // Log message
-console.error('Error'); // Error message (red)
-console.warn('Warning'); // Warning message (yellow)
-console.info('Info'); // Info message
+console.log("Message"); // Log message
+console.error("Error"); // Error message (red)
+console.warn("Warning"); // Warning message (yellow)
+console.info("Info"); // Info message
 console.table([{ a: 1 }, { a: 2 }]); // Table format
-console.group('Group'); // Start group
+console.group("Group"); // Start group
 console.groupEnd(); // End group
-console.time('timer'); // Start timer
-console.timeEnd('timer'); // End timer and log duration
+console.time("timer"); // Start timer
+console.timeEnd("timer"); // End timer and log duration
 console.clear(); // Clear console
-console.assert(condition, 'Error message'); // Assert condition
+console.assert(condition, "Error message"); // Assert condition
 ```
 
 ### Timers
@@ -372,7 +372,7 @@ console.assert(condition, 'Error message'); // Assert condition
 ```javascript
 // Execute once after delay
 const timeoutId = setTimeout(() => {
-  console.log('Executed after 1 second');
+  console.log("Executed after 1 second");
 }, 1000);
 
 // Cancel timeout
@@ -380,7 +380,7 @@ clearTimeout(timeoutId);
 
 // Execute repeatedly
 const intervalId = setInterval(() => {
-  console.log('Executed every second');
+  console.log("Executed every second");
 }, 1000);
 
 // Cancel interval
@@ -397,7 +397,7 @@ requestAnimationFrame(animate);
 ### URL API
 
 ```javascript
-const url = new URL('https://example.com:8080/path?query=value#hash');
+const url = new URL("https://example.com:8080/path?query=value#hash");
 
 url.protocol; // 'https:'
 url.hostname; // 'example.com'
@@ -408,11 +408,11 @@ url.hash; // '#hash'
 url.href; // Full URL
 
 // URL parameters
-url.searchParams.get('query'); // 'value'
-url.searchParams.set('newParam', 'newValue');
-url.searchParams.append('query', 'another');
-url.searchParams.delete('query');
-url.searchParams.has('query'); // true/false
+url.searchParams.get("query"); // 'value'
+url.searchParams.set("newParam", "newValue");
+url.searchParams.append("query", "another");
+url.searchParams.delete("query");
+url.searchParams.has("query"); // true/false
 
 // Convert to string
 url.toString(); // Full URL
@@ -422,17 +422,17 @@ url.toString(); // Full URL
 
 ```javascript
 // Create FormData from form
-const form = document.querySelector('form');
+const form = document.querySelector("form");
 const formData = new FormData(form);
 
 // Create FormData manually
 const data = new FormData();
-data.append('username', 'john');
-data.append('file', fileInput.files[0]);
+data.append("username", "john");
+data.append("file", fileInput.files[0]);
 
 // Get values
-data.get('username'); // 'john'
-data.getAll('files'); // Array of all 'files' values
+data.get("username"); // 'john'
+data.getAll("files"); // Array of all 'files' values
 
 // Iterate
 for (const [key, value] of data.entries()) {
@@ -440,8 +440,8 @@ for (const [key, value] of data.entries()) {
 }
 
 // Send with fetch
-fetch('/api/upload', {
-  method: 'POST',
+fetch("/api/upload", {
+  method: "POST",
   body: formData, // Don't set Content-Type header
 });
 ```
@@ -455,15 +455,15 @@ const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        console.log('Element is visible');
-        entry.target.classList.add('visible');
+        console.log("Element is visible");
+        entry.target.classList.add("visible");
       }
     });
   },
   {
     threshold: 0.5, // 50% visible
-    rootMargin: '0px',
-  }
+    rootMargin: "0px",
+  },
 );
 
 observer.observe(element);
@@ -478,7 +478,7 @@ Watch for DOM changes:
 ```javascript
 const observer = new MutationObserver((mutations) => {
   mutations.forEach((mutation) => {
-    console.log('DOM changed:', mutation.type);
+    console.log("DOM changed:", mutation.type);
   });
 });
 
@@ -501,13 +501,13 @@ navigator.geolocation.getCurrentPosition(
     console.log(position.coords.longitude);
   },
   (error) => {
-    console.error('Error getting location:', error);
+    console.error("Error getting location:", error);
   },
   {
     enableHighAccuracy: true,
     timeout: 5000,
     maximumAge: 0,
-  }
+  },
 );
 
 // Watch position (continuous updates)
@@ -521,24 +521,24 @@ Run JavaScript in background thread:
 
 ```javascript
 // Main thread
-const worker = new Worker('worker.js');
+const worker = new Worker("worker.js");
 
-worker.postMessage({ data: 'Hello' });
+worker.postMessage({ data: "Hello" });
 
 worker.onmessage = (event) => {
-  console.log('From worker:', event.data);
+  console.log("From worker:", event.data);
 };
 
 worker.onerror = (error) => {
-  console.error('Worker error:', error);
+  console.error("Worker error:", error);
 };
 
 worker.terminate(); // Stop worker
 
 // worker.js
 self.onmessage = (event) => {
-  console.log('From main:', event.data);
-  self.postMessage({ result: 'Done' });
+  console.log("From main:", event.data);
+  self.postMessage({ result: "Done" });
 };
 ```
 
@@ -547,29 +547,29 @@ self.onmessage = (event) => {
 Draw graphics:
 
 ```javascript
-const canvas = document.querySelector('canvas');
-const ctx = canvas.getContext('2d');
+const canvas = document.querySelector("canvas");
+const ctx = canvas.getContext("2d");
 
 // Draw rectangle
-ctx.fillStyle = 'blue';
+ctx.fillStyle = "blue";
 ctx.fillRect(10, 10, 100, 50);
 
 // Draw circle
 ctx.beginPath();
 ctx.arc(100, 100, 50, 0, Math.PI * 2);
-ctx.fillStyle = 'red';
+ctx.fillStyle = "red";
 ctx.fill();
 
 // Draw text
-ctx.font = '20px Arial';
-ctx.fillText('Hello', 10, 50);
+ctx.font = "20px Arial";
+ctx.fillText("Hello", 10, 50);
 
 // Draw image
 const img = new Image();
 img.onload = () => {
   ctx.drawImage(img, 0, 0);
 };
-img.src = 'image.jpg';
+img.src = "image.jpg";
 ```
 
 ### IndexedDB
@@ -578,9 +578,9 @@ Client-side database for large amounts of structured data:
 
 ```javascript
 // Open database
-const request = indexedDB.open('MyDatabase', 1);
+const request = indexedDB.open("MyDatabase", 1);
 
-request.onerror = () => console.error('Database error');
+request.onerror = () => console.error("Database error");
 
 request.onsuccess = (event) => {
   const db = event.target.result;
@@ -589,14 +589,14 @@ request.onsuccess = (event) => {
 
 request.onupgradeneeded = (event) => {
   const db = event.target.result;
-  const objectStore = db.createObjectStore('users', { keyPath: 'id' });
-  objectStore.createIndex('name', 'name', { unique: false });
+  const objectStore = db.createObjectStore("users", { keyPath: "id" });
+  objectStore.createIndex("name", "name", { unique: false });
 };
 
 // Add data
-const transaction = db.transaction(['users'], 'readwrite');
-const objectStore = transaction.objectStore('users');
-objectStore.add({ id: 1, name: 'John' });
+const transaction = db.transaction(["users"], "readwrite");
+const objectStore = transaction.objectStore("users");
+objectStore.add({ id: 1, name: "John" });
 
 // Get data
 const request = objectStore.get(1);

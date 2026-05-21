@@ -1,6 +1,6 @@
 ---
 name: repo-story-time
-description: 'Generate a comprehensive repository summary and narrative story from commit history'
+description: "Generate a comprehensive repository summary and narrative story from commit history"
 ---
 
 ## Role

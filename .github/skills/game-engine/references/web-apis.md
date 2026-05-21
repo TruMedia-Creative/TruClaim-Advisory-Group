@@ -35,7 +35,7 @@ asm.js is deprecated. **WebAssembly (Wasm)** is the modern successor and offers 
 ```javascript
 // asm.js module pattern (simplified)
 function MyModule(stdlib, foreign, heap) {
-  'use asm';
+  "use asm";
 
   var sqrt = stdlib.Math.sqrt;
   var HEAP32 = new stdlib.Int32Array(heap);
@@ -101,19 +101,19 @@ The Canvas API provides a means for drawing 2D graphics via JavaScript and the H
 ```
 
 ```javascript
-const canvas = document.getElementById('game');
-const ctx = canvas.getContext('2d');
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
 
 // Clear the frame
 ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 // Draw a filled rectangle (e.g., a platform)
-ctx.fillStyle = 'green';
+ctx.fillStyle = "green";
 ctx.fillRect(100, 400, 200, 20);
 
 // Draw a sprite
 const sprite = new Image();
-sprite.src = 'player.png';
+sprite.src = "player.png";
 sprite.onload = () => {
   ctx.drawImage(sprite, playerX, playerY, 32, 32);
 };
@@ -174,7 +174,7 @@ CSS is the language used to describe the presentation of web documents. In the c
   padding: 10px;
   pointer-events: none; /* clicks pass through to canvas */
   z-index: 10;
-  font-family: 'Press Start 2P', monospace;
+  font-family: "Press Start 2P", monospace;
   color: white;
   text-shadow: 2px 2px 0 black;
 }
@@ -240,20 +240,20 @@ The Fullscreen API provides methods to present a specific element (and its desce
 ### Code Example
 
 ```javascript
-const gameContainer = document.getElementById('game-container');
+const gameContainer = document.getElementById("game-container");
 
 // Enter fullscreen on button click
-document.getElementById('fullscreenBtn').addEventListener('click', () => {
+document.getElementById("fullscreenBtn").addEventListener("click", () => {
   if (document.fullscreenEnabled) {
     gameContainer.requestFullscreen().catch((err) => {
-      console.error('Fullscreen request failed:', err);
+      console.error("Fullscreen request failed:", err);
     });
   }
 });
 
 // Toggle fullscreen with a key press
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'F11') {
+document.addEventListener("keydown", (e) => {
+  if (e.key === "F11") {
     e.preventDefault();
     if (!document.fullscreenElement) {
       gameContainer.requestFullscreen();
@@ -264,7 +264,7 @@ document.addEventListener('keydown', (e) => {
 });
 
 // Respond to fullscreen changes (resize canvas, adjust UI)
-document.addEventListener('fullscreenchange', () => {
+document.addEventListener("fullscreenchange", () => {
   if (document.fullscreenElement) {
     resizeCanvasToFullscreen();
   } else {
@@ -316,11 +316,11 @@ The Gamepad API provides a standardized interface for detecting and reading inpu
 
 ```javascript
 // Detect controller connections
-window.addEventListener('gamepadconnected', (e) => {
+window.addEventListener("gamepadconnected", (e) => {
   console.log(`Gamepad connected: ${e.gamepad.id}`);
 });
 
-window.addEventListener('gamepaddisconnected', (e) => {
+window.addEventListener("gamepaddisconnected", (e) => {
   console.log(`Gamepad disconnected: ${e.gamepad.id}`);
 });
 
@@ -382,13 +382,13 @@ IndexedDB is a low-level, asynchronous, transactional, client-side database buil
 
 ```javascript
 // Open (or create) the game database
-const request = indexedDB.open('MyGameDB', 1);
+const request = indexedDB.open("MyGameDB", 1);
 
 request.onupgradeneeded = (event) => {
   const db = event.target.result;
   // Create an object store for save data
-  const saveStore = db.createObjectStore('saves', { keyPath: 'slotId' });
-  saveStore.createIndex('timestamp', 'timestamp');
+  const saveStore = db.createObjectStore("saves", { keyPath: "slotId" });
+  saveStore.createIndex("timestamp", "timestamp");
 };
 
 request.onsuccess = (event) => {
@@ -396,8 +396,8 @@ request.onsuccess = (event) => {
 
   // Save game state
   function saveGame(slot, gameState) {
-    const tx = db.transaction('saves', 'readwrite');
-    const store = tx.objectStore('saves');
+    const tx = db.transaction("saves", "readwrite");
+    const store = tx.objectStore("saves");
     store.put({
       slotId: slot,
       timestamp: Date.now(),
@@ -410,8 +410,8 @@ request.onsuccess = (event) => {
   // Load game state
   function loadGame(slot) {
     return new Promise((resolve, reject) => {
-      const tx = db.transaction('saves', 'readonly');
-      const store = tx.objectStore('saves');
+      const tx = db.transaction("saves", "readonly");
+      const store = tx.objectStore("saves");
       const req = store.get(slot);
       req.onsuccess = () => resolve(req.result);
       req.onerror = () => reject(req.error);
@@ -480,7 +480,7 @@ class Player extends GameObject {
     if (input.right) this.x += this.speed * dt;
   }
   render(ctx) {
-    ctx.fillStyle = 'blue';
+    ctx.fillStyle = "blue";
     ctx.fillRect(this.x, this.y, 32, 32);
   }
 }
@@ -534,10 +534,10 @@ The Pointer Lock API (formerly Mouse Lock API) provides access to raw mouse move
 ### Code Example
 
 ```javascript
-const canvas = document.getElementById('game');
+const canvas = document.getElementById("game");
 
 // Request pointer lock on click (user gesture required)
-canvas.addEventListener('click', async () => {
+canvas.addEventListener("click", async () => {
   if (!document.pointerLockElement) {
     await canvas.requestPointerLock({
       unadjustedMovement: true, // raw input, no OS acceleration
@@ -546,11 +546,11 @@ canvas.addEventListener('click', async () => {
 });
 
 // Respond to lock state changes
-document.addEventListener('pointerlockchange', () => {
+document.addEventListener("pointerlockchange", () => {
   if (document.pointerLockElement === canvas) {
-    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener("mousemove", handleMouseMove);
   } else {
-    document.removeEventListener('mousemove', handleMouseMove);
+    document.removeEventListener("mousemove", handleMouseMove);
   }
 });
 
@@ -614,9 +614,26 @@ SVG is an XML-based markup language for describing two-dimensional vector graphi
     </linearGradient>
   </defs>
   <!-- Background -->
-  <rect x="1" y="1" width="218" height="28" rx="5" fill="#333" stroke="#fff" stroke-width="1" />
+  <rect
+    x="1"
+    y="1"
+    width="218"
+    height="28"
+    rx="5"
+    fill="#333"
+    stroke="#fff"
+    stroke-width="1"
+  />
   <!-- Health fill (width controlled via JS) -->
-  <rect id="health-fill" x="3" y="3" width="160" height="24" rx="4" fill="url(#healthGrad)">
+  <rect
+    id="health-fill"
+    x="3"
+    y="3"
+    width="160"
+    height="24"
+    rx="4"
+    fill="url(#healthGrad)"
+  >
     <animate attributeName="width" from="214" to="60" dur="3s" fill="freeze" />
   </rect>
 </svg>
@@ -626,7 +643,9 @@ SVG is an XML-based markup language for describing two-dimensional vector graphi
 // Update health bar programmatically
 function setHealth(percent) {
   const maxWidth = 214;
-  document.getElementById('health-fill').setAttribute('width', maxWidth * (percent / 100));
+  document
+    .getElementById("health-fill")
+    .setAttribute("width", maxWidth * (percent / 100));
 }
 ```
 
@@ -804,8 +823,8 @@ function playPositionalSound(buffer, x, y, z) {
   source.buffer = buffer;
 
   const panner = audioCtx.createPanner();
-  panner.panningModel = 'HRTF';
-  panner.distanceModel = 'inverse';
+  panner.panningModel = "HRTF";
+  panner.distanceModel = "inverse";
   panner.refDistance = 1;
   panner.maxDistance = 100;
   panner.positionX.value = x;
@@ -885,8 +904,8 @@ WebGL (Web Graphics Library) is a JavaScript API for rendering hardware-accelera
 ### Code Example
 
 ```javascript
-const canvas = document.getElementById('game');
-const gl = canvas.getContext('webgl2');
+const canvas = document.getElementById("game");
+const gl = canvas.getContext("webgl2");
 
 // Vertex shader
 const vsSource = `#version 300 es
@@ -933,7 +952,7 @@ const buffer = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
 gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
 
-const aPos = gl.getAttribLocation(program, 'aPosition');
+const aPos = gl.getAttribLocation(program, "aPosition");
 gl.enableVertexAttribArray(aPos);
 gl.vertexAttribPointer(aPos, 3, gl.FLOAT, false, 0, 0);
 
@@ -1003,17 +1022,17 @@ WebRTC (Web Real-Time Communication) enables peer-to-peer communication between 
 ```javascript
 // Peer A: Create connection and data channel
 const peerA = new RTCPeerConnection({
-  iceServers: [{ urls: 'stun:stun.l.google.com:19302' }],
+  iceServers: [{ urls: "stun:stun.l.google.com:19302" }],
 });
 
-const gameChannel = peerA.createDataChannel('game', {
+const gameChannel = peerA.createDataChannel("game", {
   ordered: false, // Allow out-of-order delivery (lower latency)
   maxRetransmits: 0, // Unreliable mode (like UDP)
 });
 
 gameChannel.onopen = () => {
   // Send game state updates
-  gameChannel.send(JSON.stringify({ type: 'move', x: 10, y: 20 }));
+  gameChannel.send(JSON.stringify({ type: "move", x: 10, y: 20 }));
 };
 
 gameChannel.onmessage = (event) => {
@@ -1023,7 +1042,7 @@ gameChannel.onmessage = (event) => {
 
 // Peer B: Receive the data channel
 const peerB = new RTCPeerConnection({
-  iceServers: [{ urls: 'stun:stun.l.google.com:19302' }],
+  iceServers: [{ urls: "stun:stun.l.google.com:19302" }],
 });
 
 peerB.ondatachannel = (event) => {
@@ -1090,31 +1109,31 @@ The WebSocket API enables persistent, full-duplex communication between a browse
 
 ```javascript
 // Connect to the game server
-const socket = new WebSocket('wss://game.example.com/ws');
-socket.binaryType = 'arraybuffer';
+const socket = new WebSocket("wss://game.example.com/ws");
+socket.binaryType = "arraybuffer";
 
-socket.addEventListener('open', () => {
+socket.addEventListener("open", () => {
   // Authenticate and join a game room
   socket.send(
     JSON.stringify({
-      type: 'join',
-      room: 'room-42',
-      playerId: 'player-1',
-    })
+      type: "join",
+      room: "room-42",
+      playerId: "player-1",
+    }),
   );
 });
 
-socket.addEventListener('message', (event) => {
-  if (typeof event.data === 'string') {
+socket.addEventListener("message", (event) => {
+  if (typeof event.data === "string") {
     const msg = JSON.parse(event.data);
     switch (msg.type) {
-      case 'state':
+      case "state":
         updateWorldState(msg.state);
         break;
-      case 'playerJoined':
+      case "playerJoined":
         addRemotePlayer(msg.player);
         break;
-      case 'playerLeft':
+      case "playerLeft":
         removeRemotePlayer(msg.playerId);
         break;
     }
@@ -1125,7 +1144,7 @@ socket.addEventListener('message', (event) => {
   }
 });
 
-socket.addEventListener('close', (event) => {
+socket.addEventListener("close", (event) => {
   console.log(`Disconnected: ${event.code} ${event.reason}`);
   showReconnectPrompt();
 });
@@ -1135,12 +1154,12 @@ function sendInput(input) {
   if (socket.readyState === WebSocket.OPEN) {
     socket.send(
       JSON.stringify({
-        type: 'input',
+        type: "input",
         keys: input.keys,
         mouseX: input.mouseX,
         mouseY: input.mouseY,
         timestamp: performance.now(),
-      })
+      }),
     );
   }
 }
@@ -1280,19 +1299,19 @@ The Web Workers API enables running JavaScript in background threads separate fr
 
 ```javascript
 // Create a physics worker
-const physicsWorker = new Worker('physics-worker.js');
+const physicsWorker = new Worker("physics-worker.js");
 
 // Send world state to the worker each frame
 function updatePhysics(entities) {
   // Transfer the buffer for zero-copy performance
   const buffer = serializeEntities(entities);
-  physicsWorker.postMessage({ type: 'step', buffer }, [buffer]);
+  physicsWorker.postMessage({ type: "step", buffer }, [buffer]);
 }
 
 // Receive results from the worker
 physicsWorker.onmessage = (event) => {
   const { type, buffer } = event.data;
-  if (type === 'result') {
+  if (type === "result") {
     applyPhysicsResults(buffer);
   }
 };
@@ -1303,7 +1322,7 @@ physicsWorker.onmessage = (event) => {
 ```javascript
 self.onmessage = (event) => {
   const { type, buffer } = event.data;
-  if (type === 'step') {
+  if (type === "step") {
     const positions = new Float32Array(buffer);
 
     // Run physics simulation
@@ -1312,7 +1331,9 @@ self.onmessage = (event) => {
     }
 
     // Send results back, transferring the buffer
-    self.postMessage({ type: 'result', buffer: positions.buffer }, [positions.buffer]);
+    self.postMessage({ type: "result", buffer: positions.buffer }, [
+      positions.buffer,
+    ]);
   }
 };
 ```
@@ -1371,8 +1392,8 @@ self.onmessage = (event) => {
 function loadLevel(url) {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', url);
-    xhr.responseType = 'json';
+    xhr.open("GET", url);
+    xhr.responseType = "json";
 
     xhr.onload = () => {
       if (xhr.status === 200) {
@@ -1381,7 +1402,7 @@ function loadLevel(url) {
         reject(new Error(`Failed to load level: ${xhr.status}`));
       }
     };
-    xhr.onerror = () => reject(new Error('Network error'));
+    xhr.onerror = () => reject(new Error("Network error"));
     xhr.send();
   });
 }
@@ -1390,8 +1411,8 @@ function loadLevel(url) {
 function loadBinaryAsset(url, onProgress) {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', url);
-    xhr.responseType = 'arraybuffer';
+    xhr.open("GET", url);
+    xhr.responseType = "arraybuffer";
 
     xhr.onprogress = (event) => {
       if (event.lengthComputable && onProgress) {
@@ -1406,15 +1427,15 @@ function loadBinaryAsset(url, onProgress) {
         reject(new Error(`Failed to load asset: ${xhr.status}`));
       }
     };
-    xhr.onerror = () => reject(new Error('Network error'));
+    xhr.onerror = () => reject(new Error("Network error"));
     xhr.send();
   });
 }
 
 // Usage
-loadLevel('levels/level1.json').then((data) => initLevel(data));
-loadBinaryAsset('models/tank.bin', (pct) => updateLoadingBar(pct)).then((buf) =>
-  parseModel(new Float32Array(buf))
+loadLevel("levels/level1.json").then((data) => initLevel(data));
+loadBinaryAsset("models/tank.bin", (pct) => updateLoadingBar(pct)).then((buf) =>
+  parseModel(new Float32Array(buf)),
 );
 ```
 

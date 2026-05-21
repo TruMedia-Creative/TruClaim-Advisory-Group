@@ -29,7 +29,9 @@ The HTML report has exactly 8 sections in this order. Each section MUST be prese
   </div>
   <div class="compare-card trend">
     <div class="card-label">TREND</div>
-    <div class="trend-direction [FILL: color]">[FILL: Improving / Worsening / Stable]</div>
+    <div class="trend-direction [FILL: color]">
+      [FILL: Improving / Worsening / Stable]
+    </div>
     <div class="trend-duration">[FILL: N months]</div>
   </div>
 </div>
@@ -41,9 +43,10 @@ The HTML report has exactly 8 sections in this order. Each section MUST be prese
 
 ```html
 <div class="metrics-bar">
-  [FILL: Components: old → new (±N)] [FILL: Trust Boundaries: old → new (±N)] [FILL: Threats: old →
-  new (±N)] [FILL: Findings: old → new (±N)] [FILL: Code Changes: N commits, M PRs — use git
-  rev-list --count and git log --oneline --merges --grep="Merged PR"]
+  [FILL: Components: old → new (±N)] [FILL: Trust Boundaries: old → new (±N)]
+  [FILL: Threats: old → new (±N)] [FILL: Findings: old → new (±N)] [FILL: Code
+  Changes: N commits, M PRs — use git rev-list --count and git log --oneline
+  --merges --grep="Merged PR"]
 </div>
 ```
 
@@ -100,8 +103,8 @@ The HTML report has exactly 8 sections in this order. Each section MUST be prese
 
 ```html
 <div class="status-breakdown">
-  [FILL: Grouped by status — Fixed items, New items, etc.] [REPEAT: Each item: ID | Title |
-  Component | Status] [END-REPEAT]
+  [FILL: Grouped by status — Fixed items, New items, etc.] [REPEAT: Each item:
+  ID | Title | Component | Status] [END-REPEAT]
 </div>
 ```
 
@@ -148,7 +151,8 @@ The HTML report has exactly 8 sections in this order. Each section MUST be prese
 
 ```html
 <div class="needs-verification">
-  [REPEAT: items where analysis disagrees with old report] [FILL: item description] [END-REPEAT]
+  [REPEAT: items where analysis disagrees with old report] [FILL: item
+  description] [END-REPEAT]
 </div>
 ```
 
@@ -156,8 +160,8 @@ The HTML report has exactly 8 sections in this order. Each section MUST be prese
 
 ```html
 <div class="footer">
-  Model: [FILL] | Duration: [FILL] Baseline: [FILL: folder] at [FILL: SHA] Generated: [FILL:
-  timestamp]
+  Model: [FILL] | Duration: [FILL] Baseline: [FILL: folder] at [FILL: SHA]
+  Generated: [FILL: timestamp]
 </div>
 ```
 

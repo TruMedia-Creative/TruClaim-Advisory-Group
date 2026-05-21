@@ -135,7 +135,12 @@ Claude Desktop requires the `mcp-remote` proxy (stdio-only transport):
      "mcpServers": {
        "penpot": {
          "command": "npx",
-         "args": ["-y", "mcp-remote", "http://localhost:4401/sse", "--allow-http"]
+         "args": [
+           "-y",
+           "mcp-remote",
+           "http://localhost:4401/sse",
+           "--allow-http"
+         ]
        }
      }
    }

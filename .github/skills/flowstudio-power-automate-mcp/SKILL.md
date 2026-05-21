@@ -214,22 +214,22 @@ def mcp(tool, args, cid=1):
 Equivalent helper for Node.js 18+ (built-in `fetch` — no packages required):
 
 ```js
-const TOKEN = '<YOUR_JWT_TOKEN>';
-const MCP = 'https://mcp.flowstudio.app/mcp';
+const TOKEN = "<YOUR_JWT_TOKEN>";
+const MCP = "https://mcp.flowstudio.app/mcp";
 
 async function mcp(tool, args, cid = 1) {
   const payload = {
-    jsonrpc: '2.0',
-    method: 'tools/call',
+    jsonrpc: "2.0",
+    method: "tools/call",
     id: cid,
     params: { name: tool, arguments: args },
   };
   const res = await fetch(MCP, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'x-api-key': TOKEN,
-      'Content-Type': 'application/json',
-      'User-Agent': 'FlowStudio-MCP/1.0',
+      "x-api-key": TOKEN,
+      "Content-Type": "application/json",
+      "User-Agent": "FlowStudio-MCP/1.0",
     },
     body: JSON.stringify(payload),
   });

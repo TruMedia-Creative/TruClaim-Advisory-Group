@@ -1,7 +1,7 @@
 ---
 name: unit-test-vue-pinia
 category: testing
-description: 'Write and review unit tests for Vue 3 + TypeScript + Vitest + Pinia codebases. Use when creating or updating tests for components, composables, and stores; mocking Pinia with createTestingPinia; applying Vue Test Utils patterns; and enforcing black-box assertions over implementation details.'
+description: "Write and review unit tests for Vue 3 + TypeScript + Vitest + Pinia codebases. Use when creating or updating tests for components, composables, and stores; mocking Pinia with createTestingPinia; applying Vue Test Utils patterns; and enforcing black-box assertions over implementation details."
 ---
 
 # unit-test-vue-pinia
@@ -87,7 +87,7 @@ const wrapper = mount(ComponentUnderTest, {
         createSpy: vi.fn,
         initialState: {
           counter: { n: 20 },
-          user: { name: 'Leia Organa' },
+          user: { name: "Leia Organa" },
         },
       }),
     ],
@@ -130,7 +130,7 @@ beforeEach(() => {
   setActivePinia(createPinia());
 });
 
-it('increments', () => {
+it("increments", () => {
   const counter = useCounterStore();
   counter.increment();
   expect(counter.n).toBe(1);
@@ -154,16 +154,16 @@ Follow Vue Test Utils guidance: <https://test-utils.vuejs.org/guide/>
 Emit and assert payload:
 
 ```ts
-await wrapper.find('button').trigger('click');
-expect(wrapper.emitted('submit')?.[0]?.[0]).toBe('Mango Mission');
+await wrapper.find("button").trigger("click");
+expect(wrapper.emitted("submit")?.[0]?.[0]).toBe("Mango Mission");
 ```
 
 Update input and assert output:
 
 ```ts
-await wrapper.find('input').setValue('Agent Violet');
-await wrapper.find('form').trigger('submit');
-expect(wrapper.emitted('save')?.[0]?.[0]).toBe('Agent Violet');
+await wrapper.find("input").setValue("Agent Violet");
+await wrapper.find("form").trigger("submit");
+expect(wrapper.emitted("save")?.[0]?.[0]).toBe("Agent Violet");
 ```
 
 ## Test Writing Workflow

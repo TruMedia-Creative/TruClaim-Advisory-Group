@@ -22,7 +22,7 @@ The `use()` hook is React 19's answer for unwrapping promises and context within
 
 ```jsx
 // React 18 approach 1  lazy load a component module:
-const UserComponent = React.lazy(() => import('./User'));
+const UserComponent = React.lazy(() => import("./User"));
 
 function App() {
   return (
@@ -77,7 +77,7 @@ function Root() {
 // React 18  conditional with state
 function SearchResults() {
   const [results, setResults] = useState(null);
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     if (query) {
@@ -93,7 +93,7 @@ function SearchResults() {
 
 // React 19  use() with conditional
 function SearchResults() {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
 
   if (!query) return null;
 
@@ -127,7 +127,7 @@ React 19 `use()` is opt-in. All existing Suspense + component splitting patterns
 
 ```jsx
 // Keep this as-is if it's working:
-const Lazy = React.lazy(() => import('./Component'));
+const Lazy = React.lazy(() => import("./Component"));
 <Suspense fallback={<Spinner />}>
   <Lazy />
 </Suspense>;

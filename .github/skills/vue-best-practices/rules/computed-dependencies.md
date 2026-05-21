@@ -13,13 +13,13 @@ Computed properties recalculate when ANY dependency changes. Keep dependencies m
 
 ```vue
 <script setup>
-import { reactive, computed } from 'vue';
+import { reactive, computed } from "vue";
 
 const state = reactive({
   user: {
-    name: 'John',
-    email: 'john@example.com',
-    preferences: { theme: 'dark', notifications: true },
+    name: "John",
+    email: "john@example.com",
+    preferences: { theme: "dark", notifications: true },
     lastLogin: new Date(),
     sessionCount: 42,
   },
@@ -37,13 +37,13 @@ const greeting = computed(() => {
 
 ```vue
 <script setup>
-import { reactive, computed } from 'vue';
+import { reactive, computed } from "vue";
 
 const state = reactive({
   user: {
-    name: 'John',
-    email: 'john@example.com',
-    preferences: { theme: 'dark', notifications: true },
+    name: "John",
+    email: "john@example.com",
+    preferences: { theme: "dark", notifications: true },
     lastLogin: new Date(),
     sessionCount: 42,
   },
@@ -86,7 +86,7 @@ const hasActiveItem = computed(() =>
 
 ```vue
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed } from "vue";
 
 const data = ref({ a: 1, b: 2, c: 3 });
 
@@ -104,22 +104,22 @@ const total = computed(() => data.value.a + data.value.b + data.value.c);
 
 ```vue
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed } from "vue";
 
 // BAD: One reactive object
 const form = reactive({
-  name: '',
-  email: '',
-  message: '',
+  name: "",
+  email: "",
+  message: "",
 });
 
 // Any change triggers this recompute
 const isValid = computed(() => form.name && form.email);
 
 // GOOD: Separate refs for truly independent values
-const name = ref('');
-const email = ref('');
-const message = ref('');
+const name = ref("");
+const email = ref("");
+const message = ref("");
 
 // Only depends on name and email, not message
 const isValid = computed(() => name.value && email.value);

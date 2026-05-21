@@ -1,6 +1,6 @@
 ---
 name: java-refactoring-extract-method
-description: 'Refactoring using Extract Methods in Java Language'
+description: "Refactoring using Extract Methods in Java Language"
 ---
 
 # Refactoring Java Methods with Extract Method

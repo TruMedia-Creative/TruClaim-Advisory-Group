@@ -175,7 +175,7 @@ repos:
       - id: check-yaml
       - id: check-merge-conflict
       - id: check-added-large-files
-        args: ['--maxkb=500']
+        args: ["--maxkb=500"]
 ```
 
 ### ❌ Remove these hooks (replaced by ruff)
@@ -292,7 +292,7 @@ lint:
 
     - uses: actions/setup-python@v5
       with:
-        python-version: '3.11'
+        python-version: "3.11"
 
     - name: Install dev dependencies
       run: pip install -e ".[dev]"

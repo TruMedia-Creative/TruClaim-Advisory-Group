@@ -1,6 +1,6 @@
 ---
 name: arize-prompt-optimization
-description: 'INVOKE THIS SKILL when optimizing, improving, or debugging LLM prompts using production trace data, evaluations, and annotations. Covers extracting prompts from spans, gathering performance signal, and running a data-driven optimization loop using the ax CLI.'
+description: "INVOKE THIS SKILL when optimizing, improving, or debugging LLM prompts using production trace data, evaluations, and annotations. Covers extracting prompts from spans, gathering performance signal, and running a data-driven optimization loop using the ax CLI."
 ---
 
 # Arize Prompt Optimization Skill
@@ -107,7 +107,10 @@ Once you have the span data, reconstruct the prompt as a messages array:
 ```json
 [
   { "role": "system", "content": "You are a helpful assistant that..." },
-  { "role": "user", "content": "Given {input}, answer the question: {question}" }
+  {
+    "role": "user",
+    "content": "Given {input}, answer the question: {question}"
+  }
 ]
 ```
 

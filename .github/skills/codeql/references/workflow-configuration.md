@@ -40,7 +40,7 @@ Periodic scans on the default branch:
 ```yaml
 on:
   schedule:
-    - cron: '20 14 * * 1' # Monday 14:20 UTC
+    - cron: "20 14 * * 1" # Monday 14:20 UTC
 ```
 
 - Only triggers if the workflow file exists on the default branch
@@ -67,9 +67,9 @@ Control when the workflow runs based on changed files:
 on:
   pull_request:
     paths-ignore:
-      - '**/*.md'
-      - '**/*.txt'
-      - 'docs/**'
+      - "**/*.md"
+      - "**/*.txt"
+      - "docs/**"
 ```
 
 Or use `paths` to only trigger on specific directories:
@@ -78,8 +78,8 @@ Or use `paths` to only trigger on specific directories:
 on:
   pull_request:
     paths:
-      - 'src/**'
-      - 'apps/**'
+      - "src/**"
+      - "apps/**"
 ```
 
 > **Important:** `paths-ignore` and `paths` control whether the workflow runs. When the workflow does run, it analyzes ALL changed files in the PR (including those matched by `paths-ignore`), unless files are excluded via the CodeQL configuration file's `paths-ignore`.
@@ -91,9 +91,9 @@ on:
   workflow_dispatch:
     inputs:
       language:
-        description: 'Language to analyze'
+        description: "Language to analyze"
         required: true
-        default: 'javascript-typescript'
+        default: "javascript-typescript"
 ```
 
 ## Runner and OS Configuration
@@ -191,7 +191,7 @@ Override the default database location:
 ```yaml
 - uses: github/codeql-action/init@v4
   with:
-    db-location: '${{ github.runner_temp }}/my_location'
+    db-location: "${{ github.runner_temp }}/my_location"
 ```
 
 - Default: `${{ github.runner_temp }}/codeql_databases`
@@ -242,7 +242,7 @@ Distinguish between multiple analyses for the same commit:
 ```yaml
 - uses: github/codeql-action/analyze@v4
   with:
-    category: '/language:${{ matrix.language }}'
+    category: "/language:${{ matrix.language }}"
 ```
 
 ### Monorepo Category Patterns
@@ -265,7 +265,7 @@ The `category` value appears as `<run>.automationDetails.id` in the SARIF output
 Create `.github/codeql/codeql-config.yml` for advanced path and query configuration:
 
 ```yaml
-name: 'CodeQL Configuration'
+name: "CodeQL Configuration"
 
 # Directories to scan
 paths:
@@ -276,9 +276,9 @@ paths:
 # Directories to exclude
 paths-ignore:
   - node_modules/
-  - '**/test/**'
-  - '**/fixtures/**'
-  - '**/*.test.ts'
+  - "**/test/**"
+  - "**/fixtures/**"
+  - "**/*.test.ts"
 
 # Additional queries
 queries:
@@ -343,7 +343,7 @@ concurrency:
 ## Complete Workflow Example
 
 ```yaml
-name: 'CodeQL Analysis'
+name: "CodeQL Analysis"
 
 on:
   push:
@@ -351,7 +351,7 @@ on:
   pull_request:
     branches: [main]
   schedule:
-    - cron: '30 6 * * 1'
+    - cron: "30 6 * * 1"
 
 permissions:
   security-events: write
@@ -397,5 +397,5 @@ jobs:
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v4
         with:
-          category: '/language:${{ matrix.language }}'
+          category: "/language:${{ matrix.language }}"
 ```

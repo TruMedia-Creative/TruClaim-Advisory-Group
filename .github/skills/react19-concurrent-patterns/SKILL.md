@@ -1,6 +1,6 @@
 ---
 name: react19-concurrent-patterns
-description: 'Preserve React 18 concurrent patterns and adopt React 19 APIs (useTransition, useDeferredValue, Suspense, use(), useOptimistic, Actions) during migration.'
+description: "Preserve React 18 concurrent patterns and adopt React 19 APIs (useTransition, useDeferredValue, Suspense, use(), useOptimistic, Actions) during migration."
 ---
 
 # React 19 Concurrent Patterns
@@ -20,12 +20,12 @@ If the R18 orchestra already ran, `ReactDOM.render` → `createRoot` is done. Ve
 
 ```jsx
 // CORRECT React 19 root (same as React 18):
-import { createRoot } from 'react-dom/client';
-const root = createRoot(document.getElementById('root'));
+import { createRoot } from "react-dom/client";
+const root = createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>
+  </React.StrictMode>,
 );
 ```
 
@@ -55,7 +55,7 @@ const deferredQuery = useDeferredValue(query);
 
 ```jsx
 // React 18 Suspense with lazy  unchanged in React 19:
-const LazyComponent = React.lazy(() => import('./LazyComponent'));
+const LazyComponent = React.lazy(() => import("./LazyComponent"));
 
 function App() {
   return (

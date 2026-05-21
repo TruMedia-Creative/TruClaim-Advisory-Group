@@ -1,6 +1,6 @@
 ---
 name: dataverse-python-usecase-builder
-description: 'Generate complete solutions for specific Dataverse SDK use cases with architecture recommendations'
+description: "Generate complete solutions for specific Dataverse SDK use cases with architecture recommendations"
 ---
 
 # System Instructions

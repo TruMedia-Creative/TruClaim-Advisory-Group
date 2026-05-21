@@ -18,10 +18,12 @@ It uses "faithful"/"unfaithful" labels with score 1.0 = faithful.
 ## TypeScript
 
 ```typescript
-import { createHallucinationEvaluator } from '@arizeai/phoenix-evals';
-import { openai } from '@ai-sdk/openai';
+import { createHallucinationEvaluator } from "@arizeai/phoenix-evals";
+import { openai } from "@ai-sdk/openai";
 
-const hallucinationEval = createHallucinationEvaluator({ model: openai('gpt-4o') });
+const hallucinationEval = createHallucinationEvaluator({
+  model: openai("gpt-4o"),
+});
 ```
 
 ## Available (2.0)

@@ -6,7 +6,7 @@ This document describes the structure of Excalidraw `.excalidraw` files for diag
 
 ```typescript
 interface ExcalidrawFile {
-  type: 'excalidraw';
+  type: "excalidraw";
   version: number; // Always 2
   source: string; // "https://excalidraw.com"
   elements: ExcalidrawElement[];
@@ -39,9 +39,9 @@ interface BaseElement {
   angle: number; // Rotation angle in radians (usually 0)
   strokeColor: string; // Hex color, e.g., "#1e1e1e"
   backgroundColor: string; // Hex color or "transparent"
-  fillStyle: 'solid' | 'hachure' | 'cross-hatch';
+  fillStyle: "solid" | "hachure" | "cross-hatch";
   strokeWidth: number; // 1-4 typically
-  strokeStyle: 'solid' | 'dashed' | 'dotted';
+  strokeStyle: "solid" | "dashed" | "dotted";
   roughness: number; // 0-2, controls hand-drawn effect (1 = default)
   opacity: number; // 0-100
   groupIds: string[]; // IDs of groups this element belongs to
@@ -65,13 +65,13 @@ interface BaseElement {
 
 ```typescript
 interface RectangleElement extends BaseElement {
-  type: 'rectangle';
+  type: "rectangle";
   roundness: { type: 3 }; // 3 = rounded corners
   text?: string; // Optional text inside
   fontSize?: number; // Font size (16-32 typical)
   fontFamily?: number; // 1 = Virgil, 2 = Helvetica, 3 = Cascadia
-  textAlign?: 'left' | 'center' | 'right';
-  verticalAlign?: 'top' | 'middle' | 'bottom';
+  textAlign?: "left" | "center" | "right";
+  verticalAlign?: "top" | "middle" | "bottom";
 }
 ```
 
@@ -99,12 +99,12 @@ interface RectangleElement extends BaseElement {
 
 ```typescript
 interface EllipseElement extends BaseElement {
-  type: 'ellipse';
+  type: "ellipse";
   text?: string;
   fontSize?: number;
   fontFamily?: number;
-  textAlign?: 'left' | 'center' | 'right';
-  verticalAlign?: 'top' | 'middle' | 'bottom';
+  textAlign?: "left" | "center" | "right";
+  verticalAlign?: "top" | "middle" | "bottom";
 }
 ```
 
@@ -112,12 +112,12 @@ interface EllipseElement extends BaseElement {
 
 ```typescript
 interface DiamondElement extends BaseElement {
-  type: 'diamond';
+  type: "diamond";
   text?: string;
   fontSize?: number;
   fontFamily?: number;
-  textAlign?: 'left' | 'center' | 'right';
-  verticalAlign?: 'top' | 'middle' | 'bottom';
+  textAlign?: "left" | "center" | "right";
+  verticalAlign?: "top" | "middle" | "bottom";
 }
 ```
 
@@ -125,7 +125,7 @@ interface DiamondElement extends BaseElement {
 
 ```typescript
 interface ArrowElement extends BaseElement {
-  type: 'arrow';
+  type: "arrow";
   points: [number, number][]; // Array of [x, y] coordinates relative to element
   startBinding: Binding | null;
   endBinding: Binding | null;
@@ -164,7 +164,7 @@ interface ArrowElement extends BaseElement {
 
 ```typescript
 interface LineElement extends BaseElement {
-  type: 'line';
+  type: "line";
   points: [number, number][];
   startBinding: Binding | null;
   endBinding: Binding | null;
@@ -176,12 +176,12 @@ interface LineElement extends BaseElement {
 
 ```typescript
 interface TextElement extends BaseElement {
-  type: 'text';
+  type: "text";
   text: string;
   fontSize: number;
   fontFamily: number; // 1-3
-  textAlign: 'left' | 'center' | 'right';
-  verticalAlign: 'top' | 'middle' | 'bottom';
+  textAlign: "left" | "center" | "right";
+  verticalAlign: "top" | "middle" | "bottom";
   roundness: null; // Text has no roundness
 }
 ```

@@ -1,6 +1,6 @@
 ---
-description: 'Guidelines for creating custom agent files for GitHub Copilot'
-applyTo: '**/*.agent.md'
+description: "Guidelines for creating custom agent files for GitHub Copilot"
+applyTo: "**/*.agent.md"
 ---
 
 # Custom Agent File Guidelines
@@ -22,11 +22,11 @@ Every agent file must include YAML frontmatter with the following fields:
 
 ```yaml
 ---
-description: 'Brief description of the agent purpose and capabilities'
-name: 'Agent Display Name'
-tools: ['read', 'edit', 'search']
-model: 'Claude Sonnet 4.5'
-target: 'vscode'
+description: "Brief description of the agent purpose and capabilities"
+name: "Agent Display Name"
+tools: ["read", "edit", "search"]
+model: "Claude Sonnet 4.5"
+target: "vscode"
 ---
 ```
 
@@ -114,17 +114,17 @@ Define handoffs in the agent file's YAML frontmatter using the `handoffs` field:
 
 ```yaml
 ---
-description: 'Brief description of the agent'
-name: 'Agent Name'
-tools: ['search', 'read']
+description: "Brief description of the agent"
+name: "Agent Name"
+tools: ["search", "read"]
 handoffs:
   - label: Start Implementation
     agent: implementation
-    prompt: 'Now implement the plan outlined above.'
+    prompt: "Now implement the plan outlined above."
     send: false
   - label: Code Review
     agent: code-review
-    prompt: 'Please review the implementation for quality and security issues.'
+    prompt: "Please review the implementation for quality and security issues."
     send: false
 ---
 ```
@@ -272,19 +272,19 @@ This workflow allows a developer to:
 
 ```yaml
 # Omit tools property entirely, or use:
-tools: ['*']
+tools: ["*"]
 ```
 
 **Enable specific tools**:
 
 ```yaml
-tools: ['read', 'edit', 'search', 'execute']
+tools: ["read", "edit", "search", "execute"]
 ```
 
 **Enable MCP server tools**:
 
 ```yaml
-tools: ['read', 'edit', 'github/*', 'playwright/navigate']
+tools: ["read", "edit", "github/*", "playwright/navigate"]
 ```
 
 **Disable all tools**:
@@ -351,7 +351,7 @@ The recommended approach is **prompt-based orchestration**:
 1. Enable agent invocation by including `agent` in the orchestrator's tools list:
 
 ```yaml
-tools: ['read', 'edit', 'search', 'agent']
+tools: ["read", "edit", "search", "agent"]
 ```
 
 2. For each step, invoke a sub-agent by providing:
@@ -443,7 +443,7 @@ Expected: write ${basePath}/analysis/report.md
 
 ```yaml
 # If your sub-agents need to edit files, execute commands, or search code
-tools: ['read', 'edit', 'search', 'execute', 'agent']
+tools: ["read", "edit", "search", "execute", "agent"]
 ```
 
 The orchestrator's tool permissions act as a ceiling for all invoked sub-agents. Plan your tool list carefully to ensure all sub-agents have the tools they need.
@@ -544,7 +544,7 @@ Automatically extract variables from the user's natural language input:
 
 ```javascript
 // Example: Extract certification name from user input
-const userInput = 'Process My Certification';
+const userInput = "Process My Certification";
 
 // Extract key information
 const certificationName = extractCertificationName(userInput);
@@ -805,14 +805,14 @@ MCP servers extend agent capabilities with additional tools. Only supported for 
 ```yaml
 ---
 name: my-custom-agent
-description: 'Agent with MCP integration'
-tools: ['read', 'edit', 'custom-mcp/tool-1']
+description: "Agent with MCP integration"
+tools: ["read", "edit", "custom-mcp/tool-1"]
 mcp-servers:
   custom-mcp:
-    type: 'local'
-    command: 'some-command'
-    args: ['--arg1', '--arg2']
-    tools: ['*']
+    type: "local"
+    command: "some-command"
+    args: ["--arg1", "--arg2"]
+    tools: ["*"]
     env:
       ENV_VAR_NAME: ${{ secrets.API_KEY }}
 ---

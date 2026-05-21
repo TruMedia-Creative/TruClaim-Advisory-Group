@@ -21,8 +21,8 @@ const emit = defineEmits<{
 }>();
 
 // Inconsistent emit calls
-emit('manageSubscription');
-emit('toggleVisibility', id, true);
+emit("manageSubscription");
+emit("toggleVisibility", id, true);
 </script>
 ```
 
@@ -32,15 +32,15 @@ emit('toggleVisibility', id, true);
 <script setup lang="ts">
 // ✅ CORRECT - kebab-case with quotes in defineEmits
 const emit = defineEmits<{
-  'manage-subscription': [];
-  'toggle-visibility': [id: string, visible: boolean];
-  'update-value': [value: number];
+  "manage-subscription": [];
+  "toggle-visibility": [id: string, visible: boolean];
+  "update-value": [value: number];
 }>();
 
 // Consistent emit calls
-emit('manage-subscription');
-emit('toggle-visibility', id, true);
-emit('update-value', 42);
+emit("manage-subscription");
+emit("toggle-visibility", id, true);
+emit("update-value", 42);
 </script>
 ```
 
@@ -82,11 +82,11 @@ const props = defineProps<{
 
 // v-model emits use 'update:modelValue' pattern
 const emit = defineEmits<{
-  'update:model-value': [value: string]; // kebab-case
+  "update:model-value": [value: string]; // kebab-case
 }>();
 
 function updateValue(newValue: string) {
-  emit('update:model-value', newValue);
+  emit("update:model-value", newValue);
 }
 </script>
 
@@ -104,7 +104,9 @@ function updateValue(newValue: string) {
 <!-- ❌ WRONG - Inline arrow with multiple params -->
 <template>
   <LayerTree
-    @toggle-visibility="(layerId, visible) => emit('toggle-layer-visibility', layerId, visible)"
+    @toggle-visibility="
+      (layerId, visible) => emit('toggle-layer-visibility', layerId, visible)
+    "
   />
 </template>
 

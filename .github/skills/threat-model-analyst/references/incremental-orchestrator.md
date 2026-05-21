@@ -579,9 +579,10 @@ Generate a self-contained HTML file that visualizes the comparison. All data com
 
 <!-- Section 2: Metrics Bar (5 boxes — NO Time Between, use Code Changes) -->
 <div class="metrics-bar">
-  Components: {{old_count}} → {{new_count}} (±N) Trust Boundaries: {{old_boundaries}} →
-  {{new_boundaries}} (±N) Threats: {{old_count}} → {{new_count}} (±N) Findings: {{old_count}} →
-  {{new_count}} (±N) Code Changes: {{COMMIT_COUNT}} commits, {{PR_COUNT}} PRs
+  Components: {{old_count}} → {{new_count}} (±N) Trust Boundaries:
+  {{old_boundaries}} → {{new_boundaries}} (±N) Threats: {{old_count}} →
+  {{new_count}} (±N) Findings: {{old_count}} → {{new_count}} (±N) Code Changes:
+  {{COMMIT_COUNT}} commits, {{PR_COUNT}} PRs
 </div>
 
 <!-- Section 3: Status Summary Cards (colored cards — primary visualization) -->
@@ -636,8 +637,8 @@ Generate a self-contained HTML file that visualizes the comparison. All data com
 
 <!-- Section 8: Footer -->
 <div class="footer">
-  Model: {{model}} | Duration: {{duration}} Baseline: {{baseline_folder}} at {{baseline_sha}}
-  Generated: {{timestamp}}
+  Model: {{model}} | Duration: {{duration}} Baseline: {{baseline_folder}} at
+  {{baseline_sha}} Generated: {{timestamp}}
 </div>
 ```
 

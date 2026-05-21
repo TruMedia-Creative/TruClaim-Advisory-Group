@@ -880,7 +880,15 @@ This file enables automated comparison between two threat model runs.
     "threats_by_tier": { "T1": 12, "T2": 53, "T3": 32 },
     "findings_by_tier": { "T1": 7, "T2": 7, "T3": 4 },
     "findings_by_severity": { "Critical": 4, "Important": 8, "Moderate": 6 },
-    "threats_by_stride": { "S": 14, "T": 19, "R": 8, "I": 20, "D": 15, "E": 14, "A": 7 }
+    "threats_by_stride": {
+      "S": 14,
+      "T": 19,
+      "R": 8,
+      "I": 20,
+      "D": 15,
+      "E": 14,
+      "A": 7
+    }
   }
 }
 ```

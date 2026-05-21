@@ -10,7 +10,7 @@ Load the relevant section during Step 1 (Scope Resolution) after identifying lan
 
 ```js
 eval(); // arbitrary code execution
-Function('return ...'); // same as eval
+Function("return ..."); // same as eval
 child_process.exec(); // command injection if user input reaches it
 fs.readFile; // path traversal if user controls path
 fs.writeFile; // path traversal if user controls path
@@ -28,11 +28,11 @@ app.use(express.json());
 // Should have: app.use(express.json({ limit: '10kb' }))
 
 // CORS misconfiguration
-app.use(cors({ origin: '*' })); // too permissive
+app.use(cors({ origin: "*" })); // too permissive
 app.use(cors({ origin: req.headers.origin })); // reflects any origin
 
 // Trust proxy without validation
-app.set('trust proxy', true); // only safe behind known proxy
+app.set("trust proxy", true); // only safe behind known proxy
 ```
 
 ### React specific

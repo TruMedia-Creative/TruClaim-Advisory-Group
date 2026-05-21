@@ -42,10 +42,10 @@ See [dashboard layout](../layouts/dashboard.md) for the full sidebar pattern wit
 const route = useRoute();
 
 const breadcrumbs = computed(() => {
-  const segments = route.path.split('/').filter(Boolean);
+  const segments = route.path.split("/").filter(Boolean);
   return segments.map((segment, index) => ({
     label: segment.charAt(0).toUpperCase() + segment.slice(1),
-    to: '/' + segments.slice(0, index + 1).join('/'),
+    to: "/" + segments.slice(0, index + 1).join("/"),
   }));
 });
 </script>
@@ -61,19 +61,19 @@ const breadcrumbs = computed(() => {
 <script setup lang="ts">
 const items = [
   {
-    label: 'Overview',
-    icon: 'i-lucide-layout-dashboard',
-    slot: 'overview' as const,
+    label: "Overview",
+    icon: "i-lucide-layout-dashboard",
+    slot: "overview" as const,
   },
   {
-    label: 'Activity',
-    icon: 'i-lucide-activity',
-    slot: 'activity' as const,
+    label: "Activity",
+    icon: "i-lucide-activity",
+    slot: "activity" as const,
   },
   {
-    label: 'Members',
-    icon: 'i-lucide-users',
-    slot: 'members' as const,
+    label: "Members",
+    icon: "i-lucide-users",
+    slot: "members" as const,
   },
 ];
 </script>
