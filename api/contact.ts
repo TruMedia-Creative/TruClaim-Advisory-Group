@@ -13,6 +13,7 @@ const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024;
 const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
 const RATE_LIMIT_MAX_REQUESTS = 5;
 const MAX_TRACKED_IPS = 2000;
+const MAX_FILENAME_LENGTH = 120;
 
 const requestTimestampsByIp = new Map<string, number[]>();
 
@@ -37,6 +38,34 @@ const allowedMimeTypesByField: Record<string, Set<string>> = {
   settlementLetter: new Set(['application/pdf', 'image/jpeg', 'image/png']),
   damagePhotos: new Set(['image/jpeg', 'image/png']),
   contractorEstimate: new Set(['application/pdf', 'image/jpeg', 'image/png']),
+};
+
+const maxFilesByField: Record<string, number> = {
+  carrierEstimate: 1,
+  settlementLetter: 1,
+  damagePhotos: MAX_DAMAGE_PHOTOS,
+  contractorEstimate: 1,
+};
+
+const maxLengthByField: Record<string, number> = {
+  name: 120,
+  phone: 50,
+  email: 254,
+  propertyAddress: 250,
+  state: 2,
+  insuranceCompany: 120,
+  claimNumber: 120,
+  dateOfLoss: 50,
+  typeOfLoss: 120,
+  carrierIssuedPayment: 120,
+  settlementAmount: 120,
+  whatWasMissed: 4000,
+  appraisalInvoked: 20,
+  hasRepresentation: 20,
+  deadline: 120,
+  inspectionAvailability: 250,
+  referralSource: 120,
+  companyWebsite: 250,
 };
 
 const parseFormData = (req: VercelRequest) =>
@@ -76,12 +105,12 @@ const collectFileArray = (fileOrFiles?: File | File[]): File[] => {
   return Array.isArray(fileOrFiles) ? fileOrFiles : [fileOrFiles];
 };
 
-const getClientIp = (req: VercelRequest): string => {
+const getClientIp = (req: VercelRequest): string | null => {
   const xForwardedFor = req.headers['x-forwarded-for'];
   if (typeof xForwardedFor === 'string' && xForwardedFor.length > 0) {
-    return xForwardedFor.split(',')[0]?.trim() || 'unknown';
+    return xForwardedFor.split(',')[0]?.trim() || null;
   }
-  return req.socket.remoteAddress ?? 'unknown';
+  return req.socket.remoteAddress ?? null;
 };
 
 const pruneRateLimitEntries = (now: number) => {
@@ -145,7 +174,13 @@ const validateFiles = (files: Record<string, File | File[]>) => {
   }
 
   for (const [fieldName, allowedMimeTypes] of Object.entries(allowedMimeTypesByField)) {
-    for (const file of collectFileArray(files[fieldName])) {
+    const fieldFiles = collectFileArray(files[fieldName]);
+    const maxFilesForField = maxFilesByField[fieldName];
+    if (maxFilesForField !== undefined && fieldFiles.length > maxFilesForField) {
+      throw new Error(`Too many files attached for ${fieldName}`);
+    }
+
+    for (const file of fieldFiles) {
       if (!file.mimetype || !allowedMimeTypes.has(file.mimetype)) {
         throw new Error(`Invalid file type received for ${fieldName}`);
       }
@@ -156,6 +191,28 @@ const validateFiles = (files: Record<string, File | File[]>) => {
     }
   }
 };
+
+const validateFieldLengths = (fields: Record<string, string>) => {
+  for (const [field, maxLength] of Object.entries(maxLengthByField)) {
+    const value = fields[field];
+    if (value && value.length > maxLength) {
+      throw new Error(`Invalid field length for ${field}`);
+    }
+  }
+};
+
+const sanitizeFilename = (value: string): string =>
+  value
+    .replace(/[\\/]/g, '-')
+    .split('')
+    .filter((char) => {
+      const code = char.charCodeAt(0);
+      return code >= 32 && code !== 127;
+    })
+    .join('')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, MAX_FILENAME_LENGTH) || 'document';
 
 const validateFields = (fields: Record<string, string>) => {
   const missing = REQUIRED_FIELDS.filter((key) => !fields[key]);
@@ -188,8 +245,9 @@ const buildAttachments = async (files: Record<string, File | File[]>) => {
     for (const [index, file] of fieldFiles.entries()) {
       if (!file.filepath) continue;
       const buffer = await fs.readFile(file.filepath);
+      const safeOriginalFilename = sanitizeFilename(file.originalFilename ?? 'document');
       attachments.push({
-        filename: `${prefix}${fieldFiles.length > 1 ? `-${index + 1}` : ''}-${file.originalFilename ?? 'document'}`,
+        filename: `${prefix}${fieldFiles.length > 1 ? `-${index + 1}` : ''}-${safeOriginalFilename}`,
         content: buffer.toString('base64'),
         contentType: file.mimetype ?? 'application/octet-stream',
       });
@@ -254,7 +312,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   const clientIp = getClientIp(req);
-  if (isRateLimited(clientIp, Date.now())) {
+  if (clientIp && isRateLimited(clientIp, Date.now())) {
     res.status(429).json({ error: 'Too many submissions. Please try again later.' });
     return;
   }
@@ -284,6 +342,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return;
     }
 
+    validateFieldLengths(normalizedFields);
     validateFields(normalizedFields);
     validateFiles(files);
 
@@ -313,7 +372,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     res.status(200).json({ success: true });
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Failed to process submission';
-    const statusCode = message.startsWith('Missing required') || message.startsWith('Invalid') || message.startsWith('Too many') ? 400 : 500;
+    const statusCode = message.startsWith('File size exceeds')
+      ? 413
+      : message.startsWith('Missing required') || message.startsWith('Invalid') || message.startsWith('Too many')
+        ? 400
+        : 500;
     res.status(statusCode).json({ error: message });
   }
 }
