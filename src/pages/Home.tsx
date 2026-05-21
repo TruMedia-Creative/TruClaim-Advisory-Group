@@ -22,7 +22,7 @@ const values = [
   {
     icon: Building2,
     title: 'Independent & Neutral',
-    desc: 'TruClaim Advisory Group serves both policyholders and insurance carriers as an independent insurance appraiser. Our obligation is to provide an accurate, objective valuation based on evidence, policy terms, and industry standards — not advocacy.',
+    desc: 'TruClaims Advisory Group serves both policyholders and insurance carriers as an independent insurance appraiser. Our obligation is to provide an accurate, objective valuation based on evidence, policy terms, and industry standards — not advocacy.',
   },
   {
     icon: Shield,
@@ -37,7 +37,7 @@ const values = [
   {
     icon: Users,
     title: 'Catastrophe Deployment Experience',
-    desc: 'From Hurricane Beryl to Hurricane Ian, TruClaim Advisory Group has direct deployment experience across major CAT events in TX, LA, FL, and beyond — providing systematic scope and valuation under surge conditions.',
+    desc: 'From Hurricane Beryl to Hurricane Ian, TruClaims Advisory Group has direct deployment experience across major CAT events in TX, LA, FL, and beyond — providing systematic scope and valuation under surge conditions.',
   },
   {
     icon: Droplets,
@@ -67,7 +67,7 @@ const faqItems = [
   {
     question: 'Do you serve both policyholders and insurance carriers?',
     answer:
-      'Yes. TruClaim Advisory Group is retained by policyholders, carriers, attorneys, and as a neutral umpire. The same inspection methodology and valuation standard apply regardless of who engages us.',
+      'Yes. TruClaims Advisory Group is retained by policyholders, carriers, attorneys, and as a neutral umpire. The same inspection methodology and valuation standard apply regardless of who engages us.',
   },
   {
     question: 'What documentation should I send with my request?',
@@ -82,14 +82,14 @@ const faqItems = [
   {
     question: 'What states do you operate in?',
     answer:
-      'TruClaim Advisory Group is based in Texas and maintains primary service coverage in Texas and Louisiana. We are also licensed in 12 additional states, enabling multi-state CAT deployment and appraisal engagements beyond the Gulf Coast region.',
+      'TruClaims Advisory Group is based in Texas and maintains primary service coverage in Texas and Louisiana. We are also licensed in 12 additional states, enabling multi-state CAT deployment and appraisal engagements beyond the Gulf Coast region.',
   },
 ];
 
 const testimonials = [
   {
     quote:
-      'TruClaim Advisory Group provided an objective, well-documented appraisal that held up through the entire process. The estimate was thorough and the methodology was clearly explained at every step.',
+      'TruClaims Advisory Group provided an objective, well-documented appraisal that held up through the entire process. The estimate was thorough and the methodology was clearly explained at every step.',
     name: 'Commercial Property Owner',
     location: 'Houston, TX',
   },
@@ -101,7 +101,7 @@ const testimonials = [
   },
   {
     quote:
-      'We retained TruClaim Advisory Group as our umpire and appreciated their impartiality. They reviewed both estimates carefully and delivered a well-reasoned award that both appraisers could stand behind.',
+      'We retained TruClaims Advisory Group as our umpire and appreciated their impartiality. They reviewed both estimates carefully and delivered a well-reasoned award that both appraisers could stand behind.',
     name: 'Insurance Carrier Representative',
     location: 'Baton Rouge, LA',
   },
@@ -111,7 +111,7 @@ const homeStructuredData = [
   {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
-    name: 'TruClaim Advisory Group',
+    name: 'TruClaims Advisory Group',
     url: 'https://www.truclaimsadvisorygroup.com/',
     description:
       'Independent insurance appraisal, umpire, and catastrophic loss valuation services for policyholders and carriers across Texas and Louisiana.',
@@ -199,7 +199,7 @@ const Home = () => {
             </p>
             <h2 className="section-title mb-4">A Structured Path to Fair Resolution</h2>
             <p className="text-gray-600 text-lg leading-relaxed mb-6">
-              TruClaim Advisory Group provides neutral, integrity-driven insurance appraisal and
+              TruClaims Advisory Group provides neutral, integrity-driven insurance appraisal and
               umpire services across Texas and Louisiana.
             </p>
             <p className="text-gray-600 text-lg leading-relaxed mb-6">
@@ -237,7 +237,7 @@ const Home = () => {
             <UserCheck className="mx-auto text-steel-blue-500 mb-4" size={36} />
             <h2 className="section-title mb-4">Who We Serve</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              As an independent insurance appraiser and umpire, TruClaim Advisory Group maintains
+              As an independent insurance appraiser and umpire, TruClaims Advisory Group maintains
               strict neutrality. We serve both sides of the appraisal process with the same
               procedural discipline and evidentiary standards.
             </p>
@@ -264,7 +264,7 @@ const Home = () => {
               <p className="text-gray-600 leading-relaxed mb-4">
                 If your insurance carrier has issued a settlement you believe is incomplete or
                 inaccurate, invoking the appraisal clause provides a policy-prescribed path to a
-                binding resolution. TruClaim Advisory Group conducts an independent on-site
+                binding resolution. TruClaims Advisory Group conducts an independent on-site
                 inspection, prepares a detailed Xactimate estimate, and participates in the
                 appraisal process as your appointed independent appraiser.
               </p>
@@ -285,7 +285,7 @@ const Home = () => {
               <p className="text-gray-600 leading-relaxed mb-4">
                 Insurance carriers require independent appraisers who understand policy language,
                 construction methodology, and the procedural framework of the appraisal clause.
-                TruClaim Advisory Group provides carriers with accurate, defensible Xactimate
+                TruClaims Advisory Group provides carriers with accurate, defensible Xactimate
                 estimates and unbiased field documentation — supporting a fair and efficient
                 appraisal process.
               </p>
@@ -429,7 +429,7 @@ const Home = () => {
       <section ref={valuesRef} className="py-20 bg-parchment-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="section-title mb-4">Why TruClaim Advisory Group?</h2>
+            <h2 className="section-title mb-4">Why TruClaims Advisory Group?</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               Independent expertise. Multi-state licensed. NFIP certified. Xactimate proficient.
             </p>

@@ -1,8 +1,8 @@
-# Copilot Instructions — TruClaim Advisory Group
+# Copilot Instructions — TruClaims Advisory Group
 
 ## Product Context
 
-TruClaim Advisory Group is an independent insurance appraisal and catastrophe loss valuation firm. The website is a pure marketing presence; there is no authentication, member portal, or backend.
+TruClaims Advisory Group is an independent insurance appraisal and catastrophe loss valuation firm. The website is a pure marketing presence; there is no authentication, member portal, or backend.
 
 **Primary goals of the site:**
 

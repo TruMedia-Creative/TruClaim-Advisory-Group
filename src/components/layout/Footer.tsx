@@ -13,10 +13,10 @@ const Footer = () => {
               <div className="w-12 h-12 bg-gradient-to-br from-steel-blue-500 to-steel-blue-400 rounded-full flex items-center justify-center">
                 <span className="text-ink-black-900 font-bold text-xl">TAG</span>
               </div>
-              <span className="font-display font-bold text-2xl">TruClaim Advisory Group</span>
+              <span className="font-display font-bold text-2xl">TruClaims Advisory Group</span>
             </div>
             <p className="text-ink-black-200 max-w-md mb-6">
-              TruClaim Advisory Group provides insurance adjusting appraisals and umpiring for
+              TruClaims Advisory Group provides insurance adjusting appraisals and umpiring for
               individuals and insurance carriers across Texas and Louisiana.
             </p>
             {/* Social links */}
@@ -24,7 +24,7 @@ const Footer = () => {
               href="https://www.linkedin.com/company/truclaims-advisory-group"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="TruClaim Advisory Group on LinkedIn"
+              aria-label="TruClaims Advisory Group on LinkedIn"
               className="inline-flex items-center gap-2 text-ink-black-200 hover:text-white transition text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-blue-500 rounded"
             >
               <Linkedin size={18} />
@@ -96,7 +96,7 @@ const Footer = () => {
 
         <div className="border-t border-ink-black-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-ink-black-300 text-sm">
-            &copy; {new Date().getFullYear()} TruClaim Advisory Group. All rights reserved.
+            &copy; {new Date().getFullYear()} TruClaims Advisory Group. All rights reserved.
           </p>
           <p className="text-ink-black-400 text-sm mt-2 md:mt-0 flex flex-col md:flex-row md:items-center md:space-x-2 text-center md:text-left">
             <span>truclaimsadvisorygroup.com</span>

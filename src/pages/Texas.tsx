@@ -24,7 +24,7 @@ const claimTypes = [
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
-  name: 'TruClaim Advisory Group — Texas Insurance Appraisal Services',
+  name: 'TruClaims Advisory Group — Texas Insurance Appraisal Services',
   url: 'https://www.truclaimsadvisorygroup.com/texas',
   areaServed: 'Texas',
   serviceType: [

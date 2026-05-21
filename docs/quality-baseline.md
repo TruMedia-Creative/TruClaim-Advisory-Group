@@ -31,4 +31,4 @@ Record these from a production deployment using Chrome Lighthouse and Core Web V
 - [ ] `robots.txt` and `sitemap.xml` are accessible
 - [ ] Lighthouse mobile score reviewed for `/`, `/services`, `/contact`
 - [ ] Critical CTA buttons route to `/contact` and `/process` as intended
-- [ ] Copy and brand naming are consistent (`TruClaim Advisory Group`)
+- [ ] Copy and brand naming are consistent (`TruClaims Advisory Group`)

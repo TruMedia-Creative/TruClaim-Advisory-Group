@@ -9,7 +9,7 @@ export default function NotFound() {
     <div className="min-h-[80vh] flex items-center justify-center bg-parchment-50 px-4">
       <PageMetadata
         title="Page Not Found"
-        description="The page you are looking for could not be found. Return to the TruClaim Advisory Group homepage."
+        description="The page you are looking for could not be found. Return to the TruClaims Advisory Group homepage."
         canonicalPath="/404"
         robots="noindex,follow"
       />

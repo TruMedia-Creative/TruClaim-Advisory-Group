@@ -8,7 +8,7 @@ const services = [
     icon: Scale,
     title: 'Insurance Appraisal Services',
     description:
-      'When a policyholder and an insurance carrier cannot agree on the amount of a covered loss, the appraisal clause provides a binding, policy-prescribed resolution process. TruClaim Advisory Group serves as the independent insurance appraiser for both policyholders and carriers — conducting thorough on-site inspections and preparing detailed, defensible Xactimate estimates to resolve the amount-of-loss valuation dispute under the policy.',
+      'When a policyholder and an insurance carrier cannot agree on the amount of a covered loss, the appraisal clause provides a binding, policy-prescribed resolution process. TruClaims Advisory Group serves as the independent insurance appraiser for both policyholders and carriers — conducting thorough on-site inspections and preparing detailed, defensible Xactimate estimates to resolve the amount-of-loss valuation dispute under the policy.',
     bullets: [
       'On-site inspection and photo documentation for residential property appraisal disputes',
       'Detailed Xactimate estimates with narrative summaries',
@@ -21,7 +21,7 @@ const services = [
     icon: Gavel,
     title: 'Umpire Services',
     description:
-      'When two appointed appraisers cannot agree on the scope or value of a loss, a neutral umpire is selected to resolve the impasse. TruClaim Advisory Group provides insurance umpire services in Texas and Louisiana, bringing procedural discipline, technical expertise, and construction knowledge to every engagement — producing clear, defensible written awards.',
+      'When two appointed appraisers cannot agree on the scope or value of a loss, a neutral umpire is selected to resolve the impasse. TruClaims Advisory Group provides insurance umpire services in Texas and Louisiana, bringing procedural discipline, technical expertise, and construction knowledge to every engagement — producing clear, defensible written awards.',
     bullets: [
       'Neutral insurance umpire services in Texas and Louisiana',
       'Independent evaluation of scope and pricing disputes',
@@ -34,7 +34,7 @@ const services = [
     icon: Search,
     title: 'Catastrophic Loss Appraisal',
     description:
-      'TruClaim Advisory Group has direct deployment experience across major catastrophic loss events including Hurricanes Beryl, Laura, Ian, Ida, and Isaias. We mobilize quickly for CAT surges — providing systematic, high-volume loss documentation and defensible Xactimate estimates for hurricane appraisals in Texas, hail and wind appraisals in Louisiana, and large-loss events across the Gulf Coast.',
+      'TruClaims Advisory Group has direct deployment experience across major catastrophic loss events including Hurricanes Beryl, Laura, Ian, Ida, and Isaias. We mobilize quickly for CAT surges — providing systematic, high-volume loss documentation and defensible Xactimate estimates for hurricane appraisals in Texas, hail and wind appraisals in Louisiana, and large-loss events across the Gulf Coast.',
     bullets: [
       'Rapid deployment for catastrophic loss appraisal events',
       'Hurricane appraisal — Texas Gulf Coast and Louisiana',
@@ -105,7 +105,7 @@ const servicesSchema = services.map((service) => ({
   description: service.description,
   provider: {
     '@type': 'Organization',
-    name: 'TruClaim Advisory Group',
+    name: 'TruClaims Advisory Group',
     url: 'https://www.truclaimsadvisorygroup.com',
   },
   areaServed: ['Texas', 'Louisiana'],

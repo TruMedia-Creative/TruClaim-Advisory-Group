@@ -1,6 +1,6 @@
-# TruClaim Advisory Group
+# TruClaims Advisory Group
 
-Marketing website for **TruClaim Advisory Group** — an independent insurance appraisal and catastrophe loss valuation firm serving Texas, Louisiana, and nationwide for large-loss events.
+Marketing website for **TruClaims Advisory Group** — an independent insurance appraisal and catastrophe loss valuation firm serving Texas, Louisiana, and nationwide for large-loss events.
 
 ## Tech Stack
 

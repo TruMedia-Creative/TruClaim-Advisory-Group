@@ -189,7 +189,7 @@ export default function Hero() {
   return (
     <section
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-ink-black-900"
-      aria-label="TruClaim Advisory Group hero section"
+      aria-label="TruClaims Advisory Group hero section"
     >
       <div className="absolute inset-0">
         <picture className="block h-full w-full">
@@ -235,7 +235,7 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.6 }}
           >
-            TruClaim Advisory Group
+            TruClaims Advisory Group
           </motion.p>
 
           {/* SEO-optimized H1 */}

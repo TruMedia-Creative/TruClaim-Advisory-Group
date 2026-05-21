@@ -39,7 +39,7 @@ export default function PageMetadata({
   useEffect(() => {
     const resolvedPath = canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`;
     const canonicalUrl = `${SITE_URL}${resolvedPath}`;
-    const fullTitle = `${title} | TruClaim Advisory Group`;
+    const fullTitle = `${title} | TruClaims Advisory Group`;
     const socialImage = imageUrl ?? DEFAULT_IMAGE;
 
     document.title = fullTitle;

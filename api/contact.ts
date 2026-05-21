@@ -296,7 +296,7 @@ const buildHtmlBody = (fields: Record<string, string>) => {
 
   return `
     <div style="font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,sans-serif;font-size:14px;color:#111827;">
-      <p>A new appraisal request was submitted via the TruClaim Advisory Group contact form.</p>
+      <p>A new appraisal request was submitted via the TruClaims Advisory Group contact form.</p>
       ${contactSection}
       ${claimSection}
       ${qualificationSection}

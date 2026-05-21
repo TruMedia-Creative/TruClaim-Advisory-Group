@@ -36,7 +36,7 @@ const Navbar = () => {
               </div>
               <div className="hidden sm:block">
                 <span className="text-ink-black-800 font-display font-bold text-xl">
-                  TruClaim Advisory Group
+                  TruClaims Advisory Group
                 </span>
               </div>
             </Link>
