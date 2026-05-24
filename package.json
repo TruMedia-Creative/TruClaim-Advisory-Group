@@ -21,7 +21,7 @@
     "@vercel/speed-insights": "^2.0.0",
     "formidable": "^3.5.4",
     "framer-motion": "^12.40.0",
-    "lucide-react": "^0.469.0",
+    "lucide-react": "^1.16.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-router-dom": "^7.15.1"
