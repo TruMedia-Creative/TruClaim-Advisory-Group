@@ -9,12 +9,17 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center space-x-3 mb-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-steel-blue-500 to-steel-blue-400 rounded-full flex items-center justify-center">
-                <span className="text-ink-black-900 font-bold text-xl">TAG</span>
-              </div>
-              <span className="font-display font-bold text-2xl">TruClaims Advisory Group</span>
-            </div>
+            <Link
+              to="/"
+              aria-label="TruClaims Advisory Group home"
+              className="mb-4 inline-flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-blue-500"
+            >
+              <img
+                src="/TCAG-logos/TruClaimsAdvisoryGroup-Horizontal-navbar.png"
+                alt="TruClaims Advisory Group"
+                className="h-10 w-auto max-w-full object-contain brightness-0 invert"
+              />
+            </Link>
             <p className="text-ink-black-200 max-w-md mb-6">
               TruClaims Advisory Group provides insurance adjusting appraisals and umpiring for
               individuals and insurance carriers across Texas and Louisiana.

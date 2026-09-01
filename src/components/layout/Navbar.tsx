@@ -30,15 +30,12 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20">
           <div className="flex items-center">
-            <Link to="/" className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-ink-black-800 to-ink-black-600 rounded-full flex items-center justify-center">
-                <span className="text-steel-blue-500 font-bold text-xl">TAG</span>
-              </div>
-              <div className="hidden sm:block">
-                <span className="text-ink-black-800 font-display font-bold text-xl">
-                  TruClaims Advisory Group
-                </span>
-              </div>
+            <Link to="/" aria-label="TruClaims Advisory Group home">
+              <img
+                src="/TCAG-logos/TruClaimsAdvisoryGroup-Horizontal-navbar.png"
+                alt="TruClaims Advisory Group"
+                className="h-8 w-auto max-w-[calc(100vw-5rem)] object-contain sm:h-10 sm:max-w-none"
+              />
             </Link>
           </div>
 
