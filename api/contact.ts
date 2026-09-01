@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { IncomingForm, type File } from 'formidable';
 import { promises as fs } from 'node:fs';
-import { MAX_DAMAGE_PHOTOS } from '../src/lib/contact';
+import { MAX_DAMAGE_PHOTOS } from '../src/lib/contact.js';
 
 export const config = {
   api: {
@@ -69,7 +69,10 @@ const maxLengthByField: Record<string, number> = {
 };
 
 const parseFormData = (req: VercelRequest) =>
-  new Promise<{ fields: Record<string, string | string[]>; files: Record<string, File | File[]> }>(
+  new Promise<{
+    fields: Record<string, string | string[] | undefined>;
+    files: Record<string, File | File[]>;
+  }>(
     (resolve, reject) => {
       const form = new IncomingForm({
         multiples: true,
