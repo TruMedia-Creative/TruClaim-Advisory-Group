@@ -12,7 +12,8 @@
     "typecheck": "tsc -b",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "depcheck": "pnpm dlx depcheck"
+    "depcheck": "pnpm dlx depcheck",
+    "check": "pnpm run lint && pnpm run typecheck && pnpm run format:check"
   },
   "dependencies": {
     "@types/formidable": "^3.5.1",
