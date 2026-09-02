@@ -18,7 +18,7 @@
   "dependencies": {
     "@types/formidable": "^3.5.1",
     "@vercel/analytics": "^2.0.1",
-    "@vercel/node": "^5.10.2",
+    "@vercel/node": "^10.0.0",
     "@vercel/speed-insights": "^2.0.0",
     "formidable": "^3.5.4",
     "framer-motion": "^12.43.0",
