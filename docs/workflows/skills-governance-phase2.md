@@ -32,8 +32,8 @@
 
 1. Strict archive policy has been executed: planned archive-candidate skills were moved to [_archive/skills](../../_archive/skills).
 2. Merge-consolidation has been executed for overlapping skills:
-	- create-github-action-workflow-specification -> github-actions-ci
-	- review-and-refactor -> review-pull-request + refactor-safely
-	- refactor -> refactor-safely
+   - create-github-action-workflow-specification -> github-actions-ci
+   - review-and-refactor -> review-pull-request + refactor-safely
+   - refactor -> refactor-safely
 3. Archive traceability has been updated in [_archive/ARCHIVE_MANIFEST.md](../../_archive/ARCHIVE_MANIFEST.md).
 4. Optional follow-up: keep the matrix as governance reference and revisit tiers as new skills are added.

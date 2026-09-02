@@ -44,7 +44,12 @@ export default function PageMetadata({
 
     document.title = fullTitle;
     upsertMeta('name', 'description', description);
-    upsertMeta('name', 'keywords', keywords ?? 'insurance appraisal, umpire services, catastrophic loss valuation, texas claims, louisiana claims');
+    upsertMeta(
+      'name',
+      'keywords',
+      keywords ??
+        'insurance appraisal, umpire services, catastrophic loss valuation, texas claims, louisiana claims'
+    );
     upsertMeta('name', 'robots', robots);
     upsertMeta('property', 'og:title', fullTitle);
     upsertMeta('property', 'og:description', description);

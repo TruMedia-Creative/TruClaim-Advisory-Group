@@ -105,7 +105,6 @@ location / {
 }
 ```
 
-
 ## Quality Baseline
 
 Use `docs/quality-baseline.md` to track:

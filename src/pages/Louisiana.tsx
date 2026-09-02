@@ -141,8 +141,8 @@ export default function Louisiana() {
               Need an Umpire After a Stalemate?
             </h2>
             <p className="text-gray-600 text-lg mb-8">
-              TruClaims Advisory Group accepts neutral umpire appointments throughout Louisiana
-              when two appraisers cannot agree on the award. Documentation reviews and pre-hearing
+              TruClaims Advisory Group accepts neutral umpire appointments throughout Louisiana when
+              two appraisers cannot agree on the award. Documentation reviews and pre-hearing
               coordination keep the process efficient and defensible.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -12,7 +12,11 @@ function SunLogo() {
       className="w-28 h-28"
       initial={shouldReduceMotion ? false : { scale: 0, rotate: -180 }}
       animate={shouldReduceMotion ? { scale: 1, rotate: 0 } : { scale: 1, rotate: 0 }}
-      transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.2, type: 'spring', stiffness: 100, damping: 15 }}
+      transition={
+        shouldReduceMotion
+          ? { duration: 0 }
+          : { delay: 0.2, type: 'spring', stiffness: 100, damping: 15 }
+      }
     >
       <defs>
         <linearGradient id="sunGradientLogo" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -280,7 +284,9 @@ export default function Hero() {
         className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2"
         initial={{ opacity: 0 }}
         animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: [0, 10, 0] }}
-        transition={shouldReduceMotion ? { delay: 1.5 } : { delay: 1.5, y: { repeat: Infinity, duration: 2 } }}
+        transition={
+          shouldReduceMotion ? { delay: 1.5 } : { delay: 1.5, y: { repeat: Infinity, duration: 2 } }
+        }
       >
         <button
           type="button"

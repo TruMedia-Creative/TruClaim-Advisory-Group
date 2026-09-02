@@ -704,32 +704,41 @@ The overall visual system should communicate:
 Before publishing customer-facing copy, ask:
 
 ### Clarity
+
 Would the intended audience immediately understand what TruClaims does?
 
 ### Neutrality
+
 Could this language make TruClaims sound like an advocate for one side?
 
 ### Evidence
+
 Are claims and conclusions grounded in something concrete?
 
 ### Precision
+
 Are we saying exactly what we mean?
 
 ### Customer Focus
+
 Are we explaining why this matters to the customer?
 
 ### Authority
+
 Does TruClaims sound technically competent without boasting?
 
 ### Resolution
+
 Does the messaging ultimately move toward resolving the dispute?
 
 ### Differentiation
+
 Could this copy belong to any generic public adjuster, insurance company, or restoration contractor?
 
 If yes, rewrite it.
 
 ### Action
+
 Does the visitor understand what to do next?
 
 If any answer is unclear, improve the copy before publishing.
@@ -748,7 +757,7 @@ If not, reconsider the language.
 
 ## The Evidence Test
 
-Does the copy communicate *how* TruClaims reaches conclusions?
+Does the copy communicate _how_ TruClaims reaches conclusions?
 
 Inspection.
 

@@ -43,37 +43,58 @@ const Footer = () => {
             <nav aria-label="Quick links">
               <ul className="space-y-2">
                 <li>
-                  <Link to="/" className="text-ink-black-200 hover:text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-blue-500 rounded">
+                  <Link
+                    to="/"
+                    className="text-ink-black-200 hover:text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-blue-500 rounded"
+                  >
                     Home
                   </Link>
                 </li>
                 <li>
-                  <Link to="/services" className="text-ink-black-200 hover:text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-blue-500 rounded">
+                  <Link
+                    to="/services"
+                    className="text-ink-black-200 hover:text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-blue-500 rounded"
+                  >
                     Services
                   </Link>
                 </li>
                 <li>
-                  <Link to="/process" className="text-ink-black-200 hover:text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-blue-500 rounded">
+                  <Link
+                    to="/process"
+                    className="text-ink-black-200 hover:text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-blue-500 rounded"
+                  >
                     Process
                   </Link>
                 </li>
                 <li>
-                  <Link to="/about" className="text-ink-black-200 hover:text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-blue-500 rounded">
+                  <Link
+                    to="/about"
+                    className="text-ink-black-200 hover:text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-blue-500 rounded"
+                  >
                     About
                   </Link>
                 </li>
                 <li>
-                  <Link to="/contact" className="text-ink-black-200 hover:text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-blue-500 rounded">
+                  <Link
+                    to="/contact"
+                    className="text-ink-black-200 hover:text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-blue-500 rounded"
+                  >
                     Contact
                   </Link>
                 </li>
                 <li>
-                  <Link to="/texas" className="text-ink-black-200 hover:text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-blue-500 rounded">
+                  <Link
+                    to="/texas"
+                    className="text-ink-black-200 hover:text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-blue-500 rounded"
+                  >
                     Texas Service Area
                   </Link>
                 </li>
                 <li>
-                  <Link to="/louisiana" className="text-ink-black-200 hover:text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-blue-500 rounded">
+                  <Link
+                    to="/louisiana"
+                    className="text-ink-black-200 hover:text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-blue-500 rounded"
+                  >
                     Louisiana Service Area
                   </Link>
                 </li>
@@ -91,7 +112,10 @@ const Footer = () => {
               </li>
               <li className="flex items-start space-x-2 text-ink-black-200">
                 <Phone size={18} className="mt-1 flex-shrink-0" />
-                <a href={PHONE_TEL} className="hover:text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-blue-500 rounded">
+                <a
+                  href={PHONE_TEL}
+                  className="hover:text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-blue-500 rounded"
+                >
                   {PHONE_DISPLAY}
                 </a>
               </li>

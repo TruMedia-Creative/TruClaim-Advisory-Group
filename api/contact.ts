@@ -72,21 +72,19 @@ const parseFormData = (req: VercelRequest) =>
   new Promise<{
     fields: Record<string, string | string[] | undefined>;
     files: Record<string, File | File[]>;
-  }>(
-    (resolve, reject) => {
-      const form = new IncomingForm({
-        multiples: true,
-        maxFileSize: MAX_FILE_SIZE_BYTES,
-      });
-      form.parse(req, (err, fields, files) => {
-        if (err) {
-          reject(err);
-          return;
-        }
-        resolve({ fields, files: files as Record<string, File | File[]> });
-      });
-    }
-  );
+  }>((resolve, reject) => {
+    const form = new IncomingForm({
+      multiples: true,
+      maxFileSize: MAX_FILE_SIZE_BYTES,
+    });
+    form.parse(req, (err, fields, files) => {
+      if (err) {
+        reject(err);
+        return;
+      }
+      resolve({ fields, files: files as Record<string, File | File[]> });
+    });
+  });
 
 const coerceToString = (value: string | string[] | undefined): string => {
   if (Array.isArray(value)) return value[0] ?? '';
@@ -377,7 +375,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const message = error instanceof Error ? error.message : 'Failed to process submission';
     const statusCode = message.startsWith('File size exceeds')
       ? 413
-      : message.startsWith('Missing required') || message.startsWith('Invalid') || message.startsWith('Too many')
+      : message.startsWith('Missing required') ||
+          message.startsWith('Invalid') ||
+          message.startsWith('Too many')
         ? 400
         : 500;
     res.status(statusCode).json({ error: message });
