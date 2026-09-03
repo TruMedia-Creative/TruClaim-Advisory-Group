@@ -68,16 +68,16 @@
 }
 
 /* Wave animations for StatsSection */
-@keyframes wave {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+:root {
+  /* Centralized animation timing for consistent tuning:
+     wave (foreground) is faster, background wave is slower for depth,
+     and spin is intentionally very slow to stay subtle. */
+  --anim-wave-duration: 15s;
+  --anim-wave-slow-duration: 20s;
+  --anim-spin-slow-duration: 60s;
 }
 
-@keyframes wave-slow {
+@keyframes wave {
   0% {
     transform: translateX(0);
   }
@@ -88,15 +88,15 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .animate-wave {
-    animation: wave 15s linear infinite;
+    animation: wave var(--anim-wave-duration) linear infinite;
   }
 
   .animate-wave-slow {
-    animation: wave-slow 20s linear infinite;
+    animation: wave var(--anim-wave-slow-duration) linear infinite;
   }
 
   .animate-spin-slow {
-    animation: spin 60s linear infinite;
+    animation: spin var(--anim-spin-slow-duration) linear infinite;
   }
 }
 

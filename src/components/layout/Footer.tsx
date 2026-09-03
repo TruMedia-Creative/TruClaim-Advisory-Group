@@ -2,6 +2,10 @@ import { Link } from 'react-router-dom';
 import { MapPin, Phone } from 'lucide-react';
 import { PHONE_DISPLAY, PHONE_TEL } from '../../lib/contact';
 
+const footerLinkFocusClass =
+  'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-blue-500';
+const footerLinkTransitionClass = 'hover:text-white transition';
+
 const Footer = () => {
   return (
     <footer className="bg-ink-black-900 text-white">
@@ -30,7 +34,7 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="TruClaims Advisory Group on LinkedIn"
-              className="inline-flex items-center gap-2 text-ink-black-200 hover:text-white transition text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-blue-500 rounded"
+              className={`inline-flex items-center gap-2 text-ink-black-200 ${footerLinkTransitionClass} text-sm ${footerLinkFocusClass} rounded`}
             >
               <svg
                 aria-hidden="true"
@@ -53,7 +57,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/"
-                    className="text-ink-black-200 hover:text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-blue-500 rounded"
+                    className={`text-ink-black-200 ${footerLinkTransitionClass} ${footerLinkFocusClass} rounded`}
                   >
                     Home
                   </Link>
@@ -61,7 +65,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/services"
-                    className="text-ink-black-200 hover:text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-blue-500 rounded"
+                    className={`text-ink-black-200 ${footerLinkTransitionClass} ${footerLinkFocusClass} rounded`}
                   >
                     Services
                   </Link>
@@ -69,7 +73,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/process"
-                    className="text-ink-black-200 hover:text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-blue-500 rounded"
+                    className={`text-ink-black-200 ${footerLinkTransitionClass} ${footerLinkFocusClass} rounded`}
                   >
                     Process
                   </Link>
@@ -77,7 +81,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/about"
-                    className="text-ink-black-200 hover:text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-blue-500 rounded"
+                    className={`text-ink-black-200 ${footerLinkTransitionClass} ${footerLinkFocusClass} rounded`}
                   >
                     About
                   </Link>
@@ -85,7 +89,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/contact"
-                    className="text-ink-black-200 hover:text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-blue-500 rounded"
+                    className={`text-ink-black-200 ${footerLinkTransitionClass} ${footerLinkFocusClass} rounded`}
                   >
                     Contact
                   </Link>
@@ -93,7 +97,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/texas"
-                    className="text-ink-black-200 hover:text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-blue-500 rounded"
+                    className={`text-ink-black-200 ${footerLinkTransitionClass} ${footerLinkFocusClass} rounded`}
                   >
                     Texas Service Area
                   </Link>
@@ -101,7 +105,7 @@ const Footer = () => {
                 <li>
                   <Link
                     to="/louisiana"
-                    className="text-ink-black-200 hover:text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-blue-500 rounded"
+                    className={`text-ink-black-200 ${footerLinkTransitionClass} ${footerLinkFocusClass} rounded`}
                   >
                     Louisiana Service Area
                   </Link>
@@ -122,7 +126,7 @@ const Footer = () => {
                 <Phone size={18} className="mt-1 flex-shrink-0" />
                 <a
                   href={PHONE_TEL}
-                  className="hover:text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-blue-500 rounded"
+                  className={`${footerLinkTransitionClass} ${footerLinkFocusClass} rounded`}
                 >
                   {PHONE_DISPLAY}
                 </a>
@@ -139,9 +143,9 @@ const Footer = () => {
             <span>truclaimsadvisorygroup.com</span>
             <a
               href="https://www.trumediacreative.com"
-              className="text-steel-blue-400 hover:text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-steel-blue-500 rounded"
+              className={`text-steel-blue-400 ${footerLinkTransitionClass} ${footerLinkFocusClass} rounded`}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
               | Site by TruMedia Creative
             </a>
