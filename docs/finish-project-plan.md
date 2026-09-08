@@ -1,7 +1,9 @@
 # TruClaims Appraisal Group — Production-Readiness Plan
 
-> **Date:** May 2026 | **Status:** Active planning artifact  
+> **Date:** May 2026 | **Status:** Superseded planning artifact
 > **Brand:** TruClaims Appraisal Group | **Domain:** truclaimsadvisorygroup.com
+>
+> **Status note (2026-09-05):** This is historical planning material, not a current readiness record. Several findings below have since changed (including Vercel configuration, CI action versions, skip navigation, and form accessibility). Use `docs/launch-readiness-audit-2026-09-05.md` and `docs/architecture.md` for current local state.
 
 ---
 

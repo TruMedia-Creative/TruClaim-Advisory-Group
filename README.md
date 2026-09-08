@@ -7,9 +7,9 @@ Marketing website for **TruClaims Advisory Group** — an independent insurance 
 | Concern         | Technology            |
 | --------------- | --------------------- |
 | Framework       | React 19 + TypeScript |
-| Build tool      | Vite 7                |
-| Styling         | Tailwind CSS v3       |
-| Animation       | Framer Motion 11      |
+| Build tool      | Vite 8                |
+| Styling         | Tailwind CSS v4       |
+| Animation       | Framer Motion 13      |
 | Icons           | Lucide React          |
 | Routing         | React Router DOM v7   |
 | Package manager | pnpm                  |
@@ -39,6 +39,7 @@ pnpm dev
 | `pnpm lint`         | Run ESLint                                            |
 | `pnpm lint:fix`     | Run ESLint and auto-fix violations                    |
 | `pnpm typecheck`    | Run TypeScript compiler check without emitting files  |
+| `pnpm test`         | Run local launch-readiness regression checks          |
 | `pnpm format`       | Format all files with Prettier                        |
 | `pnpm format:check` | Check formatting without writing files                |
 | `pnpm depcheck`     | Check for unused or missing dependencies              |
@@ -70,22 +71,11 @@ vercel
 vercel --prod
 ```
 
-### GitHub Pages (CI/CD)
+### GitHub Pages (disabled)
 
-A GitHub Actions workflow (`.github/workflows/deploy.yml`) builds and publishes the site to GitHub Pages on every push to `main`.
+GitHub Pages cannot serve the Vercel `/api/contact` Serverless Function, so it is **not a supported production target** for this project. The Pages workflow is manual-only and intentionally exits without deploying to prevent an accidental static release with a broken contact form.
 
-**First-time setup:**
-
-1. In your repository on GitHub, go to **Settings → Pages**.
-2. Under **Source**, select **GitHub Actions**.
-3. Push a commit to `main` (or run the workflow manually via **Actions → Deploy to GitHub Pages → Run workflow**).
-
-The workflow will:
-
-- Install dependencies with `pnpm install --frozen-lockfile`
-- Build the project with `pnpm run build`
-- Upload the `dist/` directory as a Pages artifact
-- Deploy to the URL shown in the workflow run summary
+Use Vercel for every preview and production deployment. If a static export is ever needed, it must either omit the form or use a separately approved form backend.
 
 ### Manual / Self-hosted
 

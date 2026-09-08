@@ -181,7 +181,7 @@ const experience = [
   },
 ];
 
-const headshotSrc = `${import.meta.env.BASE_URL}larryon-truman.jpg`;
+const headshotSrc = `${import.meta.env.BASE_URL}larryon-truman.webp`;
 
 const aboutStructuredData = [
   {
@@ -194,7 +194,7 @@ const aboutStructuredData = [
       name: 'TruClaims Advisory Group',
     },
     url: 'https://www.truclaimsadvisorygroup.com/about',
-    image: `${SITE_URL}/larryon-truman.jpg`,
+    image: `${SITE_URL}/larryon-truman.webp`,
     knowsAbout: ['Insurance appraisal', 'Umpire services', 'NFIP flood claims'],
     sameAs: ['https://www.linkedin.com/in/larryontruman'],
   },

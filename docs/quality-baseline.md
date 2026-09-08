@@ -24,6 +24,7 @@ Record these from a production deployment using Chrome Lighthouse and Core Web V
 ## Release Readiness Checklist
 
 - [ ] `pnpm lint` passes
+- [ ] `pnpm test` passes
 - [ ] `pnpm build` passes
 - [ ] Contact form submission test succeeds in preview
 - [ ] Contact form upload validation rejects oversized/invalid files
