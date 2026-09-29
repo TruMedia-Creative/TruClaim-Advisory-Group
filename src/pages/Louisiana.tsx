@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import { MapPin, Droplets, Layers, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import PageMetadata from '../components/PageMetadata';
+import PageMetadata, { SITE_URL } from '../components/PageMetadata';
+import { PHONE_TEL } from '../lib/contact';
 
 const parishes = [
   'Orleans, Jefferson, Plaquemines, and St. Bernard Parishes',
@@ -23,10 +24,10 @@ const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
   name: 'TruClaims Advisory Group — Louisiana Insurance Appraisal Services',
-  url: 'https://www.truclaimsadvisorygroup.com/louisiana',
+  url: `${SITE_URL}/louisiana`,
   areaServed: 'Louisiana',
   serviceType: ['Insurance appraisal', 'Umpire services', 'Flood loss valuation'],
-  telephone: '+1-903-315-0136',
+  telephone: PHONE_TEL,
   address: {
     '@type': 'PostalAddress',
     addressRegion: 'LA',

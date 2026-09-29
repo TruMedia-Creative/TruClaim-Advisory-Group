@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const SITE_URL = 'https://www.truclaimsadvisorygroup.com';
+export const SITE_URL = 'https://www.truclaimsadvisorygroup.com';
 const DEFAULT_IMAGE = `${SITE_URL}/og-image.jpg`;
 
 type StructuredData = Record<string, unknown> | Record<string, unknown>[];
