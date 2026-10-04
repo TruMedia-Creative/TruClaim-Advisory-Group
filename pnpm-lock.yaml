@@ -57,8 +57,8 @@ importers:
         specifier: ^7.18.3
         version: 7.18.3(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       simple-icons:
-        specifier: ^16.29.0
-        version: 16.29.0
+        specifier: ^16.33.0
+        version: 16.33.0
     devDependencies:
       '@eslint/js':
         specifier: ^10.0.1
@@ -2298,8 +2298,8 @@ packages:
     resolution: {integrity: sha512-MY2/qGx4enyjprQnFaZsHib3Yadh3IXyV2C321GY0pjGfVBu4un0uDJkwgdxqO+Rdx8JMT8IfJIRwbYVz3Ob3Q==}
     engines: {node: '>=14'}
 
-  simple-icons@16.29.0:
-    resolution: {integrity: sha512-4H94f5ZgcCcgJroc902TFlFdgPu2IU2eD7+WebN2Z14xKYrKHeJ4UQcZwzgSuH4Rgzw+jp7sbHl40NefuIEYsg==}
+  simple-icons@16.33.0:
+    resolution: {integrity: sha512-z14u6A8ngAg9mgERRsNO8YkjIMefehIpBk7A8Dz3Gd91945qFP19MLPSHgV4z8P5u/MRYd5e07OTzaDoB4d6qA==}
     engines: {node: '>=0.12.18'}
 
   source-map-js@1.2.1:
@@ -4279,7 +4279,7 @@ snapshots:
 
   signal-exit@4.0.2: {}
 
-  simple-icons@16.29.0: {}
+  simple-icons@16.33.0: {}
 
   source-map-js@1.2.1: {}
 
