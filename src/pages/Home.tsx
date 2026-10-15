@@ -16,6 +16,7 @@ import { Link } from 'react-router-dom';
 import Hero from '../components/home/Hero';
 import ServiceAreaSection from '../components/home/ServiceAreaSection';
 import CarrierLogoGrid from '../components/home/CarrierLogoGrid';
+import { buildOrganizationSchema, buildWebSiteSchema } from '../lib/schema';
 import PageMetadata from '../components/PageMetadata';
 
 const values = [
@@ -108,28 +109,8 @@ const testimonials = [
 ];
 
 const homeStructuredData = [
-  {
-    '@context': 'https://schema.org',
-    '@type': 'ProfessionalService',
-    name: 'TruClaims Advisory Group',
-    url: 'https://www.truclaimsadvisorygroup.com/',
-    description:
-      'Independent insurance appraisal, umpire, and catastrophic loss valuation services for policyholders and carriers across Texas and Louisiana.',
-    areaServed: ['Texas', 'Louisiana'],
-    telephone: '+1-903-315-0136',
-    email: 'info@truclaimsadvisorygroup.com',
-    sameAs: ['https://www.linkedin.com/company/truclaims-advisory-group'],
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Lumberton',
-      addressRegion: 'TX',
-      addressCountry: 'US',
-    },
-    founder: {
-      '@type': 'Person',
-      name: 'Larryon Truman',
-    },
-  },
+  buildOrganizationSchema(),
+  buildWebSiteSchema(),
   {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',

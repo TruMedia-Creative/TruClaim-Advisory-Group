@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
 import { MapPin, Droplets, Layers, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import PageMetadata, { SITE_URL } from '../components/PageMetadata';
-import { PHONE_TEL } from '../lib/contact';
+import { buildBreadcrumbSchema, buildStateServiceSchema } from '../lib/schema';
+import PageMetadata from '../components/PageMetadata';
 
 const parishes = [
   'Orleans, Jefferson, Plaquemines, and St. Bernard Parishes',
@@ -20,20 +20,10 @@ const specialties = [
   'NFIP flood claim estimating and Proof of Loss support',
 ];
 
-const structuredData = {
-  '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
-  name: 'TruClaims Advisory Group — Louisiana Insurance Appraisal Services',
-  url: `${SITE_URL}/louisiana`,
-  areaServed: 'Louisiana',
-  serviceType: ['Insurance appraisal', 'Umpire services', 'Flood loss valuation'],
-  telephone: PHONE_TEL,
-  address: {
-    '@type': 'PostalAddress',
-    addressRegion: 'LA',
-    addressCountry: 'US',
-  },
-};
+const structuredData = [
+  buildStateServiceSchema('Louisiana', '/louisiana'),
+  buildBreadcrumbSchema([{ name: 'Louisiana', path: '/louisiana' }]),
+];
 
 export default function Louisiana() {
   return (

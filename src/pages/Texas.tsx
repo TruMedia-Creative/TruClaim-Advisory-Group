@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { MapPin, Shield, Users, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { buildBreadcrumbSchema, buildStateServiceSchema } from '../lib/schema';
 import PageMetadata from '../components/PageMetadata';
 
 const metroAreas = [
@@ -21,26 +22,10 @@ const claimTypes = [
   'Umpire services for Texas-based disputes',
 ];
 
-const structuredData = {
-  '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
-  name: 'TruClaims Advisory Group — Texas Insurance Appraisal Services',
-  url: 'https://www.truclaimsadvisorygroup.com/texas',
-  areaServed: 'Texas',
-  serviceType: [
-    'Insurance appraisal',
-    'Umpire services',
-    'Catastrophic loss valuation',
-    'NFIP flood claim support',
-  ],
-  telephone: '+1-903-315-0136',
-  address: {
-    '@type': 'PostalAddress',
-    addressRegion: 'TX',
-    addressCountry: 'US',
-  },
-  sameAs: ['https://www.linkedin.com/company/truclaims-advisory-group'],
-};
+const structuredData = [
+  buildStateServiceSchema('Texas', '/texas'),
+  buildBreadcrumbSchema([{ name: 'Texas', path: '/texas' }]),
+];
 
 export default function Texas() {
   return (

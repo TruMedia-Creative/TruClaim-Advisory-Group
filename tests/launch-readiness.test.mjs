@@ -64,3 +64,14 @@ test('the static HTML ships crawlable default social metadata', async () => {
   );
   assert.match(html, /name="twitter:card" content="summary_large_image"/);
 });
+
+test('shared schema.org builders cover languages, credentials, and contact actions', async () => {
+  const schemaSource = await readFile(fromRoot('src/lib/schema.ts'), 'utf8');
+
+  assert.match(schemaSource, /InsuranceAgency/);
+  assert.match(schemaSource, /availableLanguage/);
+  assert.match(schemaSource, /Spanish/);
+  assert.match(schemaSource, /hasCredential/);
+  assert.match(schemaSource, /CommunicateAction/);
+  assert.match(schemaSource, /BreadcrumbList/);
+});

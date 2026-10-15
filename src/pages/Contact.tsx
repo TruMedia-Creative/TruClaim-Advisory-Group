@@ -3,16 +3,13 @@ import { motion } from 'framer-motion';
 import { track } from '@vercel/analytics';
 import { CheckCircle, ClipboardList, Search, MapPin, Award } from 'lucide-react';
 import PageMetadata from '../components/PageMetadata';
+import { buildBreadcrumbSchema, buildContactPageSchema } from '../lib/schema';
 import { MAX_DAMAGE_PHOTOS } from '../lib/contact';
 
-const contactStructuredData = {
-  '@context': 'https://schema.org',
-  '@type': 'ContactPage',
-  name: 'Request an Insurance Appraisal Review',
-  url: 'https://www.truclaimsadvisorygroup.com/contact',
-  description:
-    'Submit documentation for an independent insurance appraisal or umpire review covering Texas and Louisiana property claims.',
-};
+const contactStructuredData = [
+  buildContactPageSchema(),
+  buildBreadcrumbSchema([{ name: 'Contact', path: '/contact' }]),
+];
 
 const steps = [
   {

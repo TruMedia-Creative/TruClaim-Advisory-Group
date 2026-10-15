@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { FileText, Search, ClipboardList, Scale, CheckCircle, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { buildBreadcrumbSchema } from '../lib/schema';
 import PageMetadata from '../components/PageMetadata';
 
 const steps = [
@@ -55,7 +56,7 @@ const nextSteps = [
   'We provide a clear assessment of whether appraisal is the appropriate path and what the next step is',
 ];
 
-const processStructuredData = {
+const processHowTo = {
   '@context': 'https://schema.org',
   '@type': 'HowTo',
   name: 'Insurance Appraisal Process',
@@ -68,6 +69,11 @@ const processStructuredData = {
     itemListElement: step.description,
   })),
 };
+
+const processStructuredData = [
+  processHowTo,
+  buildBreadcrumbSchema([{ name: 'Process', path: '/process' }]),
+];
 
 export default function Process() {
   return (

@@ -18,7 +18,7 @@ TruClaims Advisory Group is a Vite-built React marketing site for independent pr
 - `src/App.tsx` owns the router, lazy-loaded non-home routes, shared layout, and production analytics.
 - `src/pages/` contains the seven public route components: Home, Services, Process, Texas, Louisiana, About, Contact, and a 404 page.
 - `src/components/layout/` contains navigation, footer, skip-to-main link, scroll reset, and back-to-top control.
-- `src/components/PageMetadata.tsx` updates route-level titles, canonical URL, Open Graph/Twitter metadata, and JSON-LD. Its default social asset is `public/og-image.jpg`.
+- `src/components/PageMetadata.tsx` updates route-level titles, canonical URL, Open Graph/Twitter metadata, and JSON-LD. `src/lib/schema.ts` holds shared schema.org builders (InsuranceAgency/ProfessionalService organization with languages spoken, credentials, offer catalog and contact actions; WebSite, Service, Person, ContactPage, BreadcrumbList) linked via stable `@id`s. Its default social asset is `public/og-image.jpg`.
 - `src/lib/contact.ts` owns shared client/server form constants.
 - `api/contact.ts` accepts multipart contact submissions, validates text and files, applies the in-memory rate limit and honeypot, and relays approved submissions to Resend.
 - `public/` contains static assets, `robots.txt`, and `sitemap.xml`.
