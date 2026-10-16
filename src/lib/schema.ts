@@ -12,9 +12,21 @@ const STATES = [
 ];
 
 const LICENSES = [
-  { name: 'Texas All Lines Adjuster License', identifier: '2532605', region: 'TX' },
-  { name: 'Texas LA&H / P&C License', identifier: '1917567', region: 'TX' },
-  { name: 'NFIP Flood Certification', identifier: '0070011243', region: 'US' },
+  {
+    name: 'Texas All Lines Adjuster License',
+    identifier: '2532605',
+    validIn: { '@type': 'State', name: 'Texas', identifier: 'TX' },
+  },
+  {
+    name: 'Texas LA&H / P&C License',
+    identifier: '1917567',
+    validIn: { '@type': 'State', name: 'Texas', identifier: 'TX' },
+  },
+  {
+    name: 'NFIP Flood Certification',
+    identifier: '0070011243',
+    validIn: { '@type': 'Country', name: 'United States', identifier: 'US' },
+  },
 ];
 
 export const SERVICE_TYPES = [
@@ -34,7 +46,11 @@ const areaServed = STATES.map(({ name, code }) => ({
   containedInPlace: { '@type': 'Country', name: 'United States' },
 }));
 
-const providerRef = { '@id': ORGANIZATION_ID };
+const providerRef = {
+  '@id': ORGANIZATION_ID,
+  '@type': ['InsuranceAgency', 'ProfessionalService'],
+  name: BUSINESS_NAME,
+};
 
 export function buildOrganizationSchema(): JsonLd {
   return {
@@ -89,7 +105,7 @@ export function buildOrganizationSchema(): JsonLd {
       name: license.name,
       credentialCategory: 'license',
       identifier: license.identifier,
-      recognizedBy: { '@type': 'Organization', name: license.region },
+      validIn: license.validIn,
     })),
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
@@ -170,7 +186,7 @@ export function buildServiceSchema(name: string, description: string): JsonLd {
     areaServed,
     audience: { '@type': 'Audience', audienceType: 'Policyholders, carriers, and attorneys' },
     potentialAction: {
-      '@type': 'ReserveAction',
+      '@type': 'CommunicateAction',
       name: `Request ${name}`,
       target: {
         '@type': 'EntryPoint',

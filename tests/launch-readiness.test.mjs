@@ -74,5 +74,12 @@ test('shared schema.org builders cover languages, credentials, and contact actio
   assert.match(schemaSource, /Spanish/);
   assert.match(schemaSource, /hasCredential/);
   assert.match(schemaSource, /CommunicateAction/);
+  assert.match(
+    schemaSource,
+    /const providerRef = \{\s*'@id': ORGANIZATION_ID,\s*'@type': \['InsuranceAgency', 'ProfessionalService'\],\s*name: BUSINESS_NAME,/
+  );
+  assert.match(schemaSource, /validIn: license\.validIn/);
+  assert.doesNotMatch(schemaSource, /recognizedBy/);
+  assert.doesNotMatch(schemaSource, /ReserveAction/);
   assert.match(schemaSource, /BreadcrumbList/);
 });
