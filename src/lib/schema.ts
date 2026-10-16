@@ -11,11 +11,6 @@ const STATES = [
   { name: 'Louisiana', code: 'LA' },
 ];
 
-const LANGUAGES = [
-  { '@type': 'Language', name: 'English', alternateName: 'en' },
-  { '@type': 'Language', name: 'Spanish', alternateName: 'es' },
-];
-
 const LICENSES = [
   { name: 'Texas All Lines Adjuster License', identifier: '2532605', region: 'TX' },
   { name: 'Texas LA&H / P&C License', identifier: '1917567', region: 'TX' },
@@ -64,7 +59,6 @@ export function buildOrganizationSchema(): JsonLd {
       addressCountry: 'US',
     },
     areaServed,
-    availableLanguage: LANGUAGES,
     knowsLanguage: ['en', 'es'],
     knowsAbout: [
       ...SERVICE_TYPES,
@@ -72,12 +66,6 @@ export function buildOrganizationSchema(): JsonLd {
       'Property insurance claims',
       'Hurricane and hail damage',
       'Loss valuation',
-    ],
-    serviceType: SERVICE_TYPES,
-    audience: [
-      { '@type': 'Audience', audienceType: 'Policyholders' },
-      { '@type': 'Audience', audienceType: 'Insurance carriers' },
-      { '@type': 'Audience', audienceType: 'Attorneys' },
     ],
     contactPoint: [
       {
@@ -180,7 +168,6 @@ export function buildServiceSchema(name: string, description: string): JsonLd {
     serviceType: name,
     provider: providerRef,
     areaServed,
-    availableLanguage: LANGUAGES,
     audience: { '@type': 'Audience', audienceType: 'Policyholders, carriers, and attorneys' },
     potentialAction: {
       '@type': 'ReserveAction',
@@ -255,6 +242,5 @@ export function buildStateServiceSchema(stateName: string, path: string): JsonLd
     serviceType: SERVICE_TYPES,
     provider: providerRef,
     areaServed: { '@type': 'State', name: stateName, identifier: state?.code },
-    availableLanguage: LANGUAGES,
   };
 }

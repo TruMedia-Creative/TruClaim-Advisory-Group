@@ -69,7 +69,8 @@ test('shared schema.org builders cover languages, credentials, and contact actio
   const schemaSource = await readFile(fromRoot('src/lib/schema.ts'), 'utf8');
 
   assert.match(schemaSource, /InsuranceAgency/);
-  assert.match(schemaSource, /availableLanguage/);
+  assert.match(schemaSource, /knowsLanguage/);
+  assert.match(schemaSource, /availableLanguage: \['English', 'Spanish'\]/);
   assert.match(schemaSource, /Spanish/);
   assert.match(schemaSource, /hasCredential/);
   assert.match(schemaSource, /CommunicateAction/);
