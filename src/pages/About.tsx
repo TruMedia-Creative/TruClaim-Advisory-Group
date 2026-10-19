@@ -13,8 +13,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PageMetadata from '../components/PageMetadata';
-
-const SITE_URL = 'https://www.truclaimsadvisorygroup.com';
+import { buildBreadcrumbSchema, buildFounderSchema } from '../lib/schema';
 
 const principalBullets = [
   'Texas All Lines Adjuster License #2532605',
@@ -184,20 +183,8 @@ const experience = [
 const headshotSrc = `${import.meta.env.BASE_URL}larryon-truman.webp`;
 
 const aboutStructuredData = [
-  {
-    '@context': 'https://schema.org',
-    '@type': 'Person',
-    name: 'Larryon Truman',
-    jobTitle: 'Principal Appraiser',
-    worksFor: {
-      '@type': 'Organization',
-      name: 'TruClaims Advisory Group',
-    },
-    url: 'https://www.truclaimsadvisorygroup.com/about',
-    image: `${SITE_URL}/larryon-truman.webp`,
-    knowsAbout: ['Insurance appraisal', 'Umpire services', 'NFIP flood claims'],
-    sameAs: ['https://www.linkedin.com/in/larryontruman'],
-  },
+  buildFounderSchema(),
+  buildBreadcrumbSchema([{ name: 'About', path: '/about' }]),
 ];
 
 export default function About() {

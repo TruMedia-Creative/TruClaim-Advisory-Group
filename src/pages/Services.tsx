@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Scale, Search, FileText, Gavel, Home, Building2, Droplets } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { buildBreadcrumbSchema, buildServiceSchema } from '../lib/schema';
 import PageMetadata from '../components/PageMetadata';
 
 const services = [
@@ -98,18 +99,10 @@ const services = [
   },
 ];
 
-const servicesSchema = services.map((service) => ({
-  '@context': 'https://schema.org',
-  '@type': 'Service',
-  name: service.title,
-  description: service.description,
-  provider: {
-    '@type': 'Organization',
-    name: 'TruClaims Advisory Group',
-    url: 'https://www.truclaimsadvisorygroup.com',
-  },
-  areaServed: ['Texas', 'Louisiana'],
-}));
+const servicesSchema = [
+  ...services.map((service) => buildServiceSchema(service.title, service.description)),
+  buildBreadcrumbSchema([{ name: 'Services', path: '/services' }]),
+];
 
 export default function Services() {
   return (
